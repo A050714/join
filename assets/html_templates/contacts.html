@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts</title>
+    <script>
+         // import index.html(sidebar) to contacts.html
+        function loadTemplate() {
+            fetch('/index.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('template-container-sidebar').innerHTML = data;
+                });
+        }
+
+        window.onload = loadTemplate;
+    </script>
+     <base href="/index.html">
+</head>
+<body>
+     <!-- Container für die Vorlage -->
+    <div id="template-container-sidebar"></div>
+</body>
+</html>
+
