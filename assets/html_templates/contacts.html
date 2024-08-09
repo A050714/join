@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
+    <link rel="stylesheet" href="style.css">
+
     <script>
          // import index.html(sidebar) to contacts.html
         function loadTemplate() {
@@ -21,6 +23,69 @@
 <body>
      <!-- Container für die Vorlage -->
     <div id="template-container-sidebar"></div>
+
+    <div class="default-content contact-container">
+        <div class="contact-list">
+
+            <button id="add-contact-btn" onclick="" >Add New Contact</button>
+            <div id="contact-list">
+                <!-- Contacts will be dynamically added here -->
+            </div>
+        </div>
+        
+        <div class="contact-side">
+            <div class="contacts_header">
+                <h1>Contacts</h1>
+                <div class="space-line"></div>
+                <div id="contact-info">
+                    <p>Better with a team</p>
+                </div>
+            </div>
+
+            <div class="contact_user">
+                <div>
+                    <img src="" alt="">
+                    <div class="user-name">
+                        <h2 class="user-fullname"></h2>
+                        <div class="user-editor">
+                            <img src="" alt=""> <span>Edit</span>
+                            <img src="" alt=""> <span>Delete</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-details">
+                    <h5>Contact Information</h5>
+                    <h4>Email</h4>
+                    <p>...</p>
+                    <h4>Phone</h4>
+                    <p>...</p>
+                </div>
+
+
+            </div>
+            
+      
+        </div>
+    
+        <!-- Add Contact Modal -->
+        <!-- <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Add New Contact</h2>
+                <form id="contact-form">
+                    <input type="text" id="name" placeholder="Name" required>
+                    <input type="email" id="email" placeholder="Email" required>
+                    <input type="text" id="phone" placeholder="Phone Number" required>
+                    <button type="submit">Add Contact</button>
+                </form>
+            </div>
+        </div> -->
+
+    </div>
+
+
+    <script src="script.js"></script>
 </body>
 </html>
 
