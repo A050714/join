@@ -8,9 +8,12 @@
     <link rel="stylesheet" href="/assets/css/sidebar.css">
     <link rel="stylesheet" href="/assets/css/header.css">
     <link rel="stylesheet" href="/assets/css/contacts.css">
+    <link rel="stylesheet" href="/style.css">
+    <script src="/js/contacts.js"></script>
+    <script src=""></script>
 </head>
 
-<body>
+<body onload="renderAllContacts()">
 
     <main class="Maincontainer">
         <aside id="sidebar">
@@ -69,11 +72,11 @@
                         <p>Better with a team</p>
                     </div>
 
-                    <div class="showContact" id="showContact">
+                    <div class="showContact dNone" id="showContact">
                         <div class="contacthead">
-                            <div class="contactcolor"></div>
+                            <div class="contactcolor" id="contactColor"></div>
                             <div>
-                                <h2>Anton Meyer</h2>
+                                <h2 id="contactName"></h2>
                                 <div class="editdelete">
                                     <button class="contactbuttons"><img class="icons"
                                             src="/assets\img\03_AddTask\subtasks_icons\edit.svg" alt="">Edit</button>
@@ -92,11 +95,11 @@
                             <div class="kontakdaten">
                                 <p>Email</p>
 
-                                <a href="#">Beispiel@email.com</a>
+                                <a href="#" id="contactMail"></a>
 
                                 <p>Phone</p>
 
-                                <span>Tel.:123224455544</span>
+                                <span id="contactPhone"></span>
                             </div>
                         </div>
 
@@ -125,9 +128,6 @@
                                 <button class="createbutton">Create contact <img src="/assets/img/00_General_elements/checkmark_white.svg" alt=""></button>
                             </div>
                         </div>
-
-                        
-                    </div>
 
                 </div>
 

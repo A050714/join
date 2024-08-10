@@ -75,12 +75,7 @@ h1 {
 
 
 .showContact {
-
-
     margin: 24px;
-    border: 1px solid red;
-
-
 }
 
 .contactcolor {
@@ -88,6 +83,12 @@ h1 {
     height: 120px;
     background-color: orange;
     border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 500;
+    font-size: 47px;
 }
 
 .contacthead {
@@ -317,4 +318,9 @@ h3 {
     display: flex;
     justify-content: flex-start;
     width: 364px;
+}
+
+.singleContacts {
+    height: 60px;
+    cursor: pointer;
 }
