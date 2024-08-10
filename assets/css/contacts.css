@@ -133,7 +133,7 @@ h2 {
     gap: 10px;
 }
 
-.contactinformation{
+.contactinformation {
     margin-top: 37px;
     margin-bottom: 37px;
 }
@@ -143,8 +143,178 @@ h2 {
     font-size: 20px;
 }
 
-.kontakdaten{
+.kontakdaten {
     display: flex;
     flex-direction: column;
     gap: 22px;
+}
+
+.addcontactpopup {
+    width: 1212px;
+    height: 592px;
+    border: 1px solid #D1D1D1;
+    border-radius: 30px;
+}
+
+.popupleft {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #2A3647;
+    width: 467px;
+    height: 592px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    gap: 12px;
+    padding-left: 48px;
+}
+
+h3 {
+    font-family: 'PT Sans';
+    font-size: 61px;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+}
+
+.popupleft p {
+    color: white;
+    font-family: 'PT Sans';
+    font-size: 27px;
+}
+
+.border-horizontal {
+    height: 3px;
+    width: 90px;
+    background-color: #29ABE2;
+    margin-top: 16px;
+}
+
+.popuplogo {
+    height: 66px;
+    width: 56px;
+}
+
+.addcontactbg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    width: 120px;
+    background-color: #D1D1D1;
+    border-radius: 70px;
+    margin-left: 24px;
+}
+
+.addcontactperson {
+    height: 64px;
+
+}
+
+.addcontactpopup {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.inputfieldscontactpopup {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.inputnameimg {
+    width: 422px;
+    height: 50px;
+    padding-left: 21px;
+    background-image: url("/assets/img/05_Contacts/add_contact_text/person.svg");
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    background-position: calc(100% - 21px) center;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+}
+
+.inputnameimg::placeholder {
+    color: #D1D1D1;
+}
+
+.inputemailimg {
+    width: 422px;
+    height: 50px;
+    padding-left: 21px;
+    background-image: url("/assets/img/05_Contacts/add_contact_text/mail.svg");
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    background-position: calc(100% - 21px) center;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+}
+
+.inputemailimg::placeholder {
+    color: #D1D1D1;
+}
+
+.inputphoneimg {
+    width: 422px;
+    height: 50px;
+    padding-left: 21px;
+    background-image: url("/assets/img/05_Contacts/add_contact_text/call.svg");
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    background-position: calc(100% - 21px) center;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+}
+
+.inputphoneimg::placeholder {
+    color: #D1D1D1;
+}
+
+.cancelbutton {
+    width: 126px;
+    height: 56px;
+    border-radius: 10px;
+    background-color: white;
+    border: 1px solid #2A3647;
+    font-size: 20px;
+    font-family: 'PT Sans';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    margin-right: 16px;
+}
+
+.cancelbutton img {
+    height: 24px;
+    width: 24px;
+}
+
+.createbutton {
+    width: 214px;
+    height: 56px;
+    border-radius: 10px;
+    background-color: #2A3647;
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 21px;
+    font-weight: 700;
+    font-family: 'PT Sans';
+    gap: 4px;
+}
+
+.createbutton img {
+    height: 24px;
+    width: 24px;
+}
+
+
+.addcontactbtn {
+    display: flex;
+    justify-content: flex-start;
+    width: 364px;
 }
