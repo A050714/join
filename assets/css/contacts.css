@@ -60,6 +60,7 @@ h1 {
     font-family: 'PT Sans';
     font-size: 21px;
     font-weight: 700;
+    cursor: pointer;
 }
 
 .newcontactimg {
@@ -327,6 +328,7 @@ h3 {
     font-weight: 700;
     font-family: 'PT Sans';
     gap: 4px;
+    cursor: pointer;
 }
 
 .createbutton img {
