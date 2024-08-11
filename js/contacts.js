@@ -58,9 +58,19 @@ async function renderAllContacts() {
 // SHOW ADD CONTACT POPUP
 
 function togglePopup() {
+
+    let overlay = document.getElementById('overlay'); 
+    overlay.classList.toggle('show'); 
+    overlay.classList.toggle("hidden"); 
+
+}
+
+// Onclick "Cancle" to hide the Popup
+function hidePopup() {
     let popup = document.getElementById("addcontactpopup");
-    popup.classList.toggle('show-popup')
-    popup.classList.toggle("hidden-popup"); 
+    let overlay = document.getElementById("overlay"); 
+    popup.classList.add('show'); 
+    overlay.classList.add('show'); 
 }
 
 

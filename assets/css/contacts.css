@@ -219,6 +219,7 @@ h3 {
 }
 
 .overlay{
+    
     position: fixed;
     top: 0;
     left: 0;
@@ -231,10 +232,10 @@ h3 {
     z-index: 1000; 
 }
 
-.show-popup{
+.show{
     display: flex;
 }
-.hidden-popup {
+.hidden{
     display: none;
 }
 
