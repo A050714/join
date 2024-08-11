@@ -120,13 +120,13 @@
                                     src="/assets\img\05_Contacts\add_contact_text\person-white.svg" alt="">
                             </div>
     
-                            <div class="inputfieldscontactpopup">
-                                <input class="inputnameimg" type="text" placeholder="Name" required>
-                                <input class="inputemailimg" type="email" placeholder="Email" required>
-                                <input class="inputphoneimg" type="text" placeholder="Phone" required>
+                            <div class="inputfieldscontactpopup" id="editedContact">
+                                <input class="inputnameimg" type="text" placeholder="Name" id="newName" required>
+                                <input class="inputemailimg" type="email" placeholder="Email" id="newMail" required>
+                                <input class="inputphoneimg" type="text" placeholder="Phone" id="newPhone" required>
                                 <div class="addcontactbtn">
                                     <button class="cancelbutton" onclick="togglePopup()">Cancel <img src="/assets/img/00_General_elements/cancel/cancel_black.svg" alt=""></button>
-                                    <button class="createbutton">Create contact <img src="/assets/img/00_General_elements/checkmark_white.svg" alt=""></button>
+                                    <button class="createbutton" onclick="createContact()">Create contact <img src="/assets/img/00_General_elements/checkmark_white.svg" alt=""></button>
                                 </div>
                             </div>
                         </div>

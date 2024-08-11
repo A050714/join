@@ -65,33 +65,50 @@ function togglePopup() {
 
 }
 
-// Onclick "Cancle" to hide the Popup
-function hidePopup() {
-    let popup = document.getElementById("addcontactpopup");
-    let overlay = document.getElementById("overlay"); 
-    popup.classList.add('show'); 
-    overlay.classList.add('show'); 
-}
 
 
+//ADD CONTACT//----------------------------------------------------------------------
 
-
-
-//ADD CONTACT//-----------------------------------------------------------------------
 //get Data from Firebase and add new contact
-async function addToContacts() {
-    let name = document.getElementById('name').value;
-    let mail = document.getElementById('mail').value;
-    let phone = document.getElementById('phone').value;
-    let userrespone = await getData("Contacts")|| {};
-    let UserKeysArray = Object.keys(userrespone);
-    let userIndex = UserKeysArray.length - 1;
-    userIndex++;
-    postData(`Contacts/${userIndex}`, { "name": name, "mail": mail, "phone": phone })
-    document.getElementById('name').value = "";
-    document.getElementById('mail').value = "";
-    document.getElementById('phone').value = "";
-}
+// async function createContact() {
+//     let nameElement = document.getElementById('newName');
+//     let mailElement = document.getElementById('newMail');
+//     let phoneElement = document.getElementById('newPhone');
+    
+//     console.log(nameElement, mailElement, phoneElement);
+    
+//     if (nameElement && mailElement && phoneElement) {
+//         let name = nameElement.value;
+//         let mail = mailElement.value;
+//         let phone = phoneElement.value;
+//         let userrespone = await getData("Contacts")|| {};
+//         let UserKeysArray = Object.keys(userrespone);
+//         let userIndex = UserKeysArray.length - 1;
+
+//         await postData(`Contacts/${userIndex}`, { "name": name, "mail": mail, "phone": phone });
+//         nameElement.value = "";
+//         mailElement.value = "";
+//         phoneElement.value = "";
+//     } else {
+//         console.error("One or more elements are missing!");
+//     }
+// }
+// document.addEventListener('DOMContentLoaded', (event) => {
+//     // +createContact()
+// });
+// async function createContact() {
+//     let name = document.getElementById('newName').value;
+//     let mail = document.getElementById('newMail').value;
+//     let phone = document.getElementById('newPhone').value;
+//     let userrespone = await getData("Contacts")|| {};
+//     let UserKeysArray = Object.keys(userrespone);
+//     let userIndex = UserKeysArray.length - 1;
+
+//     await postData(`Contacts/${userIndex}`, { "name": name, "mail": mail, "phone": phone })
+//     document.getElementById('newName').value = "";
+//     document.getElementById('newMail').value = "";
+//     document.getElementById('newPhone').value = "";
+// }
 
 
 
@@ -130,7 +147,6 @@ function showInitials(contact) {
 }
 
 //EDIT CONTACT//----------------------------------------------------------------------------------------------
-
 
 
 //UTILITY//---------------------------------------------------------------------------------------------------
