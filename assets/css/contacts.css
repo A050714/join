@@ -150,12 +150,6 @@ h2 {
     gap: 22px;
 }
 
-.addcontactpopup {
-    width: 1212px;
-    height: 592px;
-    border: 1px solid #D1D1D1;
-    border-radius: 30px;
-}
 
 .popupleft {
     display: flex;
@@ -213,9 +207,20 @@ h3 {
 }
 
 .addcontactpopup {
-    display: flex;
+    width: 1212px;
+    height: 592px;
+    border: 1px solid #D1D1D1;
+    border-radius: 30px;
     align-items: center;
     gap: 24px;
+    display: flex;  
+}
+
+.show-popup{
+    display: flex;
+}
+.hidden-popup {
+    display: none;
 }
 
 .inputfieldscontactpopup {

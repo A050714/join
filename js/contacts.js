@@ -55,6 +55,16 @@ async function renderAllContacts() {
     }
 }
 
+// SHOW ADD CONTACT POPUP
+
+function togglePopup() {
+    let popup = document.getElementById("addcontactpopup");
+    popup.classList.toggle('show-popup')
+    popup.classList.toggle("hidden-popup"); 
+}
+
+
+
 
 
 //ADD CONTACT//-----------------------------------------------------------------------
