@@ -44,7 +44,7 @@ async function renderAllContacts() {
     sortContacts();
     let content = document.getElementById('contactList');
     content.innerHTML = '';
-    for (let index = 0; index < contacts.length-1; index++) {
+    for (let index = 0; index < contacts.length; index++) {
         let contact = contacts[index];
         content.innerHTML += `
             <div class="singleContacts" id="Id_${contact.id}" onclick="showContact(${index})"> 
