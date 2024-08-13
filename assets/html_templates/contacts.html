@@ -60,7 +60,7 @@
             </header>
             <div class="contactScreen">
                 <div class="addNewContact">
-                    <button class="contactbtn" id="addNewContact" onclick="togglePopup(), toggleOverlay()">Add new Contact <img class="newcontactimg"
+                    <button class="contactbtn" id="addNewContact" onclick="togglePopup()">Add new Contact <img class="newcontactimg"
                             src="/assets/img/00_General_elements/person_add.svg" alt=""></button>
                     <div id="contactList"></div>
                 </div>
@@ -80,7 +80,7 @@
                                 <div class="editdelete">
                                     <button class="contactbuttons"><img class="icons"
                                             src="/assets\img\03_AddTask\subtasks_icons\edit.svg" alt="">Edit</button>
-                                    <button class="contactbuttons"><img class="icons"
+                                    <button onclick="deleteContact()" class="contactbuttons"><img class="icons"
                                             src="/assets\img\03_AddTask\subtasks_icons\delete.svg" alt="">
                                         Delete</button>
                                 </div>
