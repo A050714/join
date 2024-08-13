@@ -124,6 +124,7 @@ function togglePopup() {
      document.getElementById('newName').value = "";
      document.getElementById('newMail').value = "";
      document.getElementById('newPhone').value = "";
+     location.reload();
  }
 
 
