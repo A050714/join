@@ -6,12 +6,21 @@
     <title>Sign Up</title>
     <link rel="stylesheet" href="/assets/css/login-signup.css">
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <script src=''></script>
+    <script>
+        window.onload = function() {
+     // in 1s the logo should be at left bottom corner and the background color should only be shown at the beginning
+    setTimeout(function() {
+        document.getElementById('logo-container').style.transform = 'translate(-95vw, -90vh) scale(1)';
+        document.getElementById('logo-container').style.backgroundColor = 'transparent'; 
+    }, 1000);
+    };
+ 
+    </script>
 </head>
 <body>
     <div class="loginAndSignup">
-        <div class="join_logo">
-            <img src="/assets/img/00_General_elements/Logo for Favicon construction.svg" alt="">
+        <div class="join_logo" id="logo-container">
+            <img src="/assets/img/00_General_elements/Logo for Favicon construction.svg" alt="" id="logo">
         </div>
 
         <div class="signup_option">

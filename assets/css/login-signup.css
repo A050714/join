@@ -16,6 +16,21 @@
    }
    
    /* Log In */
+   #logo-container {
+    background-color: #f6f7f8;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    z-index: 10000;
+    transform: translate(-50%, -50%) scale(3); /* vergrößern 3-fach */
+    transition: transform 1s ease;
+    width: 100vw;
+    height: 100vh;
+}
+
    .loginAndSignup{
        position: relative;
        background-color: #f6f7f8;
@@ -93,10 +108,10 @@
    }
    
    
-   .join_logo{
+   /* .join_logo{
        position: absolute;
        padding: 50px;
-   }
+   } */
    .signup_option{
        position: absolute;
        right: 0;
