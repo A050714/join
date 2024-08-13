@@ -17,7 +17,6 @@
    
    /* Log In */
    #logo-container {
-    background-color: #f6f7f8;
     position: absolute;
     display: flex;
     align-items: center;
@@ -25,11 +24,12 @@
     top: 50%;
     left: 50%;
     z-index: 10000;
-    transform: translate(-50%, -50%) scale(3); /* vergrößern 3-fach */
+    transform: translate(-50%, -50%) scale(3);
     transition: transform 1s ease;
-    width: 100vw;
-    height: 100vh;
-}
+    width: 100%;
+    height: 100%;
+    background-color:#f6f7f8;
+    }
 
    .loginAndSignup{
        position: relative;

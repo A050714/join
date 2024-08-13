@@ -8,10 +8,11 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <script>
         window.onload = function() {
+        const logoAnimation = document.getElementById('logo-container');
      // in 1s the logo should be at left bottom corner and the background color should only be shown at the beginning
     setTimeout(function() {
-        document.getElementById('logo-container').style.transform = 'translate(-95vw, -90vh) scale(1)';
-        document.getElementById('logo-container').style.backgroundColor = 'transparent'; 
+        logoAnimation.style.transform = 'translate(-95vw, -90vh) scale(1)';
+        logoAnimation.style.backgroundColor = 'transparent'; 
     }, 1000);
     };
  
@@ -25,7 +26,7 @@
 
         <div class="signup_option">
             <p>Not a Join user?</p>
-            <button>Sign up</button>
+            <button><a href="/assets/html_templates/sign_up.html">Sign up</a></button>
         </div>
 
         <div class="login-container">
