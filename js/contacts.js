@@ -1,6 +1,7 @@
 
 let contacts = [];
 const BASE_URL = "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/";
+let colors = ['','','','','','','','','','',''];
 
 
 //RENDER CONTACTS//------------------------------------------------------
@@ -44,7 +45,7 @@ async function renderAllContacts() {
     sortContacts();
     let content = document.getElementById('contactList');
     content.innerHTML = '';
-    for (let index = 0; index < contacts.length - 1; index++) {
+    for (let index = 0; index < contacts.length; index++) {
         let contact = contacts[index];
         content.innerHTML += `
             <div class="singleContacts" id="Id_${contact.id}" onclick="showContact(${index})"> 
@@ -62,7 +63,7 @@ async function renderAllContacts2() {
     content.innerHTML = '';
     firtsLetter = '';
 
-    for (let index = 0; index < contacts.length-1; index++) { 
+    for (let index = 0; index < contacts.length; index++) { 
         let contact = contacts[index];
 
         if(firtsLetter!=contacts[index].user.name[0]){
