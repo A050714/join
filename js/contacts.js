@@ -68,7 +68,6 @@ function togglePopup() {
 
 
 //ADD CONTACT//----------------------------------------------------------------------
-<<<<<<< HEAD
 
  async function createContact() {
      let name = document.getElementById('newName').value;
@@ -82,21 +81,6 @@ function togglePopup() {
      document.getElementById('newMail').value = "";
      document.getElementById('newPhone').value = "";
  }
-=======
-// async function createContact() {
-//     let name = document.getElementById('newName').value;
-//     let mail = document.getElementById('newMail').value;
-//     let phone = document.getElementById('newPhone').value;
-//     let userrespone = await getData("Contacts")|| {};
-//     let UserKeysArray = Object.keys(userrespone);
-//     let userIndex = UserKeysArray.length - 1;
-
-//     await postData(`Contacts/${userIndex}`, { "name": name, "mail": mail, "phone": phone })
-//     document.getElementById('newName').value = "";
-//     document.getElementById('newMail').value = "";
-//     document.getElementById('newPhone').value = "";
-// }
->>>>>>> 6f3b3e5c5d578b37ba9ff9fdde45c9f73ac6b313
 
 
 //DELETE CONTACT//-----------------------------------------------------------------------------

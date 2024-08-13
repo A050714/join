@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOIN</title>
+    <link rel="shortcut icon" type="image/x-icon"
+        href="assets/img/00_General_elements/Logo for Favicon construction.svg">
+    <link rel="stylesheet" href="/assets/css/sidebar.css">
+    <link rel="stylesheet" href="/assets/css/addtask.css">
+</head>
+
+<body>
+    <div class="Maincontainer">
+        <aside id="sidebar">
+
+            <img class="sidebarlogo" src="/assets/img/00_General_elements/Join logo vector.svg" alt="Join-logo">
+
+            <div class="sidelinks" id="sidelinks">
+                <section id="widget_1">
+                    <img class="sidebarimg" src="/assets/img/00_General_elements/menu_Icons/summary.svg" alt="summary">
+                    <a class="sidebartext" href="#">Summary</a>
+                </section>
+
+                <section id="widget_1">
+                    <img class="sidebarimg" src="/assets/img/00_General_elements/menu_Icons/add_task.svg"
+                        alt="add task">
+                    <a class="sidebartext" href="#">Add Task</a>
+                </section>
+
+                <section id="widget_1">
+                    <img class="sidebarimg" src="/assets/img/00_General_elements/menu_Icons/board.svg" alt="board">
+                    <a class="sidebartext" href="#">Board</a>
+                </section>
+
+                <section id="widget_1">
+                    <img class="sidebarimg" src="/assets/img/00_General_elements/menu_Icons/contacts.svg"
+                        alt="contacts">
+                    <a class="sidebartext" href="/assets/html_templates/contacts.html">Contacts</a>
+                </section>
+            </div>
+
+            <div class="sidebarfooter">
+                <a class="sidebartext" href="#">Privacy Policy</a>
+                <a class="sidebartext" href="#">Legal notice</a>
+            </div>
+        </aside>
+
+
+        <div class="addtask">
+            <header>
+                <h4>Add Task</h4>
+            </header>
+            <section class="inputtasks">
+                <div class="leftinputfields">
+                    <div>
+                        <p>Title<span class="required">*</span></p>
+                        <input type="text" placeholder="Enter a title">
+                    </div>
+                    <div>
+                        <p>Description</p>
+                        <textarea name="test" id="addtaskarea" placeholder="Enter a Description"></textarea>
+                    </div>
+                    <div>
+                        <p>Assigned to</p>
+                        <label for="assignee"></label>
+                        <select name="assignee" id="assignee">
+                            <option value="" disabled selected>Select contacts to assign</option>
+                        </select>
+                    </div>
+
+
+                </div>
+                <div class="seperator"></div>
+
+                <div class="rightinputfields">
+                    <p>Due date<span class="required">*</span></p>
+                    <input type="date">
+                    <p>Prio</p>
+                    <div class="taskbtn">
+                        <button class="tasksbtn">Urgent <img src="/assets/img/03_AddTask/priority/urgent.png"
+                                alt=""></button>
+                        <button class="tasksbtn">Medium <img src="/assets/img/03_AddTask/priority/medium.png"
+                                alt=""></button>
+                        <button class="tasksbtn">Low <img src="/assets/img/03_AddTask/priority/low.png" alt=""></button>
+                    </div>
+                    <p>Category<span class="required">*</span></p>
+                    <label for="assignee"></label>
+                    <select name="assignee" id="assignee">
+                        <option value="" disabled selected>Select task category</option>
+                    </select>
+                    <p>Subtasks</p>
+                    <input class="subtask" type="text" placeholder="Add new subtask">
+                </div>
+
+            </section>
+            <footer>
+                <div class="leftfooter">
+                    <div>
+                        <p><span class="required">*</span>This field is required</p>
+                    </div>
+
+                </div>
+                <div class="rightfooter">
+
+                    <button class="clearbtn">Clear <img src="/assets/img/00_General_elements/close/default.svg"
+                            alt=""></button>
+                    <button class="cleartaskbtn">Clear Task <img
+                            src="/assets/img/00_General_elements/checkmark_white.svg" alt=""></button>
+
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>

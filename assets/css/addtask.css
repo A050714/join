@@ -1,0 +1,162 @@
+.Maincontainer {
+    max-width: 1920px;
+    margin: 0 auto;
+    display: flex;
+
+}
+
+body {
+    font-family: 'PT Sans';
+}
+
+h4 {
+    margin: 0;
+    font-size: 61px;
+
+}
+
+.addtask {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 54px;
+}
+
+select {
+    width: 440px;
+    padding: 12px 16px 12px 16px;
+    margin-top: 5px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+}
+
+p {
+
+    font-size: 24px;
+    margin: 0;
+}
+
+.required {
+    color: #FF8190;
+}
+
+.leftinputfields {
+    display: flex;
+    flex-direction: column;
+    max-width: 440px;
+    height: 376px;
+    gap: 8px;
+}
+
+textarea {
+    width: 100%;
+    height: 120px;
+    padding: 0;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+}
+
+input {
+    width: 92%;
+    padding: 12px 21px 12px 12px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+}
+
+.seperator {
+    width: 1px;
+    height: 424px;
+    background-color: #d1d1d1;
+}
+
+.rightinputfields {
+    display: flex;
+    flex-direction: column;
+    width: 440px;
+    height: 416px;
+
+    gap: 8px;
+}
+
+.inputtasks {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.subtask {
+    width: 92%;
+    background-image: url("/assets/img/03_AddTask/subtasks_icons/add\ \(1\).png");
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    background-position: calc(100% - 16px) center;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+
+}
+
+
+
+.taskbtn {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.tasksbtn {
+    width: 136px;
+    height: 40px;
+    text-align: center;
+    font-family: 'PT Sans';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background-color: white;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+}
+
+.taskbtn img {
+    width: 20px;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.leftfooter p {
+    font-size: 20px;
+}
+
+.rightfooter {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+
+
+.clearbtn {
+    background-color: white;
+    border: 1px solid #2A3647;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    font-family: 'PT Sans';
+    font-size: 20px;
+}
+
+.cleartaskbtn {
+    background-color: #2A3647;
+    color: white;
+    padding: 8px;
+    border-radius: 10px;
+    border: none;
+    display: flex;
+    align-items: center;
+    font-family: 'PT Sans';
+    font-size: 20px;
+}
