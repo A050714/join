@@ -9,14 +9,14 @@ async function loadContacts() {
     let userRespone = await getData("Contacts");
     let UserKeysArray = Object.keys(userRespone);
     for (let index = 0; index < UserKeysArray.length; index++) {
-        contacts.push(
-            {
+        let user = userRespone[UserKeysArray[index]];
+        if (user !== null) { 
+            contacts.push({
                 id: UserKeysArray[index],
-                user: userRespone[UserKeysArray[index]]
-            }
-        )
+                user: user
+            });
+        }
     }
-
 }
 
 
@@ -44,7 +44,7 @@ async function renderAllContacts() {
     sortContacts();
     let content = document.getElementById('contactList');
     content.innerHTML = '';
-    for (let index = 0; index < contacts.length - 1; index++) {
+    for (let index = 0; index < contacts.length-1; index++) {
         let contact = contacts[index];
         content.innerHTML += `
             <div class="singleContacts" id="Id_${contact.id}" onclick="showContact(${index})"> 
@@ -94,8 +94,6 @@ function findIndexById(contacts, idToFind) {
 async function deleteContact() {
     let contactName = document.getElementById('contactName').innerHTML;
     let firebaseID = contacts.find(x => x.user && x.user.name === contactName).id;
-    console.log(contactName);
-    console.log(firebaseID);
     await deleteData("Contacts/" + firebaseID)
     let index = findIndexById(contacts, firebaseID);
     contacts.splice(index, 1)
