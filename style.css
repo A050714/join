@@ -6,3 +6,7 @@ body {
 .dNone {
 display: none;
 }
+
+.pointer {
+    cursor: pointer;
+}
