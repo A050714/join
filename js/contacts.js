@@ -55,6 +55,49 @@ async function renderAllContacts() {
     }
 }
 
+async function renderAllContacts2() {
+    await loadContacts();
+    sortContacts();
+    let content = document.getElementById('contactList');
+    content.innerHTML = '';
+    firtsLetter = '';
+
+    for (let index = 0; index < contacts.length-1; index++) { 
+        let contact = contacts[index];
+
+        if(firtsLetter!=contacts[index].user.name[0]){
+            firtsLetter = contact.user.name[0];
+            content.innerHTML +=`<br>${firtsLetter}`
+            content.innerHTML +=horizontalLine();
+        }
+
+        content.innerHTML += /*html*/ `
+            <div class="singleContacts" id="Id_${contact.id}" onclick="showContact(${index})"> 
+                <div>
+                <div class="contacthead2">
+                            <div class="contactcolor2" id="contactColor${contact.id}"></div>
+                            <div>
+                                <p id="contactName2">${contact.user.name}</p>
+                                <a href="mailto:${contact.user.mail}">${contact.user.mail}</a>
+                            </div>
+                        </div>
+            </div>
+            <br><br><br>
+        `;
+        showInitials(contact,`contactColor${contact.id}`);
+
+        
+
+    }
+}
+
+
+function horizontalLine(){
+
+    return `
+        <div class="horizontalLine"></div>    
+    `;
+}
 // SHOW ADD CONTACT POPUP
 
 function togglePopup() {
@@ -75,7 +118,7 @@ function togglePopup() {
      let phone = document.getElementById('newPhone').value
      let userrespone = await getData("Contacts")|| {};
      let UserKeysArray = Object.keys(userrespone);
-     let userIndex = UserKeysArray.length - 1;
+     let userIndex = UserKeysArray.length;
      await postData(`Contacts/${userIndex}`, { "name": name, "mail": mail, "phone": phone })
      document.getElementById('newName').value = "";
      document.getElementById('newMail').value = "";
@@ -110,11 +153,18 @@ function showContact(index) {
     showInitials(contact)
 }
 
-function showInitials(contact) {
+// function showInitials(contact) {
+//     const nameParts = contact.user.name.split(' ');
+//     const initials = nameParts[0][0] + nameParts[1][0];
+//     let circleInitials = document.getElementById('contactColor')
+//     circleInitials.innerHTML = initials;
+// }
+
+function showInitials(contact,id="contactColor") {
     const nameParts = contact.user.name.split(' ');
     const initials = nameParts[0][0] + nameParts[1][0];
-    let circleInitials = document.getElementById('contactColor')
-    circleInitials.innerHTML = initials;
+    let circleInitials = document.getElementById(id)
+    circleInitials.innerHTML = `<p>${initials}</p>`;
 }
 
 //EDIT CONTACT//----------------------------------------------------------------------------------------------

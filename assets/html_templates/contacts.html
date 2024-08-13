@@ -13,7 +13,7 @@
     <script src=""></script>
 </head>
 
-<body onload="renderAllContacts()">
+<body onload="renderAllContacts2()">
 
     <main class="Maincontainer">
         <aside id="sidebar">
@@ -60,8 +60,11 @@
             </header>
             <div class="contactScreen">
                 <div class="addNewContact">
-                    <button class="contactbtn" id="addNewContact" onclick="togglePopup(), toggleOverlay()">Add new Contact <img class="newcontactimg"
+                    <div>
+                        <button class="contactbtn" id="addNewContact" onclick="togglePopup(), toggleOverlay()">Add new Contact <img class="newcontactimg"
                             src="/assets/img/00_General_elements/person_add.svg" alt=""></button>
+                    </div>
+                    
                     <div id="contactList"></div>
                 </div>
                 <div class="rightSide">
