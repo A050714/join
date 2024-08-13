@@ -166,7 +166,12 @@ function showContact(index) {
 
 function showInitials(contact,id="contactColor") {
     const nameParts = contact.user.name.split(' ');
-    const initials = nameParts[0][0] + nameParts[1][0];
+    let initials;
+    if(nameParts[0][0].length==0){
+        initials = nameParts[0][0] + nameParts[1][0];
+    } else {
+        initials = nameParts[0][0];
+    }
     let circleInitials = document.getElementById(id)
     circleInitials.innerHTML = `<p>${initials}</p>`;
 }
