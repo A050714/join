@@ -1,8 +1,6 @@
 
 let contacts = [];
 const BASE_URL = "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/";
-let colors = ['','','','','','','','','','',''];
-
 
 //RENDER CONTACTS//------------------------------------------------------
 //loads contacts and fills contacts-array
@@ -38,25 +36,7 @@ function sortContacts() {
     console.log(contacts);
 }
 
-
-//renders all contacts in contact-main page
 async function renderAllContacts() {
-    await loadContacts();
-    sortContacts();
-    let content = document.getElementById('contactList');
-    content.innerHTML = '';
-    for (let index = 0; index < contacts.length; index++) {
-        let contact = contacts[index];
-        content.innerHTML += `
-            <div class="singleContacts" id="Id_${contact.id}" onclick="showContact(${index})"> 
-                <p>${contact.user.name}</p>
-                <p>${contact.user.mail}</p>
-            </div>
-        `;
-    }
-}
-
-async function renderAllContacts2() {
     await loadContacts();
     sortContacts();
     let content = document.getElementById('contactList');
@@ -68,7 +48,9 @@ async function renderAllContacts2() {
 
         if(firtsLetter!=contacts[index].user.name[0]){
             firtsLetter = contact.user.name[0];
-            content.innerHTML +=`<br>${firtsLetter}`
+            content.innerHTML +=`
+                    <div class="letterDiv"><h2>${firtsLetter}</h2></div>
+            `
             content.innerHTML +=horizontalLine();
         }
 
@@ -83,22 +65,18 @@ async function renderAllContacts2() {
                             </div>
                         </div>
             </div>
-            <br><br><br>
         `;
         showInitials(contact,`contactColor${contact.id}`);
-
-        
-
     }
 }
 
 
 function horizontalLine(){
-
     return `
         <div class="horizontalLine"></div>    
     `;
 }
+
 // SHOW ADD CONTACT POPUP
 
 function togglePopup() {
@@ -124,6 +102,7 @@ function togglePopup() {
      document.getElementById('newName').value = "";
      document.getElementById('newMail').value = "";
      document.getElementById('newPhone').value = "";
+     location.reload();
  }
 
 
@@ -156,13 +135,6 @@ function showContact(index) {
     contactCardPhone.innerHTML = `${contact.user.phone}`;
     showInitials(contact)
 }
-
-// function showInitials(contact) {
-//     const nameParts = contact.user.name.split(' ');
-//     const initials = nameParts[0][0] + nameParts[1][0];
-//     let circleInitials = document.getElementById('contactColor')
-//     circleInitials.innerHTML = initials;
-// }
 
 function showInitials(contact,id="contactColor") {
     const nameParts = contact.user.name.split(' ');
@@ -205,3 +177,30 @@ async function deleteData(path = "") {
     return responseToJson = await response.json();
 }
 
+function includeHTML() {
+    var z, i, elmnt, file, xhttp;
+    /* Loop through a collection of all HTML elements: */
+    z = document.getElementsByTagName("*");
+    for (i = 0; i < z.length; i++) {
+      elmnt = z[i];
+      /*search for elements with a certain atrribute:*/
+      file = elmnt.getAttribute("w3-include-html");
+      if (file) {
+        /* Make an HTTP request using the attribute value as the file name: */
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4) {
+            if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+            if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+            /* Remove the attribute, and call this function once more: */
+            elmnt.removeAttribute("w3-include-html");
+            includeHTML();
+          }
+        }
+        xhttp.open("GET", file, true);
+        xhttp.send();
+        /* Exit the function: */
+        return;
+      }
+    }
+  }
