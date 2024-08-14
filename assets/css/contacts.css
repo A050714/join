@@ -1,3 +1,6 @@
+body{
+    overflow: hidden;
+}
 .Maincontainer {
     max-width: 1920px;
     margin: 0 auto;
@@ -34,6 +37,12 @@ h1 {
     flex-direction: column;
     padding-top: 200px;
     padding-left: 50px;
+    background-color: #F6F7F8;
+    -webkit-box-shadow: inset 4px 4px 8px 0px rgba(0,0,0,0.15);
+    -moz-box-shadow: inset 4px 4px 8px 0px rgba(0,0,0,0.15);
+    box-shadow: inset 4px 4px 8px 0px rgba(0,0,0,0.15);
+    
+
 }
 
 .openContact {
@@ -358,13 +367,10 @@ h3 {
     height: 60px;
     cursor: pointer;
     box-sizing: border-box;
-
-}
-
-.singleContacts {
-    height: 60px;
-    cursor: pointer;
     margin-bottom: 20px;
+    padding: 15px 24px 15px 24px;
+    gap: 35px;
+
 }
 
 .horizontalLine {
@@ -407,7 +413,7 @@ h3 {
     flex-direction: column;
     width: 45%;
     /* max-width: 456px; */
-    box-shadow: 4px 0 6px 0 rgba(0, 0, 0, 0.1);
+    /* box-shadow: 4px 0 6px 0 rgba(0, 0, 0, 0.1); */
 }
 
 .contactbtnDiv {
@@ -418,7 +424,9 @@ h3 {
 
 #contactList {
     padding-top: 50px;
+    padding-bottom: 50px;
     /* height: 100%; */
+    width: 100%;
     overflow-y: scroll;
 }
 

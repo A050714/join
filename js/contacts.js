@@ -34,7 +34,7 @@ function sortContacts() {
         return 0;
     });
 
-    console.log(contacts);
+    // console.log(contacts);
 }
 
 async function renderAllContacts() {
@@ -138,10 +138,12 @@ function showContact(index) {
 function showInitials(contact,id="contactColor") {
     const nameParts = contact.user.name.split(' ');
     let initials;
-    if(nameParts[0][0].length==0){
-        initials = nameParts[0][0] + nameParts[1][0];
+    if(nameParts.length==1){
+        initials = nameParts[0][0]; 
+
     } else {
-        initials = nameParts[0][0];
+        initials = nameParts[0][0] + nameParts[1][0];
+
     }
     let circleInitials = document.getElementById(id)
     circleInitials.innerHTML = `<p>${initials}</p>`;

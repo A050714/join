@@ -2,13 +2,13 @@ header {
     background-color: white;
     text-align: center;
     height: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 30px 70px;
     /* padding: 20px 40px 20px 116px; */
-    position: fixed;
+    /* position: fixed; */
     left: 232px;
     top: 0;
     right: 0;
@@ -17,4 +17,8 @@ header {
 header p {
     font-family: 'PT Sans';
     font-size: 24px;
+}
+.ser-icon{
+    border-radius: 100%;
+    border: 1px ;
 }
