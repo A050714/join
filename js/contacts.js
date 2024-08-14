@@ -16,6 +16,7 @@ async function loadContacts() {
             });
         }
     }
+
 }
 
 
@@ -42,10 +43,8 @@ async function renderAllContacts() {
     let content = document.getElementById('contactList');
     content.innerHTML = '';
     firtsLetter = '';
-
     for (let index = 0; index < contacts.length; index++) { 
         let contact = contacts[index];
-
         if(firtsLetter!=contacts[index].user.name[0]){
             firtsLetter = contact.user.name[0];
             content.innerHTML +=`
@@ -53,7 +52,6 @@ async function renderAllContacts() {
             `
             content.innerHTML +=horizontalLine();
         }
-
         content.innerHTML += /*html*/ `
             <div class="singleContacts" id="Id_${contact.id}" onclick="showContact(${index})"> 
                 <div>
@@ -68,6 +66,7 @@ async function renderAllContacts() {
         `;
         showInitials(contact,`contactColor${contact.id}`);
     }
+    
 }
 
 
