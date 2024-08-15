@@ -33,8 +33,6 @@ function sortContacts() {
         }
         return 0;
     });
-
-    // console.log(contacts);
 }
 
 async function renderAllContacts() {
