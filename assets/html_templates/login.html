@@ -8,7 +8,9 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <!-- <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"> -->
     
-    <script>
+    <!-- --bug should be fixed: after "back-button", no animation be shown again -->
+
+        <!-- <script>
         window.onload = function() {
         const logoAnimation = document.getElementById('logo-container');
      // in 1s the logo should be at left bottom corner and the background color should only be shown at the beginning
@@ -21,7 +23,7 @@
     };
     
  
-    </script>
+    </script> -->
 </head>
 <body>
     <div class="loginAndSignup">
@@ -51,7 +53,7 @@
                 </div>
                 <div class="buttons">
                     <button type="submit" onclick="login()">Log in</button>
-                    <button type="button" onclick="guestLogin()">Guest Log in</button>
+                    <button type="button" class="guestLogin" onclick="guestLogin()">Guest Log in</button>
                 </div>
 
             </form>

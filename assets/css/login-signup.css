@@ -16,7 +16,7 @@
    }
    
    /* Log In */
-   #logo-container {
+   /* #logo-container {
     position: absolute;
     display: flex;
     align-items: center;
@@ -29,49 +29,63 @@
     width: 100%;
     height: 100%;
     background-color:#f6f7f8;
-    }
+    } */
 
    .loginAndSignup{
        position: relative;
        background-color: #f6f7f8;
        height: 100vh; 
        width: 100vw;
-   }
+         
+    }
    
    .login-container{
        position: absolute;
        top:30vh;
-       left: 40vw;
+       left: 36vw;
        background-color: white;
        padding: 50px;
        border-radius: 10%;
        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-       width: 300px;
+       width: 400px;
        z-index: 1000;
    }
    
    .login_title{
-       margin-bottom: 20px;
+       margin-bottom: 30px;
        text-align: center;
        font-size: 50px;
        text-decoration: underline;
        font-weight: 700;
+       text-underline-offset: 18px;
+       text-decoration-color: #3498db; 
+       text-decoration-thickness: 2px; 
    }
    
    .input-group{
        padding-bottom: 20px;
        display: flex;
-       max-width: 300px;
+       max-width: 400px;
+       width: 100%;
    }
    
    .input-group input {
        padding: 12PX;
-       border-radius: 5px;
+       border-radius: 15px;
        border: 1px solid #dddddd; 
-       /* color: #f6f7f8; */
        width: 100%;
+       /* color: #f6f7f8; */
        font-size: 16px;
    }
+   .input-group input:focus {
+        border-color: #3498db ; 
+        outline: none; /* Remove the default outline */
+    }
+
+    .input-group #password:focus {
+        
+    }
+
 
    .input-group .icon {
         position:absolute; 
@@ -86,6 +100,7 @@
    
    .remember-me{
        padding-bottom: 10px;
+       padding-left: 30px;
    }
    .buttons {
        display: flex;
@@ -118,17 +133,16 @@
     font-weight: 600;
     cursor: pointer;
 }
-
    
    
-   /* .join_logo{
+   .join_logo{
        position: absolute;
-       padding: 50px;
-   } */
+       padding: 80px;
+   }
    .signup_option{
        position: absolute;
        right: 0;
-       padding: 20px;
+       padding: 80px;
        display: flex;
        align-items: center;
    }
@@ -141,6 +155,24 @@
     color: whITE;
     text-decoration: none;
 }
+   /* Sign Up Site */
+   .privacyAccept{
+    text-align: center;
+
+   }
+   .button_signup{
+    padding-top: 20px;
+    text-align: center;
+   }
+
+   .back {
+    position: absolute;
+
+   }
+   .back:hover {
+    cursor: pointer;
+   }
+
    /* Sidebar */
    .sidebar{
        background-color:#1c1e29;
