@@ -9,15 +9,62 @@
     <link rel="stylesheet" href="/assets/css/sidebar.css">
     <link rel="stylesheet" href="/assets/css/board.css">
     <link rel="stylesheet" href="/style.css">
-    <!-- <script src="http://www.w3schools.com/lib/w3data.js"></script> -->
     <script src="/js/board.js"></script>
+
 </head>
 
 <body>
     <header w3-include-html="/assets/html_templates/header.html"></header>
     <aside w3-include-html="/assets/html_templates/sidebar.html"></aside>
+    <div class="mainscreen">
+        <div class="boardUpper">
+            <div class="headLine">
+                <h1>Board</h1>
+                <div class="searchAndAddDiv">
+                    <span>
+                        <input type="text" placeholder="Find Task">
+                        <div>
+                            <img class="vector" src="/assets/img/04_Board/search/Vector 3.svg" alt="">
+                            <img class="icons" src="/assets/img/04_Board/search/search.svg" alt="">
+                        </div>
+
+                    </span>
+                    <button class="joinBtnprimary" id="addTaskBtn">Add Task <img class="icons"
+                            src="/assets/img/04_Board/add/add.svg" alt=""></button>
+                </div>
+            </div>
+
+            <div class="statusBar">
+                <div class="progressBar">
+                    <p>To do</p>
+                    <button><img src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
+                </div>
+                <div class="progressBar">
+                    <p>In progress</p>
+                    <button><img src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
+                </div>
+                <div class="progressBar">
+                    <p>Await feedback</p>
+                    <button><img src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
+                </div>
+                <div class="progressBar">
+                    <p>Done</p>
+                </div>
+            </div>
+        </div>
+        <div class="boardUnder">
+            <div class="progressBoxes todo"> <img class="card" src="/assets/img/Cards (1).svg" alt="">
+                <img class="card" src="/assets/img/Cards (1).svg" alt="">
+                <img class="card" src="/assets/img/Cards (1).svg" alt="">
+                <img class="card" src="/assets/img/Cards (1).svg" alt=""></div>
+            <div class="progressBoxes inProgress"> <img class="card" src="/assets/img/Cards (1).svg" alt=""></div>
+            <div class="progressBoxes awaitFeedback"> <img class="card" src="/assets/img/Cards (1).svg" alt=""></div>
+            <div class="progressBoxes done"> <img  class="card" src="/assets/img/Cards (1).svg" alt=""></div>
+        </div>
+    </div>
 
 </body>
 
+<script src="/script.js"></script>
 
 </html>

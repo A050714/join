@@ -1,0 +1,155 @@
+body {
+    margin: 0;
+    font-family: 'PT Sans';
+ }
+
+.mainscreen {
+    padding-left: 232px;
+    background-color: #F6F7F8;
+}
+
+.boardUpper {
+    display: flex;
+    flex-direction: column;
+}
+
+.headLine {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 65px;
+    padding-right: 65px;
+    padding-top: 80px;
+}
+
+.headLine h1 {
+    font-weight: 700;
+    font-size: 61px;
+}
+
+.statusBar {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0px 64px 0px 64px;
+    gap: 20px;
+}
+
+.progressBar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.progressBar p {
+    color: #42526E;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.progressBar button {
+    border: #2A3647 solid 2px;
+    border-radius: 8px;
+    padding: 3px;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+    width: 24px;
+}
+
+.progressBar img {
+    height: 8px;
+    width: 8px;
+    border: 2px;
+}
+
+.searchAndAddDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+
+}
+
+.searchAndAddDiv input {
+    border: none;
+    font-size: 20px;
+    font-weight: 400;
+    width: 100px;
+}
+
+.searchAndAddDiv span {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px 8px 16px;
+    border: #A8A8A8 solid 1px;
+    border-radius: 10px;
+    width: 312px;
+    background-color: white;
+}
+
+.searchAndAddDiv span div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.vector {
+    height: 31px;
+    border: 1px;
+
+}
+
+.joinBtnprimary {
+    background-color: #2A3647;
+    padding: 12px 16px 12px 16px;
+    border-radius: 10px;
+    border: 1px;
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+}
+
+.icons {
+    width: 19px;
+    height: 19px;
+}
+
+.vertical {
+    background-color: #D1D1D1;
+    height: 31px;
+    border: 1px;
+}
+
+.boardUnder {
+    /* height: 100vh; */
+    /* width: 100%; */
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    gap: 26px;
+    padding: 0px 64px 0px 64px;
+
+}
+
+.progressBoxes {
+    border: black solid 1px;
+    height: auto;
+    width: 250px;
+    padding: 20px 15px 20px 15px;
+}
+.card{
+    height: 230px;
+    width: 220px;
+}
