@@ -3,8 +3,8 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="/assets/css/login-signup.css">
+    <title>Log in</title>
+    <link rel="stylesheet" href="./../css/login-signup.css">
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <script>
         window.onload = function() {
@@ -13,15 +13,18 @@
     setTimeout(function() {
         logoAnimation.style.transform = 'translate(-95vw, -90vh) scale(1)';
         logoAnimation.style.backgroundColor = 'transparent'; 
+        logoAnimation.style.zIndex= "1"; 
     }, 1000);
+    // location.reload(true); 
     };
+    
  
     </script>
 </head>
 <body>
     <div class="loginAndSignup">
         <div class="join_logo" id="logo-container">
-            <img src="/assets/img/00_General_elements/Logo for Favicon construction.svg" alt="" id="logo">
+            <img src="./../img/00_General_elements/Logo for Favicon construction.svg" alt="" id="logo">
         </div>
 
         <div class="signup_option">
@@ -52,5 +55,6 @@
             </form>
         </div>
     </div>
+    
 </body>
 </html>
