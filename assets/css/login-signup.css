@@ -106,7 +106,19 @@
        padding: 10px;
        font-size: medium;
        font-weight: 600;
-   }
+   } 
+
+   button:hover{
+    background-color:#2A3647 ;
+    padding: 5px;
+    border-radius: 8px;
+    color: white;
+    padding: 10px;
+    font-size: medium;
+    font-weight: 600;
+    cursor: pointer;
+}
+
    
    
    /* .join_logo{
@@ -124,6 +136,11 @@
    .signup_option p {
     padding-right: 20px;
    }
+
+   .signup_option button a {
+    color: whITE;
+    text-decoration: none;
+}
    /* Sidebar */
    .sidebar{
        background-color:#1c1e29;
