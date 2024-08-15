@@ -84,6 +84,13 @@ function togglePopup() {
 
 }
 
+function toggleEditPopup() {
+
+    let overlay = document.getElementById('editOverlay');
+    overlay.classList.toggle('show');
+    overlay.classList.toggle("hidden");
+
+}
 
 
 //ADD CONTACT//----------------------------------------------------------------------
@@ -148,6 +155,25 @@ function showInitials(contact,id="contactColor") {
 }
 
 //EDIT CONTACT//----------------------------------------------------------------------------------------------
+
+async function fillContactValues() {
+    let name = document.getElementById('contactName').innerHTML;
+    let mail = document.getElementById('contactMail').innerHTML;
+    let phone = document.getElementById('contactPhone').innerHTML;
+    document.getElementById('editName').value = name;
+    document.getElementById('editMail').value = mail;
+    document.getElementById('editPhone').value = phone;
+}
+
+async function editContact() {
+    let contactName = document.getElementById('contactName').innerHTML;
+    let name = document.getElementById('editName').value;
+    let mail = document.getElementById('editMail').value;
+    let phone = document.getElementById('editPhone').value;
+    let firebaseID = contacts.find(x => x.user && x.user.name === contactName).id;
+    await postData(`Contacts/${firebaseID}`, { "name": name, "mail": mail, "phone": phone })
+    location.reload();
+}
 
 
 //UTILITY//---------------------------------------------------------------------------------------------------
