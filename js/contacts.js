@@ -38,6 +38,7 @@ function sortContacts() {
 async function renderAllContacts() {
     await loadContacts();
     sortContacts();
+  
     let content = document.getElementById('contactList');
     content.innerHTML = '';
     firtsLetter = '';
@@ -51,7 +52,7 @@ async function renderAllContacts() {
             content.innerHTML +=horizontalLine();
         }
         content.innerHTML += /*html*/ `
-            <div class="singleContacts" id="Id_${contact.id}" onclick="showContact(${index})"> 
+            <div class="singleContacts" id="Id_${index}" onclick="showContact(${index})"> 
                 <div>
                 <div class="contacthead2">
                             <div class="contactcolor2" id="contactColor${contact.id}"></div>
@@ -126,9 +127,13 @@ async function deleteContact() {
     location.reload();
 }
 
-
+let theLastIndex;
 //SHOW CONTACT//---------------------------------------------------------------------------------------------
 function showContact(index) {
+    if(theLastIndex != null){
+        document.getElementById(theLastIndex).classList.remove('chosenContact');
+    }
+
     document.getElementById('showContact').classList.remove('dNone')
     let contact = contacts[index];
     let contactCardName = document.getElementById('contactName');
@@ -137,7 +142,9 @@ function showContact(index) {
     contactCardName.innerHTML = `${contact.user.name}`;
     contactCardMail.innerHTML = `${contact.user.mail}`;
     contactCardPhone.innerHTML = `${contact.user.phone}`;
-    showInitials(contact)
+    showInitials(contact);
+    document.getElementById(`Id_${index}`).classList.add('chosenContact');
+    theLastIndex = `Id_${index}`;
 }
 
 function showInitials(contact,id="contactColor") {
