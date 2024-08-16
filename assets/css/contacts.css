@@ -37,6 +37,10 @@ h1 {
     cursor: pointer;
 }
 
+.close:hover {
+    transform: scale(1.03);
+}
+
 .rightSide {
     display: flex;
     width: 100%;
@@ -76,7 +80,6 @@ h1 {
     border-radius: 10px;
     color: white;
     gap: 16px;
-    width: 255px;
     height: 56px;
     font-family: 'PT Sans';
     font-size: 21px;
@@ -84,6 +87,18 @@ h1 {
     cursor: pointer;
     position: sticky;
     top: 100px;
+    padding: 12px 16px;
+    width: calc(100% - 100px);
+}
+
+.contactbtn:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+
+}
+
+.contactbtn:active {
+    background-color: #091931;
 }
 
 .newcontactimg {
@@ -233,7 +248,6 @@ h3 {
 .addcontactpopup {
     width: 1212px;
     height: 592px;
-    border: 1px solid #D1D1D1;
     border-radius: 30px;
     align-items: center;
     gap: 24px;
@@ -242,6 +256,7 @@ h3 {
     /*should be more than 1000 below*/
     background-color: white;
 }
+
 
 .overlay {
 
@@ -270,6 +285,11 @@ h3 {
     display: flex;
     flex-direction: column;
     gap: 32px;
+}
+
+.inputfieldscontactpopup input:focus {
+    outline-color: #29ABE2;
+
 }
 
 .inputnameimg {
@@ -333,6 +353,23 @@ h3 {
     align-items: center;
     gap: 4px;
     margin-right: 16px;
+    cursor: pointer;
+}
+
+.cancelbutton:hover {
+    border: 1px solid #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    color: #29ABE2;
+}
+
+.cancelbutton:hover img{
+    content: url("/assets/img/00_General_elements/cancel/cancel_blue.svg");
+}
+
+.cancelbutton:active {
+    background-color: #091931;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    border: none;
 }
 
 .cancelbutton img {
@@ -357,6 +394,18 @@ h3 {
     cursor: pointer;
 }
 
+.createbutton:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    border: none;
+}
+
+.createbutton:active {
+    background-color: #091931;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    border: none;
+}
+
 .createbutton img {
     height: 24px;
     width: 24px;
@@ -374,10 +423,16 @@ h3 {
     cursor: pointer;
     box-sizing: border-box;
     margin-bottom: 20px;
-    padding: 15px 24px 15px 24px;
+    padding: 15px 0px;
     gap: 35px;
 
 }
+
+.singleContacts a {
+text-decoration: none;
+color: #007CEE;
+}
+
 
 .horizontalLine {
     width: 100%;
@@ -386,7 +441,7 @@ h3 {
 }
 
 .contactcolor2 {
-    width: 50px;
+    min-width: 50px;
     height: 50px;
     background-color: orange;
     border-radius: 100%;
@@ -410,14 +465,13 @@ h3 {
 }
 
 .addNewContact {
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding: 50px 0px;
     display: flex;
     align-items: center;
     justify-content: center;
     justify-items: center;
     flex-direction: column;
-    width: 45%;
+    width: 38%;
     /* max-width: 456px; */
     /* box-shadow: 4px 0 6px 0 rgba(0, 0, 0, 0.1); */
 }
@@ -429,15 +483,14 @@ h3 {
 }
 
 #contactList {
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding: 50px 20px;
+    width:  calc(100% - 100px);
     /* height: 100%; */
-    width: 100%;
     overflow-y: scroll;
 }
 
 .letterDiv {
-    padding: 15px 19px 15px 19px;
+    padding: 28px 19px 19px 28px;
     gap: 8px;
 }
 
@@ -445,4 +498,6 @@ h3 {
     font-size: 20px;
     font-weight: 400;
     line-height: 24px;
+    margin: 0;
 }
+
