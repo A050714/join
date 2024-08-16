@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: 'PT Sans';
- }
+}
 
 .mainscreen {
     padding-left: 232px;
@@ -31,7 +31,7 @@ body {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
+    align-items: self-start;
     padding: 0px 64px 0px 64px;
     gap: 20px;
 }
@@ -40,7 +40,8 @@ body {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .progressBar p {
@@ -59,6 +60,11 @@ body {
     justify-content: center;
     height: 24px;
     width: 24px;
+}
+
+.progressBar button:hover {
+    border: #29ABE2 solid 2px;
+
 }
 
 .progressBar img {
@@ -93,6 +99,11 @@ body {
     background-color: white;
 }
 
+.searchAndAddDiv span:hover {
+    border: #29ABE2 solid 1px;
+
+}
+
 .searchAndAddDiv span div {
     display: flex;
     align-items: center;
@@ -118,7 +129,11 @@ body {
     align-items: center;
     justify-content: center;
     gap: 8px;
+}
 
+.joinBtnprimary:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
 }
 
 .icons {
@@ -148,8 +163,20 @@ body {
     height: auto;
     width: 250px;
     padding: 20px 15px 20px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
-.card{
-    height: 230px;
-    width: 220px;
+
+.card {
+    height: 230px !important;
+    width: 220px !important;
+}
+
+.asd {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
