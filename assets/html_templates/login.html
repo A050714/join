@@ -6,27 +6,9 @@
     <title>Log in</title>
     <link rel="stylesheet" href="./../css/login-signup.css">
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <!-- <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"> -->
-    
-    <!-- --bug should be fixed: after "back-button", no animation be shown again -->
-
-        <!-- <script>
-        window.onload = function() {
-        const logoAnimation = document.getElementById('logo-container');
-     // in 1s the logo should be at left bottom corner and the background color should only be shown at the beginning
-    setTimeout(function() {
-        logoAnimation.style.transform = 'translate(-95vw, -90vh) scale(1)';
-        logoAnimation.style.backgroundColor = 'transparent'; 
-        logoAnimation.style.zIndex= "1"; 
-    }, 1000);
-    // location.reload(true); 
-    };
-    
- 
-    </script> -->
 </head>
 <body>
-    <div class="loginAndSignup">
+    <div class="loginAndSignup" >
         <div class="join_logo" id="logo-container">
             <img src="./../img/00_General_elements/Logo for Favicon construction.svg" alt="" id="logo">
         </div>
@@ -36,7 +18,7 @@
             <button><a href="/assets/html_templates/sign_up.html">Sign up</a></button>
         </div>
 
-        <div class="login-container">
+        <div class="login-container" id="login-popup">
             <h1 class="login_title">Log in</h1>
             <form id="loginForm">
                 <div class="input-group">
@@ -45,7 +27,7 @@
                 </div>
                 <div class="input-group">
                     <input type="password" id="password" placeholder="Password" required>
-                    <span class="icon"><img src="/assets/img/01_Login_SignUp_ForgotPW/lock.png" alt="lock"></span>
+                    <span class="icon"><img id="password_img" src="./../img/01_Login_SignUp_ForgotPW/lock.png" alt="lock"></span>
                 </div>
                 <div class="remember-me">
                     <input type="checkbox" id="rememberMe">

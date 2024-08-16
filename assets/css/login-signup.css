@@ -77,15 +77,16 @@
        /* color: #f6f7f8; */
        font-size: 16px;
    }
+   
    .input-group input:focus {
         border-color: #3498db ; 
         outline: none; /* Remove the default outline */
     }
 
-    .input-group #password:focus {
-        
-    }
 
+    #password:focus + .icon img {
+        content: url('./../img/01_Login_SignUp_ForgotPW/visibility_off.png');
+    }
 
    .input-group .icon {
         position:absolute; 
@@ -132,13 +133,49 @@
     font-size: medium;
     font-weight: 600;
     cursor: pointer;
-}
+    }
    
    
    .join_logo{
        position: absolute;
        padding: 80px;
+       
    }
+   #logo-container{
+    top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%); 
+       z-index: 3000; 
+       animation: move-logo 1s ease forwards; 
+   }
+
+   /* animation */
+   @keyframes move-logo {
+    0% {
+        transform: translate(-50%, -50%) scale(3);  
+    }
+    100% {
+        transform: translate(-50vw, -50vh) scale(1); 
+    }}
+
+#login-popup{
+    opacity: 0; 
+    animation: fade-in 0.3s ease forwards;
+}
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        
+    }
+    99% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
    .signup_option{
        position: absolute;
        right: 0;
@@ -154,7 +191,7 @@
    .signup_option button a {
     color: whITE;
     text-decoration: none;
-}
+    }
    /* Sign Up Site */
    .privacyAccept{
     text-align: center;
