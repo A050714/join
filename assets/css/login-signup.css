@@ -87,6 +87,16 @@
     #password:focus + .icon img {
         content: url('./../img/01_Login_SignUp_ForgotPW/visibility_off.png');
     }
+    
+    /* changes the url of password-img also by signup-site */
+    #password_signup:focus + .icon img {
+        content: url('./../img/01_Login_SignUp_ForgotPW/visibility_off.png');
+    }
+
+    #confirmPassword:focus + .icon img {
+        content: url('./../img/01_Login_SignUp_ForgotPW/visibility_off.png');
+    }
+
 
    .input-group .icon {
         position:absolute; 
