@@ -28,16 +28,16 @@ body {
 }
 
 .statusBar {
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     justify-content: space-evenly;
     align-items: self-start;
-    padding: 0px 64px 0px 64px;
+    /* padding: 0px 64px 0px 64px; */
     gap: 20px;
 }
 
 .progressBar {
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -160,9 +160,9 @@ body {
 
 .progressBoxes {
     border: black solid 1px;
-    height: auto;
-    width: 250px;
-    padding: 20px 15px 20px 15px;
+    /* height: auto; */
+    /* width: 250px; */
+    /* padding: 20px 15px 20px 15px; */
     display: flex;
     align-items: center;
     justify-content: center;
