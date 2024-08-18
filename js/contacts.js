@@ -133,6 +133,8 @@ let theLastIndex;
 function showContact(index) {
     if(theLastIndex != null){
         document.getElementById(theLastIndex).classList.remove('chosenContact');
+        document.getElementById(theLastIndex).classList.add('singleContacts');
+
     }
 
     document.getElementById('showContact').classList.remove('dNone')
@@ -144,7 +146,9 @@ function showContact(index) {
     contactCardMail.innerHTML = `${contact.user.mail}`;
     contactCardPhone.innerHTML = `${contact.user.phone}`;
     showInitials(contact);
+    
     document.getElementById(`Id_${index}`).classList.add('chosenContact');
+    document.getElementById(`Id_${index}`).classList.remove('singleContacts');
     theLastIndex = `Id_${index}`;
 }
 

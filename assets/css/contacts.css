@@ -513,5 +513,13 @@ color: #007CEE;
 .chosenContact{
     background-color: #2A3647;
     color: white;
+
+    height: 60px;
+    cursor: pointer;
+    /* box-sizing: border-box; */
+    margin-bottom: 20px;
+    padding: 15px 0px;
+    gap: 35px;
+    border-radius: 10px;
 }
 
