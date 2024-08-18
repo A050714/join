@@ -54,15 +54,15 @@ async function renderAllContacts() {
         }
         content.innerHTML += /*html*/ `
             <div class="singleContacts" id="Id_${index}" onclick="showContact(${index})"> 
-                <div>
+                
                 <div class="contacthead2">
                             <div class="contactcolor2" id="contactColor${contact.id}"></div>
-                            <div>
+                            <div class="nameEmailDiv">
                                 <p id="contactName2">${contact.user.name}</p>
                                 <a href="mailto:${contact.user.mail}">${contact.user.mail}</a>
                             </div>
                         </div>
-            </div>
+            
         `;
         showInitials(contact,`contactColor${contact.id}`);
     }
@@ -146,7 +146,7 @@ function showContact(index) {
     contactCardMail.innerHTML = `${contact.user.mail}`;
     contactCardPhone.innerHTML = `${contact.user.phone}`;
     showInitials(contact);
-    
+
     document.getElementById(`Id_${index}`).classList.add('chosenContact');
     document.getElementById(`Id_${index}`).classList.remove('singleContacts');
     theLastIndex = `Id_${index}`;
