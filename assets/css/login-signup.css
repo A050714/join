@@ -256,9 +256,13 @@
    }
    /* content right */
    .main-content {
-       width: 100vw;
+        box-sizing: border-box;
+       height: 100vh; 
        background-color: #f6f7f8;
-   
+       overflow-y: auto; 
+       width: 100%;
+       
+    
    }
    /* header */
    header {
@@ -267,7 +271,7 @@
        justify-content: space-between;
        align-items: center;
        margin: 0;
-       padding: 30px 70px;
+       padding: 15px 70px;
        box-shadow: 0 0 0 0,1;
    }
    
@@ -290,7 +294,7 @@
    
    /* section metrics -below the header */
    .metrics {
-       padding: 80px 0 0 80px;
+      padding: 5rem 0 0 4rem;
    }
    
    .metrics .metrics_header {
@@ -302,14 +306,16 @@
    }
    
    .title_join {
-       padding: 5px 50px 5px 20px;
+       padding: 0.5rem 2rem 0.5rem 2rem;
        font-weight: 700;
-       font-size: 60px;
+       font-size: 50px;
    }
    
    .title_key{
        text-align: center;
-       padding-left: 50px;
+        padding: 0.5rem 5rem 0.5rem 2rem;
+       font-size: 25px;
+       margin-bottom: 0;
    }
    
    .metrcis_content {
@@ -319,7 +325,7 @@
    
    .metric-status {
        text-align: center;
-       padding: 30px 50px;
+       padding: 1rem;
    }
    
    .blue-line {
@@ -331,6 +337,7 @@
    /* metrics tasks dashboard */
    
    .metrics_tasks {
+        height: 50%;
        width: 50%;
        display: grid;
        grid-template-columns: repeat(6, 1fr);
@@ -342,20 +349,28 @@
    }
    .metric-box{
        background-color: white;
-       padding: 20px;
+       padding: 1rem;
        display: flex;
        align-items: center;
-       margin: 10px;
+       margin: 1rem;
        border-radius: 20px;
+       justify-content: center;
    }
-   
+
+   .metric-box img{
+        width: 3rem;
+        height: 3rem;
+}
+    .metric-box .blue-line {
+        margin: 0 1.5rem;
+    }
    .task_number {
        font-weight: 700;
-       font-size: 4em;
+       font-size: 2.5rem;
    }
    
    .task_status {
-       font-size: 1.2em;
+       font-size: 1em;
    }
    
    .metric-box_done {
