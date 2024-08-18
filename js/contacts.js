@@ -1,6 +1,7 @@
 
 let contacts = [];
 const BASE_URL = "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/";
+includeHTML();
 
 //RENDER CONTACTS//------------------------------------------------------
 //loads contacts and fills contacts-array
