@@ -424,12 +424,15 @@ h3 {
 }
 
 .singleContacts {
-    height: 60px;
     cursor: pointer;
-    /* margin-bottom: 20px; */
-    padding: 15px 24px 15px 24px;
+    padding: 18px 24px;
     gap: 45px;
     border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+
 }
 
 .nameEmailDiv {
@@ -442,6 +445,16 @@ h3 {
         color: #007CEE;
         text-decoration: none;
     }
+
+    .p {
+        margin: 0 !important;
+        font-size: 20px !important;
+    }
+}
+
+#contactName2 {
+    margin: 0 !important;
+    font-size: 20px !important;
 }
 
 .nameEmailDiv a {
@@ -467,17 +480,22 @@ h3 {
 }
 
 .contactcolor2 {
-    min-width: 50px;
-    height: 50px;
+    min-width: 42px;
+    height: 42px;
     background-color: orange;
     border-radius: 100%;
-    border: 1px white;
+    border: solid 2px white;
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
     font-weight: 500;
     font-size: 24px;
+}
+
+.contactcolor2 p {
+    font-size: 14px !important;
+
 }
 
 .contacthead2 {
@@ -487,10 +505,6 @@ h3 {
     justify-items: center;
 }
 
-.contactcolor2 p {
-    font-size: 20px;
-}
-
 .addNewContact {
     padding: 50px 0px;
     display: flex;
@@ -498,7 +512,7 @@ h3 {
     justify-content: center;
     justify-items: center;
     flex-direction: column;
-    width: 45%;
+    min-width: 431px;
     /* max-width: 456px; */
     /* box-shadow: 4px 0 6px 0 rgba(0, 0, 0, 0.1); */
 }
@@ -531,12 +545,13 @@ h3 {
 .chosenContact {
     background-color: #2A3647;
     color: white;
-
-    height: 60px;
     cursor: pointer;
-    /* box-sizing: border-box; */
-    margin-bottom: 20px;
-    padding: 15px 0px;
     gap: 35px;
     border-radius: 10px;
+    padding: 18px 24px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
 }
