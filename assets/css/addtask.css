@@ -10,17 +10,16 @@ body {
 }
 
 h4 {
-    margin: 0;
     font-size: 61px;
 
 }
 
-.addtask {
+/* .addtask {
     display: flex;
     justify-content: center;
     flex-direction: column;
     margin-left: 54px;
-}
+} */
 
 select {
     width: 440px;

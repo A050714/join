@@ -2,6 +2,7 @@ body {
     margin: 0;
     font-family: 'PT Sans';
     overflow: hidden;
+    background-color: #F6F7F8;
 }
 
 .dNone {
