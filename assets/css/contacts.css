@@ -124,7 +124,7 @@ h1 {
 .contactcolor {
     width: 120px;
     height: 120px;
-    background-color: orange;
+    /* background-color: orange; */
     border-radius: 100%;
     display: flex;
     justify-content: center;
