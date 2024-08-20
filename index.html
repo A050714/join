@@ -8,44 +8,64 @@
     <link rel="shortcut icon" type="image/x-icon"
         href="assets/img/00_General_elements/Logo for Favicon construction.svg">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="assets/css/sidebar.css">
+    <link rel="stylesheet" href="/assets/css/sidebar.css">
     <link rel="stylesheet" href="/assets/css/contacts.css">
+    <link rel="stylesheet" href="/assets/css/login-signup.css">
 
     <script src="js/sidebar.js"></script>
 </head>
 
 <body>
-    <aside id="sidebar">
+    <div class="container">
+        <aside id="sidebar">
 
-        <img class="sidebarlogo" src="./assets/img/00_General_elements/Join logo vector.svg" alt="Join-logo">
+            <img class="sidebarlogo" src="./assets/img/00_General_elements/Join logo vector.svg" alt="Join-logo">
+    
+            <div class="sidelinks" id="sidelinks">
+                <section id="widget_1">
+                    <img class="sidebarimg" src="./assets/img/00_General_elements/menu_Icons/summary.svg" alt="summary">
+                    <a class="sidebartext" href="#">Summary</a>
+                </section>
+    
+                <section id="widget_1">
+                    <img class="sidebarimg" src="assets/img/00_General_elements/menu_Icons/add_task.svg" alt="add task">
+                    <a class="sidebartext" href="#">Add Task</a>
+                </section>
+    
+                <section id="widget_1">
+                    <img class="sidebarimg" src="assets/img/00_General_elements/menu_Icons/board.svg" alt="board">
+                    <a class="sidebartext" href="#">Board</a>
+                </section>
+    
+                <section id="widget_1">
+                    <img class="sidebarimg" src="assets/img/00_General_elements/menu_Icons/contacts.svg" alt="contacts">
+                    <a class="sidebartext" href="assets/html_templates/contacts.html">Contacts</a>
+                </section>
+            </div>
+    
+            <div class="sidebarfooter">
+                <a class="sidebartext" href="#">Privacy Policy</a>
+                <a class="sidebartext" href="#">Legal notice</a>
+            </div>
+        </aside>
+    
+        <main class="main-content">
+            <header>
+                
+                <p>Kanban Project Management Tool</p>
+    
+    
+                <div class="user-info">
+                    <img src="./../img/help.svg" alt="">
+                    <div class="user-icon">SM</div>
+                </div>
+            </header>
 
-        <div class="sidelinks" id="sidelinks">
-            <section id="widget_1">
-                <img class="sidebarimg" src="./assets/img/00_General_elements/menu_Icons/summary.svg" alt="summary">
-                <a class="sidebartext" href="#">Summary</a>
-            </section>
-
-            <section id="widget_1">
-                <img class="sidebarimg" src="assets/img/00_General_elements/menu_Icons/add_task.svg" alt="add task">
-                <a class="sidebartext" href="#">Add Task</a>
-            </section>
-
-            <section id="widget_1">
-                <img class="sidebarimg" src="assets/img/00_General_elements/menu_Icons/board.svg" alt="board">
-                <a class="sidebartext" href="#">Board</a>
-            </section>
-
-            <section id="widget_1">
-                <img class="sidebarimg" src="assets/img/00_General_elements/menu_Icons/contacts.svg" alt="contacts">
-                <a class="sidebartext" href="assets/html_templates/contacts.html">Contacts</a>
-            </section>
-        </div>
-
-        <div class="sidebarfooter">
-            <a class="sidebartext" href="#">Privacy Policy</a>
-            <a class="sidebartext" href="#">Legal notice</a>
-        </div>
-    </aside>
+            <!-- new inhalt in div hier -->
+     
+        </main>
+    </div>
+    
 
 </body>
 
