@@ -261,6 +261,7 @@
        background-color: #f6f7f8;
        overflow-y: auto; 
        width: 100%;
+       margin-left: 232px;
        
     
    }
@@ -273,6 +274,10 @@
        margin: 0;
        padding: 15px 70px;
        box-shadow: 0 0 0 0,1;
+       position: absolute;
+       flex: 1;
+       right: 0;
+       left: 232px;
    }
    
    .user-info {
