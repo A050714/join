@@ -1,6 +1,7 @@
 body {
     margin: 0;
     font-family: 'PT Sans';
+    overflow: hidden;
 }
 
 .dNone {
@@ -9,4 +10,9 @@ display: none;
 
 .pointer {
     cursor: pointer;
+}
+
+.mainscreen{
+    padding-left: 232px;
+    padding-top: 20px;
 }
