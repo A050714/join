@@ -1,6 +1,12 @@
 
 let contacts = [];
 const BASE_URL = "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/";
+includeHTML();
+let colors = ['#FF7A00', '#FF5EB3', '#6E52FF',
+    '#9327FF', '#00BEE8', '#1FD7C1',
+    '#FF745E', '#FFA35E', '#FC71FF',
+    '#FFC701', '#0038FF', '#C3FF2B',
+    '#FFE62B', '#FF4646', '#FFBB2B'];
 
 //RENDER CONTACTS//------------------------------------------------------
 //loads contacts and fills contacts-array
@@ -9,7 +15,7 @@ async function loadContacts() {
     let UserKeysArray = Object.keys(userRespone);
     for (let index = 0; index < UserKeysArray.length; index++) {
         let user = userRespone[UserKeysArray[index]];
-        if (user !== null) { 
+        if (user !== null) {
             contacts.push({
                 id: UserKeysArray[index],
                 user: user
@@ -38,37 +44,38 @@ function sortContacts() {
 async function renderAllContacts() {
     await loadContacts();
     sortContacts();
+
     let content = document.getElementById('contactList');
     content.innerHTML = '';
     firtsLetter = '';
-    for (let index = 0; index < contacts.length; index++) { 
+    for (let index = 0; index < contacts.length; index++) {
         let contact = contacts[index];
-        if(firtsLetter!=contacts[index].user.name[0]){
+        if (firtsLetter != contacts[index].user.name[0]) {
             firtsLetter = contact.user.name[0];
-            content.innerHTML +=`
+            content.innerHTML += `
                     <div class="letterDiv"><h2>${firtsLetter}</h2></div>
             `
-            content.innerHTML +=horizontalLine();
+            content.innerHTML += horizontalLine();
         }
         content.innerHTML += /*html*/ `
-            <div class="singleContacts" id="Id_${contact.id}" onclick="showContact(${index})"> 
-                <div>
+            <div class="singleContacts" id="Id_${index}" onclick="showContact(${index})"> 
+                
                 <div class="contacthead2">
                             <div class="contactcolor2" id="contactColor${contact.id}"></div>
-                            <div>
+                            <div class="nameEmailDiv">
                                 <p id="contactName2">${contact.user.name}</p>
                                 <a href="mailto:${contact.user.mail}">${contact.user.mail}</a>
                             </div>
                         </div>
-            </div>
+            
         `;
-        showInitials(contact,`contactColor${contact.id}`);
+        showInitials(contact, `contactColor${contact.id}`);
     }
-    
+
 }
 
 
-function horizontalLine(){
+function horizontalLine() {
     return `
         <div class="horizontalLine"></div>    
     `;
@@ -95,19 +102,20 @@ function toggleEditPopup() {
 
 //ADD CONTACT//----------------------------------------------------------------------
 
- async function createContact() {
-     let name = document.getElementById('newName').value;
-     let mail = document.getElementById('newMail').value;
-     let phone = document.getElementById('newPhone').value
-     let userrespone = await getData("Contacts")|| {};
-     let UserKeysArray = Object.keys(userrespone);
-     let userIndex = UserKeysArray.length;
-     await postData(`Contacts/${userIndex}`, { "name": name, "mail": mail, "phone": phone })
-     document.getElementById('newName').value = "";
-     document.getElementById('newMail').value = "";
-     document.getElementById('newPhone').value = "";
-     location.reload();
- }
+async function createContact() {
+    let name = document.getElementById('newName').value;
+    let mail = document.getElementById('newMail').value;
+    let phone = document.getElementById('newPhone').value
+    let userrespone = await getData("Contacts") || {};
+    let UserKeysArray = Object.keys(userrespone);
+    let userIndex = UserKeysArray.length;
+    let contactColorIndex = userIndex % colors.length;
+    await postData(`Contacts/${userIndex}`, { "name": name, "mail": mail, "phone": phone, "color": contactColorIndex })
+    document.getElementById('newName').value = "";
+    document.getElementById('newMail').value = "";
+    document.getElementById('newPhone').value = "";
+    location.reload();
+}
 
 
 //DELETE CONTACT//-----------------------------------------------------------------------------
@@ -126,9 +134,15 @@ async function deleteContact() {
     location.reload();
 }
 
-
+let theLastIndex;
 //SHOW CONTACT//---------------------------------------------------------------------------------------------
 function showContact(index) {
+    if (theLastIndex != null) {
+        document.getElementById(theLastIndex).classList.remove('chosenContact');
+        document.getElementById(theLastIndex).classList.add('singleContacts');
+
+    }
+
     document.getElementById('showContact').classList.remove('dNone')
     let contact = contacts[index];
     let contactCardName = document.getElementById('contactName');
@@ -137,21 +151,27 @@ function showContact(index) {
     contactCardName.innerHTML = `${contact.user.name}`;
     contactCardMail.innerHTML = `${contact.user.mail}`;
     contactCardPhone.innerHTML = `${contact.user.phone}`;
-    showInitials(contact)
+    showInitials(contact);
+
+    document.getElementById(`Id_${index}`).classList.add('chosenContact');
+    document.getElementById(`Id_${index}`).classList.remove('singleContacts');
+    theLastIndex = `Id_${index}`;
 }
 
-function showInitials(contact,id="contactColor") {
+function showInitials(contact, id = "contactColor") {
     const nameParts = contact.user.name.split(' ');
     let initials;
-    if(nameParts.length==1){
-        initials = nameParts[0][0]; 
+    if (nameParts.length == 1) {
+        initials = nameParts[0][0];
 
     } else {
         initials = nameParts[0][0] + nameParts[1][0];
 
     }
-    let circleInitials = document.getElementById(id)
+    let circleInitials = document.getElementById(id);
     circleInitials.innerHTML = `<p>${initials}</p>`;
+    circleInitials.style = `background-color: ${colors[contact.user.color]}`;
+
 }
 
 //EDIT CONTACT//----------------------------------------------------------------------------------------------
@@ -207,25 +227,25 @@ function includeHTML() {
     /* Loop through a collection of all HTML elements: */
     z = document.getElementsByTagName("*");
     for (i = 0; i < z.length; i++) {
-      elmnt = z[i];
-      /*search for elements with a certain atrribute:*/
-      file = elmnt.getAttribute("w3-include-html");
-      if (file) {
-        /* Make an HTTP request using the attribute value as the file name: */
-        xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-          if (this.readyState == 4) {
-            if (this.status == 200) {elmnt.innerHTML = this.responseText;}
-            if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
-            /* Remove the attribute, and call this function once more: */
-            elmnt.removeAttribute("w3-include-html");
-            includeHTML();
-          }
+        elmnt = z[i];
+        /*search for elements with a certain atrribute:*/
+        file = elmnt.getAttribute("w3-include-html");
+        if (file) {
+            /* Make an HTTP request using the attribute value as the file name: */
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4) {
+                    if (this.status == 200) { elmnt.innerHTML = this.responseText; }
+                    if (this.status == 404) { elmnt.innerHTML = "Page not found."; }
+                    /* Remove the attribute, and call this function once more: */
+                    elmnt.removeAttribute("w3-include-html");
+                    includeHTML();
+                }
+            }
+            xhttp.open("GET", file, true);
+            xhttp.send();
+            /* Exit the function: */
+            return;
         }
-        xhttp.open("GET", file, true);
-        xhttp.send();
-        /* Exit the function: */
-        return;
-      }
     }
-  }
+}

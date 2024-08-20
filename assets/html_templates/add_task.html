@@ -8,50 +8,22 @@
     <link rel="shortcut icon" type="image/x-icon"
         href="assets/img/00_General_elements/Logo for Favicon construction.svg">
     <link rel="stylesheet" href="/assets/css/sidebar.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
     <link rel="stylesheet" href="/assets/css/addtask.css">
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
 </head>
 
-<body>
-    <div class="Maincontainer">
-        <aside id="sidebar">
-
-            <img class="sidebarlogo" src="/assets/img/00_General_elements/Join logo vector.svg" alt="Join-logo">
-
-            <div class="sidelinks" id="sidelinks">
-                <section id="widget_1">
-                    <img class="sidebarimg" src="/assets/img/00_General_elements/menu_Icons/summary.svg" alt="summary">
-                    <a class="sidebartext" href="#">Summary</a>
-                </section>
-
-                <section id="widget_1">
-                    <img class="sidebarimg" src="/assets/img/00_General_elements/menu_Icons/add_task.svg"
-                        alt="add task">
-                    <a class="sidebartext" href="#">Add Task</a>
-                </section>
-
-                <section id="widget_1">
-                    <img class="sidebarimg" src="/assets/img/00_General_elements/menu_Icons/board.svg" alt="board">
-                    <a class="sidebartext" href="#">Board</a>
-                </section>
-
-                <section id="widget_1">
-                    <img class="sidebarimg" src="/assets/img/00_General_elements/menu_Icons/contacts.svg"
-                        alt="contacts">
-                    <a class="sidebartext" href="/assets/html_templates/contacts.html">Contacts</a>
-                </section>
-            </div>
-
-            <div class="sidebarfooter">
-                <a class="sidebartext" href="#">Privacy Policy</a>
-                <a class="sidebartext" href="#">Legal notice</a>
-            </div>
-        </aside>
+<body onload="includeHTML()">
+    <div w3-include-html="/assets/html_templates/header.html"></div>
+    <div w3-include-html="/assets/html_templates/sidebar.html"></div>
+    <div class="mainscreen">
 
 
         <div class="addtask">
-            <header>
+
                 <h4>Add Task</h4>
-            </header>
+  
             <section class="inputtasks">
                 <div class="leftinputfields">
                     <div>
@@ -111,8 +83,60 @@
 
                 </div>
             </footer>
+            <div class="addtasktemplate dNone">
+                <div class="taskoverlay">
+                    <div class="overlaytask">
+                        <button class="bgcolortask">User Story</button>
+                    </div>
+                    <div>
+                        <img src="/assets/img/00_General_elements/close/default.svg" alt="">
+                    </div>
+                </div>
+                <h4>Hier steht der Aufgabentext</h4>
+                <p>Hier Steht die Aufgabenbeschreibung</p>
+                <div class="due-date-container">
+                    <span class="label">Due date:</span>
+                    <span class="date">10/05/2023</span>
+                </div>
+                <div class="taskpriority">
+                    <span>Priority:</span>
+                    <div class="prio">
+                        <p>Medium</p>
+                        <img src="/assets/img/04_Board/priority/medium.png" alt="">
+                    </div>
+                </div>
+                <p>Assigned to:</p>
+                <div>
+                    <div class="contacttask">
+                        <div class="firstletters">EM</div>
+                        <span>Emanuel Mauer</span>
+                    </div>
+                </div>
+
+                <div class="subtasks">
+                    <h5 style="color: rgba(42, 54, 71, 1); font-size: 20px; margin-bottom: 16px; font-weight: 400;">
+                        Subtasks</h5>
+                    <div class="subtaskcheck">
+                        <img src="/assets/img/03_AddTask/contacts_checked/Check button.svg" alt="">
+                        <p>Subtask Nr.1</p>
+                    </div>
+                    <div class="subtaskcheck">
+                        <img src="/assets/img/03_AddTask/contacts_checked/Check button(1).svg" alt="">
+                        <p>Subtask Nr.1</p>
+                    </div>
+                </div>
+
+                <div class="taskboardtemplate">
+                    <img src="/assets/img/03_AddTask/subtasks_icons/delete.svg" alt="">
+                    <p>Delete</p>
+                    <div class="seperatoraddtasktemplate"></div>
+                    <img src="/assets/img/03_AddTask/subtasks_icons/edit.svg" alt="">
+                    <p>Edit</p>
+                </div>
+            </div>
         </div>
     </div>
+
 </body>
 
 </html>

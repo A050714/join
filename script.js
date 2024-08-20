@@ -1,3 +1,4 @@
+includeHTML();
 
 function includeHTML() {
     var z, i, elmnt, file, xhttp;
@@ -26,5 +27,6 @@ function includeHTML() {
       }
     }
   }
+
 
   includeHTML();
