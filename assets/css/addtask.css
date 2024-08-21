@@ -80,32 +80,31 @@ input {
 .inputtasks {
     display: flex;
     justify-content: space-between;
-    gap: 24px;
+    width: 100%;
+    
 }
 
-.subtask {
+.inputField {
     width: 92%;
-    background-image: url("/assets/img/03_AddTask/subtasks_icons/add\ \(1\).png");
-    background-repeat: no-repeat;
-    background-size: 14px 14px;
-    background-position: calc(100% - 16px) center;
-    border: 1px solid #D1D1D1;
-    border-radius: 10px;
+    
+    /* border: 1px solid #D1D1D1; */
+    /* border-radius: 10px; */
+    border: none;
 
 }
-
-
 
 .taskbtn {
     display: flex;
     justify-content: space-between;
-
+    cursor: pointer;
+    
 }
 
 .tasksbtn {
     width: 136px;
     height: 40px;
     text-align: center;
+    font-size: 18px;
     font-family: 'PT Sans';
     display: flex;
     justify-content: center;
@@ -114,6 +113,7 @@ input {
     background-color: white;
     border: 1px solid #D1D1D1;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .taskbtn img {
@@ -123,6 +123,13 @@ input {
 footer {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    
+    width: 100%;
+
+
+
 }
 
 .leftfooter p {
@@ -263,13 +270,41 @@ footer {
     background-color: rgba(209, 209, 209, 1);
 }
 
-.taskboardtemplate{
+.taskboardtemplate {
     display: flex;
     justify-content: flex-end;
     gap: 8px;
 }
 
-.taskboardtemplate p{
+.taskboardtemplate p {
     font-size: 16px;
     color: rgba(42, 54, 71, 1);
+}
+
+.formtask {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 970px;
+}
+
+.addtask{
+    padding-left: 80px;
+}
+
+.taskicon{
+    width: 14px;
+    height: 14px;
+}
+.inputAndButtons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+#addToSubTaskbtn{
+    cursor: pointer;
 }

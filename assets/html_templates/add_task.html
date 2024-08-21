@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/assets/css/addtask.css">
     <link rel="stylesheet" href="/style.css">
     <script src="/script.js"></script>
+    <script src="/js/add_task.js"></script>
 </head>
 
 <body onload="includeHTML()">
@@ -22,67 +23,78 @@
 
         <div class="addtask">
 
-                <h4>Add Task</h4>
-  
-            <section class="inputtasks">
-                <div class="leftinputfields">
-                    <div>
-                        <p>Title<span class="required">*</span></p>
-                        <input type="text" placeholder="Enter a title">
+            <h4>Add Task</h4>
+            <main class="formtask">
+                <section class="inputtasks">
+                    <div class="leftinputfields">
+                        <div>
+                            <p>Title<span class="required">*</span></p>
+                            <input id="titleId" type="text" placeholder="Enter a title">
+                        </div>
+                        <div>
+                            <p>Description</p>
+                            <textarea name="test" id="descId" placeholder="Enter a Description"></textarea>
+                        </div>
+                        <div>
+                            <p>Assigned to</p>
+                            <label for="assignee"></label>
+                            <select name="assignee" id="assignee">
+                                <option value="" disabled selected>Select contacts to assign</option>
+                            </select>
+                        </div>
+
+
                     </div>
-                    <div>
-                        <p>Description</p>
-                        <textarea name="test" id="addtaskarea" placeholder="Enter a Description"></textarea>
-                    </div>
-                    <div>
-                        <p>Assigned to</p>
+                    <div class="seperator"></div>
+
+                    <div class="rightinputfields">
+                        <p>Due date<span class="required">*</span></p>
+                        <input type="date" id="dateId">
+                        <p>Prio</p>
+                        <div class="taskbtn">
+                            <button onclick="setPrio('urgent')" class="tasksbtn" id="urgent">Urgent <img id="svgUrgent"
+                                    src="/assets/img/03_AddTask/priority/Prio alta.svg" alt=""></button>
+                            <button onclick="setPrio('medium')" class="tasksbtn" id="medium">Medium <img id="svgMedium"
+                                    src="/assets/img/03_AddTask/priority/Prio media.svg"></button>
+                            <button onclick="setPrio('low')" class="tasksbtn" id="low">Low <img id="svgLow"
+                                    src="/assets/img/03_AddTask/priority/Prio baja(1).svg" alt=""></button>
+                        </div>
+                        <p>Category<span class="required">*</span></p>
                         <label for="assignee"></label>
                         <select name="assignee" id="assignee">
-                            <option value="" disabled selected>Select contacts to assign</option>
+                            <option value="" disabled selected>Select task category</option>
+                            <option value="">Technical Task</option>
+                            <option value="">User Story</option>
                         </select>
+                        <div class="subtaskContainer">
+                            <p>Subtasks</p>
+                            <div class="inputAndButtons">
+                                <input class="inputField" id="inputField" type="text" placeholder="Add new subtask">
+                                <img onclick="addToSubTasks()" id="addToSubTaskbtn" class="taskicon" src="/assets/img/03_AddTask/subtasks_icons/add.svg" alt="">
+                            </div>
+                           
+                            <div id="subtasks"></div>
+                        </div>
+                     
+                        
                     </div>
 
-
-                </div>
-                <div class="seperator"></div>
-
-                <div class="rightinputfields">
-                    <p>Due date<span class="required">*</span></p>
-                    <input type="date">
-                    <p>Prio</p>
-                    <div class="taskbtn">
-                        <button class="tasksbtn">Urgent <img src="/assets/img/03_AddTask/priority/urgent.png"
+                </section>
+                <footer>
+                    <div class="leftfooter">
+                        <div>
+                            <p><span class="required">*</span>This field is required</p>
+                        </div>
+                    </div>
+                    <div class="rightfooter">
+                        <button class="clearbtn">Clear <img src="/assets/img/00_General_elements/close/default.svg"
                                 alt=""></button>
-                        <button class="tasksbtn">Medium <img src="/assets/img/03_AddTask/priority/medium.png"
-                                alt=""></button>
-                        <button class="tasksbtn">Low <img src="/assets/img/03_AddTask/priority/low.png" alt=""></button>
+                        <button onclick="addTask()" class="cleartaskbtn">Create Task <img
+                                src="/assets/img/00_General_elements/checkmark_white.svg" alt=""></button>
                     </div>
-                    <p>Category<span class="required">*</span></p>
-                    <label for="assignee"></label>
-                    <select name="assignee" id="assignee">
-                        <option value="" disabled selected>Select task category</option>
-                    </select>
-                    <p>Subtasks</p>
-                    <input class="subtask" type="text" placeholder="Add new subtask">
-                </div>
+                </footer>
+            </main>
 
-            </section>
-            <footer>
-                <div class="leftfooter">
-                    <div>
-                        <p><span class="required">*</span>This field is required</p>
-                    </div>
-
-                </div>
-                <div class="rightfooter">
-
-                    <button class="clearbtn">Clear <img src="/assets/img/00_General_elements/close/default.svg"
-                            alt=""></button>
-                    <button class="cleartaskbtn">Clear Task <img
-                            src="/assets/img/00_General_elements/checkmark_white.svg" alt=""></button>
-
-                </div>
-            </footer>
             <div class="addtasktemplate dNone">
                 <div class="taskoverlay">
                     <div class="overlaytask">
