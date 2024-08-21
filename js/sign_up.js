@@ -2,7 +2,7 @@ const BASE_URL = "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.
 
 // Creating Sign Up Function
 
-async function signup(path = "") {
+async function signup() {
     const name = document.getElementById('name_signup').value; 
     const email = document.getElementById('email_signup').value; 
     const password = document.getElementById('password_signup').value;  
@@ -18,34 +18,33 @@ async function signup(path = "") {
         alert("You must accept the privacy policy to sign up.");
         return;
     }
-    // create a user Object
-    const userData = {
-        name: name, 
-        email: email, 
-        password: password, 
-    }
-    // Send the user data to firebase
-    sendData(); 
-  
-    }; 
 
     // Function: using POST to send the user data to firebase
-    async function sendData(path){
-        try{
-            let response = await fetch (BASE_URL + path + ".json", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(userData)
-            });
+   
+    try{
+        let response = await fetch (`${BASE_URL}Users.json`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email
+            })
+        });
+
+        // let  responseToJson = await response.json(); 
+        // const userId = responseToJson.name; 
 
             // server´s response after POST sending date to firebase
-            if (response.status === 200){
-                const responseToJson = await response.json(); 
-                console.log("User created successfully:", data);
-                alert("You´ve signed up successfully!");
-                window.location.href = './../index.html'; 
+            if (response.status == 200){ 
+                let responseToJson = await response.json(); 
+                const userId = responseToJson.name;
+                console.log("User created successfully:", responseToJson);
+                console.log("UserId is" + + userId.value); 
+                alert('You´ve signed up successfully!'); 
+                    
+                window.location.href = '/assets/html_templates/login.html'; 
                 //  in order to relocate to another login side after signing up succesfully
         
             } else {
@@ -53,9 +52,9 @@ async function signup(path = "") {
             }
         }catch (error) {
             console.error("Error fetching users:", error.message);
+            alert('An error occurred. Please try again.');
         }
-        
-  
+
     }   
         
 
