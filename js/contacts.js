@@ -110,7 +110,7 @@ async function createContact() {
     let UserKeysArray = Object.keys(userrespone);
     let userIndex = UserKeysArray.length;
     let contactColorIndex = userIndex % colors.length;
-    await postData(`Contacts/${userIndex}`, { "name": name, "mail": mail, "phone": phone, "color": contactColorIndex })
+    await postData(`Contacts/${userIndex}`, { "name": name, "mail": mail, "phone": phone, "color": contactColorIndex, id:`${userIndex}`})
     document.getElementById('newName').value = "";
     document.getElementById('newMail').value = "";
     document.getElementById('newPhone').value = "";
