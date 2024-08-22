@@ -160,13 +160,14 @@ body {
 
 .progressBoxes {
     border: black solid 1px;
-    /* height: auto; */
-    /* width: 250px; */
-    /* padding: 20px 15px 20px 15px; */
+    /* height: 300px; */
+    width: 250px;
+    padding: 20px 15px 20px 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
 }
 
 .card {
@@ -179,4 +180,12 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.todo {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
 }

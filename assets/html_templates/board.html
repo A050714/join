@@ -13,7 +13,7 @@
 
 </head>
 
-<body>
+<body onload="updateBoard()">
     <header w3-include-html="/assets/html_templates/header.html"></header>
     <aside w3-include-html="/assets/html_templates/sidebar.html"></aside>
     <div class="mainscreen">
@@ -40,10 +40,7 @@
                         <p>To do</p>
                         <button><img src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
                     </div>
-                    <div class="progressBoxes todo"> <img class="card" src="/assets/img/Cards (1).svg" alt="">
-                        <img class="card" src="/assets/img/Cards (1).svg" alt="">
-                        <img class="card" src="/assets/img/Cards (1).svg" alt="">
-                        <img class="card" src="/assets/img/Cards (1).svg" alt="">
+                    <div class="progressBoxes todo" id="todoBox" ondrop="moveto('todo')" ondragover="allowDrop(event)">
                     </div>
                 </div>
                 <div class="progressBar">
@@ -51,8 +48,8 @@
                         <p>In progress</p>
                         <button><img src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
                     </div>
-                    <div class="progressBoxes inProgress">
-                        <img class="card" src="/assets/img/Cards (1).svg" alt="">
+                    <div class="progressBoxes inProgress" id="inProgressBox" ondrop="moveto('inProgress')"
+                        ondragover="allowDrop(event)">
                     </div>
                 </div>
                 <div class="progressBar">
@@ -60,16 +57,15 @@
                         <p>Await feedback</p>
                         <button><img src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
                     </div>
-                    <div class="progressBoxes awaitFeedback">
-                        <img class="card" src="/assets/img/Cards (1).svg" alt="">
+                    <div class="progressBoxes awaitFeedback" id="awaitFeedbackBox" ondrop="moveto('awaitFeedback')"
+                        ondragover="allowDrop(event)">
                     </div>
                 </div>
                 <div class="progressBar">
                     <div class="asd">
                         <p>Done</p>
                     </div>
-                    <div class="progressBoxes done">
-                        <img class="card" src="/assets/img/Cards (1).svg" alt="">
+                    <div class="progressBoxes done" id="doneBox" ondrop="moveto('done')" ondragover="allowDrop(event)">
                     </div>
                 </div>
             </div>
