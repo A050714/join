@@ -1,62 +1,94 @@
-let tasks = [
-  {
-    id: 0,
-    title: "Putzen",
-    description: "Das Haus Putzen",
-    asignedTo: "Hyusein Yashar",
-    prio: "urgent",
-    status: "todo"
-  },
-  {
-    id: 1,
-    title: "KOchen",
-    description: "Bratwurst kochen",
-    asignedTo: "Hyusein Yashar",
-    prio: "urgent",
-    status: "todo"
-  },
-  {
-    id: 2,
-    title: "Schlafen",
-    description: "mindestens 6 stunden",
-    asignedTo: "Hyusein Yashar",
-    prio: "urgent",
-    status: "todo"
-  }
-];
+let tasks = [];
+const BASE_URL_TASK = "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/";
+includeHTML();
 
+
+function onload() {
+  loadTasks();
+  generateBoard();
+  loadContacts();
+}
+
+
+async function loadTasks() {
+  let userResponse = await getData("Tasks");
+  let taskArrayIndex = Object.keys(userResponse);
+  for (let index = 0; index < taskArrayIndex.length; index++) {
+    let task = userResponse[taskArrayIndex[index]];
+    if (task !== null) {
+      tasks.push(task);
+    }
+  }  
+}
+
+
+async function getData(path) {
+  let response = await fetch(BASE_URL_TASK + path + ".json");
+  return responseToJson = await response.json();
+}
 
 let currentDraggedElement;
 
-function updateBoard() {
-  let todo = tasks.filter(t => t['status'] == 'todo');
-  document.getElementById('todoBox').innerHTML = '';
-  for (let index = 0; index < todo.length; index++) {
-    const element = todo[index];
-    document.getElementById('todoBox').innerHTML += generateTodoHTML(element);
-  }
+function generateBoard() {
+ let todo = tasks.filter(t => t['status'] == 'todo');
+ console.log(todo);
+ 
+  
+  
+  // document.getElementById('todoBox').innerHTML = '';
+  // for (let index = 0; index < todo.length; index++) {
+  //   const element = todo[index];
+  //   document.getElementById('todoBox').innerHTML += generateTodoHTML(element);
+  // }
 
-  let inProgress = tasks.filter(t => t['status'] == 'inProgress');
-  document.getElementById('inProgressBox').innerHTML = '';
-  for (let index = 0; index < inProgress.length; index++) {
-    const element = inProgress[index];
-    document.getElementById('inProgressBox').innerHTML += generateTodoHTML(element);
-  }
-  let awaitFeedback = tasks.filter(t => t['status'] == 'awaitFeedback');
-  document.getElementById('awaitFeedbackBox').innerHTML = '';
-  for (let index = 0; index < awaitFeedback.length; index++) {
-    const element = awaitFeedback[index];
-    document.getElementById('awaitFeedbackBox').innerHTML += generateTodoHTML(element);
-  }
-  let done = tasks.filter(t => t['status'] == 'done');
-  document.getElementById('doneBox').innerHTML = '';
-  for (let index = 0; index < done.length; index++) {
-    const element = done[index];
-    document.getElementById('doneBox').innerHTML += generateTodoHTML(element);
-  }
+  // let inProgress = tasks.filter(t => t['status'] == 'inProgress');
+  // document.getElementById('inProgressBox').innerHTML = '';
+  // for (let index = 0; index < inProgress.length; index++) {
+  //   const element = inProgress[index];
+  //   document.getElementById('inProgressBox').innerHTML += generateTodoHTML(element);
+  // }
+  // let awaitFeedback = tasks.filter(t => t['status'] == 'awaitFeedback');
+  // document.getElementById('awaitFeedbackBox').innerHTML = '';
+  // for (let index = 0; index < awaitFeedback.length; index++) {
+  //   const element = awaitFeedback[index];
+  //   document.getElementById('awaitFeedbackBox').innerHTML += generateTodoHTML(element);
+  // }
+  // let done = tasks.filter(t => t['status'] == 'done');
+  // document.getElementById('doneBox').innerHTML = '';
+  // for (let index = 0; index < done.length; index++) {
+  //   const element = done[index];
+  //   document.getElementById('doneBox').innerHTML += generateTodoHTML(element);
+  // }
 }
-function generateTodoHTML(element){
-  return `<div draggable="true" ondragstart="startDragging(${element['id']})" class="todo">${element['title']}</div>`;
+function generateTodoHTML(element) {
+  // return `<div draggable="true" ondragstart="startDragging(${element['id']})" class="todo">${element['title']}</div>`;
+
+  return/*html*/`
+    <div class="card" draggable="true" ondragstart="startDragging(${element['id']})">
+        <label class="categoryLabel" for="category">User Story</label>
+        <div class="titDesc">
+            <p class="title">Title</p>
+            <p class="description">Description</p>
+        </div>
+        <div class="progress">
+            <div class="progress-bar">
+                <div class="progress-color"></div>
+            </div>
+            <div class="subtasksDiv">
+                <p> 1/2 Subtask</p>
+            </div>
+        </div>
+        <div class="asignedContacts">
+            <div class="contactsDiv">
+
+                    
+            </div>
+            <div class="prioDiv">
+                    
+            </div>
+        </div>
+    </div>
+  `;
 }
 function startDragging(id) {
   currentDraggedElement = id;
@@ -98,4 +130,3 @@ function includeHTML() {
     }
   }
 }
-includeHTML();
