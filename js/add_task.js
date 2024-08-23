@@ -1,37 +1,34 @@
 let task = {
-  title: " ",
-  description: " ",
-  assignedTo: " ",
-  dueDate: " ",
-  prio: " ",
-  category: " ",
+  title: "",
+  description: "",
+  assignedTo: [],
+  dueDate: "",
+  prio: "",
+  category: "",
   subTask: [],
   status: "todo",
 };
+let tasks = [];
 let selectedPrio = "";
-
-let colors = [
-  "#FF7A00",
-  "#FF5EB3",
-  "#6E52FF",
-  "#9327FF",
-  "#00BEE8",
-  "#1FD7C1",
-  "#FF745E",
-  "#FFA35E",
-  "#FC71FF",
-  "#FFC701",
-  "#0038FF",
-  "#C3FF2B",
-  "#FFE62B",
-  "#FF4646",
-  "#FFBB2B",
-];
 
 let contacts = [];
 
 const BASE_URL =
-  "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/Contacts.json";
+  "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/Contacts/.json";
+
+const BASE_URL_TASK =
+  "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/Tasks/";
+
+async function putTaskToBoard(data = {}, taskIndex) {
+  let response = await fetch(BASE_URL_TASK + taskIndex + ".json", {
+    method: "PUT",
+    header: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  return (responseToJson = await response.json());
+}
 
 async function taskContacts() {
   try {
@@ -146,7 +143,12 @@ function addTask() {
   task.category = document.getElementById("categoryId").value;
   task.assignedTo = document.getElementById("assignee").value;
   task.prio = selectedPrio;
-  console.log(task);
+  tasks.push(task); //in arrraz gepust
+  let taskIndex = tasks.length;
+
+  putTaskToBoard(task, taskIndex).then((response) => {
+    console.log("Task zu Firebase gesendet:", response);
+  });
   clearForm();
 }
 
