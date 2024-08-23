@@ -21,7 +21,7 @@
 
         <div class="login-container" id="login-popup">
             <h1 class="login_title">Log in</h1>
-            <form id="loginForm">
+            <form id="loginForm" onsubmit="login(event)">
                 <div class="input-group">
                     <input type="email" id="email" placeholder="Email " required>
                     <span class="icon"><img src="/assets/img/01_Login_SignUp_ForgotPW/mail.png" alt="mail"></i>
@@ -35,8 +35,8 @@
                     <label for="rememberMe">Remember me</label>
                 </div>
                 <div class="buttons">
-                    <button type="submit" onclick="login()">Log in</button>
-                    <button type="button" class="guestLogin" onclick="guestLogin()">Guest Log in</button>
+                    <button type="submit" >Log in</button>
+                    <button type="button" class="guestLogin" onsubmit="guestLogin()">Guest Log in</button>
                 </div>
 
             </form>
