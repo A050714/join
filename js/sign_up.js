@@ -204,7 +204,20 @@ async function signup() {
     // }
 
     // Guest Login
-
+    function guestLogin() {
+        // Create a default guest user object
+        const guestUser = {
+            name: "Guest",
+            email: "guest@example.com",
+            role: "guest"  // define a role if your application uses role-based access
+        };
+    
+        // Optionally store the guest user data in sessionStorage
+        sessionStorage.setItem('user', JSON.stringify(guestUser));
+      
+        alert('You are logged in as a guest!');
+        window.location.href = '/assets/html_templates/summary.html';  
+    }
 
     
 
