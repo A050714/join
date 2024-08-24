@@ -20,7 +20,7 @@ const BASE_URL_TASK =
   "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/Tasks/";
 
 async function putTaskToBoard(data = {}, taskIndex) {
-  let response = await fetch(BASE_URL_TASK + taskIndex + ".json", {
+  let response = await fetch(BASE_URL_TASK + (taskIndex - 1) + ".json", {
     method: "PUT",
     header: {
       "Content-Type": "application/json",
