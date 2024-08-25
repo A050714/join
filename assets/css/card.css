@@ -1,0 +1,94 @@
+.card {
+    padding: 16px;
+    border: solid 1px black;
+    border-radius: 24px;
+    box-shadow: 0px 0px 10px 3px #00000014;
+    width: 252px;
+    height: auto;
+    gap: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.titDesc {
+    display: flex;
+    align-items: self-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.categoryLabel {
+    width: 113px;
+    height: 27px;
+    border-radius: 8px;
+    padding: 4px 16px;
+    background-color: #0038FF;
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+p {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2A3647;
+    /* margin-top: 16px !important; */
+
+}
+
+.description {
+    font-size: 16px;
+    font-weight: 400 !important;
+    color: #A8A8A8 !important;
+}
+
+.progress {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.subtasksDiv p {
+    font-size: 13px;
+    font-weight: 400;
+    text-align:center;
+    display: inline;
+}
+.subtasksDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.progress-bar {
+    background-color: #F4F4F4;
+    width: 140px;
+    height:10px;
+    border-radius: 8px;
+}
+
+.progress-color{
+    background-color: #4589ff;
+    width: 10%;
+    height:10px;
+    border-radius: 8px;
+}
+
+.prioIcon{
+    height: 32px !important;
+    width: 32px !important;
+}
+.asignedContacts{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
