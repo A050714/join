@@ -47,8 +47,8 @@ p {
 
 .description {
     font-size: 16px;
-    font-weight: 400;
-    color: #A8A8A8;
+    font-weight: 400 !important;
+    color: #A8A8A8 !important;
 }
 
 .progress {
@@ -57,14 +57,21 @@ p {
     justify-content: space-between;
 }
 .subtasksDiv p {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 400;
+    text-align:center;
+    display: inline;
+}
+.subtasksDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
 .progress-bar {
     background-color: #F4F4F4;
-    width: 180px;
+    width: 140px;
     height:10px;
     border-radius: 8px;
 }
@@ -74,4 +81,14 @@ p {
     width: 10%;
     height:10px;
     border-radius: 8px;
+}
+
+.prioIcon{
+    height: 32px !important;
+    width: 32px !important;
+}
+.asignedContacts{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

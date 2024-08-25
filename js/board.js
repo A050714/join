@@ -5,8 +5,8 @@ includeHTML();
 
 async function onload() {
   await loadTasks();
+  await loadContacts();
   generateBoard();
-  loadContacts();
 }
 
 
@@ -16,9 +16,12 @@ async function loadTasks() {
   for (let index = 0; index < taskArrayIndex.length; index++) {
     let task = userResponse[taskArrayIndex[index]];
     if (task !== null) {
-      tasks.push(task);
+      tasks.push({
+        id: taskArrayIndex[index],
+        task: task
+    });
     }
-  }  
+  }   
 }
 
 
@@ -30,61 +33,57 @@ async function getData(path) {
 let currentDraggedElement;
 
 function generateBoard() {
- let todo = tasks.filter(t => t['status'] == 'todo');
- console.log(todo);
- 
-  
-  
-  // document.getElementById('todoBox').innerHTML = '';
-  // for (let index = 0; index < todo.length; index++) {
-  //   const element = todo[index];
-  //   document.getElementById('todoBox').innerHTML += generateTodoHTML(element);
-  // }
+ let todo = tasks.filter(t => t['task']['status'] == 'todo');
+  document.getElementById('todoBox').innerHTML = '';
+  for (let index = 0; index < todo.length; index++) {
+    const element = todo[index];
+    document.getElementById('todoBox').innerHTML += generateTodoHTML(element);
+  }
 
-  // let inProgress = tasks.filter(t => t['status'] == 'inProgress');
-  // document.getElementById('inProgressBox').innerHTML = '';
-  // for (let index = 0; index < inProgress.length; index++) {
-  //   const element = inProgress[index];
-  //   document.getElementById('inProgressBox').innerHTML += generateTodoHTML(element);
-  // }
-  // let awaitFeedback = tasks.filter(t => t['status'] == 'awaitFeedback');
-  // document.getElementById('awaitFeedbackBox').innerHTML = '';
-  // for (let index = 0; index < awaitFeedback.length; index++) {
-  //   const element = awaitFeedback[index];
-  //   document.getElementById('awaitFeedbackBox').innerHTML += generateTodoHTML(element);
-  // }
-  // let done = tasks.filter(t => t['status'] == 'done');
-  // document.getElementById('doneBox').innerHTML = '';
-  // for (let index = 0; index < done.length; index++) {
-  //   const element = done[index];
-  //   document.getElementById('doneBox').innerHTML += generateTodoHTML(element);
-  // }
+  let inProgress = tasks.filter(t => t['task']['status'] == 'inProgress');
+  document.getElementById('inProgressBox').innerHTML = '';
+  for (let index = 0; index < inProgress.length; index++) {
+    const element = inProgress[index];
+    document.getElementById('inProgressBox').innerHTML += generateTodoHTML(element);
+  }
+
+  let awaitFeedback = tasks.filter(t => t['task']['status'] == 'awaitFeedback');
+  document.getElementById('awaitFeedbackBox').innerHTML = '';
+  for (let index = 0; index < awaitFeedback.length; index++) {
+    const element = awaitFeedback[index];
+    document.getElementById('awaitFeedbackBox').innerHTML += generateTodoHTML(element);
+  }
+
+  let done = tasks.filter(t => t['task']['status'] == 'done');
+  document.getElementById('doneBox').innerHTML = '';
+  for (let index = 0; index < done.length; index++) {
+    const element = done[index];
+    document.getElementById('doneBox').innerHTML += generateTodoHTML(element);
+  }
 }
 function generateTodoHTML(element) {
-  // return `<div draggable="true" ondragstart="startDragging(${element['id']})" class="todo">${element['title']}</div>`;
-
   return/*html*/`
     <div class="card" draggable="true" ondragstart="startDragging(${element['id']})">
-        <label class="categoryLabel" for="category">User Story</label>
+        <label class="categoryLabel" for="category">${(element.task.category=='userstory')?"User Story":"Technical Task"}</label>
         <div class="titDesc">
-            <p class="title">Title</p>
-            <p class="description">Description</p>
+            <p class="title">${element.task.title}</p>
+            <p class="description">${element.task.description}</p>
         </div>
         <div class="progress">
             <div class="progress-bar">
                 <div class="progress-color"></div>
             </div>
             <div class="subtasksDiv">
-                <p> 1/2 Subtask</p>
+                <p> 0/${(element.task.subTask.length)} Subtasks</p>
             </div>
         </div>
         <div class="asignedContacts">
             <div class="contactsDiv">
 
-                    
+
             </div>
             <div class="prioDiv">
-                    
+                    <img class="prioIcon" src="/assets/img/03_AddTask/priority/${element.task.prio}.svg" alt="">
             </div>
         </div>
     </div>
@@ -100,8 +99,10 @@ function allowDrop(ev) {
 }
 
 function moveto(status) {
-  tasks[currentDraggedElement]['status'] = status;
-  updateBoard();
+  // tasks[currentDraggedElement]['task']['status'] = status;
+  let currentTask = tasks.find(task => task.id == currentDraggedElement);
+  currentTask.task.status=status;
+  generateBoard();
 }
 function includeHTML() {
   var z, i, elmnt, file, xhttp;
