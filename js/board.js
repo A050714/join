@@ -3,8 +3,8 @@ const BASE_URL_TASK = "https://join-cf5b4-default-rtdb.europe-west1.firebasedata
 includeHTML();
 
 
-function onload() {
-  loadTasks();
+async function onload() {
+  await loadTasks();
   generateBoard();
   loadContacts();
 }
