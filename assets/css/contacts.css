@@ -600,7 +600,7 @@ h3 {
     }
 
     #contactList {
-        width: calc(100% - 120px);
+        width: calc(100% - 110px);
     }
 
     .addNewContact {
