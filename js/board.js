@@ -19,9 +19,9 @@ async function loadTasks() {
       tasks.push({
         id: taskArrayIndex[index],
         task: task
-    });
+      });
     }
-  }   
+  }
 }
 
 
@@ -33,7 +33,7 @@ async function getData(path) {
 let currentDraggedElement;
 
 function generateBoard() {
- let todo = tasks.filter(t => t['task']['status'] == 'todo');
+  let todo = tasks.filter(t => t['task']['status'] == 'todo');
   document.getElementById('todoBox').innerHTML = '';
   for (let index = 0; index < todo.length; index++) {
     const element = todo[index];
@@ -63,8 +63,8 @@ function generateBoard() {
 }
 function generateTodoHTML(element) {
   return/*html*/`
-    <div class="card" draggable="true" ondragstart="startDragging(${element['id']})">
-        <label class="categoryLabel" for="category">${(element.task.category=='userstory')?"User Story":"Technical Task"}</label>
+    <div onclick='showTask("${element.id}")' class="card" draggable="true" ondragstart="startDragging(${element.id})">
+        <label class="categoryLabel ${element.task.category}" for="category">${(element.task.category == 'userstory') ? "User Story" : "Technical Task"}</label>
         <div class="titDesc">
             <p class="title">${element.task.title}</p>
             <p class="description">${element.task.description}</p>
@@ -99,10 +99,73 @@ function allowDrop(ev) {
 }
 
 function moveto(status) {
-  // tasks[currentDraggedElement]['task']['status'] = status;
   let currentTask = tasks.find(task => task.id == currentDraggedElement);
-  currentTask.task.status=status;
+  currentTask.task.status = status;
   generateBoard();
+}
+
+function showTask(taskId) {
+  let element = tasks.find(task => task.id === taskId);
+  console.log(element);
+  let content = document.getElementById('showTask');
+  content.classList.remove('d-none');
+  content.innerHTML = '';
+  content.innerHTML=generateTaskHTML(element);
+}
+function generateTaskHTML(element) {
+  return /*html*/`
+    <div class="addtasktemplate">
+    <div class="taskoverlay">
+      <label class="categoryLabel ${element.task.category}" for="category">${(element.task.category == 'userstory') ? "User Story" : "Technical Task"}</label>
+      <img onclick="closeTask()" src="/assets/img/00_General_elements/close/default.svg" alt="closeButton">
+    </div>
+    <h4>Hier steht der Aufgabentext</h4>
+    <p>Hier Steht die Aufgabenbeschreibung</p>
+    <div class="due-date-container">
+        <span class="label">Due date:</span>
+        <span class="date">10/05/2023</span>
+    </div>
+    <div class="taskpriority">
+        <span>Priority:</span>
+        <div class="prio">
+            <p>Medium</p>
+            <img src="/assets/img/04_Board/priority/medium.png" alt="">
+        </div>
+    </div>
+    <p>Assigned to:</p>
+    <div>
+        <div class="contacttask">
+            <div class="firstletters">EM</div>
+            <span>Emanuel Mauer</span>
+        </div>
+    </div>
+
+    <div class="subtasks">
+        <h5 style="color: rgba(42, 54, 71, 1); font-size: 20px; margin-bottom: 16px; font-weight: 400;">
+            Subtasks</h5>
+        <div class="subtaskcheck">
+            <img src="/assets/img/03_AddTask/contacts_checked/Check button.svg" alt="">
+            <p>Subtask Nr.1</p>
+        </div>
+        <div class="subtaskcheck">
+            <img src="/assets/img/03_AddTask/contacts_checked/Check button(1).svg" alt="">
+            <p>Subtask Nr.1</p>
+        </div>
+    </div>
+
+    <div class="taskboardtemplate">
+        <img src="/assets/img/03_AddTask/subtasks_icons/delete.svg" alt="">
+        <p>Delete</p>
+        <div class="seperatoraddtasktemplate"></div>
+        <img src="/assets/img/03_AddTask/subtasks_icons/edit.svg" alt="">
+        <p>Edit</p>
+    </div>
+</div>
+  `
+}
+
+function closeTask(){
+  document.getElementById('showTask').classList.add('d-none');
 }
 function includeHTML() {
   var z, i, elmnt, file, xhttp;

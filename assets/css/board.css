@@ -147,26 +147,15 @@ body {
     border: 1px;
 }
 
-.boardUnder {
-    /* height: 100vh; */
-    /* width: 100%; */
-    display: flex;
-    align-items: start;
-    justify-content: center;
-    gap: 26px;
-    padding: 0px 64px 0px 64px;
-
-}
-
 .progressBoxes {
-    border: black solid 1px;
-    /* height: 300px; */
+
     width: 250px;
     padding: 20px 15px 20px 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    gap: 16px;
 
 }
 
@@ -182,10 +171,26 @@ body {
     align-items: center;
 }
 
-.todo {
-    /* background-color: white;
-    border: 1px solid black;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px; */
+.prioIcon{
+    height: 32px;
+    width: 32px;
+}
+.showTask{
+    background-color: rgb(0, 0, 0, 0.5);
+    z-index: 1;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+}
+.d-none{
+    display: none;
 }
