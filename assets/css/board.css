@@ -43,7 +43,8 @@ body {
 }
 
 .progressBar {
-    /* width: 100%; */
+    width: 25%;
+    width: 230px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -154,7 +155,6 @@ body {
 }
 
 .progressBoxes {
-    width: 250px;
     padding: 20px 15px 20px 15px;
     display: flex;
     align-items: center;
@@ -196,4 +196,39 @@ body {
 }
 .d-none{
     display: none;
+}
+
+@media(max-width:1450px){
+    .mainscreen{
+        padding-left: 0px !important;
+    }
+    
+}
+
+@media (max-width:930px) {
+    body{
+        overflow: unset !important;;
+    }
+    .statusBar{
+        flex-direction: column;
+        align-items: self-start;
+    }
+    .progressBar{
+        flex-direction: row;
+        height: 300px;
+        width: 600px;
+        width: 100%;
+    }
+    .progressBoxes{
+        flex-direction:row;
+        width: 100%;
+        max-width: 600px;
+        overflow-x: auto;
+    }
+
+    .asd{
+        justify-content: flex-start;
+        gap: 50px;
+        width: unset;
+    }
 }
