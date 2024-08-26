@@ -18,7 +18,32 @@ header p {
     font-family: 'PT Sans';
     font-size: 24px;
 }
-.ser-icon{
+
+.ser-icon {
     border-radius: 100%;
-    border: 1px ;
+    border: 1px;
+}
+
+.join_logo_mobile {
+    display: none;
+}
+
+
+@media (max-width: 900px) {
+    header {
+        left: 0;
+        padding: 30px 18px;
+    }
+
+    header p {
+        display: none;
+    }
+
+    .join_logo_mobile {
+        display: block;
+    }
+
+    .user-info img {
+        display: none;
+    }
 }
