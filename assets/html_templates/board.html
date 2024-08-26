@@ -32,49 +32,69 @@
                         </div>
 
                     </span>
-                    <button class="joinBtnprimary" id="addTaskBtn">Add Task <img class="icons"
+                    <button class="joinBtnprimary" id="addTaskBtn">Add Task<img class="icons"
                             src="/assets/img/04_Board/add/add.svg" alt=""></button>
                 </div>
             </div>
 
-            <div class="statusBar">
-                <div class="progressBar">
-                    <div class="asd">
-                        <p>To do</p>
-                        <button><img src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
-                    </div>
-                    <div class="progressBoxes todo" id="todoBox" ondrop="moveto('todo')" ondragover="allowDrop(event)">
-                    </div>
+            <div class="headlineMobile">
+                <div class="h1AndButton">
+                    <h1>Board</h1>
+                    <button class="joinBtnprimary" id="addTaskBtn">Add Task<img class="icons"
+                            src="/assets/img/04_Board/add/add.svg" alt=""></button>
                 </div>
-                <div class="progressBar">
-                    <div class="asd">
-                        <p>In progress</p>
-                        <button><img src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
-                    </div>
-                    <div class="progressBoxes inProgress" id="inProgressBox" ondrop="moveto('inProgress')"
-                        ondragover="allowDrop(event)">
-                    </div>
-                </div>
-                <div class="progressBar">
-                    <div class="asd">
-                        <p>Await feedback</p>
-                        <button><img src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
-                    </div>
-                    <div class="progressBoxes awaitFeedback" id="awaitFeedbackBox" ondrop="moveto('awaitFeedback')"
-                        ondragover="allowDrop(event)">
-                    </div>
-                </div>
-                <div class="progressBar">
-                    <div class="asd">
-                        <p>Done</p>
-                    </div>
-                    <div class="progressBoxes done" id="doneBox" ondrop="moveto('done')" ondragover="allowDrop(event)">
-                    </div>
+
+                <div class="searchAndAddDiv">
+                    <span>
+                        <input type="text" placeholder="Find Task">
+                        <div>
+                            <img class="vector" src="/assets/img/04_Board/search/Vector 3.svg" alt="">
+                            <img class="icons" src="/assets/img/04_Board/search/search.svg" alt="">
+                        </div>
+
+                    </span>
                 </div>
             </div>
         </div>
-        <div class="d-none showTask" id="showTask">
+
+        <div class="statusBar">
+            <div class="progressBar">
+                <div class="asd">
+                    <p>To do</p>
+                    <button><img src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
+                </div>
+                <div class="progressBoxes todo" id="todoBox" ondrop="moveto('todo')" ondragover="allowDrop(event)">
+                </div>
+            </div>
+            <div class="progressBar">
+                <div class="asd">
+                    <p>In progress</p>
+                    <button><img src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
+                </div>
+                <div class="progressBoxes inProgress" id="inProgressBox" ondrop="moveto('inProgress')"
+                    ondragover="allowDrop(event)">
+                </div>
+            </div>
+            <div class="progressBar">
+                <div class="asd">
+                    <p>Await feedback</p>
+                    <button><img src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
+                </div>
+                <div class="progressBoxes awaitFeedback" id="awaitFeedbackBox" ondrop="moveto('awaitFeedback')"
+                    ondragover="allowDrop(event)">
+                </div>
+            </div>
+            <div class="progressBar">
+                <div class="asd">
+                    <p>Done</p>
+                </div>
+                <div class="progressBoxes done" id="doneBox" ondrop="moveto('done')" ondragover="allowDrop(event)">
+                </div>
+            </div>
         </div>
+    </div>
+    <div class="d-none showTask" id="showTask">
+    </div>
     </div>
 
 </body>
