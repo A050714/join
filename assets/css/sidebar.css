@@ -110,3 +110,37 @@ aside {
     src: url('../fonts/pt-sans-v17-latin-700italic.woff2') format('woff2');
 
 }
+
+@media (max-width: 900px) {
+    aside {
+        width: 100vw;
+        height: 80px;
+        bottom: 0;
+        flex-direction: row;
+    }
+
+    .sidebarlogo {
+        display: none;
+    }
+
+    .sidelinks {
+        flex-direction: row;
+        height: auto;
+        width: 100%;
+        justify-content: space-between;
+        padding: 0px 16px;
+    }
+
+    #sidebar {
+        justify-content: center;
+    }
+
+    #widget_1 {
+        flex-direction: column;
+        cursor: pointer;
+    }
+
+    .sidebarfooter {
+        display: none;
+    }
+  }

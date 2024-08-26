@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kanban Project Management Tool</title>
+    <title>Summary</title>
     <link rel="stylesheet" href="./../css/login-signup.css">
     <link rel="stylesheet" href="./../css/sidebar.css">
     <link rel="stylesheet" href="./../css/header.css">
     <link rel="stylesheet" href="/style.css">
+    <script src="/js/contacts.js"></script>
+    <script src="/js/summary.js"></script>
     <script src="./../../script.js"></script>
 
 
 </head>
-<body onload="includeHTML()">
+<body onload="onloadSummary(), includeHTML()">
         <div w3-include-html="/assets/html_templates/header.html"></div>
         <div w3-include-html="/assets/html_templates/sidebar.html"></div>
         <main class="mainscreen">
@@ -30,7 +32,7 @@
                             <div class="metric-box">
                                 <img src="./../img/02_Summary/pencil/pencil_default.png" alt="To-do">
                                 <div class="metric-status">
-                                    <h1 class="task_number">1</h1>
+                                    <h1 id="summary_toDo" class="task_number">1</h1>
                                     <p class="task_status">To-do</p>
                                 </div>
                             </div>
@@ -40,7 +42,7 @@
                             <div class="metric-box">
                                 <img src="./../img/02_Summary/check/check_default.png" alt="done">
                                 <div class="metric-status">
-                                    <h1 class="task_number">1</h1>
+                                    <h1 id="summary_done" class="task_number">1</h1>
                                     <p class="task_status">Done</p>
                                 </div>
                             </div>
@@ -49,12 +51,12 @@
                             <div class="metric-box">
                                 <img src="./../img/02_Summary/urgency_summary/urgent.png" alt="Urgent">
                                 <div class="metric-status">
-                                    <h1 class="task_number">1</h1>
+                                    <h1 id="summary_prio" class="task_number">1</h1>
                                     <p class="task_status">Urgent</p>
                                 </div>
                                 <div class="blue-line"></div>                        
                                 <div class="metric-status">
-                                    <h4>October 16, 2022</h4>
+                                    <h4 id="summary_deadline">October 16, 2022</h4>
                                     <p class="task_status">Upcoming Deadline</p>
                                 </div>
                             </div>
@@ -65,7 +67,7 @@
                             <div class="metric-box_board">
                                 <div class="metric-box">
                                     <div class="metric-status">
-                                        <h1 class="task_number">5</h1>
+                                        <h1 id="summary_tasksInBoard" class="task_number">5</h1>
                                         <p class="task_status">Tasks in <br>Board</p>
                                     </div>
                                 </div>
@@ -74,7 +76,7 @@
                             <div class="metric-box_progress">
                                 <div class="metric-box">
                                     <div class="metric-status">
-                                        <h1 class="task_number">2</h1>
+                                        <h1 id="summary_tasksInProgress" class="task_number">2</h1>
                                         <p class="task_status">Tasks in <br>Progress</p>
                                     </div>
                                 </div>
@@ -82,7 +84,7 @@
                             <div class="metric-box_awaiting">
                                 <div class="metric-box">
                                     <div class="metric-status">
-                                        <h1 class="task_number">2</h1>
+                                        <h1 id="summary_awaitingFeedback" class="task_number">2</h1>
                                         <p class="task_status">Awaiting<br>Feedback</p>
                                     </div>
                                 </div>
@@ -92,7 +94,7 @@
 
                     <div class="metrics_greeting">
                         <p class="greeting_goodmorning">Good morning,</p>
-                        <p class="greeting_name">Sofia Müller</p>
+                        <p id="userName" class="greeting_name">Sofia Müller</p>
                         
                     </div>
                 </div>
