@@ -222,8 +222,8 @@ body {
     .progressBoxes{
         flex-direction:row;
         width: 100%;
-        max-width: 600px;
         overflow-x: auto;
+        height: unset;
     }
 
     .asd{
