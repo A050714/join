@@ -62,6 +62,8 @@ function generateBoard() {
   }
 }
 function generateTodoHTML(element) {
+  // <p> 0/${(element.task.subTask.length)} Subtasks</p>
+
   return/*html*/`
     <div onclick='showTask("${element.id}")' class="card" draggable="true" ondragstart="startDragging(${element.id})">
         <label class="categoryLabel ${element.task.category}" for="category">${(element.task.category == 'userstory') ? "User Story" : "Technical Task"}</label>
@@ -74,8 +76,8 @@ function generateTodoHTML(element) {
                 <div class="progress-color"></div>
             </div>
             <div class="subtasksDiv">
-                <p> 0/${(element.task.subTask.length)} Subtasks</p>
-            </div>
+              <!-- SUBTASK SUM HERE -->
+          </div>
         </div>
         <div class="asignedContacts">
             <div class="contactsDiv">
