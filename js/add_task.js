@@ -1,3 +1,7 @@
+// tipps;
+// -eine onload() function, mit dem du includeHtml und taskFetch aufrufst
+// -bei keine subtask einfach leeres Array ubergeben 
+// -die contact Initialien an der zeile statt einzige label eine div machen mit label und initialDiv(du kannst es von contactliste ubernehmen aber kleiner)
 let task = {
   title: "",
   description: "",
@@ -62,7 +66,7 @@ function ContactsDropdown() {
       checkbox.id = `contact-${contact.id}`;
       checkbox.value = contact.id;
       checkbox.name = "assignee";
-      checkbox.classList.add("custom-checkbox");
+      checkbox.classList.add("custom-checkbox"); 
       const label = document.createElement("label");
       label.htmlFor = `contact-${contact.id}`;
       label.textContent = contact.name;
@@ -84,14 +88,12 @@ function toggleDropdown() {
 
 function getSelectedContacts() {
   const selectedContacts = [];
-  const checkboxes = document.querySelectorAll(
-    'input[name="assignee"]:checked'
-  );
+  // FUER KADIR HIER 
+  const checkboxes = document.querySelectorAll('.custom-checkbox:checked');
 
   checkboxes.forEach((checkbox) => {
-    const contact = contacts.find((c) => c.id === checkbox.value);
-    if (contact) {
-      selectedContacts.push(contact);
+    if(contacts.id=== checkbox.value){
+      selectedContacts.push(checkbox.value);
     }
   });
 
@@ -189,7 +191,7 @@ function addTask() {
   task.assignedTo = selectedContacts;
   task.prio = selectedPrio;
   tasks.push(task);
-  let taskIndex = tasks.length - 1;
+  let taskIndex = tasks.length-1;
   putTaskToBoard(task, taskIndex);
   clearForm();
 }
