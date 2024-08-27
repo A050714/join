@@ -5,6 +5,8 @@
     gap: 24px;
     display: flex;
     flex-direction: column;
+    height: 240px !important;
+    width: 250px !important;
     /* min-width: 180px !important;
     min-height: 190px !important; */
     /* height: 230px !important;

@@ -32,8 +32,8 @@ body {
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
-    padding-left: 65px;
-    padding-right: 65px;
+    padding-left: 15px;
+    padding-right: 15px;
     padding-top: 80px;
 }
 
@@ -103,6 +103,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 32px;
+    width: 100%;
 
 }
 
@@ -225,8 +226,10 @@ body {
     justify-content: space-between;}
 
 @media(max-width:1450px) {
+
     .mainscreen {
         padding-left: 0px !important;
+        overflow: hidden;
     }
 
 }
@@ -236,10 +239,16 @@ body {
         overflow: unset !important;
         ;
     }
+    aside{
+        width: 100%;
+    }
 
     .statusBar {
         flex-direction: column;
         align-items: self-start;
+        padding-left: 15px;
+        padding-right: 15px;
+
     }
 
     .progressBar {
@@ -248,7 +257,7 @@ body {
         width: 600px;
         min-width: 400px;
         width: 100%;
-        padding: 20px;
+        padding-top: 20px;
     }
 
     .progressBoxes {
@@ -261,17 +270,35 @@ body {
     }
 
     .asd {
-        justify-content: space-between;
         gap: 20px;
         width: 100%;
         text-align: center;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .asd p {
+        font-size: 27px;
+    }
+    .asd button{
+        height: 30px;
+        width: 30px;
     }
 }
 
 @media (max-width:820px) {
     .joinBtnprimary {
         font-size: 0;
-        display: block;
+        /* display: block; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        height: 40px;
+        width: 40px;
+    }
+    .searchAndAddDiv span {
+        height: 32px;
+        width: 100%;
     }
 }
 
@@ -280,6 +307,15 @@ body {
         display: none;
     }
     .headlineMobile{
-        display: flex;
+        display: block;
+
+
+
     }
+    .headlineMobile h1{
+        font-size: 45px;
+    }
+}
+@media (max-width:470px) {
+    
 }
