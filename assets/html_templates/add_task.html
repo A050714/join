@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="/assets/css/header.css">
     <link rel="stylesheet" href="/assets/css/addtask.css">
     <link rel="stylesheet" href="/style.css">
-    <script src="/script.js"></script>
     <script src="/js/add_task.js"></script>
+    <script src="/script.js"></script>
 </head>
 
 <body onload="includeHTML()">
@@ -20,9 +20,7 @@
     <div w3-include-html="/assets/html_templates/sidebar.html"></div>
     <div class="mainscreen">
 
-
         <div class="addtask">
-
             <h4>Add Task</h4>
             <form onsubmit="addTask(); return false;" class="formtask">
                 <section class="inputtasks">
@@ -33,17 +31,20 @@
                         </div>
                         <div>
                             <p>Description</p>
-                            <textarea name="test" id="descId" placeholder="Enter a Description"></textarea>
+                            <textarea id="descId" placeholder="Enter a Description"></textarea>
                         </div>
                         <div>
                             <p>Assigned to</p>
-                            <label for="assignee"></label>
-                            <select name="assignee" id="assignee">
-                                <option value="" disabled selected>Select contacts to assign</option>
-                            </select>
+                            <div class="dropdown">
+                                <button type="button" onclick="toggleDropdown()" class="dropbtn">
+                                    Select contacts to assign
+                                    <span id="dropdown-arrow">&#9660;</span>
+                                </button>
+                                <div id="dropdown-content" class="dropdown-content">
+                                    <!-- Inhalte werden dynamisch eingefügt -->
+                                </div>
+                            </div>
                         </div>
-
-
                     </div>
                     <div class="seperator"></div>
 
@@ -60,7 +61,7 @@
                                     id="svgLow" src="/assets/img/03_AddTask/priority/Prio baja(1).svg" alt=""></button>
                         </div>
                         <p>Category<span class="required">*</span></p>
-                        <label for="assignee"></label>
+                        <label for="categoryId">Category</label>
                         <select name="category" id="categoryId">
                             <option value="" disabled selected>Select task category</option>
                             <option value="technicaltask">Technical Task</option>
@@ -76,10 +77,7 @@
 
                             <div id="subtasks"></div>
                         </div>
-
-
                     </div>
-
                 </section>
                 <footer>
                     <div class="leftfooter">
@@ -98,6 +96,7 @@
             </form>
 
             <div class="addtasktemplate dNone">
+                <!-- Dieser Bereich scheint eine Vorschau der Aufgabe zu sein -->
                 <div class="taskoverlay">
                     <div class="overlaytask">
                         <button class="bgcolortask">User Story</button>
@@ -150,7 +149,6 @@
             </div>
         </div>
     </div>
-
 </body>
 
 </html>

@@ -55,7 +55,7 @@ textarea {
     border-radius: 10px;
 }
 
-textarea::placeholder{
+textarea::placeholder {
     padding: 12px;
 }
 
@@ -85,12 +85,12 @@ input {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    
+
 }
 
 .inputField {
     width: 92%;
-    
+
     /* border: 1px solid #D1D1D1; */
     /* border-radius: 10px; */
     border: none;
@@ -101,7 +101,7 @@ input {
     display: flex;
     justify-content: space-between;
     cursor: pointer;
-    
+
 }
 
 .tasksbtn {
@@ -129,7 +129,7 @@ footer {
     justify-content: space-between;
     align-items: center;
     gap: 16px;
-    
+
     width: 100%;
 
 
@@ -294,15 +294,16 @@ footer {
     max-width: 970px;
 }
 
-.addtask{
+.addtask {
     padding-left: 80px;
 }
 
-.taskicon{
+.taskicon {
     width: 14px;
     height: 14px;
 }
-.inputAndButtons{
+
+.inputAndButtons {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -311,6 +312,72 @@ footer {
     padding-left: 15px;
     padding-right: 15px;
 }
-#addToSubTaskbtn{
+
+#addToSubTaskbtn {
     cursor: pointer;
+}
+
+.dropbtn {
+    background-color: white;
+    color: black;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: 416px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.dropdown-content div {
+    color: black;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    padding: 16px;
+
+}
+
+.dropdown-content div:hover {
+    background-color: #f1f1f1;
+}
+
+.show {
+    display: block;
+}
+
+.custom-checkbox {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    accent-color: white;
+    cursor: pointer;
+}
+
+#dropdown-arrow {
+    transition: transform 0.3s ease;
+}
+
+#dropdown-arrow.open {
+    transform: rotate(180deg);
 }

@@ -20,14 +20,20 @@ const BASE_URL_TASK =
   "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/Tasks/";
 
 async function putTaskToBoard(data = {}, taskIndex) {
-  let response = await fetch(BASE_URL_TASK + (taskIndex - 1) + ".json", {
-    method: "PUT",
-    header: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-  return (responseToJson = await response.json());
+  try {
+    let response = await fetch(BASE_URL_TASK + taskIndex + ".json", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    let responseToJson = await response.json();
+    return responseToJson;
+  } catch (error) {
+    console.error("Fehler beim Senden der Daten zu Firebase:", error);
+  }
 }
 
 async function taskContacts() {
@@ -43,15 +49,53 @@ async function taskContacts() {
 }
 
 function ContactsDropdown() {
-  const assigneeSelect = document.getElementById("assignee");
-  assigneeSelect.innerHTML =
-    '<option value="" disabled selected>Select contacts to assign</option>';
+  const dropdownContent = document.getElementById("dropdown-content");
+  dropdownContent.innerHTML = "";
+
   contacts.forEach((contact) => {
-    const option = document.createElement("option");
-    option.value = contact.id;
-    option.textContent = contact.name;
-    assigneeSelect.appendChild(option);
+    if (contact && contact.id) {
+      // Überprüfe, ob das Objekt gültig ist und eine `id`-Eigenschaft hat
+      const checkboxContainer = document.createElement("div");
+
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.id = `contact-${contact.id}`;
+      checkbox.value = contact.id;
+      checkbox.name = "assignee";
+      checkbox.classList.add("custom-checkbox");
+      const label = document.createElement("label");
+      label.htmlFor = `contact-${contact.id}`;
+      label.textContent = contact.name;
+
+      checkboxContainer.appendChild(checkbox);
+      checkboxContainer.appendChild(label);
+
+      dropdownContent.appendChild(checkboxContainer);
+    }
   });
+}
+
+function toggleDropdown() {
+  const dropdownContent = document.getElementById("dropdown-content");
+  const dropdownArrow = document.getElementById("dropdown-arrow");
+  dropdownContent.classList.toggle("show");
+  dropdownArrow.classList.toggle("open");
+}
+
+function getSelectedContacts() {
+  const selectedContacts = [];
+  const checkboxes = document.querySelectorAll(
+    'input[name="assignee"]:checked'
+  );
+
+  checkboxes.forEach((checkbox) => {
+    const contact = contacts.find((c) => c.id === checkbox.value);
+    if (contact) {
+      selectedContacts.push(contact);
+    }
+  });
+
+  return selectedContacts;
 }
 
 taskContacts();
@@ -141,14 +185,12 @@ function addTask() {
   task.description = document.getElementById("descId").value;
   task.dueDate = document.getElementById("dateId").value;
   task.category = document.getElementById("categoryId").value;
-  task.assignedTo = document.getElementById("assignee").value;
+  let selectedContacts = getSelectedContacts();
+  task.assignedTo = selectedContacts;
   task.prio = selectedPrio;
-  tasks.push(task); //in arrraz gepust
-  let taskIndex = tasks.length;
-
-  putTaskToBoard(task, taskIndex).then((response) => {
-    console.log("Task zu Firebase gesendet:", response);
-  });
+  tasks.push(task);
+  let taskIndex = tasks.length - 1;
+  putTaskToBoard(task, taskIndex);
   clearForm();
 }
 
@@ -156,8 +198,11 @@ function clearForm() {
   document.getElementById("titleId").value = "";
   document.getElementById("descId").value = "";
   document.getElementById("dateId").value = "";
-  document.getElementById("assignee").value = "";
+  document
+    .querySelectorAll('input[name="assignee"]')
+    .forEach((cb) => (cb.checked = false));
   document.getElementById("categoryId").value = "";
+  task.subTask = [];
 
   document.getElementById("subtasks").innerHTML = "";
 
