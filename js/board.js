@@ -35,31 +35,62 @@ let currentDraggedElement;
 function generateBoard() {
   let todo = tasks.filter(t => t['task']['status'] == 'todo');
   document.getElementById('todoBox').innerHTML = '';
-  for (let index = 0; index < todo.length; index++) {
-    const element = todo[index];
-    document.getElementById('todoBox').innerHTML += generateTodoHTML(element);
+  if (todo.length == 0) {
+    document.getElementById('todoBox').innerHTML=genereteNoTasks("No Tasks To do");
+  } else {
+
+
+    for (let index = 0; index < todo.length; index++) {
+      const element = todo[index];
+      document.getElementById('todoBox').innerHTML += generateTodoHTML(element);
+    }
   }
+
 
   let inProgress = tasks.filter(t => t['task']['status'] == 'inProgress');
   document.getElementById('inProgressBox').innerHTML = '';
-  for (let index = 0; index < inProgress.length; index++) {
-    const element = inProgress[index];
-    document.getElementById('inProgressBox').innerHTML += generateTodoHTML(element);
+  if (inProgress.length == 0) {
+    document.getElementById('inProgressBox').innerHTML=genereteNoTasks("No Tasks in progress");
+
+  } else {
+
+    for (let index = 0; index < inProgress.length; index++) {
+      const element = inProgress[index];
+      document.getElementById('inProgressBox').innerHTML += generateTodoHTML(element);
+    }
   }
 
   let awaitFeedback = tasks.filter(t => t['task']['status'] == 'awaitFeedback');
   document.getElementById('awaitFeedbackBox').innerHTML = '';
-  for (let index = 0; index < awaitFeedback.length; index++) {
-    const element = awaitFeedback[index];
-    document.getElementById('awaitFeedbackBox').innerHTML += generateTodoHTML(element);
+  if (awaitFeedback == 0) {
+    document.getElementById('awaitFeedbackBox').innerHTML=genereteNoTasks("No Tasks await");
+
+  } else {
+
+    for (let index = 0; index < awaitFeedback.length; index++) {
+      const element = awaitFeedback[index];
+      document.getElementById('awaitFeedbackBox').innerHTML += generateTodoHTML(element);
+    }
   }
 
   let done = tasks.filter(t => t['task']['status'] == 'done');
   document.getElementById('doneBox').innerHTML = '';
-  for (let index = 0; index < done.length; index++) {
-    const element = done[index];
-    document.getElementById('doneBox').innerHTML += generateTodoHTML(element);
+  if (done.length == 0) {
+    document.getElementById('doneBox').innerHTML=genereteNoTasks("No Tasks done");
+
+  } else {
+
+    for (let index = 0; index < done.length; index++) {
+      const element = done[index];
+      document.getElementById('doneBox').innerHTML += generateTodoHTML(element);
+    }
   }
+}
+
+function genereteNoTasks(message){
+  return /*html*/`
+    <div class="emptydiv">${message}</div>
+  `
 }
 function generateTodoHTML(element) {
   // <p> 0/${(element.task.subTask.length)} Subtasks</p>
@@ -112,7 +143,7 @@ function showTask(taskId) {
   let content = document.getElementById('showTask');
   content.classList.remove('d-none');
   content.innerHTML = '';
-  content.innerHTML=generateTaskHTML(element);
+  content.innerHTML = generateTaskHTML(element);
 }
 function generateTaskHTML(element) {
   return /*html*/`
@@ -166,7 +197,7 @@ function generateTaskHTML(element) {
   `
 }
 
-function closeTask(){
+function closeTask() {
   document.getElementById('showTask').classList.add('d-none');
 }
 function includeHTML() {
