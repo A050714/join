@@ -25,7 +25,7 @@
                 <h1>Board</h1>
                 <div class="searchAndAddDiv">
                     <span>
-                        <input type="text" placeholder="Find Task">
+                        <input id="inputSearch" type="text" placeholder="Find Task" oninput="searchInTheTasks('inputSearch')">
                         <div>
                             <img class="vector" src="/assets/img/04_Board/search/Vector 3.svg" alt="">
                             <img class="icons" src="/assets/img/04_Board/search/search.svg" alt="">
@@ -46,7 +46,7 @@
 
                 <div class="searchAndAddDiv">
                     <span>
-                        <input type="text" placeholder="Find Task">
+                        <input type="text" id="mobileInputSearch" placeholder="Find Task" oninput="searchInTheTasks('mobileInputSearch')">
                         <div>
                             <img class="vector" src="/assets/img/04_Board/search/Vector 3.svg" alt="">
                             <img class="icons" src="/assets/img/04_Board/search/search.svg" alt="">
@@ -63,7 +63,7 @@
                     <p>To do</p>
                     <button><img src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
                 </div>
-                <div class="progressBoxes todo" id="todoBox" ondrop="moveto('todo')" ondragover="allowDrop(event)">
+                <div class="progressBoxes" id="todoBox" ondrop="moveto('todo')" ondragover="allowDrop(event), highlight('todoBox')" ondragleave="removeHighlight('todoBox')" >
                 </div>
             </div>
             <div class="progressBar">
@@ -71,8 +71,8 @@
                     <p>In progress</p>
                     <button><img src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
                 </div>
-                <div class="progressBoxes inProgress" id="inProgressBox" ondrop="moveto('inProgress')"
-                    ondragover="allowDrop(event)">
+                <div class="progressBoxes" id="inProgressBox" ondrop="moveto('inProgress')"
+                    ondragover="allowDrop(event), highlight('inProgressBox')" ondragleave="removeHighlight('inProgressBox')">
                 </div>
             </div>
             <div class="progressBar">
@@ -80,15 +80,15 @@
                     <p>Await feedback</p>
                     <button><img src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
                 </div>
-                <div class="progressBoxes awaitFeedback" id="awaitFeedbackBox" ondrop="moveto('awaitFeedback')"
-                    ondragover="allowDrop(event)">
+                <div class="progressBoxes" id="awaitFeedbackBox" ondrop="moveto('awaitFeedbackBox')"
+                    ondragover="allowDrop(event), highlight('awaitFeedbackBox')" ondragleave="removeHighlight('awaitFeedbackBox')">
                 </div>
             </div>
             <div class="progressBar">
                 <div class="asd">
                     <p>Done</p>
                 </div>
-                <div class="progressBoxes done" id="doneBox" ondrop="moveto('done')" ondragover="allowDrop(event)">
+                <div class="progressBoxes" id="doneBox" ondrop="moveto('done')" ondragover="allowDrop(event), highlight('doneBox')" ondragleave="removeHighlight('doneBox')">
                 </div>
             </div>
         </div>

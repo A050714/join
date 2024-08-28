@@ -13,7 +13,9 @@
     /* height: 230px !important;
     width: 220px !important; */
 }
-
+.rotate{
+    transform: rotate(5deg);
+}
 .titDesc {
     display: flex;
     align-items: self-start;

@@ -1,0 +1,111 @@
+.task-card {
+    width: 300px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    background-color: white;
+    position: relative;
+}
+
+/* Stil für die Kategorie-Label */
+.task-label {
+    background-color: #1AC6A6;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 14px;
+    display: inline-block;
+}
+
+/* Titelstil */
+.task-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* Beschreibung */
+.task-description {
+    font-size: 14px;
+    color: #6B6B6B;
+    margin-bottom: 15px;
+}
+
+/* Fälligkeitsdatum und Priorität */
+.task-info {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* Zuweisungsliste */
+.assigned-to {
+    margin-bottom: 20px;
+}
+
+.assigned-to h4 {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+/* Stil für die Benutzer-Avatare und Namen */
+.assigned-person {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #1AC6A6;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+/* Subtasks */
+.subtasks {
+    margin-bottom: 20px;
+}
+
+.subtasks h4 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.subtask {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.subtask input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Fußbereich mit den Symbolen */
+.task-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-footer i {
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Schließ-Button */
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #6B6B6B;
+}

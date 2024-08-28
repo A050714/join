@@ -32,8 +32,8 @@ async function getData(path) {
 
 let currentDraggedElement;
 
-function generateBoard() {
-  let todo = tasks.filter(t => t['task']['status'] == 'todo');
+function generateBoard(list=tasks) {
+  let todo = list.filter(t => t['task']['status'] == 'todo');
   document.getElementById('todoBox').innerHTML = '';
   if (todo.length == 0) {
     document.getElementById('todoBox').innerHTML=genereteNoTasks("No Tasks To do");
@@ -47,7 +47,7 @@ function generateBoard() {
   }
 
 
-  let inProgress = tasks.filter(t => t['task']['status'] == 'inProgress');
+  let inProgress = list.filter(t => t['task']['status'] == 'inProgress');
   document.getElementById('inProgressBox').innerHTML = '';
   if (inProgress.length == 0) {
     document.getElementById('inProgressBox').innerHTML=genereteNoTasks("No Tasks in progress");
@@ -60,7 +60,7 @@ function generateBoard() {
     }
   }
 
-  let awaitFeedback = tasks.filter(t => t['task']['status'] == 'awaitFeedback');
+  let awaitFeedback = list.filter(t => t['task']['status'] == 'awaitFeedback');
   document.getElementById('awaitFeedbackBox').innerHTML = '';
   if (awaitFeedback == 0) {
     document.getElementById('awaitFeedbackBox').innerHTML=genereteNoTasks("No Tasks await");
@@ -73,7 +73,7 @@ function generateBoard() {
     }
   }
 
-  let done = tasks.filter(t => t['task']['status'] == 'done');
+  let done = list.filter(t => t['task']['status'] == 'done');
   document.getElementById('doneBox').innerHTML = '';
   if (done.length == 0) {
     document.getElementById('doneBox').innerHTML=genereteNoTasks("No Tasks done");
@@ -96,7 +96,7 @@ function generateTodoHTML(element) {
   // <p> 0/${(element.task.subTask.length)} Subtasks</p>
 
   return/*html*/`
-    <div onclick='showTask("${element.id}")' class="card" draggable="true" ondragstart="startDragging(${element.id})">
+    <div onclick='showTask("${element.id}")' class="card" draggable="true" ondragstart="startDragging(${element.id})" id="${element.id}">
         <label class="categoryLabel ${element.task.category}" for="category">${(element.task.category == 'userstory') ? "User Story" : "Technical Task"}</label>
         <div class="titDesc">
             <p class="title">${element.task.title}</p>
@@ -124,16 +124,19 @@ function generateTodoHTML(element) {
 }
 function startDragging(id) {
   currentDraggedElement = id;
+  document.getElementById(id).classList.add('rotate');
 
 }
 
-function allowDrop(ev) {
+function allowDrop(ev,id) {
   ev.preventDefault();
 }
 
 function moveto(status) {
   let currentTask = tasks.find(task => task.id == currentDraggedElement);
   currentTask.task.status = status;
+  document.getElementById(currentDraggedElement).classList.remove('rotate');
+
   generateBoard();
 }
 
@@ -152,16 +155,16 @@ function generateTaskHTML(element) {
       <label class="categoryLabel ${element.task.category}" for="category">${(element.task.category == 'userstory') ? "User Story" : "Technical Task"}</label>
       <img onclick="closeTask()" src="/assets/img/00_General_elements/close/default.svg" alt="closeButton">
     </div>
-    <h4>Hier steht der Aufgabentext</h4>
-    <p>Hier Steht die Aufgabenbeschreibung</p>
+    <h4>${element.task.title}</h4>
+    <p>${element.task.description}</p>
     <div class="due-date-container">
         <span class="label">Due date:</span>
-        <span class="date">10/05/2023</span>
+        <span class="date">${element.task.dueDate}</span>
     </div>
     <div class="taskpriority">
         <span>Priority:</span>
         <div class="prio">
-            <p>Medium</p>
+            <p>${element.task.prio}</p>
             <img src="/assets/img/04_Board/priority/medium.png" alt="">
         </div>
     </div>
@@ -188,17 +191,36 @@ function generateTaskHTML(element) {
 
     <div class="taskboardtemplate">
         <img src="/assets/img/03_AddTask/subtasks_icons/delete.svg" alt="">
-        <p>Delete</p>
+        <p onclick="deleteTask(${element})">Delete</p>
         <div class="seperatoraddtasktemplate"></div>
         <img src="/assets/img/03_AddTask/subtasks_icons/edit.svg" alt="">
-        <p>Edit</p>
+        <p onclick="editTask(${element})">Edit</p>
     </div>
 </div>
   `
 }
+function assignedContacts(contacts){
+
+}
+function highlight(id){
+  document.getElementById(id).classList.add('drag-area-highlight');
+
+}
+function removeHighlight(id) {
+  document.getElementById(id).classList.remove('drag-area-highlight');
+}
 
 function closeTask() {
   document.getElementById('showTask').classList.add('d-none');
+}
+
+function searchInTheTasks(id){
+  let inputSearch = document.getElementById(id).value;
+  let foundTasks = tasks.filter(task=>
+      task.task.title.toLowerCase().includes(inputSearch.toLowerCase()) || 
+      task.task.description.toLowerCase().includes(inputSearch.toLowerCase())
+  );
+  generateBoard(foundTasks);  
 }
 function includeHTML() {
   var z, i, elmnt, file, xhttp;

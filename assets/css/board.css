@@ -243,6 +243,11 @@ body {
 
 }
 
+.drag-area-highlight{
+    background-color: rgba(0, 0, 0, 0.2);
+
+}
+
 @media(max-width:1450px) {
 
     .mainscreen {
