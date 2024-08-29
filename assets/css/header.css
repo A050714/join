@@ -1,13 +1,11 @@
 header {
     background-color: white;
     text-align: center;
-    height: 20px;
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    height: 95px;
     display: flex;
+    padding-left: 120px;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 70px;
-    /* padding: 20px 40px 20px 116px; */
     position: fixed;
     left: 232px;
     top: 0;
@@ -26,24 +24,4 @@ header p {
 
 .join_logo_mobile {
     display: none;
-}
-
-
-@media (max-width: 900px) {
-    header {
-        left: 0;
-        padding: 30px 18px;
-    }
-
-    header p {
-        display: none;
-    }
-
-    .join_logo_mobile {
-        display: block;
-    }
-
-    .user-info img {
-        display: none;
-    }
 }
