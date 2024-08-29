@@ -168,10 +168,28 @@
        justify-content: center;
    }
 
+   .metric-box:hover{
+        background-color: #1c1e29;
+        color: white;
+        cursor: pointer;
+        scale: 1.1;
+   }
+
+   .metric-box img{
+    width: 3rem;
+    height: 3rem;
+    }  
+    .metric-box_todo:hover img {
+        content: url('./../img/02_Summary/pencil/pencil_hover.png');
+    }
+ 
+    .metric-box_done:hover img {
+        content: url('./../img/02_Summary/check/check_hover.png');
+    }
    .metric-box img{
         width: 3rem;
         height: 3rem;
-}
+    }
     .metric-box .blue-line {
         margin: 0 1.5rem;
     }
