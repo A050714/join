@@ -66,12 +66,29 @@ main {
         top: unset;
     }
 
-    #widget_1 {
+    #widget_1,
+    #widget_2,
+    #widget_3,
+    #widget_4 {
         flex-direction: column;
         cursor: pointer;
+        border-radius: 8px;
+        padding: 12px;
+        gap: 3px;
+        width: 60px;
+        min-width: none;
+        font-size: clamp(12px, 2.5vw, 16px);
+        align-self: center;
+        margin-bottom: 0px 12px;
     }
 
     .sidebarfooter {
         display: none;
     }
 }
+
+@media (max-width: 900px) {
+   .sidelinks {
+       padding: 0px 2px;
+    }
+ }
