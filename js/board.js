@@ -55,23 +55,6 @@ function generateBoard(list = tasks) {
   });
   // saveToFirebase(tasks);
 }
-async function saveToFirebase(tasks){
-  try {
-    let response = await fetch(  + ".json", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(tasks),
-    });
-
-    let responseToJson = await response.json();
-    return responseToJson;
-  } catch (error) {
-    console.error("Fehler beim Senden der Daten zu Firebase:", error);
-  }
-  
-}
 
 function genereteNoTasks(message) {
   return /*html*/`

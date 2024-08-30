@@ -1,4 +1,4 @@
-const BASE_URL_TASK =
+const BASE_URL =
 "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/";
 includeHTML();
 
@@ -33,7 +33,24 @@ function includeHTML() {
 
 async function putTaskToBoard(data = {}, taskIndex) {
   try {
-    let response = await fetch(BASE_URL_TASK + taskIndex + ".json", {
+    let response = await fetch(BASE_URL + taskIndex + ".json", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    let responseToJson = await response.json();
+    return responseToJson;
+  } catch (error) {
+    console.error("Fehler beim Senden der Daten zu Firebase:", error);
+  }
+}
+
+async function pushToFirebase(data) {
+  try {
+    let response = await fetch(BASE_URL +"Tasks"+ ".json", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -63,7 +80,9 @@ async function loadTasks() {
 }
 
 
+
+
 async function getData() {
-  let response = await fetch(BASE_URL_TASK +"Tasks"+ ".json");
+  let response = await fetch(BASE_URL +"Tasks"+ ".json");
   return responseToJson = await response.json();
 }
