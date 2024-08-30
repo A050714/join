@@ -53,7 +53,7 @@ function generateBoard(list = tasks) {
       });
     }
   });
-  saveToFirebase(tasks);
+  // saveToFirebase(tasks);
 }
 function saveToFirebase(tasks){
   
