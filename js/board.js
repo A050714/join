@@ -1,5 +1,4 @@
 let tasks = [];
-const BASE_URL_TASK = "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/";
 includeHTML();
 
 
@@ -10,36 +9,37 @@ async function onload() {
 }
 
 
-async function loadTasks() {
-  let userResponse = await getData("Tasks");
-  let taskArrayIndex = Object.keys(userResponse);
-  for (let index = 0; index < taskArrayIndex.length; index++) {
-    let task = userResponse[taskArrayIndex[index]];
-    if (task !== null) {
-      tasks.push({
-        id: taskArrayIndex[index],
-        task: task
-      });
-    }
-  }
-}
+// async function loadTasks() {
+//   let userResponse = await getData();
+//   let taskArrayIndex = Object.keys(userResponse);
+//   for (let index = 0; index < taskArrayIndex.length; index++) {
+//     let task = userResponse[taskArrayIndex[index]];
+//     if (task !== null) {
+//       tasks.push({
+//         id: taskArrayIndex[index],
+//         task: task
+//       });
+//     }
+//   }
+// }
 
 
-async function getData(path) {
-  let response = await fetch(BASE_URL_TASK + path + ".json");
-  return responseToJson = await response.json();
-}
+// async function getData(path='Tasks') {
+//   let response = await fetch(BASE_URL_TASK + path + ".json");
+//   return responseToJson = await response.json();
+// }
 
 let currentDraggedElement;
 
 function generateBoard(list = tasks) {
+  
   const sections = [
     { id: 'todoBox', status: 'todo', emptyMessage: 'No Tasks To do' },
     { id: 'inProgressBox', status: 'inProgress', emptyMessage: 'No Tasks in progress' },
     { id: 'awaitFeedbackBox', status: 'awaitFeedback', emptyMessage: 'No Tasks await' },
     { id: 'doneBox', status: 'done', emptyMessage: 'No Tasks done' }
   ];
-
+  
   sections.forEach(section => {
     const tasksForSection = list.filter(t => t.task.status === section.status);
     const container = document.getElementById(section.id);
@@ -55,7 +55,21 @@ function generateBoard(list = tasks) {
   });
   // saveToFirebase(tasks);
 }
-function saveToFirebase(tasks){
+async function saveToFirebase(tasks){
+  try {
+    let response = await fetch(  + ".json", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(tasks),
+    });
+
+    let responseToJson = await response.json();
+    return responseToJson;
+  } catch (error) {
+    console.error("Fehler beim Senden der Daten zu Firebase:", error);
+  }
   
 }
 
