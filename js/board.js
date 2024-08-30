@@ -1,6 +1,4 @@
 let tasks = [];
-includeHTML();
-
 
 async function onload() {
   await loadTasks();
@@ -9,25 +7,6 @@ async function onload() {
 }
 
 
-// async function loadTasks() {
-//   let userResponse = await getData();
-//   let taskArrayIndex = Object.keys(userResponse);
-//   for (let index = 0; index < taskArrayIndex.length; index++) {
-//     let task = userResponse[taskArrayIndex[index]];
-//     if (task !== null) {
-//       tasks.push({
-//         id: taskArrayIndex[index],
-//         task: task
-//       });
-//     }
-//   }
-// }
-
-
-// async function getData(path='Tasks') {
-//   let response = await fetch(BASE_URL_TASK + path + ".json");
-//   return responseToJson = await response.json();
-// }
 
 let currentDraggedElement;
 
@@ -170,13 +149,6 @@ function generateTaskHTML(element) {
 function assignedContacts(contacts) {
 
 }
-function highlight(id) {
-  document.getElementById(id).classList.add('drag-area-highlight');
-
-}
-function removeHighlight(id) {
-  document.getElementById(id).classList.remove('drag-area-highlight');
-}
 
 function closeTask() {
   document.getElementById('showTask').classList.add('d-none');
@@ -189,31 +161,4 @@ function searchInTheTasks(id) {
     task.task.description.toLowerCase().includes(inputSearch.toLowerCase())
   );
   generateBoard(foundTasks);
-}
-function includeHTML() {
-  var z, i, elmnt, file, xhttp;
-  /* Loop through a collection of all HTML elements: */
-  z = document.getElementsByTagName("*");
-  for (i = 0; i < z.length; i++) {
-    elmnt = z[i];
-    /*search for elements with a certain atrribute:*/
-    file = elmnt.getAttribute("w3-include-html");
-    if (file) {
-      /* Make an HTTP request using the attribute value as the file name: */
-      xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function () {
-        if (this.readyState == 4) {
-          if (this.status == 200) { elmnt.innerHTML = this.responseText; }
-          if (this.status == 404) { elmnt.innerHTML = "Page not found."; }
-          /* Remove the attribute, and call this function once more: */
-          elmnt.removeAttribute("w3-include-html");
-          includeHTML();
-        }
-      }
-      xhttp.open("GET", file, true);
-      xhttp.send();
-      /* Exit the function: */
-      return;
-    }
-  }
 }
