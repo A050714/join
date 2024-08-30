@@ -63,7 +63,7 @@
                     <p>To do</p>
                     <button><img src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
                 </div>
-                <div class="progressBoxes" id="todoBox" ondrop="moveto('todo')" ondragover="allowDrop(event), highlight('todoBox')" ondragleave="removeHighlight('todoBox')" >
+                <div class="progressBoxes" id="todoBox" ondrop="moveto('todo')" ondragover="allowDrop(event)" >
                 </div>
             </div>
             <div class="progressBar">
@@ -72,7 +72,7 @@
                     <button><img src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
                 </div>
                 <div class="progressBoxes" id="inProgressBox" ondrop="moveto('inProgress')"
-                    ondragover="allowDrop(event), highlight('inProgressBox')" ondragleave="removeHighlight('inProgressBox')">
+                    ondragover="allowDrop(event)">
                 </div>
             </div>
             <div class="progressBar">
@@ -80,15 +80,15 @@
                     <p>Await feedback</p>
                     <button><img src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
                 </div>
-                <div class="progressBoxes" id="awaitFeedbackBox" ondrop="moveto('awaitFeedbackBox')"
-                    ondragover="allowDrop(event), highlight('awaitFeedbackBox')" ondragleave="removeHighlight('awaitFeedbackBox')">
+                <div class="progressBoxes" id="awaitFeedbackBox" ondrop="moveto('awaitFeedback')"
+                    ondragover="allowDrop(event)">
                 </div>
             </div>
             <div class="progressBar">
                 <div class="asd">
                     <p>Done</p>
                 </div>
-                <div class="progressBoxes" id="doneBox" ondrop="moveto('done')" ondragover="allowDrop(event), highlight('doneBox')" ondragleave="removeHighlight('doneBox')">
+                <div class="progressBoxes" id="doneBox" ondrop="moveto('done')" ondragover="allowDrop(event)">
                 </div>
             </div>
         </div>

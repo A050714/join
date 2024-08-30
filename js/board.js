@@ -32,62 +32,34 @@ async function getData(path) {
 
 let currentDraggedElement;
 
-function generateBoard(list=tasks) {
-  let todo = list.filter(t => t['task']['status'] == 'todo');
-  document.getElementById('todoBox').innerHTML = '';
-  if (todo.length == 0) {
-    document.getElementById('todoBox').innerHTML=genereteNoTasks("No Tasks To do");
-  } else {
+function generateBoard(list = tasks) {
+  const sections = [
+    { id: 'todoBox', status: 'todo', emptyMessage: 'No Tasks To do' },
+    { id: 'inProgressBox', status: 'inProgress', emptyMessage: 'No Tasks in progress' },
+    { id: 'awaitFeedbackBox', status: 'awaitFeedback', emptyMessage: 'No Tasks await' },
+    { id: 'doneBox', status: 'done', emptyMessage: 'No Tasks done' }
+  ];
 
+  sections.forEach(section => {
+    const tasksForSection = list.filter(t => t.task.status === section.status);
+    const container = document.getElementById(section.id);
+    container.innerHTML = '';
 
-    for (let index = 0; index < todo.length; index++) {
-      const element = todo[index];
-      document.getElementById('todoBox').innerHTML += generateTodoHTML(element);
+    if (tasksForSection.length === 0) {
+      container.innerHTML = genereteNoTasks(section.emptyMessage);
+    } else {
+      tasksForSection.forEach(task => {
+        container.innerHTML += generateTodoHTML(task);
+      });
     }
-  }
-
-
-  let inProgress = list.filter(t => t['task']['status'] == 'inProgress');
-  document.getElementById('inProgressBox').innerHTML = '';
-  if (inProgress.length == 0) {
-    document.getElementById('inProgressBox').innerHTML=genereteNoTasks("No Tasks in progress");
-
-  } else {
-
-    for (let index = 0; index < inProgress.length; index++) {
-      const element = inProgress[index];
-      document.getElementById('inProgressBox').innerHTML += generateTodoHTML(element);
-    }
-  }
-
-  let awaitFeedback = list.filter(t => t['task']['status'] == 'awaitFeedback');
-  document.getElementById('awaitFeedbackBox').innerHTML = '';
-  if (awaitFeedback == 0) {
-    document.getElementById('awaitFeedbackBox').innerHTML=genereteNoTasks("No Tasks await");
-
-  } else {
-
-    for (let index = 0; index < awaitFeedback.length; index++) {
-      const element = awaitFeedback[index];
-      document.getElementById('awaitFeedbackBox').innerHTML += generateTodoHTML(element);
-    }
-  }
-
-  let done = list.filter(t => t['task']['status'] == 'done');
-  document.getElementById('doneBox').innerHTML = '';
-  if (done.length == 0) {
-    document.getElementById('doneBox').innerHTML=genereteNoTasks("No Tasks done");
-
-  } else {
-
-    for (let index = 0; index < done.length; index++) {
-      const element = done[index];
-      document.getElementById('doneBox').innerHTML += generateTodoHTML(element);
-    }
-  }
+  });
+  saveToFirebase(tasks);
+}
+function saveToFirebase(tasks){
+  
 }
 
-function genereteNoTasks(message){
+function genereteNoTasks(message) {
   return /*html*/`
     <div class="emptydiv">${message}</div>
   `
@@ -128,7 +100,7 @@ function startDragging(id) {
 
 }
 
-function allowDrop(ev,id) {
+function allowDrop(ev) {
   ev.preventDefault();
 }
 
@@ -136,7 +108,6 @@ function moveto(status) {
   let currentTask = tasks.find(task => task.id == currentDraggedElement);
   currentTask.task.status = status;
   document.getElementById(currentDraggedElement).classList.remove('rotate');
-
   generateBoard();
 }
 
@@ -199,10 +170,10 @@ function generateTaskHTML(element) {
 </div>
   `
 }
-function assignedContacts(contacts){
+function assignedContacts(contacts) {
 
 }
-function highlight(id){
+function highlight(id) {
   document.getElementById(id).classList.add('drag-area-highlight');
 
 }
@@ -214,13 +185,13 @@ function closeTask() {
   document.getElementById('showTask').classList.add('d-none');
 }
 
-function searchInTheTasks(id){
+function searchInTheTasks(id) {
   let inputSearch = document.getElementById(id).value;
-  let foundTasks = tasks.filter(task=>
-      task.task.title.toLowerCase().includes(inputSearch.toLowerCase()) || 
-      task.task.description.toLowerCase().includes(inputSearch.toLowerCase())
+  let foundTasks = tasks.filter(task =>
+    task.task.title.toLowerCase().includes(inputSearch.toLowerCase()) ||
+    task.task.description.toLowerCase().includes(inputSearch.toLowerCase())
   );
-  generateBoard(foundTasks);  
+  generateBoard(foundTasks);
 }
 function includeHTML() {
   var z, i, elmnt, file, xhttp;
