@@ -9,10 +9,6 @@ body {
 
 }
 
-.mainscreen {
-    padding-left: 232px;
-}
-
 .rightContainer {
     /* width: calc(100% - 232px); */
     width: 100%;
@@ -91,9 +87,18 @@ h1 {
     font-weight: 700;
     cursor: pointer;
     position: sticky;
-    top: 100px;
+    top: 0px;
     padding: 12px 16px;
-    width: calc(100% - 100px);
+    width: 100%;
+    z-index: 1000;
+}
+
+.contactBtnBackground {
+    height: 20px;
+    background-color: white;
+    position: sticky;
+    top: 56px;
+    z-index: 1000;
 }
 
 .contactbtn:hover {
@@ -113,7 +118,6 @@ h1 {
 
 .contactScreen {
     display: flex;
-    height: 100vh;
 }
 
 
@@ -432,7 +436,8 @@ h3 {
     justify-content: flex-start;
     align-items: center;
     margin-bottom: 10px;
-
+    z-index: 999;
+    position: relative;
 }
 
 .nameEmailDiv {
@@ -498,6 +503,26 @@ h3 {
 
 }
 
+.user-info {
+    display: flex;
+    gap: 16px;
+    cursor: pointer;
+}
+
+.user-icon {
+    color: #29ABE2;
+    font-size: 20px;
+    min-width: 42px;
+    height: 42px;
+    border-radius: 100%;
+    border: solid 2px rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 .contacthead2 {
     display: flex;
     gap: 35px;
@@ -524,9 +549,9 @@ h3 {
 }
 
 #contactList {
-    padding: 50px 20px;
+    margin: 50px 0px;
+    padding: 0px 20px;
     width: calc(100% - 100px);
-    /* height: 100%; */
     overflow-y: scroll;
 }
 
@@ -554,4 +579,49 @@ h3 {
     justify-content: flex-start;
     align-items: center;
     margin-bottom: 10px;
+}
+
+@media (max-width: 1300px) {
+    h1 {
+        font-size: 48px;
+    }
+
+    h2 {
+        font-size: 33px;
+    }
+
+    .openContact p {
+        font-size: 19px;
+    }
+
+    #contactList {
+        width: calc(100% - 110px);
+        margin: 0px;
+    }
+
+    .addNewContact {
+        min-width: 400px;
+        margin-bottom: 70px;
+        padding: 0px;
+    }
+
+    .contacthead2 {
+        gap: 12px;
+    }
+
+    .contacthead {
+        width: 420px;
+    }
+
+    .rightSide p {
+        font-size: 19px;
+    }
+
+    .contactinformation p {
+        font-size: 18px;
+    }
+
+    .nameEmailDiv a {
+        font-size: 14px;
+    }
 }

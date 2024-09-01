@@ -1,13 +1,11 @@
 header {
     background-color: white;
     text-align: center;
-    height: 20px;
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    height: 95px;
     display: flex;
+    padding-left: 120px;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 70px;
-    /* padding: 20px 40px 20px 116px; */
     position: fixed;
     left: 232px;
     top: 0;
@@ -18,7 +16,12 @@ header p {
     font-family: 'PT Sans';
     font-size: 24px;
 }
-.ser-icon{
+
+.ser-icon {
     border-radius: 100%;
-    border: 1px ;
+    border: 1px;
+}
+
+.join_logo_mobile {
+    display: none;
 }

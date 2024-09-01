@@ -45,6 +45,13 @@ async function renderAllContacts() {
 
     let content = document.getElementById('contactList');
     content.innerHTML = '';
+    content.innerHTML += `
+    
+    <button class="contactbtn" id="addNewContact" onclick="togglePopup()">Add new Contact <img class="newcontactimg"
+                        src="/assets/img/00_General_elements/person_add.svg" alt=""></button>
+                        <div class = "contactBtnBackground"></div>
+    `
+    
     firtsLetter = '';
     for (let index = 0; index < contacts.length; index++) {
         let contact = contacts[index];
