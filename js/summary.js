@@ -1,11 +1,14 @@
 let tasks = [];
 let users = [];
+let nearestDeadline;
 
 async function onloadSummary() {
     await loadTasks();
     await greetUser();
     loadCurrentStates();
+    loadNearestDeadline()
 }
+
 async function loadTasks() {
     let tasksRespone = await getData("Tasks");
     let tasksKeysArray = Object.keys(tasksRespone);
@@ -42,5 +45,17 @@ async function greetUser() {
     }
     let userName = users[0].name;
     document.getElementById('userName').innerHTML = userName;
-    
 }
+
+function loadNearestDeadline() {
+    let urgentTasks = tasks.filter(t => t['prio'] == 'urgent')
+    let dueDates = urgentTasks.map(t => t.dueDate);
+    let sortedDueDates = dueDates
+        .map(date => new Date(date)) 
+        .sort((a, b) => a - b) 
+        .map(date => date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }));        
+    nearestDeadline = sortedDueDates[0];
+    document.getElementById("summary_deadline").innerHTML = nearestDeadline;
+}
+
+
