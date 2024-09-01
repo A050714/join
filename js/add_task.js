@@ -3,6 +3,7 @@
 // -bei keine subtask einfach leeres Array ubergeben
 // -die contact Initialien an der zeile statt einzige label eine div machen mit label und initialDiv(du kannst es von contactliste ubernehmen aber kleiner)
 let task = {
+  id: '',
   title: "",
   description: "",
   assignedTo: [],
@@ -15,9 +16,7 @@ let task = {
 let tasks = [];
 let selectedPrio = "";
 
-let contacts = [];
-
-const BASE_URL =
+const BASE_URL_CONTACTS =
   "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/Contacts/.json";
 
 const BASE_URL_TASK =
@@ -42,7 +41,7 @@ async function putTaskToBoard(data = {}, taskIndex) {
 
 async function taskContacts() {
   try {
-    let response = await fetch(BASE_URL);
+    let response = await fetch(BASE_URL_CONTACTS);
     let responseToJson = await response.json();
     contacts = Object.values(responseToJson);
     console.log(contacts);
@@ -190,6 +189,7 @@ function addTask() {
   let selectedContacts = getSelectedContacts();
   task.assignedTo = selectedContacts;
   task.prio = selectedPrio;
+  task.id = tasks.length;
 
   // mit dieser funktion wird das array mit zu firebase gesendet 
   if (task.subTask.length === 0) {
@@ -197,8 +197,7 @@ function addTask() {
   }
 
   tasks.push(task);
-  let taskIndex = tasks.length - 1;
-  putTaskToBoard(task, taskIndex);
+  postData(`Tasks/${task.id}`,task);
   clearForm();
 }
 
@@ -216,4 +215,5 @@ function clearForm() {
 
   selectedPrio = "";
   resetPrioStyles();
+  task = {};
 }
