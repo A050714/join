@@ -1,6 +1,6 @@
 // tipps;
-// -eine onload() function, mit dem du includeHtml und taskFetch aufrufst
-// -bei keine subtask einfach leeres Array ubergeben
+
+
 // -die contact Initialien an der zeile statt einzige label eine div machen mit label und initialDiv(du kannst es von contactliste ubernehmen aber kleiner)
 let task = {
   title: "",
@@ -13,6 +13,7 @@ let task = {
   status: "todo",
 };
 let tasks = [];
+
 let selectedPrio = "";
 
 let contacts = [];
@@ -22,6 +23,29 @@ const BASE_URL =
 
 const BASE_URL_TASK =
   "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/Tasks/";
+
+async function onload() {
+  await loadTasks();
+}
+
+async function loadTasks() {
+  let userResponse = await getData();
+  let taskArrayIndex = Object.keys(userResponse);
+  for (let index = 0; index < taskArrayIndex.length; index++) {
+    let task = userResponse[taskArrayIndex[index]];
+    if (task !== null) {
+      tasks.push({
+        id: taskArrayIndex[index],
+        task: task,
+      });
+    }
+  }
+}
+
+async function getData() {
+  let response = await fetch(BASE_URL_TASK + ".json");
+  return (responseToJson = await response.json());
+}
 
 async function putTaskToBoard(data = {}, taskIndex) {
   try {
@@ -191,9 +215,9 @@ function addTask() {
   task.assignedTo = selectedContacts;
   task.prio = selectedPrio;
 
-  // mit dieser funktion wird das array mit zu firebase gesendet 
+  // mit dieser funktion wird das array mit zu firebase gesendet
   if (task.subTask.length === 0) {
-    task.subTask.push(""); // es wird ein leerer wert hinzugefügt um das mitsenden zu erzwingen!!
+    task.subTask.push([""]); // es wird ein leerer wert hinzugefügt um das mitsenden zu erzwingen!!
   }
 
   tasks.push(task);

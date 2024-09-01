@@ -15,7 +15,7 @@
     <script src="/script.js"></script>
 </head>
 
-<body onload="includeHTML()">
+<body onload="onload()">
     <div w3-include-html="/assets/html_templates/header.html"></div>
     <div w3-include-html="/assets/html_templates/sidebar.html"></div>
     <div class="mainscreen">
@@ -150,5 +150,8 @@
         </div>
     </div>
 </body>
+<script>
+includeHTML();
+</script>
 
 </html>
