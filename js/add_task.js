@@ -1,6 +1,5 @@
 // tipps;
 
-
 // -die contact Initialien an der zeile statt einzige label eine div machen mit label und initialDiv(du kannst es von contactliste ubernehmen aber kleiner)
 let task = {
   title: "",
@@ -83,22 +82,36 @@ function ContactsDropdown() {
   contacts.forEach((contact) => {
     if (contact && contact.id) {
       // Überprüfe, ob das Objekt gültig ist und eine `id`-Eigenschaft hat
+      // let contactHead = `<div class="contactcolor2" id="contactColor${contact.id}"></div>;`
       const checkboxContainer = document.createElement("div");
-
+      let contactHead = document.createElement("div");
+      contactHead.id=`contactColor${contact.id}`;
+      contactHead.classList.add('contactHead2');
+      
+      
+      // checkboxContainer.appendChild('<div class="contactcolor2" id="contactColor${contact.id}">')
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
       checkbox.id = `contact-${contact.id}`;
       checkbox.value = contact.id;
       checkbox.name = "assignee";
       checkbox.classList.add("custom-checkbox");
+      
       const label = document.createElement("label");
+      label.innerHTML= `<div class="contactcolor2" id="contactColor${contact.id}"></div>`;
       label.htmlFor = `contact-${contact.id}`;
-      label.textContent = contact.name;
+      label.textContent = contact.name; 
+      
 
       checkboxContainer.appendChild(checkbox);
       checkboxContainer.appendChild(label);
+      checkboxContainer.appendChild(contactHead);
 
       dropdownContent.appendChild(checkboxContainer);
+  
+      // let contactHead = checkboxContainer.appendChild('div');
+      // contactHead.id=`contactColor${contact.id}`;
+      // contactHead.classList.add('contactHead2');
     }
   });
 }
