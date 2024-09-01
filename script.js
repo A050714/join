@@ -68,14 +68,14 @@ async function pushToFirebase(data={}) {
 
 async function loadTasks() {
   let userResponse = await getData();
-  let taskArrayIndex = Object.keys(userResponse);
-  for (let index = 0; index < taskArrayIndex.length; index++) {
-    let task = userResponse[taskArrayIndex[index]];
-    if (task !== null) {
-      tasks.push({
-        id: taskArrayIndex[index],
-        task: task.task
-      });
+  if(userResponse != null){
+
+    let taskArrayIndex = Object.keys(userResponse);
+    for (let index = 0; index < taskArrayIndex.length; index++) {
+      let task = userResponse[taskArrayIndex[index]];
+      if (task !== null) {
+        tasks.push(task);
+      }
     }
   }
 }

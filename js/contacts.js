@@ -12,19 +12,22 @@ let colors = ['#FF7A00', '#FF5EB3', '#6E52FF',
 //loads contacts and fills contacts-array
 async function loadContacts() {
     let userRespone = await getData("Contacts");
-    let UserKeysArray = Object.keys(userRespone);
-    for (let index = 0; index < UserKeysArray.length; index++) {
-        let user = userRespone[UserKeysArray[index]];
-        if (user !== null) {
-            contacts.push({
-                id: UserKeysArray[index],
-                user: user
-            });
+    if(userRespone != null){
+        
+        let UserKeysArray = Object.keys(userRespone);
+        for (let index = 0; index < UserKeysArray.length; index++) {
+            let user = userRespone[UserKeysArray[index]];
+            if (user !== null) {
+                contacts.push({
+                    id: UserKeysArray[index],
+                    user: user
+                });
+            }
         }
+        
     }
-
 }
-
+    
 
 //sorts contacts by name
 function sortContacts() {

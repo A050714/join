@@ -20,7 +20,7 @@ function generateBoard(list = tasks) {
   ];
   
   sections.forEach(section => {
-    const tasksForSection = list.filter(t => t.task.status === section.status);
+    const tasksForSection = list.filter(t => t.status === section.status);
     const container = document.getElementById(section.id);
     container.innerHTML = '';
     
@@ -45,10 +45,10 @@ function generateTodoHTML(element) {
 
   return/*html*/`
     <div onclick='showTask("${element.id}")' class="card" draggable="true" ondragstart="startDragging(${element.id})" id="${element.id}">
-        <label class="categoryLabel ${element.task.category}" for="category">${(element.task.category == 'userstory') ? "User Story" : "Technical Task"}</label>
+        <label class="categoryLabel ${element.category}" for="category">${(element.category == 'userstory') ? "User Story" : "Technical Task"}</label>
         <div class="titDesc">
-            <p class="title">${element.task.title}</p>
-            <p class="description">${element.task.description}</p>
+            <p class="title">${element.title}</p>
+            <p class="description">${element.description}</p>
         </div>
         <div class="progress">
             <div class="progress-bar">
@@ -64,7 +64,7 @@ function generateTodoHTML(element) {
 
             </div>
             <div class="prioDiv">
-                    <img class="prioIcon" src="/assets/img/03_AddTask/priority/${element.task.prio}.svg" alt="">
+                    <img class="prioIcon" src="/assets/img/03_AddTask/priority/${element.prio}.svg" alt="">
             </div>
         </div>
     </div>
@@ -75,9 +75,9 @@ function startDragging(id) {
   currentDraggedElement = id;
   document.getElementById(id).classList.add('rotate');
   currentTask=tasks[id];
-  console.log(currentTask.task);
+  console.log(currentTask);
   
-  postData(`Tasks/${currentDraggedElement}`,currentTask.task);  
+  postData(`Tasks/${currentDraggedElement}`,currentTask);  
 }
 
 function allowDrop(ev) {
@@ -86,7 +86,7 @@ function allowDrop(ev) {
 
 function moveto(status) {
   let currentTask = tasks.find(task => task.id == currentDraggedElement);
-  currentTask.task.status = status;
+  currentTask.status = status;
   document.getElementById(currentDraggedElement).classList.remove('rotate');
   generateBoard();
 }
