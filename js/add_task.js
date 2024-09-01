@@ -13,7 +13,6 @@ let task = {
   subTask: [],
   status: "todo",
 };
-let tasks = [];
 let selectedPrio = "";
 
 const BASE_URL_CONTACTS =
@@ -21,6 +20,7 @@ const BASE_URL_CONTACTS =
 
 const BASE_URL_TASK =
   "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/Tasks/";
+
 
 async function putTaskToBoard(data = {}, taskIndex) {
   try {
@@ -44,7 +44,7 @@ async function taskContacts() {
     let response = await fetch(BASE_URL_CONTACTS);
     let responseToJson = await response.json();
     contacts = Object.values(responseToJson);
-    console.log(contacts);
+    // console.log(contacts);
     ContactsDropdown();
   } catch (error) {
     console.error("Fehler beim Abrufen der Kontaktdaten:", error);
@@ -159,7 +159,7 @@ function addToSubTasks() {
   console.log(inputValue);
 
   if (inputValue !== "") {
-    task.subTask.push(inputValue);
+    task.subTask.push({title:inputValue, status:'todo'});
     document.getElementById("inputField").value = "";
     renderSubTasks(inputValue);
   }
