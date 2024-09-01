@@ -1,7 +1,7 @@
-let tasks = [];
-const BASE_URL = "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/";
+const BASE_URL =
+  "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/";
 
-function onload(){
+function onload() {
   loadTasks();
   loadContacts();
 }
@@ -46,14 +46,31 @@ async function loadTasks() {
       let task = userResponse[taskArrayIndex[index]];
       if (task !== null) {
         tasks.push({
-          task
+          task,
         });
       }
     }
   }
-
 }
 async function getData(path) {
   let response = await fetch(BASE_URL + path + ".json");
-  return responseToJson = await response.json();
+  return (responseToJson = await response.json());
+}
+
+async function postData(path = "", data = {}) {
+  let response = await fetch(BASE_URL + path + ".json", {
+    method: "PUT",
+    header: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  return (responseToJson = await response.json());
+}
+
+async function deleteData(path = "") {
+  let response = await fetch(BASE_URL + path + ".json", {
+    method: "DELETE",
+  });
+  return (responseToJson = await response.json());
 }

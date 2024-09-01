@@ -18,20 +18,6 @@ async function onload() {
   ContactsDropdown();
 }
 
-async function loadTasks() {
-  let userResponse = await getData("Tasks");
-  let taskArrayIndex = Object.keys(userResponse);
-  for (let index = 0; index < taskArrayIndex.length; index++) {
-    let task = userResponse[taskArrayIndex[index]];
-    if (task !== null) {
-      tasks.push({
-        id: taskArrayIndex[index],
-        task: task,
-      });
-    }
-  }
-}
-
 async function getData(pfad) {
   let response = await fetch(BASE_URL + pfad + ".json");
   return (responseToJson = await response.json());
@@ -67,12 +53,11 @@ async function taskContacts() {
 }
 
 function generateContactsDropdown(contact) {
-  // Überprüfen, ob die Kontakt-ID nicht null ist
   return /*html*/ `
       <div class="dropdownContent">
-        <div class="contactcolor2" id="contactColor${contact.id}"></div>
-        <p>${contact.user.name}</p>
-        <input class="custom-checkbox" type="checkbox" id="${contact.id}" value="${contact.id}">
+        <div class="contactcolor2" id="contactColor${contact.contact.id}"></div>
+        <p>${contact.contact.name}</p>
+        <input class="custom-checkbox" type="checkbox" id="${contact.contact.id}" value="${contact.contact.id}">
       </div>
     `;
 }
@@ -88,8 +73,8 @@ function ContactsDropdown() {
   });
 }
 
-
 function toggleDropdown() {
+  ContactsDropdown();
   const dropdownContent = document.getElementById("dropdown-content");
   const dropdownArrow = document.getElementById("dropdown-arrow");
   dropdownContent.classList.toggle("show");
@@ -190,7 +175,7 @@ function removeSubTask(index) {
   renderSubTasks();
 }
 
-function addTask() {
+async function addTask() {
   task.title = document.getElementById("titleId").value;
   task.description = document.getElementById("descId").value;
   task.dueDate = document.getElementById("dateId").value;
@@ -198,6 +183,7 @@ function addTask() {
   let selectedContacts = getSelectedContacts();
   task.assignedTo = selectedContacts;
   task.prio = selectedPrio;
+  task.id = tasks.length;
 
   // mit dieser funktion wird das array mit zu firebase gesendet
   if (task.subTask.length === 0) {
@@ -205,8 +191,9 @@ function addTask() {
   }
 
   tasks.push(task);
-  let taskIndex = tasks.length - 1;
-  putTaskToBoard(task, taskIndex);
+  await postData(`Tasks/${tasks.length - 1}`, task);
+  tasks = [];
+  await loadTasks();
   clearForm();
 }
 
