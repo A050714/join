@@ -7,9 +7,6 @@ async function onload() {
   generateBoard();
 }
 
-
-
-
 function generateBoard(list = tasks) {
 
   const sections = [
