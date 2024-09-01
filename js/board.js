@@ -1,4 +1,6 @@
 let tasks = [];
+let currentTask;
+let currentDraggedElement;
 
 async function onload() {
   await loadTasks();
@@ -8,22 +10,21 @@ async function onload() {
 
 
 
-let currentDraggedElement;
 
 function generateBoard(list = tasks) {
-  
+
   const sections = [
     { id: 'todoBox', status: 'todo', emptyMessage: 'No Tasks To do' },
     { id: 'inProgressBox', status: 'inProgress', emptyMessage: 'No Tasks in progress' },
     { id: 'awaitFeedbackBox', status: 'awaitFeedback', emptyMessage: 'No Tasks await' },
     { id: 'doneBox', status: 'done', emptyMessage: 'No Tasks done' }
   ];
-  
+
   sections.forEach(section => {
     const tasksForSection = list.filter(t => t.status === section.status);
     const container = document.getElementById(section.id);
     container.innerHTML = '';
-    
+
     if (tasksForSection.length === 0) {
       container.innerHTML = genereteNoTasks(section.emptyMessage);
     } else {
@@ -32,7 +33,6 @@ function generateBoard(list = tasks) {
       });
     }
   });
-  // saveToFirebase(tasks);
 }
 
 function genereteNoTasks(message) {
@@ -70,14 +70,14 @@ function generateTodoHTML(element) {
     </div>
   `;
 }
-let currentTask;
-function startDragging(id) {
+
+async function startDragging(id) {
   currentDraggedElement = id;
   document.getElementById(id).classList.add('rotate');
-  currentTask=tasks[id];
-  console.log(currentTask);
-  
-  postData(`Tasks/${currentDraggedElement}`,currentTask);  
+  currentTask = tasks[id];
+  postData(`Tasks/${currentTask.id}`, currentTask);
+  tasks = [];
+  loadTasks();
 }
 
 function allowDrop(ev) {
