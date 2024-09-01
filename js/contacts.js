@@ -1,6 +1,3 @@
-
-let contacts = [];
-// const BASE_URL = "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/";
 includeHTML();
 let colors = ['#FF7A00', '#FF5EB3', '#6E52FF',
     '#9327FF', '#00BEE8', '#1FD7C1',
@@ -8,28 +5,7 @@ let colors = ['#FF7A00', '#FF5EB3', '#6E52FF',
     '#FFC701', '#0038FF', '#C3FF2B',
     '#FFE62B', '#FF4646', '#FFBB2B'];
 
-//RENDER CONTACTS//------------------------------------------------------
-//loads contacts and fills contacts-array
-async function loadContacts() {
-    let userRespone = await getData("Contacts");
-    if(userRespone != null){
-        
-        let UserKeysArray = Object.keys(userRespone);
-        for (let index = 0; index < UserKeysArray.length; index++) {
-            let user = userRespone[UserKeysArray[index]];
-            if (user !== null) {
-                contacts.push({
-                    id: UserKeysArray[index],
-                    user: user
-                });
-            }
-        }
-        
-    }
-}
-    
-
-//sorts contacts by name
+    //sorts contacts by name
 function sortContacts() {
     contacts.sort(function (a, b) {
         if (!a.user) return 1;

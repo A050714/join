@@ -1,4 +1,3 @@
-let tasks = [];
 let currentTask;
 let currentDraggedElement;
 
@@ -40,9 +39,9 @@ function genereteNoTasks(message) {
     <div class="emptydiv">${message}</div>
   `
 }
-function generateTodoHTML(element) {
-  // <p> 0/${(element.task.subTask.length)} Subtasks</p>
 
+
+function generateTodoHTML(element) {
   return/*html*/`
     <div onclick='showTask("${element.id}")' class="card" draggable="true" ondragstart="startDragging(${element.id})" id="${element.id}">
         <label class="categoryLabel ${element.category}" for="category">${(element.category == 'userstory') ? "User Story" : "Technical Task"}</label>
@@ -71,23 +70,25 @@ function generateTodoHTML(element) {
   `;
 }
 
-async function startDragging(id) {
+
+function startDragging(id) {
   currentDraggedElement = id;
-  document.getElementById(id).classList.add('rotate');
-  currentTask = tasks[id];
-  postData(`Tasks/${currentTask.id}`, currentTask);
-  tasks = [];
-  loadTasks();
+  document.getElementById(currentDraggedElement).classList.add('rotate');
 }
+
 
 function allowDrop(ev) {
   ev.preventDefault();
 }
 
-function moveto(status) {
+async function moveto(status) {
   let currentTask = tasks.find(task => task.id == currentDraggedElement);
   currentTask.status = status;
   document.getElementById(currentDraggedElement).classList.remove('rotate');
+  currentTask = tasks[currentDraggedElement];
+  await postData(`Tasks/${currentTask.id}`, currentTask);
+  tasks = [];
+  await loadTasks();
   generateBoard();
 }
 
@@ -161,8 +162,8 @@ function closeTask() {
 function searchInTheTasks(id) {
   let inputSearch = document.getElementById(id).value;
   let foundTasks = tasks.filter(task =>
-    task.task.title.toLowerCase().includes(inputSearch.toLowerCase()) ||
-    task.task.description.toLowerCase().includes(inputSearch.toLowerCase())
+    task.title.toLowerCase().includes(inputSearch.toLowerCase()) ||
+    task.description.toLowerCase().includes(inputSearch.toLowerCase())
   );
   generateBoard(foundTasks);
 }
