@@ -1,6 +1,6 @@
 // tipps;
 // -eine onload() function, mit dem du includeHtml und taskFetch aufrufst
-// -bei keine subtask einfach leeres Array ubergeben 
+// -bei keine subtask einfach leeres Array ubergeben
 // -die contact Initialien an der zeile statt einzige label eine div machen mit label und initialDiv(du kannst es von contactliste ubernehmen aber kleiner)
 let task = {
   title: "",
@@ -66,7 +66,7 @@ function ContactsDropdown() {
       checkbox.id = `contact-${contact.id}`;
       checkbox.value = contact.id;
       checkbox.name = "assignee";
-      checkbox.classList.add("custom-checkbox"); 
+      checkbox.classList.add("custom-checkbox");
       const label = document.createElement("label");
       label.htmlFor = `contact-${contact.id}`;
       label.textContent = contact.name;
@@ -88,11 +88,11 @@ function toggleDropdown() {
 
 function getSelectedContacts() {
   const selectedContacts = [];
-  // FUER KADIR HIER 
-  const checkboxes = document.querySelectorAll('.custom-checkbox:checked');
+  // FUER KADIR HIER
+  const checkboxes = document.querySelectorAll(".custom-checkbox:checked");
 
   checkboxes.forEach((checkbox) => {
-    if(contacts.id=== checkbox.value){
+    if (contacts.id === checkbox.value) {
       selectedContacts.push(checkbox.value);
     }
   });
@@ -190,8 +190,14 @@ function addTask() {
   let selectedContacts = getSelectedContacts();
   task.assignedTo = selectedContacts;
   task.prio = selectedPrio;
+
+  // mit dieser funktion wird das array mit zu firebase gesendet 
+  if (task.subTask.length === 0) {
+    task.subTask.push(""); // es wird ein leerer wert hinzugefügt um das mitsenden zu erzwingen!!
+  }
+
   tasks.push(task);
-  let taskIndex = tasks.length-1;
+  let taskIndex = tasks.length - 1;
   putTaskToBoard(task, taskIndex);
   clearForm();
 }
