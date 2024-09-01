@@ -1,4 +1,5 @@
 const BASE_URL = "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/";
+const BASE_URL_TASK = "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/Tasks/";
 
 includeHTML();
 
@@ -33,7 +34,7 @@ function includeHTML() {
 
 async function putTaskToBoard(data = {}, taskIndex) {
   try {
-    let response = await fetch(BASE_URL +"Task/"+ taskIndex + ".json", {
+    let response = await fetch(BASE_URL +"Task"+ taskIndex, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -48,9 +49,9 @@ async function putTaskToBoard(data = {}, taskIndex) {
   }
 }
 
-async function pushToFirebase(data) {
+async function pushToFirebase(data={}) {
   try {
-    let response = await fetch(BASE_URL +"Task/"+ ".json", {
+    let response = await fetch(BASE_URL_TASK, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -66,14 +67,14 @@ async function pushToFirebase(data) {
 }
 
 async function loadTasks() {
-  let userResponse = await getData('Tasks');
+  let userResponse = await getData();
   let taskArrayIndex = Object.keys(userResponse);
   for (let index = 0; index < taskArrayIndex.length; index++) {
     let task = userResponse[taskArrayIndex[index]];
     if (task !== null) {
       tasks.push({
         id: taskArrayIndex[index],
-        task: task
+        task: task.task
       });
     }
   }
@@ -83,6 +84,6 @@ async function loadTasks() {
 
 
 async function getData() {
-  let response = await fetch(BASE_URL +"Tasks/"+ ".json");
+  let response = await fetch(BASE_URL_TASK+ ".json");
   return responseToJson = await response.json();
 }

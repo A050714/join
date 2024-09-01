@@ -23,7 +23,7 @@ function generateBoard(list = tasks) {
     const tasksForSection = list.filter(t => t.task.status === section.status);
     const container = document.getElementById(section.id);
     container.innerHTML = '';
-
+    
     if (tasksForSection.length === 0) {
       container.innerHTML = genereteNoTasks(section.emptyMessage);
     } else {
@@ -70,10 +70,14 @@ function generateTodoHTML(element) {
     </div>
   `;
 }
+let currentTask;
 function startDragging(id) {
   currentDraggedElement = id;
   document.getElementById(id).classList.add('rotate');
-
+  currentTask=tasks[id];
+  console.log(currentTask.task);
+  
+  postData(`Tasks/${currentDraggedElement}`,currentTask.task);  
 }
 
 function allowDrop(ev) {
