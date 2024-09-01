@@ -43,7 +43,7 @@ function genereteNoTasks(message) {
 
 function generateTodoHTML(element) {
   return/*html*/`
-    <div onclick='showTask("${element.id}")' class="card" draggable="true" ondragstart="startDragging(${element.id})" id="${element.id}">
+    <div onclick='showTask("${element}")' class="card" draggable="true" ondragstart="startDragging(${element.id})" id="${element.id}">
         <label class="categoryLabel ${element.category}" for="category">${(element.category == 'userstory') ? "User Story" : "Technical Task"}</label>
         <div class="titDesc">
             <p class="title">${element.title}</p>
@@ -92,63 +92,59 @@ async function moveto(status) {
   generateBoard();
 }
 
-function showTask(taskId) {
-  let element = tasks.find(task => task.id === taskId);
+function showTask(element) {
   console.log(element);
   let content = document.getElementById('showTask');
   content.classList.remove('d-none');
   content.innerHTML = '';
   content.innerHTML = generateTaskHTML(element);
 }
-function generateTaskHTML(element) {
+function generateTaskHTML(task) {
   return /*html*/`
-    <div class="addtasktemplate">
-    <div class="taskoverlay">
-      <label class="categoryLabel ${element.task.category}" for="category">${(element.task.category == 'userstory') ? "User Story" : "Technical Task"}</label>
-      <img onclick="closeTask()" src="/assets/img/00_General_elements/close/default.svg" alt="closeButton">
-    </div>
-    <h4>${element.task.title}</h4>
-    <p>${element.task.description}</p>
-    <div class="due-date-container">
-        <span class="label">Due date:</span>
-        <span class="date">${element.task.dueDate}</span>
-    </div>
-    <div class="taskpriority">
-        <span>Priority:</span>
-        <div class="prio">
-            <p>${element.task.prio}</p>
-            <img src="/assets/img/04_Board/priority/medium.png" alt="">
-        </div>
-    </div>
-    <p>Assigned to:</p>
-    <div>
-        <div class="contacttask">
-            <div class="firstletters">EM</div>
-            <span>Emanuel Mauer</span>
-        </div>
-    </div>
+          <div class="user-story-card" id="taskCard">
+          <div class="header">
+            <span class="tag">User Story</span>
+            <span onclick="closeTask()" class="close-button">&times;</span>
+          </div>
+          <h1>${task.title}</h1>
+          <p>${task.description}</p>
+          
+          <div class="details">
+              <span><p class="mainColor" >Due date:</p> <p>${task.duedate}</p> </span>
+              <span><p class="mainColor">Priority:</p> <p>${task.prio}</p></span>
+          </div>
+          
+          <div class="assigned">
+              <p class="mainColor">Assigned To:</p>
+              <div class="assignees">
+                  <div class="assignee">
+                      <div class="avatar" style="background-color: #2EC7C7;">EM</div>
+                      <span>Emmanuel Mauer</span>
+                  </div>
+                  <div class="assignee">
+                      <div class="avatar" style="background-color: #6A44BE;">MB</div>
+                      <span>Marcel Bauer</span>
+                  </div>
+                  <div class="assignee">
+                      <div class="avatar" style="background-color: #1A73E8;">AM</div>
+                      <span>Anton Mayer</span>
+                  </div>
+              </div>
+          </div>
 
-    <div class="subtasks">
-        <h5 style="color: rgba(42, 54, 71, 1); font-size: 20px; margin-bottom: 16px; font-weight: 400;">
-            Subtasks</h5>
-        <div class="subtaskcheck">
-            <img src="/assets/img/03_AddTask/contacts_checked/Check button.svg" alt="">
-            <p>Subtask Nr.1</p>
-        </div>
-        <div class="subtaskcheck">
-            <img src="/assets/img/03_AddTask/contacts_checked/Check button(1).svg" alt="">
-            <p>Subtask Nr.1</p>
-        </div>
-    </div>
+          <div class="subtasks">
+              <p class="mainColor">Subtasks</p>
+              <div class="subtask">
+                  <span style="cursor: pointer;" onclick="subTaskDone('ubergabe')"><img src="/assets/img/00_General_elements/checkButton.svg" alt=""></span>
+                  <label for="task1"></label>
+              </div>
+          </div>
 
-    <div class="taskboardtemplate">
-        <img src="/assets/img/03_AddTask/subtasks_icons/delete.svg" alt="">
-        <p onclick="deleteTask(${element})">Delete</p>
-        <div class="seperatoraddtasktemplate"></div>
-        <img src="/assets/img/03_AddTask/subtasks_icons/edit.svg" alt="">
-        <p onclick="editTask(${element})">Edit</p>
-    </div>
-</div>
+          <div class="actions">
+              <button onclick="deleteTask(task)" class="delete"><img src="/assets/img/00_General_elements/delete.svg" alt="">Delete</button>
+              <button onclick="editTask(task)" class="edit"><img src="/assets/img/00_General_elements/edit.svg" alt="">Edit</button>
+          </div>
+      </div>
   `
 }
 function assignedContacts(contacts) {

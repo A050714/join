@@ -1,54 +1,45 @@
-<link rel="stylesheet" href="/assets/css/addtask.css">
-
-
-<div class="addtasktemplate dNone">
-    <div class="taskoverlay">
-        <div class="overlaytask">
-            <button class="bgcolortask">User Story</button>
-        </div>
-        <div>
-            <img src="/assets/img/00_General_elements/close/default.svg" alt="">
-        </div>
+<link rel="stylesheet" href="/assets/css/taskCard.css">
+<div class="user-story-card" id="taskCard">
+    <div class="header">
+        <span class="tag">User Story</span>
+        <span class="close-button">&times;</span>
     </div>
-    <h4>Hier steht der Aufgabentext</h4>
-    <p>Hier Steht die Aufgabenbeschreibung</p>
-    <div class="due-date-container">
-        <span class="label">Due date:</span>
-        <span class="date">10/05/2023</span>
+    <h1>${task.title}</h1>
+    <p>${tasks.description}</p>
+    
+    <div class="details">
+        <span><p class="mainColor" >Due date:</p> <p>${task.duedate}</p> </span>
+        <span><p class="mainColor">Priority:</p> <p>${task.prio}</p></span>
     </div>
-    <div class="taskpriority">
-        <span>Priority:</span>
-        <div class="prio">
-            <p>Medium</p>
-            <img src="/assets/img/04_Board/priority/medium.png" alt="">
-        </div>
-    </div>
-    <p>Assigned to:</p>
-    <div>
-        <div class="contacttask">
-            <div class="firstletters">EM</div>
-            <span>Emanuel Mauer</span>
+    
+    <div class="assigned">
+        <p class="mainColor">Assigned To:</p>
+        <div class="assignees">
+            <div class="assignee">
+                <div class="avatar" style="background-color: #2EC7C7;">EM</div>
+                <span>Emmanuel Mauer</span>
+            </div>
+            <div class="assignee">
+                <div class="avatar" style="background-color: #6A44BE;">MB</div>
+                <span>Marcel Bauer</span>
+            </div>
+            <div class="assignee">
+                <div class="avatar" style="background-color: #1A73E8;">AM</div>
+                <span>Anton Mayer</span>
+            </div>
         </div>
     </div>
 
     <div class="subtasks">
-        <h5 style="color: rgba(42, 54, 71, 1); font-size: 20px; margin-bottom: 16px; font-weight: 400;">
-            Subtasks</h5>
-        <div class="subtaskcheck">
-            <img src="/assets/img/03_AddTask/contacts_checked/Check button.svg" alt="">
-            <p>Subtask Nr.1</p>
-        </div>
-        <div class="subtaskcheck">
-            <img src="/assets/img/03_AddTask/contacts_checked/Check button(1).svg" alt="">
-            <p>Subtask Nr.1</p>
+        <p class="mainColor">Subtasks</p>
+        <div class="subtask">
+            <span style="cursor: pointer;" onclick="subTaskDone('ubergabe')"><img src="/assets/img/00_General_elements/checkButton.svg" alt=""></span>
+            <label for="task1">${subTask.title}</label>
         </div>
     </div>
 
-    <div class="taskboardtemplate">
-        <img src="/assets/img/03_AddTask/subtasks_icons/delete.svg" alt="">
-        <p>Delete</p>
-        <div class="seperatoraddtasktemplate"></div>
-        <img src="/assets/img/03_AddTask/subtasks_icons/edit.svg" alt="">
-        <p>Edit</p>
+    <div class="actions">
+        <button onclick="deleteTask(task)" class="delete"><img src="/assets/img/00_General_elements/delete.svg" alt="">Delete</button>
+        <button onclick="editTask(task)" class="edit"><img src="/assets/img/00_General_elements/edit.svg" alt="">Edit</button>
     </div>
 </div>
