@@ -507,6 +507,7 @@
 
         .signup_option button{
             margin-left: em; 
+            flex:1; 
         }
 
         .notice_link{
