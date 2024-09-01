@@ -355,6 +355,7 @@ footer {
     justify-content: space-between;
     flex-direction: row-reverse;
     padding: 16px;
+    
 
 }
 
@@ -380,4 +381,15 @@ footer {
 
 #dropdown-arrow.open {
     transform: rotate(180deg);
+}
+
+
+
+.contacthead2 {
+    display: flex !important;
+    gap: 35px !important;
+    align-items: center !important;
+    justify-items: center !important;
+   
+    
 }
