@@ -460,6 +460,8 @@
         body {
             font-size: 1em;
             line-height: 1.5;
+            background-color: #1a2b47;
+            
         }
 
         .login-container {
@@ -474,6 +476,67 @@
             width: 74vw;
             z-index: 1000;
             
+        }
+
+        .join_logo{
+               top: 50%;
+               left: 50%;
+               transform: translate(-50%, -50%); 
+               z-index: 3000; 
+               animation: move-logo 4s ease forwards; 
+           }
+        
+           /* animation */
+           @keyframes move-logo {
+            0% {
+                transform: translate(-50%, -50%) scale(2); 
+                content:url('./../img/00_General_elements/Join\ logo\ vector.svg'); 
+            }
+
+            45% {     transform: translate(-50%, -50%) scale(2); 
+                content:url('./../img/00_General_elements/Join\ logo\ vector.svg'); 
+            }
+            100% {
+                transform: translate(-50vw, -50vh) scale(1); 
+            }}
+
+   
+            
+        .loginAndSignup{
+            position: relative;
+            background-color: #f6f7f8;
+            height: 100vh; 
+            width: 100vw;
+            animation:backgroundColorChange 1.5s forwards;
+        }
+               
+        }
+
+        @keyframes backgroundColorChange {
+            40% {
+                background-color: #1a2b47; /* Initial dark blue background */
+                z-index: 400000;
+            }
+            100% {
+                background-color: #f6f7f8; 
+            }
+        }
+        
+        #login-popup{
+            opacity: 0; 
+            animation: fade-in 1.2s ease forwards;
+        }
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+                
+            }
+            99% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
 
         form .buttons{
@@ -499,6 +562,8 @@
             align-items: center;  
             width: 100%;
             box-sizing: border-box;
+            opacity: 0; 
+            animation: fade-in 1.2s ease forwards;
         
         }
         .signup_option P{
@@ -521,6 +586,7 @@
             left: 50%;
             transform: translateX(-25%);
             width: 100%;
+            animation: fade-in 1.2s ease forwards;
         }
 
         .join_logo img{
@@ -528,14 +594,11 @@
         }
 
         .join_logo{
-            padding: 2em
+            padding: 2em; 
         }
 
-
-   }
-
-   /* small mobile devices with <800ph height  */
-   @media (max-height: 800px){
+   /* small mobile devices with 640-770ph height  */
+   @media (max-height: 780px){
     .login-container {
         position: absolute;
         top: 50%;
@@ -560,7 +623,7 @@
         text-decoration-thickness: 2px;
     }
     .remember-me {
-        padding-bottom: 0;
+        padding-bottom: 0; 
         padding-left: 1em;
     }
     form .buttons {
@@ -569,7 +632,7 @@
     }
     form .buttons button {
         margin: 0.2em 
-        3.5em;
+        3.5em !important; 
     }
     .signup_option P {
         font-size: 1em;
@@ -579,6 +642,30 @@
     }
 
    }
+
+   /* <640 */
+   @media (max-height: 640px){
+    body {
+        line-height: 1;
+    }
+    form .buttons button {
+        margin: 0.2em 3.5em;
+     
+    }
+    form .buttons{
+       scale: 0.7;
+    }
+    .input-group {
+        padding-bottom: 1em;
+        display: flex;
+        max-width: 400px;
+        width: 100%;
+    }
+    .remember-me{
+        scale: 0.8;
+    }
+   
+}
 
 
 
