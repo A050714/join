@@ -181,7 +181,7 @@ function removeSubTask(index) {
   renderSubTasks();
 }
 
-function addTask() {
+async function addTask() {
   task.title = document.getElementById("titleId").value;
   task.description = document.getElementById("descId").value;
   task.dueDate = document.getElementById("dateId").value;
@@ -197,7 +197,9 @@ function addTask() {
   }
 
   tasks.push(task);
-  postData(`Tasks/${task.id}`,task);
+  await postData(`Tasks/${task.id}`,task);
+  tasks=[];
+  loadTasks();
   clearForm();
 }
 

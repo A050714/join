@@ -17,8 +17,7 @@ async function loadTasks() {
     let task = userResponse[taskArrayIndex[index]];
     if (task !== null) {
       tasks.push({
-        id: taskArrayIndex[index],
-        task: task
+        task
     });
     }
   }   
