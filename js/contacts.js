@@ -1,6 +1,5 @@
 
 let contacts = [];
-const BASE_URL = "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/";
 includeHTML();
 let colors = ['#FF7A00', '#FF5EB3', '#6E52FF',
     '#9327FF', '#00BEE8', '#1FD7C1',
@@ -22,7 +21,6 @@ async function loadContacts() {
             });
         }
     }
-
 }
 
 

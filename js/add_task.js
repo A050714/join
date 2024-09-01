@@ -1,6 +1,3 @@
-// tipps;
-
-// -die contact Initialien an der zeile statt einzige label eine div machen mit label und initialDiv(du kannst es von contactliste ubernehmen aber kleiner)
 let task = {
   title: "",
   description: "",
@@ -15,20 +12,14 @@ let tasks = [];
 
 let selectedPrio = "";
 
-let contacts = [];
-
-const BASE_URL =
-  "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/Contacts/.json";
-
-const BASE_URL_TASK =
-  "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/Tasks/";
-
 async function onload() {
   await loadTasks();
+  await loadContacts();
+  ContactsDropdown();
 }
 
 async function loadTasks() {
-  let userResponse = await getData();
+  let userResponse = await getData("Tasks");
   let taskArrayIndex = Object.keys(userResponse);
   for (let index = 0; index < taskArrayIndex.length; index++) {
     let task = userResponse[taskArrayIndex[index]];
@@ -41,8 +32,8 @@ async function loadTasks() {
   }
 }
 
-async function getData() {
-  let response = await fetch(BASE_URL_TASK + ".json");
+async function getData(pfad) {
+  let response = await fetch(BASE_URL + pfad + ".json");
   return (responseToJson = await response.json());
 }
 
@@ -75,46 +66,28 @@ async function taskContacts() {
   }
 }
 
+function generateContactsDropdown(contact) {
+  // Überprüfen, ob die Kontakt-ID nicht null ist
+  return /*html*/ `
+      <div class="dropdownContent">
+        <div class="contactcolor2" id="contactColor${contact.id}"></div>
+        <p>${contact.user.name}</p>
+        <input class="custom-checkbox" type="checkbox" id="${contact.id}" value="${contact.id}">
+      </div>
+    `;
+}
+
 function ContactsDropdown() {
   const dropdownContent = document.getElementById("dropdown-content");
   dropdownContent.innerHTML = "";
-
   contacts.forEach((contact) => {
-    if (contact && contact.id) {
-      // Überprüfe, ob das Objekt gültig ist und eine `id`-Eigenschaft hat
-      // let contactHead = `<div class="contactcolor2" id="contactColor${contact.id}"></div>;`
-      const checkboxContainer = document.createElement("div");
-      let contactHead = document.createElement("div");
-      contactHead.id=`contactColor${contact.id}`;
-      contactHead.classList.add('contactHead2');
-      
-      
-      // checkboxContainer.appendChild('<div class="contactcolor2" id="contactColor${contact.id}">')
-      const checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      checkbox.id = `contact-${contact.id}`;
-      checkbox.value = contact.id;
-      checkbox.name = "assignee";
-      checkbox.classList.add("custom-checkbox");
-      
-      const label = document.createElement("label");
-      label.innerHTML= `<div class="contactcolor2" id="contactColor${contact.id}"></div>`;
-      label.htmlFor = `contact-${contact.id}`;
-      label.textContent = contact.name; 
-      
-
-      checkboxContainer.appendChild(checkbox);
-      checkboxContainer.appendChild(label);
-      checkboxContainer.appendChild(contactHead);
-
-      dropdownContent.appendChild(checkboxContainer);
-  
-      // let contactHead = checkboxContainer.appendChild('div');
-      // contactHead.id=`contactColor${contact.id}`;
-      // contactHead.classList.add('contactHead2');
+    const html = generateContactsDropdown(contact);
+    if (html) {
+      document.getElementById("dropdown-content").innerHTML += html;
     }
   });
 }
+
 
 function toggleDropdown() {
   const dropdownContent = document.getElementById("dropdown-content");
@@ -136,8 +109,6 @@ function getSelectedContacts() {
 
   return selectedContacts;
 }
-
-taskContacts();
 
 function setPrio(id) {
   const urgent = document.getElementById("urgent");
@@ -253,4 +224,17 @@ function clearForm() {
 
   selectedPrio = "";
   resetPrioStyles();
+}
+
+function showInitials(contact, id = "contactColor") {
+  const nameParts = contact.user.name.split(" ");
+  let initials;
+  if (nameParts.length == 1) {
+    initials = nameParts[0][0];
+  } else {
+    initials = nameParts[0][0] + nameParts[1][0];
+  }
+  let circleInitials = document.getElementById(id);
+  circleInitials.innerHTML = `<p>${initials}</p>`;
+  circleInitials.style = `background-color: ${colors[contact.user.color]}`;
 }
