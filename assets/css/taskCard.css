@@ -1,14 +1,4 @@
 
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f7f8fa;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
 .user-story-card {
     background-color: white;
     border-radius: 30px;
