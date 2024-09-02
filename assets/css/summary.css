@@ -277,10 +277,10 @@
         padding: 10px;
     }
 
-   /* responsive design for small devices like smartphone */
+   /* Small Device_responsive design for small devices like smartphone */
 
 
-   @media (max-width: 480px)   {
+    @media (max-width: 480px)   {
         .mainscreen{
             margin-bottom: 90px;
         }
@@ -374,12 +374,10 @@
             display: none; 
         }
 
-   }
+    }
 
-      /* responsive design for mobile devices like ipad */
-
-
-      @media (min-width: 481px ) and (max-width: 900px) {
+    /* ipad-Device_responsive design for mobile devices like ipad */
+    @media (min-width: 481px) and (max-width: 850px) {
         .mainscreen{
             margin-bottom: 90px;
         }
@@ -476,10 +474,41 @@
         }
 
       }
+      @media (min-width: 481px) and (max-width: 850px) and (min-height:600px){
+        body {
+            line-height: 1;
+        }
+
+      }
+
+      @media (min-width: 481px) and (max-width: 850px) and (min-height:800px) {
+        .metrcis_content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metric-box {
+            padding: 1em 0.8em !important;
+            margin: 2em 0.8em !important;
+        }
+
+        .metrics_greeting {
+            padding-top: 2em;
+        }
+        .metrics_tasks {
+            height: 100%;
+            width: 90%;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: auto auto auto;
+        }
+ 
+
+      }
 
 
-      /* responsive design for big screen width > 901px */
-      @media (min-width: 901px) {
+    /*Big Screen_responsive design for big screen width > 901px */
+      @media (min-width: 901 px) {
  
         body {
             font-size: 1em;
@@ -536,5 +565,52 @@
             
         }
 
+      }
+
+      @media (min-width: 901px) and (max-height: 601px) {
+        .metric-status {
+            padding: 0em;
+        }
+        .metrics .metrics_header {
+            padding-bottom: 0 !important;
+        }
+
+        .metrics {
+            padding: 1em;
+        }
+        .title_join {
+            padding: 0.5rem 2rem 0.5rem 2rem;
+            font-weight: 700;
+            font-size: 2em;
+        }
+        .blue-line {
+            background-color: #3498db;
+            width: 2px;
+            height: 2em;
+        }
+      }
+
+      @media (min-width: 901px) and (min-height: 801px){
+        .metrcis_content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metric-box {
+            padding: 1em 0.8em !important;
+            margin: 2em 0.8em !important;
+        }
+
+        .metrics_greeting {
+            padding-top: 2em;
+        }
+        .metrics_tasks {
+            height: 100%;
+            width: 90%;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: auto auto auto;
+        }
+        
       }
 
