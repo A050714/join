@@ -509,8 +509,6 @@
             width: 100vw;
             animation:backgroundColorChange 1.5s forwards;
         }
-               
-        }
 
         @keyframes backgroundColorChange {
             40% {
@@ -596,6 +594,10 @@
         .join_logo{
             padding: 2em; 
         }
+               
+    }
+
+        
 
    /* small mobile devices with 640-770ph height  */
    @media (max-height: 780px){
