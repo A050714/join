@@ -46,7 +46,7 @@ h1 {
     display: flex;
     width: 100%;
     flex-direction: column;
-    padding-top: 200px;
+    padding-top: 120px;
     padding-left: 50px;
     background-color: #F6F7F8;
     -webkit-box-shadow: inset 4px 4px 8px 0px rgba(0, 0, 0, 0.15);
@@ -94,8 +94,8 @@ h1 {
 }
 
 .contactBtnBackground {
-    height: 20px;
-    background-color: white;
+    height: 16px;
+    background-color: #F6F7F8;
     position: sticky;
     top: 56px;
     z-index: 1000;
@@ -149,6 +149,10 @@ h1 {
 .editdelete {
     display: flex;
     gap: 5px;
+}
+
+.editdelete button {
+    background-color: #F6F7F8;
 }
 
 .showContact {
@@ -487,7 +491,6 @@ h3 {
 .contactcolor2 {
     min-width: 42px;
     height: 42px;
-    background-color: orange;
     border-radius: 100%;
     border: solid 2px white;
     display: flex;
@@ -500,7 +503,6 @@ h3 {
 
 .contactcolor2 p {
     font-size: 14px !important;
-
 }
 
 .user-info {
@@ -531,13 +533,13 @@ h3 {
 }
 
 .addNewContact {
-    padding: 50px 0px;
     display: flex;
     align-items: center;
     justify-content: center;
     justify-items: center;
     flex-direction: column;
     min-width: 431px;
+    height: 90vh;
     /* max-width: 456px; */
     /* box-shadow: 4px 0 6px 0 rgba(0, 0, 0, 0.1); */
 }
@@ -549,7 +551,7 @@ h3 {
 }
 
 #contactList {
-    margin: 50px 0px;
+    margin: 30px 0px;
     padding: 0px 20px;
     width: calc(100% - 100px);
     overflow-y: scroll;
