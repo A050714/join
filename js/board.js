@@ -21,13 +21,16 @@ function generateBoard(list = tasks) {
     const container = document.getElementById(section.id);
     container.innerHTML = '';
 
+
     if (tasksForSection.length === 0) {
       container.innerHTML = genereteNoTasks(section.emptyMessage);
     } else {
       tasksForSection.forEach(task => {
         container.innerHTML += generateTodoHTML(task);
+        calculateSubTasks(task.id);
       });
     }
+
   });
 }
 
@@ -38,19 +41,26 @@ function genereteNoTasks(message) {
 }
 
 
+function calculateSubTasks(id){
+  let content = document.getElementById(`subtasksDiv${id}`);
+  let subtasks = tasks.id.subtasks;
+  content.innerHTML=subtasks;
+}
+
 function generateTodoHTML(element) {
+
   return/*html*/`
-    <div onclick='showTask("${element}")' class="card" draggable="true" ondragstart="startDragging(${element.id})" id="${element.id}">
+    <div  onclick='showTask("${element}")' class="card" draggable="true" ondragstart="startDragging(${element.id})" id="${element.id}">
         <label class="categoryLabel ${element.category}" for="category">${(element.category == 'userstory') ? "User Story" : "Technical Task"}</label>
         <div class="titDesc">
             <p class="title">${element.title}</p>
             <p class="description">${element.description}</p>
         </div>
         <div class="progress">
-            <div class="progress-bar">
-                <div class="progress-color"></div>
+            <div class="progress-bar" id="progress-bar">
+                <div class="progress-color" id="progress-color${element.id}"></div>
             </div>
-            <div class="subtasksDiv">
+            <div  id="subtasksDiv${element.id}">
               <!-- SUBTASK SUM HERE -->
           </div>
         </div>
