@@ -9,16 +9,16 @@ let task = {
   status: "todo",
 };
 
-let tasks = [];
 
 let selectedPrio = "";
-let selectedContacts = {};
+let selectedContacts = [];
 
 async function onload() {
+
   await loadTasks();
   await loadContacts();
-  contacts.forEach(element => console.log(element.name));
-  ContactsDropdown();
+  contactsDropdown();
+
 }
 
 async function getData(pfad) {
@@ -49,34 +49,38 @@ async function taskContacts() {
     let responseToJson = await response.json();
     contacts = Object.values(responseToJson);
     console.log(contacts);
-    ContactsDropdown();
+    contactsDropdown();
   } catch (error) {
     console.error("Fehler beim Abrufen der Kontaktdaten:", error);
   }
 }
 
-function ContactsDropdown() {
-  let content = document.getElementById("contactList");
+function contactsDropdown() {
+  let content = document.getElementById("contactList-a");
   content.innerHTML = "";
-  content.innerHTML += contacts.forEach((contact) => generateContacts(contact));
+  for (let index = 0; index < contacts.length; index++) {
+    content.innerHTML += generateContacts(contacts[index]);
+  }
 }
 
 function generateContacts(contact) {
-  let initial = showInitials(contact);
+  // showInitials(contact,`contactcolor3${contact.id}`);
   return /*html*/ `
-              <div onclick="addTo(${contact})" id="contact-${contact.id}" class="contactlistaddtask ">
+              <div onclick='addTo(${contact.id})'  id="contact-${contact.id}" class="contactlistaddtask ">
                   <div class="frame1">
                       <div class="contactcolor3">
-                         <p>${initial}</p> 
+                         <p id='contactcolor3${contact.id}'></p> 
                       </div>
                       <p id="contactname">${contact.name}</p>
                   </div>
-                  <img id="checkboxtask" src="/assets/img/03_AddTask/contacts_checked/Check button.svg" alt="">
+                  <img  id="checkboxtask" src="/assets/img/03_AddTask/contacts_checked/Check button.svg" alt="">
               </div>
   `;
 }
 
-function addTo(contact) {
+function addTo(id) {
+  let contact = contacts.find(c => c.id === id);
+
   let contactDiv = document.getElementById(`contact-${contact.id}`);
   let contactName = document.getElementById("contactname");
   let checkbox = document.getElementById("checkboxtask");
@@ -96,8 +100,8 @@ function addTo(contact) {
 
 function toggleDropdown() {
   const togglearrow = document.getElementById("dropdownarrow");
-  togglearrow.classList.toggle("open");
-  document.getElementById("contactList").classList.remove("dNone");
+  // togglearrow.classList.toggle("open");
+  document.getElementById("contactList-a").classList.toggle("dNone");
 }
 
 function getSelectedContacts() {

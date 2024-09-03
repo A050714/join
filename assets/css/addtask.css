@@ -4,7 +4,11 @@
     display: flex;
 
 }
-
+.contactList-a {
+    height: 400px;
+    overflow-y: scroll;
+    background-color: rgb(255, 0, 0);
+}
 body {
     font-family: 'PT Sans';
 }

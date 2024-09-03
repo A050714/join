@@ -28,9 +28,9 @@ async function loadContacts() {
   for (let index = 0; index < UserKeysArray.length; index++) {
     let contact = userRespone[UserKeysArray[index]];
     if (contact !== null) {
-      contacts.push({
-        contact,
-      });
+      contacts.push(
+        contact
+      );
     }
   }
 }
@@ -51,8 +51,8 @@ function sortContacts() {
 }
 
 async function renderAllContacts() {
-  await loadContacts();
-  sortContacts();
+  // await loadContacts();
+  // sortContacts();
 
   let content = document.getElementById("contactList");
   content.innerHTML = "";

@@ -1,9 +1,12 @@
 const BASE_URL =
   "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/";
 
-function onload() {
-  loadTasks();
-  loadContacts();
+  let tasks = [];
+
+async function onload() {
+  await loadTasks();
+  await loadContacts();
+  contactsDropdown();
 }
 
 function includeHTML() {
@@ -45,9 +48,9 @@ async function loadTasks() {
     for (let index = 0; index < taskArrayIndex.length; index++) {
       let task = userResponse[taskArrayIndex[index]];
       if (task !== null) {
-        tasks.push({
-          task,
-        });
+        tasks.push(
+          task
+        );
       }
     }
   }
