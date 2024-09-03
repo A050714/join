@@ -66,7 +66,10 @@ main {
         top: unset;
     }
 
-    #widget_1 {
+    #widget_1,
+    #widget_2,
+    #widget_3,
+    #widget_4 {
         flex-direction: column;
         cursor: pointer;
     }
