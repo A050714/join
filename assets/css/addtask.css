@@ -9,6 +9,7 @@ body {
     font-family: 'PT Sans';
 }
 
+.dNone {display:  none;}
 h4 {
     font-size: 61px;
 
@@ -331,20 +332,35 @@ footer {
 }
 
 .dropdown {
-    position: relative;
-    display: inline-block;
-    width: 416px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 16px 6px 16px;
+    border-radius: 10px;
+    border: 1px solid #d1d1d1;
+    width: 410px;
+    height: 48px;
+    background-color: #FFFFFF;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.dropdown span {
+    color: black;
+    font-size: 20px;
 }
 
 .dropdown-content {
     display: none;
+    flex-direction: column;
     position: absolute;
     background-color: #f9f9f9;
     min-width: 100%;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
-    max-height: 200px;
+    max-height: 400px;
     overflow-y: auto;
+
 }
 
 .dropdown-content div {
@@ -353,10 +369,26 @@ footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-direction: row-reverse;
+    border-radius: 10px;
     padding: 16px;
-    
+    margin: 10px;
 
+
+}
+
+.contactcolor3 {
+    max-width: 50px;
+    max-height: 50px;
+    background-color: orange;
+    border-radius: 100% !important;
+    border: solid 2px white;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center;
+    color: white;
+    font-weight: 400;
+    font-size: 16px;
+    padding: 12px;
 }
 
 .dropdown-content div:hover {
@@ -375,11 +407,13 @@ footer {
     cursor: pointer;
 }
 
-#dropdown-arrow {
+.dropdown-arrow {
+    font-size: 24px;
+    display: inline-block;
     transition: transform 0.3s ease;
 }
 
-#dropdown-arrow.open {
+.dropdown-arrow.open {
     transform: rotate(180deg);
 }
 
@@ -390,6 +424,44 @@ footer {
     gap: 35px !important;
     align-items: center !important;
     justify-items: center !important;
-   
+}
+
+
+
+.contactInitials {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: #2A3647;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+.contactlistaddtask {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 56px;
+    width: 430px;
     
+    padding: 7px;
+    cursor: pointer;
+    border-radius: 10px;
+    
+}
+
+.contactlistaddtask img {
+    height: 24px;
+
+}
+
+.frame1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
 }

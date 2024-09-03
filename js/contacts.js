@@ -18,6 +18,8 @@ let colors = [
   "#FFBB2B",
 ];
 
+
+
 //RENDER CONTACTS//------------------------------------------------------
 //loads contacts and fills contacts-array
 async function loadContacts() {
@@ -27,7 +29,7 @@ async function loadContacts() {
     let contact = userRespone[UserKeysArray[index]];
     if (contact !== null) {
       contacts.push({
-        contact
+        contact,
       });
     }
   }
@@ -52,23 +54,6 @@ async function renderAllContacts() {
   await loadContacts();
   sortContacts();
 
-<<<<<<< Updated upstream
-    let content = document.getElementById('contactList');
-    content.innerHTML = '';
-    content.innerHTML += `
-    
-    <button class="contactbtn" id="addNewContact" onclick="togglePopup()">Add new Contact <img class="newcontactimg"
-                        src="/assets/img/00_General_elements/person_add.svg" alt=""></button>
-                        <div class = "contactBtnBackground"></div>
-    `
-    
-    firtsLetter = '';
-    for (let index = 0; index < contacts.length; index++) {
-        let contact = contacts[index];
-        if (firtsLetter != contacts[index].user.name[0]) {
-            firtsLetter = contact.user.name[0];
-            content.innerHTML += `
-=======
   let content = document.getElementById("contactList");
   content.innerHTML = "";
   firtsLetter = "";
@@ -77,7 +62,6 @@ async function renderAllContacts() {
     if (firtsLetter != contacts[index].user.name[0]) {
       firtsLetter = contact.user.name[0];
       content.innerHTML += `
->>>>>>> Stashed changes
                     <div class="letterDiv"><h2>${firtsLetter}</h2></div>
             `;
       content.innerHTML += horizontalLine();
@@ -182,7 +166,7 @@ function showContact(index) {
 }
 
 function showInitials(contact, id = "contactColor") {
-  const nameParts = contact.user.name.split(" ");
+  const nameParts = contact.name.split(" "  );
   let initials;
   if (nameParts.length == 1) {
     initials = nameParts[0][0];
@@ -191,7 +175,7 @@ function showInitials(contact, id = "contactColor") {
   }
   let circleInitials = document.getElementById(id);
   circleInitials.innerHTML = `<p>${initials}</p>`;
-  circleInitials.style = `background-color: ${colors[contact.user.color]}`;
+  circleInitials.style = `background-color: ${colors[contact.color]}`;
 }
 
 //EDIT CONTACT//----------------------------------------------------------------------------------------------

@@ -10,16 +10,17 @@
     <link rel="stylesheet" href="/assets/css/sidebar.css">
     <link rel="stylesheet" href="/assets/css/header.css">
     <link rel="stylesheet" href="/assets/css/addtask.css">
+    <link rel="stylesheet" href="/assets/css/contacts.css">
     <link rel="stylesheet" href="/style.css">
-    <script src="/js/add_task.js"></script>
     <script src="/js/contacts.js"></script>
+    <script src="/js/add_task.js"></script>
     <script src="/script.js"></script>
 </head>
 
 <body onload="onload()">
-    <div w3-include-html="/assets/html_templates/header.html"></div>
-    <div w3-include-html="/assets/html_templates/sidebar.html"></div>
-    <div class="mainscreen">
+    <header w3-include-html="/assets/html_templates/header.html"></header>
+    <aside w3-include-html="/assets/html_templates/sidebar.html"></aside>
+    <main>
 
         <div class="addtask">
             <h4>Add Task</h4>
@@ -36,15 +37,12 @@
                         </div>
                         <div>
                             <p>Assigned to</p>
-                            <div class="dropdown">
-                                <button type="button" onclick="toggleDropdown()" class="dropbtn">
-                                    Select contacts to assign
-                                    <span id="dropdown-arrow">&#9660;</span>
-                                </button>
-                                <div id="dropdown-content" class="dropdown-content">
-                                    <!-- Inhalte werden dynamisch eingefügt -->
-                                </div>
+                            <div class="dropdown" onclick="toggleDropdown()">
+                                <span>Select contacts to assign</span>
+                                <img id="dropdownarrow" class="dropdown-arrow"
+                                    src="/assets/img/03_AddTask/contacts_checked/arrow_drop_down.svg">
                             </div>
+                            <div id="contactList" class="dNone"></div>
                         </div>
                     </div>
                     <div class="seperator"></div>
@@ -62,7 +60,7 @@
                                     id="svgLow" src="/assets/img/03_AddTask/priority/Prio baja(1).svg" alt=""></button>
                         </div>
                         <p>Category<span class="required">*</span></p>
-                        <label for="categoryId">Category</label>
+                        <label style="display: none;" for="categoryId">Category</label>
                         <select name="category" id="categoryId">
                             <option value="" disabled selected>Select task category</option>
                             <option value="technicaltask">Technical Task</option>
@@ -149,8 +147,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 </body>
 <script>includeHTML();
 </script>
+
 </html>

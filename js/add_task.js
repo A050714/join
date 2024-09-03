@@ -5,16 +5,19 @@ let task = {
   dueDate: "",
   prio: "",
   category: "",
-  subTask: [],
+  subTasks: [],
   status: "todo",
 };
+
 let tasks = [];
 
 let selectedPrio = "";
+let selectedContacts = {};
 
 async function onload() {
   await loadTasks();
   await loadContacts();
+  contacts.forEach(element => console.log(element.name));
   ContactsDropdown();
 }
 
@@ -52,44 +55,58 @@ async function taskContacts() {
   }
 }
 
-function generateContactsDropdown(contact) {
-  return /*html*/ `
-      <div class="dropdownContent">
-        <div class="contactcolor2" id="contactColor${contact.contact.id}"></div>
-        <p>${contact.contact.name}</p>
-        <input class="custom-checkbox" type="checkbox" id="${contact.contact.id}" value="${contact.contact.id}">
-      </div>
-    `;
+function ContactsDropdown() {
+  let content = document.getElementById("contactList");
+  content.innerHTML = "";
+  content.innerHTML += contacts.forEach((contact) => generateContacts(contact));
 }
 
-function ContactsDropdown() {
-  const dropdownContent = document.getElementById("dropdown-content");
-  dropdownContent.innerHTML = "";
-  contacts.forEach((contact) => {
-    const html = generateContactsDropdown(contact);
-    if (html) {
-      document.getElementById("dropdown-content").innerHTML += html;
-    }
-  });
+function generateContacts(contact) {
+  let initial = showInitials(contact);
+  return /*html*/ `
+              <div onclick="addTo(${contact})" id="contact-${contact.id}" class="contactlistaddtask ">
+                  <div class="frame1">
+                      <div class="contactcolor3">
+                         <p>${initial}</p> 
+                      </div>
+                      <p id="contactname">${contact.name}</p>
+                  </div>
+                  <img id="checkboxtask" src="/assets/img/03_AddTask/contacts_checked/Check button.svg" alt="">
+              </div>
+  `;
+}
+
+function addTo(contact) {
+  let contactDiv = document.getElementById(`contact-${contact.id}`);
+  let contactName = document.getElementById("contactname");
+  let checkbox = document.getElementById("checkboxtask");
+  contactDiv.classList.add("selected");
+  selectedContacts.push(contact);
+
+  if (contactDiv.classList.contains("selected")) {
+    contactDiv.style.backgroundColor = "#2A3647";
+    contactName.style.color = "white";
+    checkbox.src = "/assets/img/03_AddTask/contacts_checked/checkwhite.svg";
+  } else {
+    contactDiv.style.backgroundColor = "";
+    contactName.style.color = "";
+    checkbox.src = "/assets/img/03_AddTask/contacts_checked/Check button.svg";
+  }
 }
 
 function toggleDropdown() {
-  ContactsDropdown();
-  const dropdownContent = document.getElementById("dropdown-content");
-  const dropdownArrow = document.getElementById("dropdown-arrow");
-  dropdownContent.classList.toggle("show");
-  dropdownArrow.classList.toggle("open");
+  const togglearrow = document.getElementById("dropdownarrow");
+  togglearrow.classList.toggle("open");
+  document.getElementById("contactList").classList.remove("dNone");
 }
 
 function getSelectedContacts() {
   const selectedContacts = [];
-  // FUER KADIR HIER
+
   const checkboxes = document.querySelectorAll(".custom-checkbox:checked");
 
   checkboxes.forEach((checkbox) => {
-    if (contacts.id === checkbox.value) {
-      selectedContacts.push(checkbox.value);
-    }
+    selectedContacts.push(checkbox.value);
   });
 
   return selectedContacts;
@@ -153,7 +170,7 @@ function addToSubTasks() {
   console.log(inputValue);
 
   if (inputValue !== "") {
-    task.subTask.push(inputValue);
+    task.subTasks.push({ title: inputValue, status: "todo" });
     document.getElementById("inputField").value = "";
     renderSubTasks(inputValue);
   }
@@ -163,15 +180,15 @@ function renderSubTasks() {
   let content = document.getElementById("subtasks");
   content.innerHTML = "";
 
-  task.subTask.forEach((subTask, index) => {
+  task.subTasks.forEach((subTask, index) => {
     content.innerHTML += `
-      <li>${subTask} <button onclick="removeSubTask(${index})">Remove</button></li>
+      <li>${subTask.title} <button onclick="removeSubTask(${index})">Remove</button></li>
     `;
   });
 }
 
 function removeSubTask(index) {
-  task.subTask.splice(index, 1);
+  task.subTasks.splice(index, 1);
   renderSubTasks();
 }
 
@@ -186,13 +203,14 @@ async function addTask() {
   task.id = tasks.length;
 
   // mit dieser funktion wird das array mit zu firebase gesendet
-  if (task.subTask.length === 0) {
-    task.subTask.push([""]); // es wird ein leerer wert hinzugefügt um das mitsenden zu erzwingen!!
+  if (task.subTasks.length === 0) {
+    task.subTasks.push("empty"); // es wird ein leerer wert hinzugefügt um das mitsenden zu erzwingen!!
   }
 
   tasks.push(task);
   await postData(`Tasks/${tasks.length - 1}`, task);
   tasks = [];
+  task = [];
   await loadTasks();
   clearForm();
 }
@@ -205,23 +223,20 @@ function clearForm() {
     .querySelectorAll('input[name="assignee"]')
     .forEach((cb) => (cb.checked = false));
   document.getElementById("categoryId").value = "";
-  task.subTask = [];
-
   document.getElementById("subtasks").innerHTML = "";
-
   selectedPrio = "";
   resetPrioStyles();
 }
 
-function showInitials(contact, id = "contactColor") {
-  const nameParts = contact.user.name.split(" ");
-  let initials;
-  if (nameParts.length == 1) {
-    initials = nameParts[0][0];
-  } else {
-    initials = nameParts[0][0] + nameParts[1][0];
-  }
-  let circleInitials = document.getElementById(id);
-  circleInitials.innerHTML = `<p>${initials}</p>`;
-  circleInitials.style = `background-color: ${colors[contact.user.color]}`;
-}
+// function showInitials(contact, id = "contactColor") {
+//   const nameParts = contact.name.split(" ");
+//   let initials;
+//   if (nameParts.length == 1) {
+//     initials = nameParts[0][0];
+//   } else {
+//     initials = nameParts[0][0] + nameParts[1][0];
+//   }
+//   let circleInitials = document.getElementById(id);
+//   circleInitials.innerHTML = `<p>${initials}</p>`;
+//   circleInitials.style = `background-color: ${colors[contact.color]}`;
+// }
