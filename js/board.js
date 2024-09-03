@@ -27,7 +27,7 @@ function generateBoard(list = tasks) {
     } else {
       tasksForSection.forEach(task => {
         container.innerHTML += generateTodoHTML(task);
-        calculateSubTasks(task.id);
+        calculateSubTasks(task);
       });
     }
 
@@ -41,10 +41,15 @@ function genereteNoTasks(message) {
 }
 
 
-function calculateSubTasks(id){
-  let content = document.getElementById(`subtasksDiv${id}`);
-  let subtasks = tasks.id.subtasks;
-  content.innerHTML=subtasks;
+function calculateSubTasks(task) {
+  let content = document.getElementById(`subtasksDiv${task.id}`);
+  let subTasks = task.subTasks;
+  let doneSubtasks = subTasks.filter(t => t.status=='done');
+  
+  if(subTasks=='empty'){
+    document.getElementById('progressbarID').classList.add('dNone');
+  }  
+  content.innerHTML = `${doneSubtasks.length}/${subTasks.length}`;
 }
 
 function generateTodoHTML(element) {
@@ -56,7 +61,7 @@ function generateTodoHTML(element) {
             <p class="title">${element.title}</p>
             <p class="description">${element.description}</p>
         </div>
-        <div class="progress">
+        <div class="progress" id="progressbarID">
             <div class="progress-bar" id="progress-bar">
                 <div class="progress-color" id="progress-color${element.id}"></div>
             </div>
