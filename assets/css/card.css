@@ -76,15 +76,15 @@ p {
 
 .progress-bar {
     background-color: #F4F4F4;
-    width: 140px;
-    height:10px;
+    width: 165px;
+    height:14px;
     border-radius: 8px;
 }
 
 .progress-color{
     background-color: #4589ff;
     width: 10%;
-    height:10px;
+    height:14px;
     border-radius: 8px;
 }
 
@@ -102,4 +102,8 @@ p {
 }
 .technicaltask{
     background-color: #1FD7C1;
+}
+.subtasksDiv{
+    font-size: 12px;
+    font-weight: 400;
 }

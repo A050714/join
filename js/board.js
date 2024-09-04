@@ -45,11 +45,19 @@ function calculateSubTasks(task) {
   let content = document.getElementById(`subtasksDiv${task.id}`);
   let subTasks = task.subTasks;
   let doneSubtasks = subTasks.filter(t => t.status=='done');
+  console.log(doneSubtasks.length+`${task.title}`);
+  
   
   if(subTasks=='empty'){
     document.getElementById('progressbarID').classList.add('dNone');
+  } else {
+    content.innerHTML = `${doneSubtasks.length}/${subTasks.length} Subtasks`;
+    let percentWidth = ((doneSubtasks.length/subTasks.length)*100);
+    if(percentWidth <= 0){
+      percentWidth=10;
+    }
+    document.getElementById(`progress-color${task.id}`).style.width=`${percentWidth}%`;
   }  
-  content.innerHTML = `${doneSubtasks.length}/${subTasks.length}`;
 }
 
 function generateTodoHTML(element) {
@@ -65,7 +73,7 @@ function generateTodoHTML(element) {
             <div class="progress-bar" id="progress-bar">
                 <div class="progress-color" id="progress-color${element.id}"></div>
             </div>
-            <div  id="subtasksDiv${element.id}">
+            <div class='subtasksDiv'  id="subtasksDiv${element.id}">
               <!-- SUBTASK SUM HERE -->
           </div>
         </div>
