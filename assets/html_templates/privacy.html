@@ -11,6 +11,12 @@
     <script src="/js/contacts.js"></script>
     <script src="/js/summary.js"></script>
     <script src="./../../script.js"></script>
+
+    <script>
+        function goBack(){
+            window.history.back(); 
+        }
+    </script>
 </head>
 <body onload="onloadSummary(), includeHTML()">
     <div w3-include-html="/assets/html_templates/header.html"></div>
@@ -18,7 +24,7 @@
     <main class="mainscreen">
         <div class="header_privacy">
             <h1 class="title_privacy">Privacy Policy</h1>
-            <a class="back_button" href="#">
+            <a class="back_button" href="#" onclick="goBack()">
                 <img src="./../img/00_General_elements/blue_arrow_left.svg" alt="">
             </a>
         </div>
