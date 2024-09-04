@@ -134,3 +134,10 @@ button {
     color: #2A3647;
     cursor: pointer;
 }
+
+.userstory{
+    background-color: #0038FF;
+}
+.technicaltask{
+    background-color: #1FD7C1;
+}
