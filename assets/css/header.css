@@ -10,6 +10,7 @@ header {
     left: 232px;
     top: 0;
     right: 0;
+    /* box-shadow: inset 4px 4px 8px 0px rgba(0, 0, 0, 0);  */
 }
 
 header p {
@@ -24,4 +25,24 @@ header p {
 
 .join_logo_mobile {
     display: none;
+}
+
+
+.user-info {
+    display: flex;
+    align-items: center;
+
+}
+
+.user-icon{
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    border-radius: 50%;
+    border: 2px solid black;
+    color:#3498db ;
+    font-weight: 700;
 }

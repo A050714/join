@@ -59,39 +59,8 @@
        
     
    }
-   /* header */
-   header {
-       background-color: white;
-       display: flex;
-       justify-content: space-between;
-       align-items: center;
-       margin: 0;
-       padding: 15px 70px;
-       box-shadow: 0 0 0 0,1;
-       position: absolute;
-       flex: 1;
-       right: 0;
-       left: 232px;
-   }
+
    
-   .user-info {
-       display: flex;
-       align-items: center;
-   
-   }
-   
-   .user-icon{
-       display: flex; 
-       align-items: center;
-       justify-content: center;
-       height: 50px;
-       width: 50px;
-       text-align: center;
-       border-radius: 50%;
-       border: 2px solid black;
-       color:#3498db ;
-       font-weight: 700;
-   }
    
    /* section metrics -below the header */
    .metrics {

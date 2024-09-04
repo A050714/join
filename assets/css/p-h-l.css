@@ -1,0 +1,28 @@
+/* privacy */
+.title_privacy {
+    display: inline-block;
+    font-size: 3em;
+}
+
+.back_button{
+    margin-right:5em ;
+    border: none;
+
+    
+}
+
+.back_button:hover{
+    cursor: pointer;
+
+}
+
+.header_privacy {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6em 8em 0 6em;
+}
+
+.subtitle{
+    padding: 1em 8em 0 6em;
+}
