@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="/assets/css/taskCard.css">
+<div class="user-story-card" id="taskCard">
+    <div class="header">
+        <span class="tag">User Story</span>
+        <span class="close-button">&times;</span>
+    </div>
+    <h1>${task.title}</h1>
+    <p>${tasks.description}</p>
+    
+    <div class="details">
+        <span><p class="mainColor" >Due date:</p> <p>${task.duedate}</p> </span>
+        <span><p class="mainColor">Priority:</p> <p>${task.prio}</p></span>
+    </div>
+    
+    <div class="assigned">
+        <p class="mainColor">Assigned To:</p>
+        <div class="assignees">
+            <div class="assignee">
+                <div class="avatar" style="background-color: #2EC7C7;">EM</div>
+                <span>Emmanuel Mauer</span>
+            </div>
+            <div class="assignee">
+                <div class="avatar" style="background-color: #6A44BE;">MB</div>
+                <span>Marcel Bauer</span>
+            </div>
+            <div class="assignee">
+                <div class="avatar" style="background-color: #1A73E8;">AM</div>
+                <span>Anton Mayer</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="subtasks">
+        <p class="mainColor">Subtasks</p>
+        <div class="subtask">
+            <span style="cursor: pointer;" onclick="subTaskDone('ubergabe')"><img src="/assets/img/00_General_elements/checkButton.svg" alt=""></span>
+            <label for="task1">${subTask.title}</label>
+        </div>
+    </div>
+
+    <div class="actions">
+        <button onclick="deleteTask(task)" class="delete"><img src="/assets/img/00_General_elements/delete.svg" alt="">Delete</button>
+        <button onclick="editTask(task)" class="edit"><img src="/assets/img/00_General_elements/edit.svg" alt="">Edit</button>
+    </div>
+</div>

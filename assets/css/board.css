@@ -1,0 +1,361 @@
+body {
+    margin: 0 !important;
+    font-family: 'PT Sans';
+}
+
+.mainscreen {
+    padding-left: 232px;
+    background-color: #F6F7F8;
+    /* width: 100%;
+    height: 100%; */
+    max-height: 1080px;
+    max-width: 1920px;
+}
+
+.boardUpper {
+    display: flex;
+    flex-direction: column;
+}
+
+.headLine {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 65px;
+    padding-right: 65px;
+    padding-top: 80px;
+}
+
+.headlineMobile {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 80px;
+}
+
+.headlineMobile h1 {
+
+    font-weight: 700;
+    font-size: 61px;
+
+}
+
+.headLine h1 {
+    font-weight: 700;
+    font-size: 61px;
+}
+
+.statusBar {
+    padding-left: 65px;
+    padding-right: 65px;
+    padding-bottom: 32px;
+    /* width: 100%; */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: self-start;
+    gap: 20px;
+
+}
+
+.progressBar {
+    width: 100%;
+    min-width: 230px;
+    display: flex;
+    /* align-items: center;
+    justify-content: center; */
+    flex-direction: column;
+}
+
+.progressBar p {
+    color: #42526E;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.progressBar button {
+    border: #2A3647 solid 2px;
+    border-radius: 8px;
+    padding: 3px;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+    width: 24px;
+}
+
+.progressBar button:hover {
+    border: #29ABE2 solid 2px;
+
+}
+
+.progressBar img {
+    height: 8px;
+    width: 8px;
+    border: 2px;
+}
+
+.searchAndAddDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    width: 100%;
+
+}
+
+.searchAndAddDiv input {
+    border: none;
+    font-size: 20px;
+    font-weight: 400;
+    width: 100px;
+}
+
+.searchAndAddDiv span {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px 8px 16px;
+    border: #A8A8A8 solid 1px;
+    border-radius: 10px;
+    width: 312px;
+    background-color: white;
+}
+
+.searchAndAddDiv span:hover {
+    border: #29ABE2 solid 1px;
+
+}
+
+.searchAndAddDiv span div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.vector {
+    height: 31px;
+    border: 1px;
+
+}
+
+.joinBtnprimary {
+    background-color: #2A3647;
+    padding: 12px 16px 12px 16px;
+    border-radius: 10px;
+    border: 1px;
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.joinBtnprimary:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.icons {
+    width: 19px;
+    height: 19px;
+}
+
+.vertical {
+    background-color: #D1D1D1;
+    height: 31px;
+    border: 1px;
+}
+
+.progressBoxes {
+    padding: 20px 15px 20px 15px;
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: flex-start; */
+    flex-direction: column;
+    gap: 16px;
+    /* margin-top: 50px; */
+    height: 600px;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+.asd {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prioIcon {
+    height: 32px;
+    width: 32px;
+}
+
+.showTask {
+    background-color: rgb(0, 0, 0, 0.5);
+    z-index: 1;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+}
+
+.d-none {
+    display: none;
+}
+
+.h1AndButton {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.emptydiv {
+    border-radius: 10px;
+    border: dashed #A8A8A8 1px;
+    background-color: #E7E7E7;
+    width: 100%;
+    box-shadow: 0px 0px 4px 0px #00000029;
+    font-size: 16px;
+    font-weight: 400;
+    color: #A8A8A8;
+    text-align: center;
+    padding: 12px 0px;
+    gap: 10px;
+    width: 250px;
+
+}
+
+.drag-area-highlight{
+    background-color: rgba(0, 0, 0, 0.2);
+
+}
+
+@media(max-width:1450px) {
+
+    .mainscreen {
+        padding-left: 0px !important;
+        overflow-x:  hidden;
+    }
+
+}
+
+@media (max-width:930px) {
+    body {
+        overflow: unset !important;
+        ;
+    }
+    .emptydiv{
+        height: 25px;
+        width: 90%;
+    }
+
+    aside {
+        width: 100%;
+    }
+
+    .statusBar {
+        flex-direction: column;
+        align-items: self-start;
+        padding-left: 15px;
+        padding-right: 15px;
+
+    }
+
+    .progressBar {
+        height: 350px;
+        width: 600px;
+        width: 100%;
+        padding-top: 20px;
+    }
+
+    .progressBar img {
+        height: 15px;
+        width: 15px;
+        padding: 2px;
+    }
+
+
+
+
+    .progressBoxes {
+        flex-direction: row;
+        width: 100%;
+        overflow-x: auto;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        /* height: 300px; */
+    }
+
+    .asd {
+        gap: 20px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .asd p {
+        font-size: 27px;
+    }
+
+    .asd button {
+        height: 30px;
+        width: 30px;
+    }
+}
+
+@media (max-width:820px) {
+    .joinBtnprimary {
+        font-size: 0;
+        /* display: block; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        height: 40px;
+        width: 40px;
+    }
+
+    .headLine {
+        display: block;
+    }
+
+    .searchAndAddDiv span {
+        height: 32px;
+        width: 100%;
+    }
+}
+
+@media (max-width:720px) {
+    .headLine {
+        display: none;
+    }
+
+    .headlineMobile {
+        display: block;
+
+
+
+    }
+
+    .headlineMobile h1 {
+        font-size: 45px;
+    }
+}
+
+@media (max-width:470px) {}
