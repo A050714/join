@@ -1,12 +1,13 @@
 const BASE_URL =
   "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/";
 
-  let tasks = [];
+let tasks = [];
+let contacts = [];
 
-async function onload() {
+async function onloadMain() {
   await loadTasks();
   await loadContacts();
-  contactsDropdown();
+  // contactsDropdown();
 }
 
 function includeHTML() {
@@ -22,13 +23,17 @@ function includeHTML() {
       xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function () {
         if (this.readyState == 4) {
-          if (this.status == 200) { elmnt.innerHTML = this.responseText; }
-          if (this.status == 404) { elmnt.innerHTML = "Page not found."; }
+          if (this.status == 200) {
+            elmnt.innerHTML = this.responseText;
+          }
+          if (this.status == 404) {
+            elmnt.innerHTML = "Page not found.";
+          }
           /* Remove the attribute, and call this function once more: */
           elmnt.removeAttribute("w3-include-html");
           includeHTML();
         }
-      }
+      };
       xhttp.open("GET", file, true);
       xhttp.send();
       /* Exit the function: */
@@ -37,9 +42,8 @@ function includeHTML() {
   }
 }
 
-
 async function loadTasks() {
-  let userResponse = await getData('Tasks');
+  let userResponse = await getData("Tasks");
   if (userResponse != null) {
     let taskArrayIndex = Object.keys(userResponse);
     for (let index = 0; index < taskArrayIndex.length; index++) {
@@ -53,35 +57,30 @@ async function loadTasks() {
 
 async function loadContacts() {
   let userRespone = await getData("Contacts");
-  if(userRespone != null){
-      
-      let UserKeysArray = Object.keys(userRespone);
-      for (let index = 0; index < UserKeysArray.length; index++) {
-          let user = userRespone[UserKeysArray[index]];
-          if (user !== null) {
-              contacts.push({
-                  id: UserKeysArray[index],
-                  user: user
-              });
-          }
+  if (userRespone != null) {
+    let UserKeysArray = Object.keys(userRespone);
+    for (let index = 0; index < UserKeysArray.length; index++) {
+      let user = userRespone[UserKeysArray[index]];
+      if (user !== null) {
+        contacts.push(user);
       }
-      
+    }
   }
 }
 
 async function deleteData(path = "") {
   let response = await fetch(BASE_URL + path + ".json", {
-      method: "DELETE",
+    method: "DELETE",
   });
-  return responseToJson = await response.json();
+  return (responseToJson = await response.json());
 }
 
 async function getData(pfad) {
-  let response = await fetch(BASE_URL +pfad+ ".json");
-  return responseToJson = await response.json();
+  let response = await fetch(BASE_URL + pfad + ".json");
+  return (responseToJson = await response.json());
 }
 
-async function postData(path = "", data = {}) {
+async function postData(path = "", data) {
   let response = await fetch(BASE_URL + path + ".json", {
     method: "PUT",
     header: {
@@ -90,23 +89,4 @@ async function postData(path = "", data = {}) {
     body: JSON.stringify(data),
   });
   return (responseToJson = await response.json());
-}
-
-async function postData(path = "", data) {
-  let response = await fetch(BASE_URL + path + ".json", {
-    method: "PUT",
-    header: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(data)
-  });
-  return responseToJson = await response.json();
-}
-
-
-async function deleteData(path = "") {
-  let response = await fetch(BASE_URL + path + ".json", {
-    method: "DELETE",
-  });
-  return responseToJson = await response.json();
 }

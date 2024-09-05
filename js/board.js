@@ -1,10 +1,12 @@
 let currentTask;
 let currentDraggedElement;
 
-async function onload() {
-  await loadTasks();
-  await loadContacts();
+async function onloadBoard() {
+  // await loadTasks();
+  // await loadContacts();
+  await onloadMain();
   generateBoard();
+
 }
 
 function generateBoard(list = tasks) {
@@ -28,10 +30,8 @@ function generateBoard(list = tasks) {
       tasksForSection.forEach(task => {
         container.innerHTML += generateTodoHTML(task);
         calculateSubTasks(task);
-
       });
     }
-
   });
 }
 

@@ -10,16 +10,18 @@
     <link rel="stylesheet" href="/assets/css/board.css">
     <link rel="stylesheet" href="/assets/css/card.css">
     <link rel="stylesheet" href="/assets/css/taskCard.css">
-    <!-- <link rel="stylesheet" href="/assets/css/addtask.css"> -->
     <link rel="stylesheet" href="/style.css">
     <script src="/js/board.js"></script>
-    <script src="/js/contacts.js"></script>
-
+    <script src="/js/add_task.js"></script>
+    <!-- <script src="/js/contacts.js"></script> -->
+    <script src="/script.js"></script>
+    
 </head>
 
 <body onload="onloadBoard()">
     <header w3-include-html="/assets/html_templates/header.html"></header>
     <aside w3-include-html="/assets/html_templates/sidebar.html"></aside>
+    <main>
     <div class="mainscreen">
         <div class="boardUpper">
             <div class="headLine">
@@ -97,9 +99,12 @@
     <div class="d-none showTask" id="showTask">
     </div>
     </div>
-
+</main>
 </body>
+<script>
+      includeHTML();
 
+</script>
 <script src="/script.js"></script>
 
 </html>

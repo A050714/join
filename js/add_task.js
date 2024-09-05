@@ -13,10 +13,10 @@ let task = {
 let selectedPrio = "";
 let selectedContacts = [];
 
-async function onload() {
+async function onloadAddTask() {
 
-  await loadTasks();
-  await loadContacts();
+  // await loadTasks();
+  // await loadContacts();
   contactsDropdown();
 
 }
