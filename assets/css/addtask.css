@@ -1,0 +1,471 @@
+.Maincontainer {
+    max-width: 1920px;
+    margin: 0 auto;
+    display: flex;
+
+}
+.contactList-a {
+    height: 400px;
+    overflow-y: scroll;
+    background-color: rgb(255, 0, 0);
+}
+body {
+    font-family: 'PT Sans';
+}
+
+.dNone {display:  none;}
+h4 {
+    font-size: 61px;
+
+}
+
+/* .addtask {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 54px;
+} */
+
+select {
+    width: 440px;
+    padding: 12px 16px 12px 16px;
+    margin-top: 5px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+}
+
+p {
+
+    font-size: 24px;
+    margin: 0;
+}
+
+.required {
+    color: #FF8190;
+}
+
+.leftinputfields {
+    display: flex;
+    flex-direction: column;
+    max-width: 440px;
+    height: 376px;
+    gap: 8px;
+}
+
+textarea {
+    width: 100%;
+    height: 120px;
+    padding: 0;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+}
+
+textarea::placeholder {
+    padding: 12px;
+}
+
+input {
+    width: 92%;
+    padding: 12px 21px 12px 12px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+}
+
+.seperator {
+    width: 1px;
+    height: 424px;
+    background-color: #d1d1d1;
+}
+
+.rightinputfields {
+    display: flex;
+    flex-direction: column;
+    width: 440px;
+    height: 416px;
+
+    gap: 8px;
+}
+
+.inputtasks {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+}
+
+.inputField {
+    width: 92%;
+
+    /* border: 1px solid #D1D1D1; */
+    /* border-radius: 10px; */
+    border: none;
+
+}
+
+.taskbtn {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+
+}
+
+.tasksbtn {
+    width: 136px;
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    font-family: 'PT Sans';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background-color: white;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.taskbtn img {
+    width: 20px;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+
+    width: 100%;
+
+
+
+}
+
+.leftfooter p {
+    font-size: 20px;
+}
+
+.rightfooter {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+
+
+.clearbtn {
+    background-color: white;
+    border: 1px solid #2A3647;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    font-family: 'PT Sans';
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.cleartaskbtn {
+    background-color: #2A3647;
+    color: white;
+    padding: 8px;
+    border-radius: 10px;
+    border: none;
+    display: flex;
+    align-items: center;
+    font-family: 'PT Sans';
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.addtasktemplate {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 525px;
+    border: solid 1px rgba(0, 0, 0, 0.16);
+    padding: 24px;
+    border-radius: 30px;
+    gap: 24px;
+}
+
+.bgcolortask {
+    background-color: #0038FF;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-family: 'PT Sans';
+    font-size: 24px;
+    padding: 4px 24px 4px 24px;
+
+}
+
+.taskoverlay {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contacttask {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.contacttask span {
+    font-size: 19px;
+    font-family: 'PT Sans';
+}
+
+.firstletters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+    height: 42px;
+    width: 42px;
+    border-radius: 50%;
+    color: #ffffff;
+    font-family: 'PT Sans';
+    font-size: 12px;
+
+}
+
+.due-date-container {
+    font-family: 'PT Sans';
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.label {
+    color: rgba(42, 54, 71, 1);
+    font-size: 20px;
+}
+
+.date {
+    color: rgba(0, 0, 0, 1);
+    font-size: 20px;
+}
+
+.taskpriority {
+    display: flex;
+    align-items: center;
+    font-family: 'PT Sans';
+    gap: 25px;
+
+}
+
+.taskpriority span {
+    font-size: 20px;
+    color: rgba(42, 54, 71, 1);
+}
+
+.prio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.subtaskcheck {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.seperatoraddtasktemplate {
+    width: 1px;
+    height: 24px;
+    background-color: rgba(209, 209, 209, 1);
+}
+
+.taskboardtemplate {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.taskboardtemplate p {
+    font-size: 16px;
+    color: rgba(42, 54, 71, 1);
+}
+
+.formtask {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 970px;
+}
+
+.addtask {
+    padding-left: 80px;
+}
+
+.taskicon {
+    width: 14px;
+    height: 14px;
+}
+
+.inputAndButtons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#addToSubTaskbtn {
+    cursor: pointer;
+}
+
+.dropbtn {
+    background-color: white;
+    color: black;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 16px 6px 16px;
+    border-radius: 10px;
+    border: 1px solid #d1d1d1;
+    width: 410px;
+    height: 48px;
+    background-color: #FFFFFF;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.dropdown span {
+    color: black;
+    font-size: 20px;
+}
+
+.dropdown-content {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    max-height: 400px;
+    overflow-y: auto;
+
+}
+
+.dropdown-content div {
+    color: black;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding: 16px;
+    margin: 10px;
+
+
+}
+
+.contactcolor3 {
+    max-width: 50px;
+    max-height: 50px;
+    background-color: orange;
+    border-radius: 100% !important;
+    border: solid 2px white;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center;
+    color: white;
+    font-weight: 400;
+    font-size: 16px;
+    padding: 12px;
+}
+
+.dropdown-content div:hover {
+    background-color: #f1f1f1;
+}
+
+.show {
+    display: block;
+}
+
+.custom-checkbox {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    accent-color: white;
+    cursor: pointer;
+}
+
+.dropdown-arrow {
+    font-size: 24px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.dropdown-arrow.open {
+    transform: rotate(180deg);
+}
+
+
+
+.contacthead2 {
+    display: flex !important;
+    gap: 35px !important;
+    align-items: center !important;
+    justify-items: center !important;
+}
+
+
+
+.contactInitials {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: #2A3647;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+.contactlistaddtask {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 56px;
+    width: 430px;
+    
+    padding: 7px;
+    cursor: pointer;
+    border-radius: 10px;
+    
+}
+
+.contactlistaddtask img {
+    height: 24px;
+
+}
+
+.frame1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}

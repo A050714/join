@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOIN</title>
+    <link rel="shortcut icon" type="image/x-icon"
+        href="assets/img/00_General_elements/Logo for Favicon construction.svg">
+    <link rel="stylesheet" href="/assets/css/sidebar.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/addtask.css">
+    <link rel="stylesheet" href="/assets/css/contacts.css">
+    <link rel="stylesheet" href="/style.css">
+    <script src="/js/contacts.js"></script>
+    <script src="/js/add_task.js"></script>
+    <script src="/script.js"></script>
+</head>
+
+<body onload="onload()">
+    <header w3-include-html="/assets/html_templates/header.html"></header>
+    <aside w3-include-html="/assets/html_templates/sidebar.html"></aside>
+    <main>
+
+        <div class="addtask">
+            <h4>Add Task</h4>
+            <form onsubmit="addTask(); return false;" class="formtask">
+                <section class="inputtasks">
+                    <div class="leftinputfields">
+                        <div>
+                            <p>Title<span class="required">*</span></p>
+                            <input id="titleId" type="text" placeholder="Enter a title" required>
+                        </div>
+                        <div>
+                            <p>Description</p>
+                            <textarea id="descId" placeholder="Enter a Description"></textarea>
+                        </div>
+                        <div>
+                            <p>Assigned to</p>
+                            <div class="dropdown" onclick="toggleDropdown()">
+                                <span>Select contacts to assign</span>
+                                <img id="dropdownarrow" class="dropdown-arrow"
+                                    src="/assets/img/03_AddTask/contacts_checked/arrow_drop_down.svg">
+                            </div>
+                            <div id="contactList-a" class="contactList-a dNone"></div>
+                        </div>
+                    </div>
+                    <div class="seperator"></div>
+
+                    <div class="rightinputfields">
+                        <p>Due date<span class="required">*</span></p>
+                        <input required type="date" id="dateId">
+                        <p>Prio</p>
+                        <div class="taskbtn">
+                            <button type="button" onclick="setPrio('urgent')" class="tasksbtn" id="urgent">Urgent <img
+                                    id="svgUrgent" src="/assets/img/03_AddTask/priority/Prio alta.svg" alt=""></button>
+                            <button type="button" onclick="setPrio('medium')" class="tasksbtn" id="medium">Medium <img
+                                    id="svgMedium" src="/assets/img/03_AddTask/priority/Prio media.svg"></button>
+                            <button type="button" onclick="setPrio('low')" class="tasksbtn" id="low">Low <img
+                                    id="svgLow" src="/assets/img/03_AddTask/priority/Prio baja(1).svg" alt=""></button>
+                        </div>
+                        <p>Category<span class="required">*</span></p>
+                        <label style="display: none;" for="categoryId">Category</label>
+                        <select name="category" id="categoryId">
+                            <option value="" disabled selected>Select task category</option>
+                            <option value="technicaltask">Technical Task</option>
+                            <option value="userstory">User Story</option>
+                        </select>
+                        <div class="subtaskContainer">
+                            <p>Subtasks</p>
+                            <div class="inputAndButtons">
+                                <input class="inputField" id="inputField" type="text" placeholder="Add new subtask">
+                                <img onclick="addToSubTasks()" id="addToSubTaskbtn" class="taskicon"
+                                    src="/assets/img/03_AddTask/subtasks_icons/add.svg" alt="">
+                            </div>
+
+                            <div id="subtasks"></div>
+                        </div>
+                    </div>
+                </section>
+                <footer>
+                    <div class="leftfooter">
+                        <div>
+                            <p><span class="required">*</span>This field is required</p>
+                        </div>
+                    </div>
+                    <div class="rightfooter">
+                        <button type="reset" class="clearbtn">Clear <img
+                                src="/assets/img/00_General_elements/close/default.svg" alt=""></button>
+
+                        <button type="submit" class="cleartaskbtn">Create Task <img
+                                src="/assets/img/00_General_elements/checkmark_white.svg" alt=""></button>
+                    </div>
+                </footer>
+            </form>
+
+            <div class="addtasktemplate dNone">
+                <!-- Dieser Bereich scheint eine Vorschau der Aufgabe zu sein -->
+                <div class="taskoverlay">
+                    <div class="overlaytask">
+                        <button class="bgcolortask">User Story</button>
+                    </div>
+                    <div>
+                        <img src="/assets/img/00_General_elements/close/default.svg" alt="">
+                    </div>
+                </div>
+                <h4>Hier steht der Aufgabentext</h4>
+                <p>Hier Steht die Aufgabenbeschreibung</p>
+                <div class="due-date-container">
+                    <span class="label">Due date:</span>
+                    <span class="date">10/05/2023</span>
+                </div>
+                <div class="taskpriority">
+                    <span>Priority:</span>
+                    <div class="prio">
+                        <p>Medium</p>
+                        <img src="/assets/img/04_Board/priority/medium.png" alt="">
+                    </div>
+                </div>
+                <p>Assigned to:</p>
+                <div>
+                    <div class="contacttask">
+                        <div class="firstletters">EM</div>
+                        <span>Emanuel Mauer</span>
+                    </div>
+                </div>
+
+                <div class="subtasks">
+                    <h5 style="color: rgba(42, 54, 71, 1); font-size: 20px; margin-bottom: 16px; font-weight: 400;">
+                        Subtasks</h5>
+                    <div class="subtaskcheck">
+                        <img src="/assets/img/03_AddTask/contacts_checked/Check button.svg" alt="">
+                        <p>Subtask Nr.1</p>
+                    </div>
+                    <div class="subtaskcheck">
+                        <img src="/assets/img/03_AddTask/contacts_checked/Check button(1).svg" alt="">
+                        <p>Subtask Nr.1</p>
+                    </div>
+                </div>
+
+                <div class="taskboardtemplate">
+                    <img src="/assets/img/03_AddTask/subtasks_icons/delete.svg" alt="">
+                    <p>Delete</p>
+                    <div class="seperatoraddtasktemplate"></div>
+                    <img src="/assets/img/03_AddTask/subtasks_icons/edit.svg" alt="">
+                    <p>Edit</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<script>includeHTML();
+</script>
+
+</html>

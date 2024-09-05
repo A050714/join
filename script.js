@@ -1,8 +1,13 @@
-const BASE_URL = "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/";
-tasks = [];
-let contacts = [];
+const BASE_URL =
+  "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/";
 
-includeHTML();
+  let tasks = [];
+
+async function onload() {
+  await loadTasks();
+  await loadContacts();
+  contactsDropdown();
+}
 
 function includeHTML() {
   var z, i, elmnt, file, xhttp;
@@ -76,6 +81,16 @@ async function getData(pfad) {
   return responseToJson = await response.json();
 }
 
+async function postData(path = "", data = {}) {
+  let response = await fetch(BASE_URL + path + ".json", {
+    method: "PUT",
+    header: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  return (responseToJson = await response.json());
+}
 
 async function postData(path = "", data) {
   let response = await fetch(BASE_URL + path + ".json", {
