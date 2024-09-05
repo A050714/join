@@ -200,9 +200,17 @@ async function editContact() {
     let name = document.getElementById('editName').value;
     let mail = document.getElementById('editMail').value;
     let phone = document.getElementById('editPhone').value;
-    let firebaseID = contacts.find(x => x.user && x.user.name === contactName).id;
-    await postData(`Contacts/${firebaseID}`, { "name": name, "mail": mail, "phone": phone })
-    location.reload();
+    let contact = contacts.find(x => x.user && x.user.name === contactName);
+    let firebaseID = contact.id;
+      let updatedContact = {
+            name: name,   
+            mail: mail,   
+            phone: phone, 
+            id: contact.user.id,               
+            color: contact.user.color        
+        };
+        await postData(`Contacts/${firebaseID}`, updatedContact);
+        location.reload();
 }
 
 

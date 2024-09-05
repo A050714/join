@@ -19,13 +19,36 @@ main {
 
 }
 
+@media (max-width: 990px) {
 
-@media (max-width: 900px) {
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+}
+
+@media (max-width: 990px) {
+
+    .mobile_headerNav {
+        height: 204px;
+    }
+
+    .headerNavHelp {
+        display: block !important; 
+    }
+
     header {
         height: 70px;
         left: 0;
         padding: 0px 12px;
     }
+
+    .mobile_headerNav { 
+        top: 51px;
+    }
+
 
     header p {
         display: none;

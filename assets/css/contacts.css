@@ -19,6 +19,10 @@ body {
     /* height: 100%; */
 }
 
+.mainscreen {
+    height: 100vh;
+}
+
 h1 {
     font-size: 61px;
     font-family: 'PT Sans';
@@ -59,10 +63,9 @@ h1 {
 .openContact {
     display: flex;
     align-items: center;
-    justify-content: center;
     text-align: center;
     gap: 20px;
-    width: 569px;
+    width: 100%;
     height: 73px;
 }
 
@@ -118,6 +121,7 @@ h1 {
 
 .contactScreen {
     display: flex;
+    height: 100%;
 }
 
 
@@ -285,6 +289,22 @@ h3 {
     align-items: center;
     z-index: 1000;
 }
+
+.header_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.0);
+    /* Dark background with opacity */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+
 
 .show {
     display: flex;
@@ -535,11 +555,10 @@ h3 {
 .addNewContact {
     display: flex;
     align-items: center;
-    justify-content: center;
     justify-items: center;
     flex-direction: column;
     min-width: 431px;
-    height: 90vh;
+    height: 100%;
     /* max-width: 456px; */
     /* box-shadow: 4px 0 6px 0 rgba(0, 0, 0, 0.1); */
 }
@@ -555,6 +574,7 @@ h3 {
     padding: 0px 20px;
     width: calc(100% - 100px);
     overflow-y: scroll;
+    height: 100%;
 }
 
 .letterDiv {
@@ -627,3 +647,78 @@ h3 {
         font-size: 14px;
     }
 }
+
+@media (max-width: 1160px) {
+
+    h1 {
+        font-size: 32px;
+    }
+
+    .openContact p {
+        font-size: 16px;
+    }
+
+    .contactScreen {
+        flex-direction: column-reverse;
+        height: 100%;
+    }
+
+    .rightSide {
+        padding: 0px 0px 20px 0px;
+        justify-content: center;
+        align-items: center;
+        height: 40%;
+        width: 100%;
+    }
+
+    .showContact {
+        margin: 0;
+    }
+
+    .addNewContact {
+        height: 60%;
+        margin: 0;
+    }
+
+    .kontakdaten {
+        flex-direction: row;
+    }
+
+    .contactinformation {
+        margin: 20px 0px;
+    }
+
+    .kontakdaten p {
+        font-size: 16px;
+    }
+
+    .kontakdaten a {
+        text-decoration: none;
+        color: #007CEE;
+        ;
+    }
+
+    .contactcolor {
+        width: 100px;
+        height: 100px;
+    }
+
+    .contacthead {
+        justify-content: flex-start;
+        gap: 60px;
+    }
+
+    .openContact {
+        justify-content: center;
+        padding-bottom: 20px;
+    }
+
+    .addcontactpopup {
+        width: 100%;
+    }
+
+    .addNewContact {
+        /* max-height: 100vh; */
+    }
+
+   }

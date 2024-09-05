@@ -8,15 +8,16 @@
     <link rel="stylesheet" href="/assets/css/sidebar.css">
     <link rel="stylesheet" href="/assets/css/header.css">
     <link rel="stylesheet" href="/assets/css/contacts.css">
+    
     <link rel="stylesheet" href="/style.css">
     <script src="/js/sidebar.js"></script>
-    <script src=""></script>
+    <script src="/js/header.js"></script>
 </head>
 
 <body onload="renderAllContacts()">
 
     <header w3-include-html="/assets/html_templates/header.html"></header>
-    <aside w3-include-html="/assets/html_templates/sidebar.html"></aside>
+    
     <main>
         <div class="mainscreen">
             <div class="contactScreen">
@@ -57,13 +58,18 @@
                         </div>
                         <div>
                             <div class="kontakdaten">
-                                <p>Email</p>
+                                <div>
+                                   <p>Email</p>
 
-                                <a href="#" id="contactMail"></a>
-
+                                <a href="#" id="contactMail"></a> 
+                                </div>
+                                <div>
                                 <p>Phone</p>
 
-                                <span id="contactPhone"></span>
+                                <span id="contactPhone"></span>    
+                                </div>
+
+                                
                             </div>
                         </div>
 
@@ -145,6 +151,8 @@
             </div>
         </div>
     </main>
+    <aside w3-include-html="/assets/html_templates/sidebar.html"></aside>
+    
 </body>
 <script src="/js/contacts.js"></script>
 
