@@ -447,12 +447,16 @@
         color:#a0a0a0; 
         z-index: 1000;
         text-decoration: none;
-        padding: 10px;
     }
     .notice{
-        position: absolute;
-        bottom: 6rem;
-        left: 43vw;
+        position: fixed;
+        bottom: 10%;
+        left: 50%;
+        transform: translateX(-50%); /* Center horizontally */
+        display: flex;
+        justify-content: center; 
+        gap: 20px;
+        z-index: 1000;
     }
 
    /* SMALL MOBILE_responsive design for small devices like smartphone */
@@ -579,14 +583,19 @@
             z-index: 1000;
             text-decoration: none;
         }
+
         .notice{
+            bottom: 1%;
+            animation: fade-in 1.2s ease forwards;
+        }
+        /* .notice{
             position: absolute; 
             bottom: 2em;
             left: 50%;
             transform: translateX(-25%);
             width: 100%;
-            animation: fade-in 1.2s ease forwards;
-        }
+           
+        } */
 
         .join_logo img{
             scale: 0.6;
@@ -630,7 +639,7 @@
     }
     form .buttons {
         flex-direction: column;
-        padding: 0;
+        padding: 5vw 0 0 0;
     }
     form .buttons button {
         margin: 0.2em 
@@ -745,12 +754,15 @@
         text-decoration: none;
     }
     .notice{
+        bottom: 2%;
+    }
+    /* .notice{
         position: absolute; 
         bottom: 2em;
         left: 50%;
         transform: translateX(-25%);
         width: 100%;
-    }
+    } */
 
     .join_logo img{
         scale: 0.6;
@@ -769,7 +781,7 @@
 
 @media (max-height: 800px) and (min-width: 481px) {
     body {
-        line-height: 1;
+        line-height: 1.5;
         overflow: hidden !important;
     }
     form .buttons button {
@@ -777,7 +789,7 @@
      
     }
     form .buttons{
-       scale: 0.7;
+       scale: 0.8;
     }
     
     .login-container {
@@ -796,8 +808,13 @@
     .input-group {
         padding-bottom: 1em;
         display: flex;
-        max-width: 400px;
         width: 100%;
+    }
+
+    .input-group input {
+        width: 80%;
+        margin-left: 1em;
+        margin-right: ;
     }
     .remember-me{
         scale: 0.8;
@@ -820,12 +837,7 @@
         justify-content: center;
     }
     .notice {
-        position: absolute;
-        bottom: 10%;
-        left: 50%;
-        transform: translateX(-12%);
-        width: 100%;
-      
+        bottom: 2%;
   }
 }
 

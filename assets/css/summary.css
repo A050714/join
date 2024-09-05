@@ -536,7 +536,7 @@
 
       }
 
-      @media (min-width: 901px) and (max-height: 601px) {
+      @media (min-width: 901px) and (max-height: 696px) {
         .metric-status {
             padding: 0em;
         }
