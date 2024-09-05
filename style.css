@@ -16,7 +16,10 @@ body {
 main {
     margin-left: 232px;
     margin-top: 95px;
-
+}
+/* for helpme privacy and legal notice */
+.mainscreen_phl {
+    padding: 5em 6em 0 6em;
 }
 
 

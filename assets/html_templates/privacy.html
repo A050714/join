@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy</title>
+    <link rel="stylesheet" href="./../css/p-h-l.css">
+    <link rel="stylesheet" href="./../css/sidebar.css">
+    <link rel="stylesheet" href="./../css/header.css">
+    <link rel="stylesheet" href="/style.css">
+    <script src="/js/contacts.js"></script>
+    <script src="/js/summary.js"></script>
+    <script src="./../../script.js"></script>
+
+    <script>
+        function goBack(){
+            window.history.back(); 
+        }
+    </script>
+</head>
+<body onload="onloadSummary(), includeHTML()">
+    <div w3-include-html="/assets/html_templates/header.html"></div>
+    <div w3-include-html="/assets/html_templates/sidebar.html"></div>
+    <main class="mainscreen_phl">
+        <div class="header_privacy">
+            <h1 class="title_privacy">Privacy Policy</h1>
+            <a class="back_button" href="#" onclick="goBack()">
+                <img src="./../img/00_General_elements/blue_arrow_left.svg" alt="">
+            </a>
+        </div>
+
+        <div class="subtitle">
+            <h2>Subtitle</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate veritatis voluptatibus at et veniam? Asperiores fuga aspernatur fugiat minus optio? Soluta earum in molestias dolore possimus ut laboriosam quisquam nihil!</p>
+        </div>
+
+        <div class="subtitle">
+            <h2>Subtitle</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate veritatis voluptatibus at et veniam? Asperiores fuga aspernatur fugiat minus optio? Soluta earum in molestias dolore possimus ut laboriosam quisquam nihil!</p>
+        </div>
+        
+    </main>
+
+
+</body>
