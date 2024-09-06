@@ -9,16 +9,13 @@ let task = {
   status: "todo",
 };
 
-
 let selectedPrio = "";
 let selectedContacts = [];
 
 async function onload() {
-
   await loadTasks();
   await loadContacts();
   contactsDropdown();
-
 }
 
 async function getData(pfad) {
@@ -57,63 +54,66 @@ async function taskContacts() {
 
 function contactsDropdown() {
   let content = document.getElementById("contactList-a");
-  content.innerHTML = "";
+  content.innerHTML = "<ul>";
+
   for (let index = 0; index < contacts.length; index++) {
     content.innerHTML += generateContacts(contacts[index]);
   }
+
+  content.innerHTML += "</ul>";
+
+  // Initialen für jeden Kontakt anzeigen
+  contacts.forEach((contact) => {
+    showInitials(contact);
+  });
 }
 
 function generateContacts(contact) {
-  // showInitials(contact,`contactcolor3${contact.id}`);
   return /*html*/ `
-              <div onclick='addTo(${contact.id})'  id="contact-${contact.id}" class="contactlistaddtask ">
-                  <div class="frame1">
-                      <div class="contactcolor3">
-                         <p id='contactcolor3${contact.id}'></p> 
-                      </div>
-                      <p id="contactname">${contact.name}</p>
-                  </div>
-                  <img  id="checkboxtask" src="/assets/img/03_AddTask/contacts_checked/Check button.svg" alt="">
-              </div>
+    <li id="contact-${contact.id}">
+      <div onclick='addTo(${contact.id})' class="contactlistaddtask">
+        <div class="frame1">
+          <div class="contactcolor3" id="contactColor-${contact.id}">
+            <!-- Initialen -->
+          </div>
+          <p id="contactname-${contact.id}">${contact.name}</p>
+        </div>
+        <img id="checkboxtask-${contact.id}" src="/assets/img/03_AddTask/contacts_checked/Check button.svg" alt="Checkbox">
+      </div>
+    </li>
   `;
 }
 
 function addTo(id) {
-  let contact = contacts.find(c => c.id === id);
+  let contact = contacts.find((c) => c.id === id);
 
   let contactDiv = document.getElementById(`contact-${contact.id}`);
-  let contactName = document.getElementById("contactname");
-  let checkbox = document.getElementById("checkboxtask");
-  contactDiv.classList.add("selected");
-  selectedContacts.push(contact);
+  let checkbox = document.getElementById(`checkboxtask-${contact.id}`);
+  let contactname = document.getElementById(`contactname-${contact.id}`);
+  contactDiv.classList.toggle("selected");
 
   if (contactDiv.classList.contains("selected")) {
     contactDiv.style.backgroundColor = "#2A3647";
-    contactName.style.color = "white";
     checkbox.src = "/assets/img/03_AddTask/contacts_checked/checkwhite.svg";
+    contactname.style.color = "white";
+    selectedContacts.push(contact);
   } else {
     contactDiv.style.backgroundColor = "";
-    contactName.style.color = "";
     checkbox.src = "/assets/img/03_AddTask/contacts_checked/Check button.svg";
+    contactname.style.color = "";
+    selectedContacts = selectedContacts.filter((c) => c.id !== contact.id);
   }
 }
 
 function toggleDropdown() {
   const togglearrow = document.getElementById("dropdownarrow");
-  // togglearrow.classList.toggle("open");
-  document.getElementById("contactList-a").classList.toggle("dNone");
+  togglearrow.classList.toggle("open");
+  const contactList = document.getElementById("contactList-a");
+  contactList.classList.toggle("dNone");
 }
 
 function getSelectedContacts() {
-  const selectedContacts = [];
-
-  const checkboxes = document.querySelectorAll(".custom-checkbox:checked");
-
-  checkboxes.forEach((checkbox) => {
-    selectedContacts.push(checkbox.value);
-  });
-
-  return selectedContacts;
+  return selectedContacts.map((contact) => contact.id);
 }
 
 function setPrio(id) {
@@ -201,20 +201,27 @@ async function addTask() {
   task.description = document.getElementById("descId").value;
   task.dueDate = document.getElementById("dateId").value;
   task.category = document.getElementById("categoryId").value;
-  let selectedContacts = getSelectedContacts();
-  task.assignedTo = selectedContacts;
-  task.prio = selectedPrio;
+  task.assignedTo = selectedContacts.map((c) => c.id);
   task.id = tasks.length;
 
-  // mit dieser funktion wird das array mit zu firebase gesendet
   if (task.subTasks.length === 0) {
-    task.subTasks.push("empty"); // es wird ein leerer wert hinzugefügt um das mitsenden zu erzwingen!!
+    task.subTasks.push("empty");
   }
 
   tasks.push(task);
-  await postData(`Tasks/${tasks.length - 1}`, task);
+  await putTaskToBoard(task, task.id);
+
   tasks = [];
-  task = [];
+  task = {
+    title: "",
+    description: "",
+    assignedTo: [],
+    dueDate: "",
+    prio: "",
+    category: "",
+    subTasks: [],
+    status: "todo",
+  }; // Einzelne Aufgabe zurücksetzen
   await loadTasks();
   clearForm();
 }
@@ -223,24 +230,27 @@ function clearForm() {
   document.getElementById("titleId").value = "";
   document.getElementById("descId").value = "";
   document.getElementById("dateId").value = "";
-  document
-    .querySelectorAll('input[name="assignee"]')
-    .forEach((cb) => (cb.checked = false));
+  selectedContacts = [];
+  task.subTasks = [];
   document.getElementById("categoryId").value = "";
   document.getElementById("subtasks").innerHTML = "";
   selectedPrio = "";
   resetPrioStyles();
 }
 
-// function showInitials(contact, id = "contactColor") {
-//   const nameParts = contact.name.split(" ");
-//   let initials;
-//   if (nameParts.length == 1) {
-//     initials = nameParts[0][0];
-//   } else {
-//     initials = nameParts[0][0] + nameParts[1][0];
-//   }
-//   let circleInitials = document.getElementById(id);
-//   circleInitials.innerHTML = `<p>${initials}</p>`;
-//   circleInitials.style = `background-color: ${colors[contact.color]}`;
-// }
+function showInitials(contact) {
+  const nameParts = contact.name.trim().split(" ");
+  let initials;
+
+  if (nameParts.length === 1) {
+    initials = nameParts[0][0]; // Nur einen Buchstaben, wenn der Name nur ein Wort ist
+  } else {
+    initials = nameParts[0][0] + nameParts[1][0]; // Zwei Buchstaben (z.B. "MT" für Mike Tyson)
+  }
+
+  let circleInitials = document.getElementById(`contactColor-${contact.id}`);
+  circleInitials.innerHTML = `<p>${initials}</p>`;
+
+  // Optional: Setze die Hintergrundfarbe des Kreises basierend auf einer Farbzuordnung (z.B. Farben-Array)
+  circleInitials.style.backgroundColor = colors[contact.color];
+}

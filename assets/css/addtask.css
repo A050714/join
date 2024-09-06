@@ -4,16 +4,35 @@
     display: flex;
 
 }
+
 .contactList-a {
-    height: 400px;
+    height: 300px;
     overflow-y: scroll;
-    background-color: rgb(255, 0, 0);
+    background-color: white;
+    z-index: 2;
+    position: relative;
 }
+
+ul, li {
+    list-style-type: none; /* Entfernt die Aufzählungszeichen */
+    padding-left: 0; /* Optional: Entfernt den Einzug */
+  }
+
+  select {
+    list-style-type: none; /* Stellt sicher, dass keine Aufzählungszeichen in den Dropdown-Optionen angezeigt werden */
+    appearance: none; /* Deaktiviert die Standard-Darstellung des Browsers für das Dropdown */
+    -webkit-appearance: none; /* Für Webkit-basierte Browser wie Chrome und Safari */
+    
+  }
+
 body {
     font-family: 'PT Sans';
 }
 
-.dNone {display:  none;}
+.dNone {
+    display: none;
+}
+
 h4 {
     font-size: 61px;
 
@@ -450,12 +469,12 @@ footer {
     justify-content: space-between;
     align-items: center;
     height: 56px;
-    width: 430px;
-    
+    width: 400px;
+
     padding: 7px;
     cursor: pointer;
     border-radius: 10px;
-    
+
 }
 
 .contactlistaddtask img {
@@ -463,7 +482,7 @@ footer {
 
 }
 
-.frame1{
+.frame1 {
     display: flex;
     justify-content: center;
     align-items: center;
