@@ -21,14 +21,14 @@
     <main>
         <div class="mainscreen">
             <div class="contactScreen">
-                <div class="addNewContact">
+                <div class="addNewContact" id="addNewContact">
 
                     <div id="contactList">
 
 
                     </div>
                 </div>
-                <div class="rightSide">
+                <div class="rightSide" id="rightSide">
 
                     <div class="openContact">
                         <h1>Contacts</h1>
@@ -42,12 +42,19 @@
                             <div>
                                 <h2 id="contactName"></h2>
                                 <div class="editdelete">
-                                    <button onclick="toggleEditPopup(),fillContactValues()" class="contactbuttons"><img
-                                            class="icons" src="/assets\img\03_AddTask\subtasks_icons\edit.svg"
-                                            alt="">Edit</button>
-                                    <button onclick="deleteContact()" class="contactbuttons"><img class="icons"
-                                            src="/assets\img\03_AddTask\subtasks_icons\delete.svg" alt="">
-                                        Delete</button>
+                                    <button onclick="toggleEditPopup(),fillContactValues()" class="contactbuttons">
+                                        <div class="editIcon">
+                                            <div class="icons editimg"></div> 
+                                            <p>Edit</p>
+                                        </div>
+                                        
+                                    </button>
+                                    <button onclick="deleteContact()" class="contactbuttons">
+                                        <div class="deleteIcon">
+                                            <div class="icons deleteimg"></div> 
+                                            <p>Delete</p>
+                                        </div>
+                                    </button>
                                 </div>
                             </div>
 

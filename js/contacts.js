@@ -147,6 +147,7 @@ async function deleteContact() {
 let theLastIndex;
 //SHOW CONTACT//---------------------------------------------------------------------------------------------
 function showContact(index) {
+    checkScreenWidth()
     if (theLastIndex != null) {
         document.getElementById(theLastIndex).classList.remove('chosenContact');
         document.getElementById(theLastIndex).classList.add('singleContacts');
@@ -167,6 +168,19 @@ function showContact(index) {
     document.getElementById(`Id_${index}`).classList.remove('singleContacts');
     theLastIndex = `Id_${index}`;
 }
+
+function checkScreenWidth() {
+    const screenWidth = window.innerWidth;
+    const contactDetailsDiv = document.getElementById('rightSide');
+    const contactList = document.getElementById('addNewContact');
+    if (screenWidth <= 990) {
+      contactDetailsDiv.classList.add('showMobileContact');
+      contactList.classList.add('dNone')
+    } else {
+      contactDetailsDiv.classList.remove('showMobileContact');
+      contactList.classList.remove('dNone')
+    }
+  }
 
 function showInitials(contact, id = "contactColor") {
     const nameParts = contact.user.name.split(' ');

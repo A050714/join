@@ -40,18 +40,20 @@ header p {
     background-color: #2A3647;
     z-index: 1000; /* Höherer Z-Index, damit das Menü über anderen Inhalten liegt */
     padding: 16px;
-    border-radius: 12px;
+    border-radius: 20px;
     border-top-right-radius: 0;
     margin: 6px;
-    width: 150px;
-    height: 170px;
-    justify-content: space-between;
+    width: 110px;
+    max-height: 140px;
+    height: 130px;
+    justify-content: space-evenly;
    }
 
    .mobile_headerNav a {
     text-decoration: none;
     color: white;
-    padding: 8px 16px;
+    padding: 8px 8px;
+    font-size: 16px;
    }
 
    .mobile_headerNav a:hover {
