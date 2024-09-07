@@ -9,14 +9,14 @@
     <link rel="stylesheet" href="./../css/sidebar.css">
     <link rel="stylesheet" href="./../css/header.css">
     <link rel="stylesheet" href="/style.css">
-    <script src="/js/contacts.js"></script>
+    <script src="/script.js"></script>
     <script src="/js/summary.js"></script>
-    <script src="./../../script.js"></script>
+    <script src="/js/header.js"></script>
     <script src="/js/sidebar.js"></script>
-
+    <script src="/js/contacts.js"></script>
 </head>
 
-<body onload="onloadSummary(), includeHTML()">
+<body onload="onloadSummary()">
     <header w3-include-html="/assets/html_templates/header.html"></header>
     <aside w3-include-html="/assets/html_templates/sidebar.html"></aside>
     <main>
@@ -108,6 +108,8 @@
 </body>
 
 
-
+<script>
+    includeHTML();
+</script>
 
 </html>

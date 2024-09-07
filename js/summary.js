@@ -1,12 +1,13 @@
-let tasks = [];
-let users = [];
 let nearestDeadline;
+let loggedUser;
+
 
 async function onloadSummary() {
-    await loadTasks();
-    await greetUser();
+    // await loadTasks();
+    await onloadMain();
     loadCurrentStates();
-    loadNearestDeadline()
+    loadNearestDeadline();
+    greetUser();
 }
 
 async function loadTasks() {
@@ -35,16 +36,8 @@ function loadCurrentStates() {
 }
 
 async function greetUser() {
-    let userRespone = await getData("Users");
-    let userKeysArray = Object.keys(userRespone);
-    for (let index = 0; index < userKeysArray.length; index++) {
-        let user = userRespone[userKeysArray[index]];
-        if (user !== null) {
-            users.push(user);
-        }
-    }
-    let userName = users[0].name;
-    document.getElementById('userName').innerHTML = userName;
+        loggedUser = users.filter(user => user['logged']==true);
+        document.getElementById('userName').innerHTML = loggedUser[0].name;
 }
 
 function loadNearestDeadline() {

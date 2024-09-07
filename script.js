@@ -3,10 +3,12 @@ const BASE_URL =
 
 let tasks = [];
 let contacts = [];
+let users = [];
 includeHTML();
 async function onloadMain() {
   await loadTasks();
   await loadContacts();
+  await loadUsers();
 }
 
 function includeHTML() {
@@ -37,6 +39,18 @@ function includeHTML() {
       xhttp.send();
       /* Exit the function: */
       return;
+    }
+  }
+}
+async function loadUsers() {
+  let userRespone = await getData("Users");
+  if (userRespone != null) {
+    let userKeysArray = Object.keys(userRespone);
+    for (let index = 0; index < userKeysArray.length; index++) {
+      let user = userRespone[userKeysArray[index]];
+      if (user !== null) {
+        users.push(user);
+      }
     }
   }
 }
@@ -88,4 +102,24 @@ async function postData(path = "", data) {
     body: JSON.stringify(data),
   });
   return (responseToJson = await response.json());
+}
+
+async function saveUser(data,path) {
+  try {
+
+    let response = await fetch(BASE_URL +"Users/"+ path + ".json", {
+      method: "PUT",
+      header: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+  } catch (error) {
+    console.error("Error fetching users:", error.message);
+
+}
+
+  users=[];
+  await loadUsers();
+
 }
