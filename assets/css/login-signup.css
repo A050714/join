@@ -639,7 +639,7 @@
     }
     form .buttons {
         flex-direction: column;
-        padding: 5vw 0 0 0;
+        padding: 0; 
     }
     form .buttons button {
         margin: 0.2em 
@@ -682,7 +682,6 @@
    @media (min-width: 481px) and (max-width: 980px){
     body {
         font-size: 1em;
-        line-height: 1.5;
     }
 
     .login-container {

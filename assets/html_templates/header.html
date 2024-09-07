@@ -6,5 +6,11 @@
         <a href="./helpme.html">
             <img src="/assets/img/00_General_elements/help.svg" alt="help icon">
         </a>
-        <div class="user-icon">SM</div>
+        <div class="user-icon" onclick="toggleMenu()">SM</div>
+        <div id="user-menu" class="user-menu hidden">
+            <a href="./legal_notice.html">Legal Notice</a>
+            <a href="./privacy.html">Privacy Policy</a>
+            <a href="#" onclick="logout()">Log out</a>
+        </div>
     </header>
+    

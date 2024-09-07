@@ -29,8 +29,11 @@ header p {
 
 
 .user-info {
+    position:relative; 
+    display: inline-block;
     display: flex;
     align-items: center;
+    padding-right: 80px;
 
 }
 
@@ -45,4 +48,38 @@ header p {
     border: 2px solid black;
     color:#3498db ;
     font-weight: 700;
+    
+}
+
+.user-icon:hover{   
+    cursor: pointer;
+
+}
+
+.user-menu{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color:#2A3647;
+    border-radius: 8px;
+    padding: 10px;
+    width: 150px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.user-menu a {
+    color: #CDCDCD;
+    padding: 5px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    border-radius: 5px;
+}
+.user-menu a:hover {
+    background-color: rgba(52, 152, 219, 0.1);;
+}
+.hidden {
+    display: none;
 }
