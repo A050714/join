@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./../css/login-signup.css">
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <script src="/js/sign_up.js"></script>
-
+    <script src="/js/sidebar.js"></script>
 </head>
 <body>
     <div class="loginAndSignup" >
@@ -23,7 +23,7 @@
 
         <div class="login-container" id="login-popup">
             <h1 class="login_title">Log in</h1>
-            <form id="loginForm" onsubmit="login(event)">
+            <form id="loginForm">
                 <div class="input-group">
                     <input type="email" id="email" placeholder="Email " required>
                     <span class="icon"><img src="/assets/img/01_Login_SignUp_ForgotPW/mail.png" alt="mail"></i>
@@ -37,7 +37,7 @@
                     <label for="rememberMe">Remember me</label>
                 </div>
                 <div class="buttons">
-                    <button type="submit" >Log in</button>
+                    <button type="submit" onclick="login()">Log in</button>
                     <button type="button" class="guestLogin" onclick="guestLogin()">Guest Log in</button>
                 </div>
 

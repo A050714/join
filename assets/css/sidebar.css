@@ -74,6 +74,22 @@ aside {
     gap: 8px;
 }
 
+.menuIcons p {
+    margin: 0;
+}
+
+.sidelinks a {
+text-decoration: none;
+}
+
+.menuIcons p {
+    margin: 0;
+}
+
+.sidelinks a {
+text-decoration: none;
+}
+
 @media (max-width: 1450px) {
     aside {
         width: 100vw;

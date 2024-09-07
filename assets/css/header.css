@@ -28,6 +28,39 @@ header p {
     display: none;
 }
 
+.header_overlay {
+    height: 100vh;
+    width: 100vw;
+}
+
+.mobile_headerNav {
+    position: absolute; /* Absolute Positionierung */
+    display: flex;
+    flex-direction: column;
+    top: 90px; /* Direkt unter dem Header */
+    right: 0; /* Am linken Rand des Headers */
+    background-color: #2A3647;
+    z-index: 1000; /* Höherer Z-Index, damit das Menü über anderen Inhalten liegt */
+    padding: 16px;
+    border-radius: 20px;
+    border-top-right-radius: 0;
+    margin: 6px;
+    width: 110px;
+    max-height: 140px;
+    height: 130px;
+    justify-content: space-evenly;
+   }
+
+   .mobile_headerNav a {
+    text-decoration: none;
+    color: white;
+    padding: 8px 8px;
+    font-size: 16px;
+   }
+
+   .mobile_headerNav a:hover {
+background-color: #2A3D59;
+   }
 
 @media (max-width: 1450px) {
     header {
