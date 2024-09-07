@@ -1,6 +1,6 @@
 
-let contacts = [];
-const BASE_URL = "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/";
+// let contacts = [];
+// const BASE_URL = "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/";
 includeHTML();
 let colors = ['#FF7A00', '#FF5EB3', '#6E52FF',
     '#9327FF', '#00BEE8', '#1FD7C1',
@@ -10,23 +10,23 @@ let colors = ['#FF7A00', '#FF5EB3', '#6E52FF',
 
 //RENDER CONTACTS//------------------------------------------------------
 //loads contacts and fills contacts-array
-async function loadContacts() {
-    let userRespone = await getData("Contacts");
-    if(userRespone != null){
+// async function loadContacts() {
+//     let userRespone = await getData("Contacts");
+//     if(userRespone != null){
 
-        let UserKeysArray = Object.keys(userRespone);
-        for (let index = 0; index < UserKeysArray.length; index++) {
-            let user = userRespone[UserKeysArray[index]];
-            if (user !== null) {
-                contacts.push({
-                    id: UserKeysArray[index],
-                    user: user
-                });
-            }
-        }
+//         let UserKeysArray = Object.keys(userRespone);
+//         for (let index = 0; index < UserKeysArray.length; index++) {
+//             let user = userRespone[UserKeysArray[index]];
+//             if (user !== null) {
+//                 contacts.push({
+//                     id: UserKeysArray[index],
+//                     user: user
+//                 });
+//             }
+//         }
         
-    }
-}
+//     }
+// }
 
 
 //sorts contacts by name
@@ -45,7 +45,8 @@ function sortContacts() {
 }
 
 async function renderAllContacts() {
-    await loadContacts();
+    // await loadContacts();
+    await onloadMain();
     sortContacts();
 
     let content = document.getElementById('contactList');
@@ -60,8 +61,8 @@ async function renderAllContacts() {
     firtsLetter = '';
     for (let index = 0; index < contacts.length; index++) {
         let contact = contacts[index];
-        if (firtsLetter != contacts[index].user.name[0]) {
-            firtsLetter = contact.user.name[0];
+        if (firtsLetter != contacts[index].name[0]) { 
+            firtsLetter = contact.name[0];
             content.innerHTML += `
                     <div class="letterDiv"><h2>${firtsLetter}</h2></div>
             `
@@ -73,8 +74,8 @@ async function renderAllContacts() {
                 <div class="contacthead2">
                             <div class="contactcolor2" id="contactColor${contact.id}"></div>
                             <div class="nameEmailDiv">
-                                <p id="contactName2">${contact.user.name}</p>
-                                <a href="mailto:${contact.user.mail}">${contact.user.mail}</a>
+                                <p id="contactName2">${contact.name}</p>
+                                <a href="mailto:${contact.mail}">${contact.mail}</a>
                             </div>
                         </div>
             
@@ -120,7 +121,7 @@ async function createContact() {
     let UserKeysArray = Object.keys(userrespone);
     let userIndex = UserKeysArray.length;
     let contactColorIndex = userIndex % colors.length;
-    await postData(`Contacts/${userIndex}`, { "name": name, "mail": mail, "phone": phone, "color": contactColorIndex })
+    await postData(`Contacts/${userIndex}`, { "name": name, "mail": mail, "phone": phone, "color": contactColorIndex, "id":userIndex })
     document.getElementById('newName').value = "";
     document.getElementById('newMail').value = "";
     document.getElementById('newPhone').value = "";
@@ -154,14 +155,14 @@ function showContact(index) {
 
     }
 
-    document.getElementById('showContact').classList.remove('dNone')
+    document.getElementById('showContact').classList.remove('d-none')
     let contact = contacts[index];
     let contactCardName = document.getElementById('contactName');
     let contactCardMail = document.getElementById('contactMail');
     let contactCardPhone = document.getElementById('contactPhone');
-    contactCardName.innerHTML = `${contact.user.name}`;
-    contactCardMail.innerHTML = `${contact.user.mail}`;
-    contactCardPhone.innerHTML = `${contact.user.phone}`;
+    contactCardName.innerHTML = `${contact.name}`;
+    contactCardMail.innerHTML = `${contact.mail}`;
+    contactCardPhone.innerHTML = `${contact.phone}`;
     showInitials(contact);
 
     document.getElementById(`Id_${index}`).classList.add('chosenContact');
@@ -183,7 +184,7 @@ function checkScreenWidth() {
   }
 
 function showInitials(contact, id = "contactColor") {
-    const nameParts = contact.user.name.split(' ');
+    const nameParts = contact.name.split(' ');
     let initials;
     if (nameParts.length == 1) {
         initials = nameParts[0][0];
@@ -194,7 +195,7 @@ function showInitials(contact, id = "contactColor") {
     }
     let circleInitials = document.getElementById(id);
     circleInitials.innerHTML = `<p>${initials}</p>`;
-    circleInitials.style = `background-color: ${colors[contact.user.color]}`;
+    circleInitials.style = `background-color: ${colors[contact.color]}`;
 
 }
 
@@ -214,45 +215,45 @@ async function editContact() {
     let name = document.getElementById('editName').value;
     let mail = document.getElementById('editMail').value;
     let phone = document.getElementById('editPhone').value;
-    let contact = contacts.find(x => x.user && x.user.name === contactName);
+    let contact = contacts.find(x => x.name && x.name === contactName);
     let firebaseID = contact.id;
       let updatedContact = {
             name: name,   
             mail: mail,   
             phone: phone, 
-            id: contact.user.id,               
-            color: contact.user.color        
+            id: contact.id,               
+            color: contact.color        
         };
         await postData(`Contacts/${firebaseID}`, updatedContact);
         location.reload();
 }
 
 
-//UTILITY//---------------------------------------------------------------------------------------------------
-async function getData(path) {
-    let response = await fetch(BASE_URL + path + ".json");
-    return responseToJson = await response.json();
-}
+// //UTILITY//---------------------------------------------------------------------------------------------------
+// async function getData(path) {
+//     let response = await fetch(BASE_URL + path + ".json");
+//     return responseToJson = await response.json();
+// }
 
 
-async function postData(path = "", data = {}) {
-    let response = await fetch(BASE_URL + path + ".json", {
-        method: "PUT",
-        header: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    });
-    return responseToJson = await response.json();
-}
+// async function postData(path = "", data = {}) {
+//     let response = await fetch(BASE_URL + path + ".json", {
+//         method: "PUT",
+//         header: {
+//             "Content-Type": "application/json"
+//         },
+//         body: JSON.stringify(data)
+//     });
+//     return responseToJson = await response.json();
+// }
 
 
-async function deleteData(path = "") {
-    let response = await fetch(BASE_URL + path + ".json", {
-        method: "DELETE",
-    });
-    return responseToJson = await response.json();
-}
+// async function deleteData(path = "") {
+//     let response = await fetch(BASE_URL + path + ".json", {
+//         method: "DELETE",
+//     });
+//     return responseToJson = await response.json();
+// }
 
 function includeHTML() {
     var z, i, elmnt, file, xhttp;

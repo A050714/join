@@ -12,16 +12,17 @@ let task = {
 let selectedPrio = "";
 let selectedContacts = [];
 
-async function onload() {
-  await loadTasks();
-  await loadContacts();
+async function onloadAddTask() {
+  // await loadTasks();
+  // await loadContacts();
+  await onloadMain();
   contactsDropdown();
 }
 
-async function getData(pfad) {
-  let response = await fetch(BASE_URL + pfad + ".json");
-  return (responseToJson = await response.json());
-}
+// async function getData(pfad) {
+//   let response = await fetch(BASE_URL + pfad + ".json");
+//   return (responseToJson = await response.json());
+// }
 
 async function putTaskToBoard(data = {}, taskIndex) {
   try {

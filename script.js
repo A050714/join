@@ -3,11 +3,10 @@ const BASE_URL =
 
 let tasks = [];
 let contacts = [];
-
+includeHTML();
 async function onloadMain() {
   await loadTasks();
   await loadContacts();
-  // contactsDropdown();
 }
 
 function includeHTML() {

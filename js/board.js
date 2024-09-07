@@ -2,11 +2,8 @@ let currentTask;
 let currentDraggedElement;
 
 async function onloadBoard() {
-  // await loadTasks();
-  // await loadContacts();
   await onloadMain();
   generateBoard();
-
 }
 
 function generateBoard(list = tasks) {
