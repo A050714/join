@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="./../css/sidebar.css">
     <link rel="stylesheet" href="./../css/header.css">
     <link rel="stylesheet" href="/style.css">
-    <script src="/js/contacts.js"></script>
-    <script src="/js/summary.js"></script>
-    <script src="./../../script.js"></script>
+    <script src="/js/sidebar.js"></script>
+    <script src="/js/header.js"></script>
+    <script src="/script.js"></script>
 
     <script>
         function goBack(){
@@ -18,9 +18,9 @@
         }
     </script>
 </head>
-<body onload="onloadSummary(), includeHTML()">
-    <div w3-include-html="/assets/html_templates/header.html"></div>
-    <div w3-include-html="/assets/html_templates/sidebar.html"></div>
+<body onload="includeHTML()">
+    <header w3-include-html="/assets/html_templates/header.html"></header>
+    <aside w3-include-html="/assets/html_templates/sidebar.html"></aside>
     <main class="mainscreen_phl">
         <div class="header_privacy">
             <h1 class="title_privacy">Privacy Policy</h1>

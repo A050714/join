@@ -12,6 +12,7 @@ body {
 main {
     margin-left: 232px;
     margin-top: 95px;
+    max-width: 1920px;
 
 }
 .mainscreen_phl {

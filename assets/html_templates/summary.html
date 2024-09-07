@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,14 +15,15 @@
     <script src="/js/sidebar.js"></script>
 
 </head>
+
 <body onload="onloadSummary(), includeHTML()">
-        <div w3-include-html="/assets/html_templates/header.html"></div>
-        <div w3-include-html="/assets/html_templates/sidebar.html"></div>
-        <main class="mainscreen">
-        
+    <header w3-include-html="/assets/html_templates/header.html"></header>
+    <aside w3-include-html="/assets/html_templates/sidebar.html"></aside>
+    <main>
+        <div class="mainscreen">
             <section class="metrics">
                 <div class="metrics_header">
-                    
+
                     <h1 class="title_join">Join 360</h1>
                     <div class="blue-line"></div>
                     <h2 class="title_key">Key Metrics at a Glance</h2>
@@ -54,7 +56,7 @@
                                     <h1 id="summary_prio" class="task_number">1</h1>
                                     <p class="task_status">Urgent</p>
                                 </div>
-                                <div class="blue-line"></div>                        
+                                <div class="blue-line"></div>
                                 <div class="metric-status">
                                     <h4 id="summary_deadline"></h4>
                                     <p class="task_status">Upcoming Deadline</p>
@@ -63,45 +65,46 @@
                         </div>
 
 
-                   
-                            <div class="metric-box_board">
-                                <div class="metric-box">
-                                    <div class="metric-status">
-                                        <h1 id="summary_tasksInBoard" class="task_number">5</h1>
-                                        <p class="task_status">Tasks in <br>Board</p>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="metric-box_progress">
-                                <div class="metric-box">
-                                    <div class="metric-status">
-                                        <h1 id="summary_tasksInProgress" class="task_number">2</h1>
-                                        <p class="task_status">Tasks in <br>Progress</p>
-                                    </div>
+                        <div class="metric-box_board">
+                            <div class="metric-box">
+                                <div class="metric-status">
+                                    <h1 id="summary_tasksInBoard" class="task_number">5</h1>
+                                    <p class="task_status">Tasks in <br>Board</p>
                                 </div>
                             </div>
-                            <div class="metric-box_awaiting">
-                                <div class="metric-box">
-                                    <div class="metric-status">
-                                        <h1 id="summary_awaitingFeedback" class="task_number">2</h1>
-                                        <p class="task_status">Awaiting<br>Feedback</p>
-                                    </div>
+                        </div>
+
+                        <div class="metric-box_progress">
+                            <div class="metric-box">
+                                <div class="metric-status">
+                                    <h1 id="summary_tasksInProgress" class="task_number">2</h1>
+                                    <p class="task_status">Tasks in <br>Progress</p>
                                 </div>
                             </div>
-                                        
+                        </div>
+                        <div class="metric-box_awaiting">
+                            <div class="metric-box">
+                                <div class="metric-status">
+                                    <h1 id="summary_awaitingFeedback" class="task_number">2</h1>
+                                    <p class="task_status">Awaiting<br>Feedback</p>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                     <div class="metrics_greeting">
                         <p class="greeting_goodmorning">Good morning,</p>
                         <p id="userName" class="greeting_name">Sofia Müller</p>
-                        
+
                     </div>
                 </div>
-                        
+
 
             </section>
-        </main>
+        </div>
+    </main>
 </body>
 
 
