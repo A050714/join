@@ -19,10 +19,29 @@ async function signup() {
         return;
     }
 
-    // Function: using POST to send the user data to firebase
+    
    
     try{
-             
+        // Fetch current users to log out any who are logged in
+        let usersResponse = await fetch(`${BASE_URL}Users.json`);
+        let usersData = await usersResponse.json();
+
+        // Mark all users as logged out
+        for (let userId in usersData) {
+            if (usersData[userId].logged === true) {
+                await fetch(`${BASE_URL}Users/${userId}.json`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        logged: false
+                    })
+                });
+            }
+        }
+
+        // Function: using POST to send the user data to firebase     
         let response = await fetch (`${BASE_URL}Users.json`, {
             method: 'POST',
             headers: {
@@ -63,68 +82,73 @@ async function signup() {
 
     // // LOGIN Part
 
-    async function login(event) {
-        event.preventDefault();  // Prevent the form from submitting the traditional way
-    
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-    
-        try {
-            // Fetch all users from Firebase
-            let response = await fetch(`${BASE_URL}Users.json`);
-            
-            if (response.status === 200) {
-                let usersData = await response.json();
-                console.log(usersData); 
-    
-                // Check if any user matches the entered email and password
-                let userFound = false;
-                // For-Loop defines userId is the unique key. And user contains Json of users data like {email: '1@test.de', name: 'ziwei', password: '123'} 
+async function login(event) {
+    event.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    try {
+        let response = await fetch(`${BASE_URL}Users.json`);
+        
+        if (response.status === 200) {
+            let usersData = await response.json();
+            let userFound = false;
+            let loggedInUserId;
+
+            // Loop through users to find the matching email and password
+            for (let userId in usersData) {
+                let user = usersData[userId];
+
+                if (user.email === email && user.password === password) {
+                    userFound = true;
+                    loggedInUserId = userId;
+
+                    // Mark the user as logged in
+                    await fetch(`${BASE_URL}Users/${userId}.json`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            logged: true
+                        })
+                    });
+
+                    // Log the user in successfully
+                    alert('Login successful!');
+                    window.location.href = '/assets/html_templates/summary.html';
+                    break;
+                }
+            }
+
+            // If user found, log out all other users
+            if (userFound) {
                 for (let userId in usersData) {
-                    let user = usersData[userId]; 
-                    // just for testing,
-                    console.log(user); 
-                    console.log(`User ID: ${userId}`);
-                    console.log(`Email: ${user.email}`);
-                    console.log(`Password: ${user.password}`);
-                    if (usersData[userId].email === email && usersData[userId].password === password) {
-                        userFound = true;
-                        // Update Firebase to mark this user as logged in
+                    if (userId !== loggedInUserId && usersData[userId].logged === true) {
+                        // Mark other users as logged out
                         await fetch(`${BASE_URL}Users/${userId}.json`, {
                             method: 'PATCH',
                             headers: {
-                                'Content-Type': 'application/json'
+                                'Content-Type': 'application/json',
                             },
                             body: JSON.stringify({
-                                logged: true
+                                logged: false
                             })
                         });
-                        
-                        alert('Login successful!');
-                        //save the user details in localStorage or sessionStorage if "Remember me" is checked
-                        // optionally can also use Cookies
-                        if (document.getElementById('rememberMe').checked) {
-                            localStorage.setItem('user', JSON.stringify(usersData[userId]));
-                        } else {
-                            sessionStorage.setItem('user', JSON.stringify(usersData[userId]));
-                        }
-                        // Redirect to another page upon successful login
-                        window.location.href = '/assets/html_templates/summary.html';
-                        break;
                     }
                 }
-    
-                if (!userFound) {
-                    alert('Invalid email or password.');
-                }
             } else {
-                alert('Failed to log in. Please try again.');
+                alert('Invalid email or password.');
             }
-        } catch (error) {
-            console.error("Error fetching users:", error.message);
-            alert('An error occurred. Please try again.');
+        } else {
+            alert('Failed to log in. Please try again.');
         }
+    } catch (error) {
+        console.error("Error fetching users:", error.message);
+        alert('An error occurred. Please try again.');
     }
+}
 
     // Guest Login
     function guestLogin() {
@@ -143,26 +167,7 @@ async function signup() {
     }
 
     
-
-    function toggleMenu() {
-        const menu = document.getElementById('user-menu');
-        menu.classList.toggle('hidden');
-    }
-    
-    function logout() {
-        // Clear the user data from localStorage or sessionStorage
-        localStorage.removeItem('user');
-        sessionStorage.removeItem('user');
-        
-        alert('You have logged out!');
-        // Redirect to the login page or another appropriate page
-        window.location.href = '/assets/html_templates/login.html';
-    }
-
-        
-
-
-        
+       
 
     
 

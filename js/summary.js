@@ -41,14 +41,20 @@ async function greetUser() {
         if (response.status === 200) {
             let usersData = await response.json();
             
-            // Find out the user who has currently logged in 
+            // Find the user who is currently logged in
+            let loggedInUser = null;
             for (let userId in usersData) {
-                let user = usersData[userId];
-                if (user.logged === true) {
-                    document.getElementById('userName').innerHTML = user.name;
-                    console.log('Logged-in user:', user.name);
-                    break;
+                if (usersData[userId].logged === true) {
+                    loggedInUser = usersData[userId];
+                    break; // Stop once we find the logged-in user
                 }
+            }
+
+            if (loggedInUser) {
+                document.getElementById('userName').innerHTML = loggedInUser.name;
+                console.log('Logged-in user:', loggedInUser.name);
+            } else {
+                console.log('No user is currently logged in.');
             }
         } else {
             alert('Failed to load user data.');
