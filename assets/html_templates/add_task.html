@@ -47,6 +47,7 @@
                             </div>
                             <div id="contactList-a" class="contactList-a dNone"></div>
                         </div>
+                        <div id="selectedContactsDisplay"></div>
                     </div>
                     <div class="seperator"></div>
 
@@ -88,7 +89,7 @@
                         </div>
                     </div>
                     <div class="rightfooter">
-                        <button type="button" class="clearbtn">Clear <img
+                        <button type="button" onclick="clearForm()" class="clearbtn">Clear <img
                                 src="/assets/img/00_General_elements/close/default.svg" alt=""></button>
 
                         <button type="submit" class="cleartaskbtn">Create Task <img
@@ -96,6 +97,9 @@
                     </div>
                 </footer>
             </form>
+            <div id="taskanimation" class="taskanimation">
+                Task added to board <img src="/assets/img/00_General_elements/menu_Icons/board.svg" alt="">
+              </div>
     </main>
 </body>
 <script>includeHTML();

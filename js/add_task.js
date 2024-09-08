@@ -26,7 +26,7 @@ async function onloadAddTask() {
 
 async function putTaskToBoard(data = {}, taskIndex) {
   try {
-    let response = await fetch(BASE_URL_TASK + taskIndex + ".json", {
+    let response = await fetch(BASE_URL + "Tasks/" + taskIndex + ".json", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -104,13 +104,26 @@ function addTo(id) {
     contactname.style.color = "";
     selectedContacts = selectedContacts.filter((c) => c.id !== contact.id);
   }
+
+  displaySelectedContacts();
 }
 
 function toggleDropdown() {
   const togglearrow = document.getElementById("dropdownarrow");
   togglearrow.classList.toggle("open");
+
   const contactList = document.getElementById("contactList-a");
   contactList.classList.toggle("dNone");
+
+  const selectedContactsDisplay = document.getElementById(
+    "selectedContactsDisplay"
+  );
+
+  if (contactList.classList.contains("dNone")) {
+    selectedContactsDisplay.style.display = "flex";
+  } else {
+    selectedContactsDisplay.style.display = "none";
+  }
 }
 
 function getSelectedContacts() {
@@ -224,6 +237,7 @@ async function addTask() {
     status: "todo",
   }; // Einzelne Aufgabe zurücksetzen
   await loadTasks();
+  showAnimation();
   clearForm();
 }
 
@@ -232,11 +246,28 @@ function clearForm() {
   document.getElementById("descId").value = "";
   document.getElementById("dateId").value = "";
   selectedContacts = [];
+  document.getElementById("selectedContactsDisplay").innerHTML = "";
   task.subTasks = [];
   document.getElementById("categoryId").value = "";
   document.getElementById("subtasks").innerHTML = "";
   selectedPrio = "";
   resetPrioStyles();
+  clearContactList();
+}
+
+function clearContactList() {
+  document.getElementById("selectedContactsDisplay").innerHTML = "";
+
+  contacts.forEach((contact) => {
+    let contactDiv = document.getElementById(`contact-${contact.id}`);
+    let checkbox = document.getElementById(`checkboxtask-${contact.id}`);
+    let contactname = document.getElementById(`contactname-${contact.id}`);
+
+    contactDiv.style.backgroundColor = "";
+    checkbox.src = "/assets/img/03_AddTask/contacts_checked/Check button.svg";
+    contactname.style.color = "";
+    contactDiv.classList.remove("selected");
+  });
 }
 
 function showInitials(contact) {
@@ -251,7 +282,39 @@ function showInitials(contact) {
 
   let circleInitials = document.getElementById(`contactColor-${contact.id}`);
   circleInitials.innerHTML = `<p>${initials}</p>`;
-
-  // Optional: Setze die Hintergrundfarbe des Kreises basierend auf einer Farbzuordnung (z.B. Farben-Array)
   circleInitials.style.backgroundColor = colors[contact.color];
+}
+
+function displaySelectedContacts() {
+  let container = document.getElementById("selectedContactsDisplay");
+  container.innerHTML = "";
+
+  selectedContacts.forEach((contact) => {
+    const nameParts = contact.name.trim().split(" ");
+    let initials;
+    if (nameParts.length === 1) {
+      initials = nameParts[0][0];
+    } else {
+      initials = nameParts[0][0] + nameParts[1][0];
+    }
+
+    let contactCircle = document.createElement("div");
+    contactCircle.classList.add("contact-circle");
+    contactCircle.style.backgroundColor = colors[contact.color];
+    contactCircle.innerText = initials;
+
+    container.appendChild(contactCircle);
+  });
+}
+
+function showAnimation() {
+  const animation = document.getElementById("taskanimation");
+  animation.classList.add("show");
+
+  setTimeout(() => {
+    animation.classList.remove("show");
+
+    // Nach der Animation wird man auf das board weiter geleitet
+    window.location.href = "board.html";
+  }, 3000);
 }

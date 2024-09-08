@@ -6,17 +6,23 @@
     position: relative;
 }
 
-ul, li {
-    list-style-type: none; /* Entfernt die Aufzählungszeichen */
-    padding-left: 0; /* Optional: Entfernt den Einzug */
-  }
+ul,
+li {
+    list-style-type: none;
+    /* Entfernt die Aufzählungszeichen */
+    padding-left: 0;
+    /* Optional: Entfernt den Einzug */
+}
 
-  select {
-    list-style-type: none; /* Stellt sicher, dass keine Aufzählungszeichen in den Dropdown-Optionen angezeigt werden */
-    appearance: none; /* Deaktiviert die Standard-Darstellung des Browsers für das Dropdown */
-    -webkit-appearance: none; /* Für Webkit-basierte Browser wie Chrome und Safari */
-    
-  }
+select {
+    list-style-type: none;
+    /* Stellt sicher, dass keine Aufzählungszeichen in den Dropdown-Optionen angezeigt werden */
+    appearance: none;
+    /* Deaktiviert die Standard-Darstellung des Browsers für das Dropdown */
+    -webkit-appearance: none;
+    /* Für Webkit-basierte Browser wie Chrome und Safari */
+
+}
 
 
 .dNone {
@@ -472,4 +478,42 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 16px;
+}
+
+.contact-circle {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid white;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    line-height: 40px;
+    margin: 5px;
+    font-size: 14px;
+}
+
+.taskanimation {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #2A3647;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: 400;
+    opacity: 0;
+    transition: bottom 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    z-index: 9999;
+}
+
+.taskanimation.show {
+    bottom: 500px;
+    opacity: 1;
 }
