@@ -36,8 +36,30 @@ function loadCurrentStates() {
 }
 
 async function greetUser() {
-        loggedUser = users.filter(user => user['logged']==true);
-        document.getElementById('userName').innerHTML = loggedUser[0].name;
+    try {
+        let response = await fetch(`${BASE_URL}Users.json`);
+        if (response.status === 200) {
+            let usersData = await response.json();
+            
+            // Find out the user who has currently logged in 
+            for (let userId in usersData) {
+                let user = usersData[userId];
+                if (user.logged === true) {
+                    document.getElementById('userName').innerHTML = user.name;
+                    console.log('Logged-in user:', user.name);
+                    break;
+                }
+            }
+        } else {
+            alert('Failed to load user data.');
+        }
+    } catch (error) {
+        console.error("Error fetching users:", error.message);
+        alert('An error occurred. Please try again.');
+    }
+        // loggedUser = users.filter(user => user['logged']==true);
+        // document.getElementById('userName').innerHTML = loggedUser[0].name;
+        // console.log(loggedUser[0].name); 
 }
 
 function loadNearestDeadline() {
