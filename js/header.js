@@ -10,8 +10,31 @@ function closeHeaderNav() {
     document.getElementById('test').classList.remove('header_overlay')
 }
 
-async function logout(){
-    loggedUser[0].logged = false;
-    await saveUser(loggedUser[0],loggedUser[0].id);
-    window.location.href = '/assets/html_templates/login.html';
+async function logout() {
+    // Fetch users from Firebase
+    let response = await fetch(`${BASE_URL}Users.json`);
+    if (response.status === 200) {
+        let usersData = await response.json();
+
+        // Find the currently logged-in user
+        for (let userId in usersData) {
+            let user = usersData[userId];
+            if (user.logged === true) {
+                // update if the user´s logged out 
+                await fetch(`${BASE_URL}Users/${userId}.json`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        logged: false
+                    })
+                });
+                break;
+            }
+        }
+
+        alert('You have logged out!');
+        window.location.href = '/assets/html_templates/login.html';
+    }
 }

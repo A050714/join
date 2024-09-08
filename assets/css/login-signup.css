@@ -766,8 +766,7 @@
 
     .input-group input {
         width: 80%;
-        margin-left: 1em;
-        margin-right: ;
+        margin-left: 1em; 
     }
     .remember-me{
         scale: 0.8;
