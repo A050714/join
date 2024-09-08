@@ -59,15 +59,6 @@ main {
 
 
 
-@media (max-width: 990px) {
-
-body {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-}
 
 @media (max-width: 990px) {
 
