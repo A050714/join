@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/assets/css/sidebar.css">
     <link rel="stylesheet" href="/assets/css/header.css">
     <link rel="stylesheet" href="/assets/css/contacts.css">
-    
+
     <link rel="stylesheet" href="/style.css">
     <script src="/script.js"></script>
     <script src="/js/header.js"></script>
@@ -18,7 +18,7 @@
 
 <body onload="renderAllContacts()">
 
-    <header w3-include-html="/assets/html_templates/header.html"></header>  
+    <header w3-include-html="/assets/html_templates/header.html"></header>
     <aside w3-include-html="/assets/html_templates/sidebar.html"></aside>
 
     <main>
@@ -34,9 +34,16 @@
                 <div class="rightSide" id="rightSide">
 
                     <div class="openContact">
-                        <h1>Contacts</h1>
-                        <div class="border"></div>
-                        <p>Better with a team</p>
+                        <div class="betterWAT">
+                            <h1>Contacts</h1>
+                            <div class="betterWAT_border">
+                                <div class="border"></div>
+                                <p>Better with a team</p>
+                            </div>
+                        </div>
+                        <img class=" mobileArrow dNone" onclick="showContactsMobile()" src="/assets/img/00_General_elements/blue_arrow_left.svg" alt="">
+
+
                     </div>
 
                     <div class="showContact d-none" id="showContact">
@@ -47,14 +54,14 @@
                                 <div class="editdelete">
                                     <button onclick="toggleEditPopup(),fillContactValues()" class="contactbuttons">
                                         <div class="editIcon">
-                                            <div class="icons editimg"></div> 
+                                            <div class="icons editimg"></div>
                                             <p>Edit</p>
                                         </div>
-                                        
+
                                     </button>
                                     <button onclick="deleteContact()" class="contactbuttons">
                                         <div class="deleteIcon">
-                                            <div class="icons deleteimg"></div> 
+                                            <div class="icons deleteimg"></div>
                                             <p>Delete</p>
                                         </div>
                                     </button>
@@ -69,17 +76,17 @@
                         <div>
                             <div class="kontakdaten">
                                 <div>
-                                   <p>Email</p>
+                                    <p>Email</p>
 
-                                <a href="#" id="contactMail"></a> 
+                                    <a href="#" id="contactMail"></a>
                                 </div>
                                 <div>
-                                <p>Phone</p>
+                                    <p>Phone</p>
 
-                                <span id="contactPhone"></span>    
+                                    <span id="contactPhone"></span>
                                 </div>
 
-                                
+
                             </div>
                         </div>
 
@@ -89,11 +96,14 @@
                     <div class="overlay hidden" id="overlay">
                         <div class="addcontactpopup" id="addcontactpopup">
                             <div class="popupleft">
-                                <img class="popuplogo" src="/assets\img\00_General_elements\Join logo vector.svg"
-                                    alt="popuplogo">
-                                <h3>Add contact</h3>
-                                <p>Tasks are better with a team!</p>
-                                <div class="border-horizontal"></div>
+                                <div>
+                                    <img class="popuplogo" src="/assets\img\00_General_elements\Join logo vector.svg"
+                                        alt="popuplogo">
+                                    <h3>Add contact</h3>
+                                    <p>Tasks are better with a team!</p>
+                                    <div class="border-horizontal"></div>
+                                </div>
+
                             </div>
                             <div class="addcontactbg">
                                 <img class="addcontactperson"
@@ -124,11 +134,16 @@
                     <div class="overlay hidden" id="editOverlay">
                         <div class="addcontactpopup" id="editcontactpopup">
                             <div class="popupleft">
-                                <img class="popuplogo" src="/assets\img\00_General_elements\Join logo vector.svg"
-                                    alt="popuplogo">
-                                <h3>Edit contact</h3>
+                                <img class="closeMobile" onclick="toggleEditPopup()"
+                                    src="/assets/img/00_General_elements/close/variant3.svg" alt="">
+                                <div class="popupleftContent">
+                                    <img class="popuplogo" src="/assets\img\00_General_elements\Join logo vector.svg"
+                                        alt="popuplogo">
+                                    <h3>Edit contact</h3>
 
-                                <div class="border-horizontal"></div>
+                                    <div class="border-horizontal"></div>
+                                </div>
+                                <div id="divideEvenly"></div>
                             </div>
                             <div class="addcontactbg">
                                 <img class="addcontactperson"
@@ -136,7 +151,7 @@
                             </div>
 
                             <div class="inputfieldscontactpopup" id="editedContact">
-                                <img class="close" onclick="toggleEditPopup()"
+                                <img class="close closeEdit" onclick="toggleEditPopup()"
                                     src="/assets\img\00_General_elements\close\default.svg" alt="">
                                 <input autocomplete="off" class="inputnameimg" minlength="1" type="text"
                                     placeholder="Name" id="editName" required>
@@ -161,9 +176,9 @@
             </div>
         </div>
     </main>
-    
+
 </body>
-<script> 
+<script>
     includeHTML();
 </script>
 

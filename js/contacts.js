@@ -228,6 +228,9 @@ async function editContact() {
         location.reload();
 }
 
+function showContactsMobile () {
+    window.location.href = "/assets/html_templates/contacts.html"
+}
 
 // //UTILITY//---------------------------------------------------------------------------------------------------
 // async function getData(path) {

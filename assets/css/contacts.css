@@ -60,13 +60,20 @@ h1 {
 
 }
 
-.openContact {
+.openContact, .betterWAT {
     display: flex;
     align-items: center;
     text-align: center;
-    gap: 20px;
+    gap: 30px;
     width: 100%;
     height: 73px;
+}
+
+.betterWAT_border {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
 }
 
 .rightSide p {
@@ -203,7 +210,7 @@ h2 {
 .kontakdaten {
     display: flex;
     flex-direction: column;
-    gap: 22px;
+    gap: 21px;
 
     a {
         text-decoration: none;
@@ -646,6 +653,14 @@ h3 {
     
 }
 
+.closeMobile {
+    width: 24px;
+    align-self: end;
+    padding-right: 12px;
+    margin-top: 24px;
+    cursor: pointer;
+}
+
 @media (max-width: 1300px) {
     h1 {
         font-size: 48px;
@@ -698,6 +713,11 @@ h3 {
 
     h1 {
         font-size: 32px;
+        
+    }
+
+    h2 {
+        font-weight: 700;
     }
 
     .openContact p {
@@ -731,7 +751,7 @@ h3 {
     }
 
     .contactinformation {
-        margin: 20px 0px;
+        margin: 10px 0px;
     }
 
     .kontakdaten p {
@@ -754,17 +774,13 @@ h3 {
         gap: 60px;
     }
 
-    .openContact {
+    .openContact, .betterWAT {
         justify-content: center;
-        padding-bottom: 20px;
+        padding: 24px 0px ;
     }
 
     .addcontactpopup {
         width: 100%;
-    }
-
-    .addNewContact {
-        /* max-height: 100vh; */
     }
 
    }
@@ -772,12 +788,130 @@ h3 {
    @media (max-width: 990px) {
     .rightSide {
         display: none;
-    
+        padding: 12px;
+        height: 100% !important;
+        width: auto;
+    }
+
+    .mobileArrow {
+        display: block !important;
+        cursor: pointer;
     }
 
     .addNewContact {
         height: 100%;
     }
 
+    .openContact {
+        justify-content: space-between;
+        padding-bottom: 54px;
+        height: auto;
+        h1 {
+            font-size: 47px;
+        }
+        p {
+            font-size: 20px;
+        }
+
+    }
+
+    .border {
+        height: 3px;
+        width: 90px;
+    }
+
+    .betterWAT_border {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 8px;
+    }
+
+    .contacthead {
+        gap: 20px;
+    }
+
+    .contactinformation p {
+        font-size: 20px;
+    }
+
+    .kontakdaten {
+        flex-direction: column;
+        p {
+            font-weight: 700;
+        }
+    }
+
+    .addcontactpopup {
+        height: calc(100% - 146px);
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+    }
+    
+    .popuplogo {
+        display: none;
+    }
+
+    .popupleft { 
+        width: 100%;
+        padding: 0;
+        border-bottom-left-radius: 0px;
+        border-top-right-radius: 30px;
+        height: 46%;
+        justify-content: space-between;
+    }
+
+    .popupleftContent {
+        padding-left: 12px;
+        padding-bottom: 24px;
+    }
+
+    .border-horizontal {
+        width: 100px;
+        margin-top: 0;
+    }
+
+    .addcontactbg {
+        z-index: 1;
+        position: absolute;
+        top: 46%;
+    }
+
+    .inputfieldscontactpopup {
+        padding: 16px;
+        height: 54%;
+        width: 100%;
+        input {
+            height: 41px;
+            width: auto;
+            
+        }
+    }
+
+    .closeEdit {
+      display: none;
+    }
+
+    .addcontactbtn {
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        button {
+            
+            font-size: 20px;
+        }
+    }
+
+    .cancelbutton {
+        margin: 0;
+        max-width: 82px;
+     img {
+        display: none;
+    }
     
    }
+
+   .createbutton {
+    max-width: 99px;
+   }
+}
