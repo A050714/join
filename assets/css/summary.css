@@ -559,7 +559,7 @@
         }
       }
 
-      @media (min-width: 901px) and (min-height: 801px){
+      @media (min-width: 901px) and (min-height: 990px){
         .metrcis_content {
             display: flex;
             flex-direction: column;
