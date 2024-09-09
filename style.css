@@ -110,6 +110,13 @@ main {
         padding: 0px 16px;
     }
 
+    .sidelinks a {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
     #sidebar {
         display: flex;
         justify-content: space-evenly;
@@ -120,15 +127,26 @@ main {
         top: unset;
     }
 
+    .sidebarimg {
+        margin-right: 0;
+    }
+
+
+
     #widget_1,
     #widget_2,
     #widget_3,
     #widget_4 {
-        flex-direction: column;
         cursor: pointer;
-    }
+     }
 
+ 
     .sidebarfooter {
         display: none;
+    }
+
+
+    .sidebar-btn.active{
+        background-color: #091931; 
     }
 }
