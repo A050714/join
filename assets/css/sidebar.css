@@ -29,6 +29,7 @@ body {
 .sidebarimg {
     height: 30px;
     width: 30px;
+    margin-right: 8px;
 }
 
 #widget_1,
@@ -80,4 +81,7 @@ body {
 
 .sidelinks a {
 text-decoration: none;
+display: flex;
+align-items: center;
+
 }
