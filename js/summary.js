@@ -68,6 +68,11 @@ async function greetUser() {
         // console.log(loggedUser[0].name); 
 }
 
+function showFirstCase(){
+    const firstLetter = loggedInUser.name.charAt(0).toUpperCase();
+    document.getElementById('userName').innerHTML = firstLetter;
+}
+
 function loadNearestDeadline() {
     let urgentTasks = tasks.filter(t => t['prio'] == 'urgent')
     let dueDates = urgentTasks.map(t => t.dueDate);

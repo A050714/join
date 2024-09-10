@@ -387,9 +387,10 @@
         .title_join{
             padding-left:10vw;
             font-weight: 800;
-            font-size: 2.5em;
+            font-size: 2em;
             position: absolute;
             left: 0;
+            top: 70px;
             
         }
 

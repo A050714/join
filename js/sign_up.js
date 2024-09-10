@@ -95,6 +95,7 @@ async function login(event) {
             let usersData = await response.json();
             let userFound = false;
             let loggedInUserId;
+            let loggedInUserName = ''; 
 
             // Loop through users to find the matching email and password
             for (let userId in usersData) {
@@ -103,6 +104,7 @@ async function login(event) {
                 if (user.email === email && user.password === password) {
                     userFound = true;
                     loggedInUserId = userId;
+                    loggedInUserName = user.name; 
 
                     // Mark the user as logged in
                     await fetch(`${BASE_URL}Users/${userId}.json`, {
