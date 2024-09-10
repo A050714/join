@@ -543,6 +543,8 @@ h3 {
     display: flex;
     gap: 16px;
     cursor: pointer;
+    margin-right: 1em;
+    align-items: center;
 }
 
 .user-icon {
@@ -556,7 +558,8 @@ h3 {
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    cursor: pointer;
+    cursor: pointer; 
+    margin-bottom: 2px;
 }
 
 .contacthead2 {
