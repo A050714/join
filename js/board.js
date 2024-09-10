@@ -72,7 +72,7 @@ function generateTodoHTML(element) {
           </div>
         </div>
         <div class="asignedContacts">
-            <div class="contactsDiv">
+            <div class="contactsDiv" id="assigned">
 
 
             </div>
@@ -113,6 +113,16 @@ function showTask(id) {
   content.innerHTML = '';
   content.innerHTML = generateTaskHTML(task);
   generateSubtasksOpenCard(task);
+  generateAssignedContacts(task);
+}
+
+function generateAssignedContacts(task){
+  let assigned;
+  task.assignedTo.forEach(t => {
+    assigned  = contacts.filter(contact => contact.id == t);
+  });
+  console.log(assigned);
+  
 }
 function generateTaskHTML(task) {
   const capitalizedPrio = task.prio.charAt(0).toUpperCase() + task.prio.slice(1);
