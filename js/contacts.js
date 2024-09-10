@@ -138,7 +138,7 @@ function findIndexById(contacts, idToFind) {
 
 async function deleteContact() {
     let contactName = document.getElementById('contactName').innerHTML;
-    let firebaseID = contacts.find(x => x.user && x.user.name === contactName).id;
+    let firebaseID = contacts.find(x => x && x.name === contactName).id;
     await deleteData("Contacts/" + firebaseID)
     let index = findIndexById(contacts, firebaseID);
     contacts.splice(index, 1)
