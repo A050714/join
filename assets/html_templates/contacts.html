@@ -143,26 +143,26 @@
                             <img class="addcontactperson"
                                 src="/assets\img\05_Contacts\add_contact_text\person-white.svg" alt="">
                         </div>
-                        <form onsubmit="createContact()">
-                            <div class="inputfieldscontactpopup" id="editedContact">
-                                <img class="close closeAddContact" onclick="togglePopup()"
-                                    src="/assets\img\00_General_elements\close\default.svg" alt="">
-                                <input autocomplete="off" class="inputnameimg" minlength="1" type="text"
-                                    placeholder="Name" id="newName" required>
-                                <input autocomplete="off" class="inputemailimg" minlength="1" type="email"
-                                    placeholder="Email" id="newMail" required>
-                                <input autocomplete="off" class="inputphoneimg" minlength="1" type="text"
-                                    placeholder="Phone" id="newPhone" required>
-                                <div class="addcontactbtn">
-                                    <button class=" addCancelbutton cancelbutton" onclick="togglePopup()">Cancel
-                                        <img src="/assets/img/00_General_elements/cancel/cancel_black.svg" alt="">
-                                    </button>
-                                    <button type="submit" class="addCreateButton createbutton"
-                                        id="saveNewContact">Create contact
-                                        <img src="/assets/img/00_General_elements/checkmark_white.svg" alt="">
-                                    </button>
-                                </div>
+                        <form class="inputfieldscontactpopup" id="editedContact" onsubmit="createContact()">
+
+                            <img class="close closeAddContact" onclick="togglePopup()"
+                                src="/assets\img\00_General_elements\close\default.svg" alt="">
+                            <input autocomplete="off" class="inputnameimg" minlength="1" type="text" placeholder="Name"
+                                id="newName" required>
+                            <input autocomplete="off" class="inputemailimg" minlength="1" type="email"
+                                placeholder="Email" id="newMail" required>
+                            <input autocomplete="off" class="inputphoneimg" minlength="1" type="text"
+                                placeholder="Phone" id="newPhone" required>
+                            <div class="addcontactbtn">
+                                <button class=" addCancelbutton cancelbutton" onclick="togglePopup()">Cancel
+                                    <img src="/assets/img/00_General_elements/cancel/cancel_black.svg" alt="">
+                                </button>
+                                <button type="submit" class="addCreateButton createbutton" id="saveNewContact">Create
+                                    contact
+                                    <img src="/assets/img/00_General_elements/checkmark_white.svg" alt="">
+                                </button>
                             </div>
+
                         </form>
                     </div>
                 </div>
@@ -185,23 +185,22 @@
                             <img id="editContactInitials" class="addcontactperson"
                                 src="/assets\img\05_Contacts\add_contact_text\person-white.svg" alt="">
                         </div>
-                        <form onsubmit="createContact()">
-                            <div class="inputfieldscontactpopup" id="editedContact">
-                                <img class="close closeEdit" onclick="toggleEditPopup()"
-                                    src="/assets\img\00_General_elements\close\default.svg" alt="">
-                                <input autocomplete="off" class="inputnameimg" minlength="1" type="text"
-                                    placeholder="Name" id="editName" required>
-                                <input autocomplete="off" class="inputemailimg" minlength="1" type="email"
-                                    placeholder="Email" id="editMail" required>
-                                <input autocomplete="off" class="inputphoneimg" minlength="1" type="text"
-                                    placeholder="Phone" id="editPhone" required>
-                                <div class="addcontactbtn">
-                                    <button class="cancelbutton" onclick="toggleEditPopup()">Delete <img
-                                            src="/assets/img/00_General_elements/cancel/cancel_black.svg"
-                                            alt=""></button>
-                                    <button type="submit" class="createbutton" id="saveEditedContact">Save <img
-                                            src="/assets/img/00_General_elements/checkmark_white.svg" alt=""></button>
-                                </div>
+                        <form class="inputfieldscontactpopup" id="editedContact" onsubmit="createContact()">
+
+                            <img class="close closeEdit" onclick="toggleEditPopup()"
+                                src="/assets\img\00_General_elements\close\default.svg" alt="">
+                            <input autocomplete="off" class="inputnameimg" minlength="1" type="text" placeholder="Name"
+                                id="editName" required>
+                            <input autocomplete="off" class="inputemailimg" minlength="1" type="email"
+                                placeholder="Email" id="editMail" required>
+                            <input autocomplete="off" class="inputphoneimg" minlength="1" type="text"
+                                placeholder="Phone" id="editPhone" required>
+                            <div class="addcontactbtn">
+                                <button class="cancelbutton" onclick="toggleEditPopup()">Delete <img
+                                        src="/assets/img/00_General_elements/cancel/cancel_black.svg" alt=""></button>
+                                <button type="submit" class="createbutton" id="saveEditedContact">Save <img
+                                        src="/assets/img/00_General_elements/checkmark_white.svg" alt=""></button>
+
                             </div>
                         </form>
                     </div>
