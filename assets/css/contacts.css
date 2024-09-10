@@ -60,7 +60,8 @@ h1 {
 
 }
 
-.openContact, .betterWAT {
+.openContact,
+.betterWAT {
     display: flex;
     align-items: center;
     text-align: center;
@@ -299,7 +300,7 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 1001;
 }
 
 .header_overlay {
@@ -624,10 +625,12 @@ h3 {
     background: url("/assets/img/03_AddTask/subtasks_icons/delete.svg") no-repeat;
 }
 
-.editIcon, .deleteIcon {
+.editIcon,
+.deleteIcon {
     display: flex;
     justify-content: center;
     align-items: center;
+
     p {
         font-size: 16px;
     }
@@ -635,22 +638,24 @@ h3 {
 
 .editIcon:hover {
     color: #29ABE2;
+
     .editimg {
-        background: url("/assets/img/03_AddTask/subtasks_icons/edit (2).svg") no-repeat;     
+        background: url("/assets/img/03_AddTask/subtasks_icons/edit (2).svg") no-repeat;
     }
 }
 
 .deleteIcon:hover {
     color: #29ABE2;
+
     .deleteimg {
-        background: url("/assets/img/03_AddTask/subtasks_icons/delete (3).svg") no-repeat;      
+        background: url("/assets/img/03_AddTask/subtasks_icons/delete (3).svg") no-repeat;
     }
 }
 
 .showMobileContact {
-        display: unset !important;
-        height: 100% !important;
-    
+    display: unset !important;
+    height: 100% !important;
+
 }
 
 .closeMobile {
@@ -659,6 +664,31 @@ h3 {
     padding-right: 12px;
     margin-top: 24px;
     cursor: pointer;
+}
+
+.addNewContactMobile, .mobileMenu {
+    position: absolute;
+    z-index: 1;
+    bottom: 90px;
+    right: 12px;
+    display: none;
+}
+
+.mobileMenu {
+    width: 116px;
+    height: 100px;
+    background-color: white;
+    border-radius: 20px;
+    border-bottom-right-radius: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+
+    button {
+        padding-left: 20px;
+    }
 }
 
 @media (max-width: 1300px) {
@@ -688,6 +718,7 @@ h3 {
     .contactbtn {
         margin-top: 30px;
     }
+
     .contacthead2 {
         gap: 12px;
     }
@@ -713,7 +744,7 @@ h3 {
 
     h1 {
         font-size: 32px;
-        
+
     }
 
     h2 {
@@ -739,6 +770,11 @@ h3 {
 
     .showContact {
         margin: 0;
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+        gap: 60px;
+        padding-top: 12px;
     }
 
     .addNewContact {
@@ -752,6 +788,9 @@ h3 {
 
     .contactinformation {
         margin: 10px 0px;
+        p {
+            padding-bottom: 12px;
+        }
     }
 
     .kontakdaten p {
@@ -769,28 +808,60 @@ h3 {
         height: 100px;
     }
 
+    .informationPhoneMail {
+        width: 50%;
+    }
     .contacthead {
-        justify-content: flex-start;
-        gap: 60px;
+        justify-content: center;
+        gap: 20px;
+        width: 50%;
     }
 
-    .openContact, .betterWAT {
+    .openContact{
         justify-content: center;
-        padding: 24px 0px ;
+        padding-top: 44px;
+    }
+
+    .betterWAT {
+        justify-content: center;
+      
     }
 
     .addcontactpopup {
         width: 100%;
     }
 
-   }
+}
 
-   @media (max-width: 990px) {
-    .rightSide {
+@media (max-width: 990px) {
+
+    .showContact {
+        flex-direction: column;
+        gap: unset;
+    }
+
+    .contactBtnBackground {
         display: none;
-        padding: 12px;
-        height: 100% !important;
+    }
+
+    #contactList {
+        position: fixed;
+        height: 80vh;
+    }
+
+    .contactbtn {
+        display: none;
+    }
+
+    .addNewContactMobile {
+        display: block;
+        cursor: pointer;
+    }
+
+    .rightSide {
+        height: 0%;
         width: auto;
+        padding: 16px;
     }
 
     .mobileArrow {
@@ -800,19 +871,29 @@ h3 {
 
     .addNewContact {
         height: 100%;
+        margin: 70px 0px;
     }
 
     .openContact {
+        margin-top: 70px;
+        display: none;
+        flex-direction: row;
         justify-content: space-between;
-        padding-bottom: 54px;
+        padding: unset;
+        align-items: flex-start;
         height: auto;
         h1 {
             font-size: 47px;
         }
+
         p {
             font-size: 20px;
         }
 
+    }
+
+    .mobileArrow {
+        padding-top: 8px;
     }
 
     .border {
@@ -820,41 +901,60 @@ h3 {
         width: 90px;
     }
 
+    .betterWAT {
+        display: none;
+        align-items: flex-start;
+        flex-direction: column;
+        width: max-content;
+        gap: 0px;
+    }
+
     .betterWAT_border {
         display: flex;
         flex-direction: column-reverse;
         gap: 8px;
+        align-items: unset;
     }
 
     .contacthead {
         gap: 20px;
+        width: 100%;
+        justify-content: flex-start;
+        align-items: center;
     }
 
     .contactinformation p {
         font-size: 20px;
     }
 
+    .editdelete {
+        display: none;
+    }
     .kontakdaten {
         flex-direction: column;
+
         p {
             font-weight: 700;
         }
     }
 
     .addcontactpopup {
-        height: calc(100% - 146px);
         display: flex;
         flex-direction: column;
         width: 90%;
+        height: calc(100% - 146px);
         position: relative;
         gap: 0;
+        z-index: 10001;
+        /* Sicherstellen, dass es über anderen Elementen liegt */
+
     }
-    
+
     .popuplogo {
         display: none;
     }
 
-    .popupleft { 
+    .popupleft {
         width: 100%;
         padding: 0;
         border-bottom-left-radius: 0px;
@@ -876,34 +976,39 @@ h3 {
     .addcontactbg {
         z-index: 1;
         position: absolute;
-        top:46%;
-        transform: translate(0, -50%); /* um das Object nach oben um 50% der eigenen Höhe zu bewegen */
+        top: 46%;
+        transform: translate(0, -50%);
+        /* um das Object nach oben um 50% der eigenen Höhe zu bewegen */
         margin-left: 0;
     }
 
     .inputfieldscontactpopup {
+        justify-content: center;
         padding: 16px;
         height: 54%;
         width: 100%;
-        padding-top: 24px;/* Dient genau so wie gap */
-        box-sizing: border-box;/*Um den Padding auch als Border mitzuzählen*/
+        padding-top: 24px;
+        box-sizing: border-box;
+        gap: 15px;
         input {
             height: 41px;
             width: auto;
-            
+
         }
+        
     }
 
-    .closeEdit {
-      display: none;
+    .closeEdit, .closeAddContact {
+        display: none;
     }
 
     .addcontactbtn {
         justify-content: center;
         gap: 10px;
         width: 100%;
+
         button {
-            
+
             font-size: 20px;
         }
     }
@@ -911,13 +1016,27 @@ h3 {
     .cancelbutton {
         margin: 0;
         max-width: 82px;
-     img {
+
+        img {
+            display: none;
+        }
+
+    }
+
+    .addCancelbutton {
         display: none;
     }
-    
-   }
 
-   .createbutton {
-    max-width: 99px;
-   }
+    .addCreateButton {
+        max-width: 202px !important;
+    }
+
+    .createbutton {
+        max-width: 99px;
+    }
+
+    .contactcolor {
+        width: 80px;
+        height: 80px;
+    }
 }

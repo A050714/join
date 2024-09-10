@@ -31,17 +31,17 @@ let colors = ['#FF7A00', '#FF5EB3', '#6E52FF',
 
 //sorts contacts by name
 function sortContacts() {
-    contacts.sort(function (a, b) {
-        if (!a.user) return 1;
-        if (!b.user) return -1;
-        if (a.user.name < b.user.name) {
+contacts.sort(function (a, b) {
+        if (!a) return 1;
+        if (!b) return -1;
+        if (a.name < b.name) {
             return -1;
         }
-        if (a.user.name > b.user.name) {
+        if (a.name > b.name) {
             return 1;
         }
         return 0;
-    });
+    }); 
 }
 
 async function renderAllContacts() {
@@ -58,13 +58,14 @@ async function renderAllContacts() {
                         <div class = "contactBtnBackground"></div>
     `
     
-    firtsLetter = '';
+    firstLetter = '';
     for (let index = 0; index < contacts.length; index++) {
         let contact = contacts[index];
-        if (firtsLetter != contacts[index].name[0]) { 
-            firtsLetter = contact.name[0];
+        if (firstLetter != contacts[index].name[0]) { 
+            firstLetter = contact.name[0];
+
             content.innerHTML += `
-                    <div class="letterDiv"><h2>${firtsLetter}</h2></div>
+                    <div class="letterDiv"><h2>${firstLetter}</h2></div>
             `
             content.innerHTML += horizontalLine();
         }
@@ -81,6 +82,8 @@ async function renderAllContacts() {
             
         `;
         showInitials(contact, `contactColor${contact.id}`);
+        
+        
     }
 
 }
@@ -103,7 +106,6 @@ function togglePopup() {
 }
 
 function toggleEditPopup() {
-
     let overlay = document.getElementById('editOverlay');
     overlay.classList.toggle('show');
     overlay.classList.toggle("hidden");
@@ -148,6 +150,7 @@ async function deleteContact() {
 let theLastIndex;
 //SHOW CONTACT//---------------------------------------------------------------------------------------------
 function showContact(index) {
+
     checkScreenWidth()
     if (theLastIndex != null) {
         document.getElementById(theLastIndex).classList.remove('chosenContact');
@@ -167,6 +170,8 @@ function showContact(index) {
 
     document.getElementById(`Id_${index}`).classList.add('chosenContact');
     document.getElementById(`Id_${index}`).classList.remove('singleContacts');
+    document.getElementById('openContact').style.display = "flex";
+    document.getElementById('betterWAT').style.display = "flex";
     theLastIndex = `Id_${index}`;
 }
 
@@ -211,6 +216,7 @@ async function fillContactValues() {
 }
 
 async function editContact() {
+    
     let contactName = document.getElementById('contactName').innerHTML;
     let name = document.getElementById('editName').value;
     let mail = document.getElementById('editMail').value;
@@ -230,6 +236,18 @@ async function editContact() {
 
 function showContactsMobile () {
     window.location.href = "/assets/html_templates/contacts.html"
+}
+
+function showMobileMenu() {
+    document.getElementById('mobileMenu').style.display = "flex";
+    document.getElementById('mobileMenuOverlay').classList.remove('dNone')
+    document.getElementById('mobileMenuOverlay').classList.add('header_overlay')
+}
+
+function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.add('dNone')
+    document.getElementById('mobileMenuOverlay').classList.add('dNone')
+    document.getElementById('mobileMenuOverlay').classList.remove('header_overlay')
 }
 
 // //UTILITY//---------------------------------------------------------------------------------------------------
