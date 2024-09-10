@@ -114,8 +114,16 @@ function toggleEditPopup() {
 
 
 //ADD CONTACT//----------------------------------------------------------------------
+async function test() {
+    let userrespone = await getData("Contacts") || {};
+    let UserKeysArray = Object.keys(userrespone);
+    console.log(UserKeysArray);
+    
+}
+
 
 async function createContact() {
+    
     let name = document.getElementById('newName').value;
     let mail = document.getElementById('newMail').value;
     let phone = document.getElementById('newPhone').value

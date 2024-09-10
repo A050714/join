@@ -143,7 +143,7 @@
                             <img class="addcontactperson"
                                 src="/assets\img\05_Contacts\add_contact_text\person-white.svg" alt="">
                         </div>
-                        <form class="inputfieldscontactpopup" id="editedContact" onsubmit="createContact()">
+                        <form class="inputfieldscontactpopup" id="editedContact" onsubmit=" createContact();return false;">
 
                             <img class="close closeAddContact" onclick="togglePopup()"
                                 src="/assets\img\00_General_elements\close\default.svg" alt="">
@@ -185,7 +185,7 @@
                             <img id="editContactInitials" class="addcontactperson"
                                 src="/assets\img\05_Contacts\add_contact_text\person-white.svg" alt="">
                         </div>
-                        <form class="inputfieldscontactpopup" id="editedContact" onsubmit="createContact()">
+                        <form class="inputfieldscontactpopup" id="editedContact" onsubmit="editContact();return false;">
 
                             <img class="close closeEdit" onclick="toggleEditPopup()"
                                 src="/assets\img\00_General_elements\close\default.svg" alt="">
