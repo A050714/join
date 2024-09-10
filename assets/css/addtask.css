@@ -517,3 +517,27 @@ footer {
     bottom: 500px;
     opacity: 1;
 }
+
+.createtaskbtn {
+    background-color: #2A3647;
+    color: white;
+    padding: 8px;
+    border-radius: 10px;
+    border: none;
+    display: flex;
+    align-items: center;
+    font-family: 'PT Sans';
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.createtaskbtn:hover {
+    background-color: #29ABE2; 
+}
+
+.createtaskbtn img {
+    background-color: transparent;
+    
+}
+
+

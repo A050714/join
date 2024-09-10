@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/assets/css/sidebar.css">
     <link rel="stylesheet" href="/assets/css/header.css">
     <link rel="stylesheet" href="/assets/css/addtask.css">
-    <link rel="stylesheet" href="/assets/css/contacts.css">
     <link rel="stylesheet" href="/assets/css/addtaskmobile.css">
     <link rel="stylesheet" href="/style.css">
     <script src="/script.js"></script>
@@ -21,7 +20,7 @@
 
 </head>
 
-<body onload="onloadAddTask()">
+<body onload="onloadAddTask(); setPrio('medium');">
     <header w3-include-html="/assets/html_templates/header.html"></header>
     <aside w3-include-html="/assets/html_templates/sidebar.html"></aside>
     <main>
@@ -92,13 +91,13 @@
                         <button type="button" onclick="clearForm()" class="clearbtn">Clear <img
                                 src="/assets/img/00_General_elements/close/default.svg" alt=""></button>
 
-                        <button type="submit" class="cleartaskbtn">Create Task <img
+                        <button type="submit" class="createtaskbtn">Create Task  <img
                                 src="/assets/img/00_General_elements/checkmark_white.svg" alt=""></button>
                     </div>
                 </footer>
             </form>
             <div id="taskanimation" class="taskanimation">
-                Task added to board <img src="/assets/img/00_General_elements/menu_Icons/board.svg" alt="">
+                Task added to board <img src="/assets/img/00_General_elements/menu_Icons/board.svg">
               </div>
     </main>
 </body>

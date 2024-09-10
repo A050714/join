@@ -130,6 +130,8 @@ function getSelectedContacts() {
   return selectedContacts.map((contact) => contact.id);
 }
 
+
+
 function setPrio(id) {
   const urgent = document.getElementById("urgent");
   const medium = document.getElementById("medium");
@@ -162,6 +164,8 @@ function setPrio(id) {
     selectedPrio = "low";
   }
 }
+
+
 
 function resetPrioStyles() {
   const urgent = document.getElementById("urgent");
@@ -216,6 +220,7 @@ async function addTask() {
   task.dueDate = document.getElementById("dateId").value;
   task.category = document.getElementById("categoryId").value;
   task.assignedTo = selectedContacts.map((c) => c.id);
+  task.prio = selectedPrio;
   task.id = tasks.length;
 
   if (task.subTasks.length === 0) {
