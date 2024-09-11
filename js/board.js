@@ -1,5 +1,6 @@
 let currentTask;
 let currentDraggedElement;
+let assignedContacts = [];
 
 async function onloadBoard() {
   await onloadMain();
@@ -27,6 +28,7 @@ function generateBoard(list = tasks) {
       tasksForSection.forEach(task => {
         container.innerHTML += generateTodoHTML(task);
         calculateSubTasks(task);
+        generateInitals(task);
       });
     }
   });
@@ -72,14 +74,13 @@ function generateTodoHTML(element) {
           </div>
         </div>
         <div class="asignedContacts">
-            <div class="contactsDiv" id="assigned">
+          <div class="staple" id="assignedWrapperCard${element.id}"></div>              
 
-
-            </div>
-            <div class="prioDiv">
+          <div class="prioDiv">
                     <img class="prioIcon" src="/assets/img/03_AddTask/priority/${element.prio}.svg" alt="">
-            </div>
+          </div>
         </div>
+        
     </div>
   `;
 }
@@ -113,16 +114,57 @@ function showTask(id) {
   content.innerHTML = '';
   content.innerHTML = generateTaskHTML(task);
   generateSubtasksOpenCard(task);
-  generateAssignedContacts(task);
+  generateAssignedContacts(task)
+}
+function generateInitals(task){
+  const assignedIDs = task.assignedTo;
+  if (assignedIDs != null) {
+    assignedContacts = contacts.filter(contact => assignedIDs.includes(contact.id));
+    let content = document.getElementById(`assignedWrapperCard${task.id}`);
+
+    content.innerHTML = '';
+    assignedContacts.forEach((contact) => {
+      content.innerHTML += /*html*/`
+        <p class="circle" id="contactcolor" style = "background-color: ${colors[contact.color]}"> ${showInitials(contact)}</p>
+      `
+    });
+  }
+}
+function generateAssignedContacts(task) {
+  const assignedIDs = task.assignedTo;
+  if (assignedIDs != null) {
+
+    assignedContacts = contacts.filter(contact => assignedIDs.includes(contact.id));
+    let content = document.getElementById(`assignedWrapper${task.id}`);
+
+    content.innerHTML = '';
+    assignedContacts.forEach((contact) => {
+      content.innerHTML += /*html*/`
+      <div class="assignedDiv">
+        <p id="contactcolor" style = "background-color: ${colors[contact.color]}"> ${showInitials(contact)}</p>
+        <p class = "nameP">${contact.name}</p>
+      </div>
+      `
+    });
+
+  }
 }
 
-function generateAssignedContacts(task){
-  let assigned;
-  task.assignedTo.forEach(t => {
-    assigned  = contacts.filter(contact => contact.id == t);
-  });
-  console.log(assigned);
-  
+function showInitials(contact, id = "contactColor") {
+  const nameParts = contact.name.split(' ');
+  let initials;
+  if (nameParts.length == 1) {
+    initials = nameParts[0][0];
+
+  } else {
+    initials = nameParts[0][0] + nameParts[1][0];
+
+  }
+  return initials;
+  let circleInitials = document.getElementById(id);
+  circleInitials.style = `background-color: ${colors[contact.color]}`;
+  return `<p>${initials}</p>`;
+
 }
 function generateTaskHTML(task) {
   const capitalizedPrio = task.prio.charAt(0).toUpperCase() + task.prio.slice(1);
@@ -133,35 +175,22 @@ function generateTaskHTML(task) {
             <span class="tag ${task.category}">${(task.category == 'userstory') ? 'User Story' : 'Technical Task'}</span>
             <span onclick="closeTask()" class="close-button">&times;</span>
           </div>
-          <h1>${task.title}</h1>
-          <p>${task.description}</p>
+          <h1 class="fs60fw700">${task.title}</h1>
+          <p class="fs20fw400">${task.description}</p>
           
           <div class="details">
-              <span><p class="mainColor" >Due date:</p> <p>${task.duedate}</p> </span>
+              <span><p class="mainColor" >Due date:</p> <p>${task.dueDate}</p> </span>
               <span><p class="mainColor">Priority:</p> <p>${capitalizedPrio} </p><img src="/assets/img/03_AddTask/priority/${task.prio}.svg" alt=""></span>
           </div>
           
-          <div class="assigned${task.id}">
+          <div class="assigned">
               <p class="mainColor">Assigned To:</p>
-              <div class="assignees">
-                  <div class="assignee">
-                      <div class="avatar" style="background-color: #2EC7C7;">EM</div>
-                      <span>Emmanuel Mauer</span>
-                  </div>
-                  <div class="assignee">
-                      <div class="avatar" style="background-color: #6A44BE;">MB</div>
-                      <span>Marcel Bauer</span>
-                  </div>
-                  <div class="assignee">
-                      <div class="avatar" style="background-color: #1A73E8;">AM</div>
-                      <span>Anton Mayer</span>
-                  </div>
-              </div>
+              <div class="startAndgap10" id="assignedWrapper${task.id}"></div>              
           </div>
 
-          <div class="subtasks">
+          <div>
               <p class="mainColor">Subtasks</p>
-              <div class="subtask" id="subtasksOpenCard${task.id}">
+              <div id="subtasksOpenCard${task.id}">
               </div>
           </div>
 
@@ -181,9 +210,9 @@ function generateSubtasksOpenCard(task) {
       <p>...No Subtasks...</p>`;
     } else {
       content.innerHTML += /*html*/ `
-      <span>
+      <span class="dFlex">
         <img onclick="toggleSubtask(${task.id}, ${index})" src="/assets/img/04_Board/subtasks_check/${subtask.status == 'todo' ? 'check' : 'checked'}.svg" alt="">
-        <p>${subtask.title}</p>
+        <p class="fs16fw400">${subtask.title}</p>
       </span>`;
     }
   });
@@ -206,10 +235,6 @@ function toggleSubtask(taskId, subtaskIndex) {
   // Update the UI for the task card with subtasks
   generateSubtasksOpenCard(task);
   calculateSubTasks(task); // Update the progress bar
-}
-
-function assignedContacts(contacts) {
-
 }
 
 function closeTask() {
