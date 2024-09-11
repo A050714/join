@@ -53,11 +53,17 @@ async function greetUser() {
             if (loggedInUser) {
                 document.getElementById('userName').innerHTML = loggedInUser.name;
                 console.log('Logged-in user:', loggedInUser.name);
+                const firstLetter = loggedInUser.name.charAt(0).toUpperCase(); 
+                document.getElementById('name_menu').innerHTML = firstLetter; 
+                console.log('Logged-in user:', loggedInUser.name);
             } else {
                 console.log('No user is currently logged in.');
+                document.getElementById('userName').innerHTML = "Guest";
+                document.getElementById('name_menu').innerHTML = "G"; 
             }
         } else {
             alert('Failed to load user data.');
+            
         }
     } catch (error) {
         console.error("Error fetching users:", error.message);
@@ -66,11 +72,6 @@ async function greetUser() {
         // loggedUser = users.filter(user => user['logged']==true);
         // document.getElementById('userName').innerHTML = loggedUser[0].name;
         // console.log(loggedUser[0].name); 
-}
-
-function showFirstCase(){
-    const firstLetter = loggedInUser.name.charAt(0).toUpperCase();
-    document.getElementById('userName').innerHTML = firstLetter;
 }
 
 function loadNearestDeadline() {

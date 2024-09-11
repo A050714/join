@@ -323,3 +323,10 @@ function showAnimation() {
     window.location.href = "board.html";
   }, 3000);
 }
+
+
+function showFirstLetter() {
+  console.log(loggedInUser.name); 
+  const firstLetter = loggedInUser.name.charAt(0).toUpperCase(); 
+  document.getElementById('name_menu').innerHTML = firstLetter; 
+}

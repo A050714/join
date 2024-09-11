@@ -38,3 +38,6 @@ async function logout() {
         window.location.href = '/assets/html_templates/login.html';
     }
 }
+
+
+
