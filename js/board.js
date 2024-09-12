@@ -116,7 +116,7 @@ function showTask(id) {
   generateSubtasksOpenCard(task);
   generateAssignedContacts(task)
 }
-function generateInitals(task){
+function generateInitals(task) {
   const assignedIDs = task.assignedTo;
   if (assignedIDs != null) {
     assignedContacts = contacts.filter(contact => assignedIDs.includes(contact.id));
@@ -195,7 +195,7 @@ function generateTaskHTML(task) {
           </div>
 
           <div class="actions">
-              <button onclick="deleteTask(task)" class="delete"><img src="/assets/img/00_General_elements/delete.svg" alt="">Delete</button>
+              <button onclick="deleteTask(${task.id})" class="delete"><img src="/assets/img/00_General_elements/delete.svg" alt="">Delete</button>
               <button onclick="editTask(task)" class="edit"><img src="/assets/img/00_General_elements/edit.svg" alt="">Edit</button>
           </div>
       </div>
@@ -248,4 +248,26 @@ function searchInTheTasks(id) {
     task.description.toLowerCase().includes(inputSearch.toLowerCase())
   );
   generateBoard(foundTasks);
+}
+function showAddTask() {
+  contactsDropdown();
+  document.getElementById('showAddTask').classList.remove('d-none');
+}
+
+function closeAddTask() {
+  document.getElementById('showAddTask').classList.add('d-none');
+
+}
+
+
+async function deleteTask(id){
+  await deleteData(`Tasks/${id}`);
+  tasks = [];
+  await loadTasks();
+  generateBoard();
+  closeTask();
+}
+
+function editTask(id){
+  
 }

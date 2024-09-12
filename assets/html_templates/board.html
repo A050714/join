@@ -27,6 +27,11 @@
     <aside w3-include-html="/assets/html_templates/sidebar.html"></aside>
     <main>
     <div class="mainscreen">
+        <div class="d-none" id="showAddTask">
+            <div w3-include-html="/assets/html_templates/addTaskTemplate.html"></div>
+        </div>
+        <div class="d-none background" id="showTask">
+        </div>
         <div class="boardUpper">
             <div class="headLine">
                 <h1>Board</h1>
@@ -99,8 +104,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="d-none showTask" id="showTask">
     </div>
     </div>
 </main>

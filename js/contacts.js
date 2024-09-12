@@ -207,7 +207,7 @@ function showInitials(contact, id = "contactColor") {
 
     }
     let circleInitials = document.getElementById(id);
-    circleInitials.innerHTML = `<p>${initials}</p>`;
+    circleInitials.innerHTML = `<p class="pInitals">${initials}</p>`;
     circleInitials.style = `background-color: ${colors[contact.color]}`;
 
 }

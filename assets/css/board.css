@@ -183,7 +183,7 @@
     width: 32px;
 }
 
-.showTask {
+.background {
     background-color: rgb(0, 0, 0, 0.5);
     z-index: 1;
     position: fixed;
@@ -201,7 +201,7 @@
 }
 
 .d-none {
-    display: none;
+    display: none !important;
 }
 
 .h1AndButton {
@@ -248,6 +248,9 @@
     }
 }
 @media (max-width:990px) {
+    #showAddTask{
+        display: none;
+    }
     .headLine{
         display: none;
     }

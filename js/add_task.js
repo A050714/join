@@ -65,7 +65,7 @@ function contactsDropdown() {
 
   // Initialen für jeden Kontakt anzeigen
   contacts.forEach((contact) => {
-    showInitials(contact);
+    showInitials(contact,`contactColor-${contact.id}`);
   });
 }
 
@@ -77,7 +77,7 @@ function generateContacts(contact) {
           <div class="contactcolor3" id="contactColor-${contact.id}">
             <!-- Initialen -->
           </div>
-          <p id="contactname-${contact.id}">${contact.name}</p>
+          <p class="pContactname" id="contactname-${contact.id}">${contact.name}</p>
         </div>
         <img id="checkboxtask-${contact.id}" src="/assets/img/03_AddTask/contacts_checked/Check button.svg" alt="Checkbox">
       </div>
@@ -286,7 +286,7 @@ function showInitials(contact) {
   }
 
   let circleInitials = document.getElementById(`contactColor-${contact.id}`);
-  circleInitials.innerHTML = `<p>${initials}</p>`;
+  circleInitials.innerHTML = `<p class="pInitals">${initials}</p>`;
   circleInitials.style.backgroundColor = colors[contact.color];
 }
 
