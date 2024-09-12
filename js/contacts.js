@@ -114,13 +114,6 @@ function toggleEditPopup() {
 
 
 //ADD CONTACT//----------------------------------------------------------------------
-async function test() {
-    let userrespone = await getData("Contacts") || {};
-    let UserKeysArray = Object.keys(userrespone);
-    console.log(UserKeysArray);
-    
-}
-
 
 async function createContact() {
     
@@ -221,10 +214,14 @@ async function fillContactValues() {
     document.getElementById('editName').value = name;
     document.getElementById('editMail').value = mail;
     document.getElementById('editPhone').value = phone;
+    let contact = contacts.find(x => x.name && x.name === name);
+    console.log(contact.id);
+    showInitials(contact,`addcontactbg` )
+
+    
 }
 
 async function editContact() {
-    
     let contactName = document.getElementById('contactName').innerHTML;
     let name = document.getElementById('editName').value;
     let mail = document.getElementById('editMail').value;
@@ -238,6 +235,7 @@ async function editContact() {
             id: contact.id,               
             color: contact.color        
         };
+        
         await postData(`Contacts/${firebaseID}`, updatedContact);
         location.reload();
 }

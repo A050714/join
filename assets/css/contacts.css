@@ -269,6 +269,9 @@ h3 {
     background-color: #D1D1D1;
     border-radius: 70px;
     margin-left: 24px;
+    font-size: 47px;
+    color: white;
+    border: 3px solid white;
 }
 
 .addcontactperson {
