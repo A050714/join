@@ -10,13 +10,16 @@
     <link rel="stylesheet" href="/assets/css/board.css">
     <link rel="stylesheet" href="/assets/css/card.css">
     <link rel="stylesheet" href="/assets/css/taskCard.css">
+    <link rel="stylesheet" href="/assets/css/addtask.css">
+    <link rel="stylesheet" href="/assets/css/addtaskmobile.css">
+
     <!-- <link rel="stylesheet" href="/assets/css/contacts.css"> -->
     <link rel="stylesheet" href="/style.css">
     <script src="/script.js" defer></script>
+    <script src="/js/contacts.js"></script>
     <script src="/js/header.js"></script>
     <script src="/js/sidebar.js"></script>
     <script src="/js/add_task.js"></script>
-    <script src="/js/contacts.js"></script>
     <script src="/js/board.js"></script>
 
     
@@ -27,7 +30,7 @@
     <aside w3-include-html="/assets/html_templates/sidebar.html"></aside>
     <main>
     <div class="mainscreen">
-        <div class="d-none" id="showAddTask">
+        <div id="showAddTask" class="showAddTask">
             <div w3-include-html="/assets/html_templates/addTaskTemplate.html"></div>
         </div>
         <div class="d-none background" id="showTask">
@@ -44,7 +47,7 @@
                         </div>
 
                     </span>
-                    <button onclick="showAddTask()" class="joinBtnprimary" id="addTaskBtn">Add Task<img class="icons"
+                    <button onclick="showAddTask(), setPrio('medium');" class="joinBtnprimary" id="addTaskBtn">Add Task<img class="icons"
                             src="/assets/img/04_Board/add/add.svg" alt=""></button>
                 </div>
             </div>
@@ -108,7 +111,5 @@
     </div>
 </main>
 </body>
-<script>
-      includeHTML();
-</script>
+
 </html>

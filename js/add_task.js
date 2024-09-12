@@ -276,6 +276,7 @@ function clearContactList() {
 }
 
 function showInitials(contact) {
+  
   const nameParts = contact.name.trim().split(" ");
   let initials;
 
