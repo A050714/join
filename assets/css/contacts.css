@@ -561,7 +561,7 @@ h3 {
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    cursor: pointer; 
+    cursor: pointer;
     margin-bottom: 2px;
 }
 
@@ -673,7 +673,8 @@ h3 {
     cursor: pointer;
 }
 
-.addNewContactMobile, .mobileMenu {
+.addNewContactMobile,
+.mobileMenu {
     position: absolute;
     z-index: 1;
     bottom: 90px;
@@ -694,6 +695,7 @@ h3 {
     align-items: flex-start;
     flex-direction: column;
     gap: 8px;
+    box-shadow: 0px 4px 4px 0px #00000040;
 
     button {
         padding-left: 20px;
@@ -797,6 +799,7 @@ h3 {
 
     .contactinformation {
         margin: 10px 0px;
+
         p {
             padding-bottom: 12px;
         }
@@ -820,20 +823,21 @@ h3 {
     .informationPhoneMail {
         width: 50%;
     }
+
     .contacthead {
         justify-content: center;
         gap: 20px;
         width: 50%;
     }
 
-    .openContact{
+    .openContact {
         justify-content: center;
         padding-top: 44px;
     }
 
     .betterWAT {
         justify-content: center;
-      
+
     }
 
     .addcontactpopup {
@@ -853,9 +857,20 @@ h3 {
         display: none;
     }
 
+    #contactName {
+        margin: 0;
+    }
+
+    .contacthead {
+        padding-top: 22px;
+    }
+
     #contactList {
-        position: fixed;
         height: 80vh;
+    }
+
+    .contactinformation {
+        margin: unset;
     }
 
     .contactbtn {
@@ -865,6 +880,23 @@ h3 {
     .addNewContactMobile {
         display: block;
         cursor: pointer;
+    }
+
+    .editIcon,
+    .deleteIcon {
+        p {
+            font-size: 16px !important;
+
+        }
+    }
+
+    .editIcon:active,
+    .deleteIcon:active {
+
+        p {
+            color: #007CEE;
+        }
+
     }
 
     .rightSide {
@@ -891,6 +923,7 @@ h3 {
         padding: unset;
         align-items: flex-start;
         height: auto;
+
         h1 {
             font-size: 47px;
         }
@@ -916,6 +949,7 @@ h3 {
         flex-direction: column;
         width: max-content;
         gap: 0px;
+        padding-top: 32px;
     }
 
     .betterWAT_border {
@@ -939,12 +973,19 @@ h3 {
     .editdelete {
         display: none;
     }
+
     .kontakdaten {
         flex-direction: column;
 
         p {
             font-weight: 700;
         }
+    }
+
+    .kontakdatenDetails {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
     }
 
     .addcontactpopup {
@@ -955,8 +996,6 @@ h3 {
         position: relative;
         gap: 0;
         z-index: 10001;
-        /* Sicherstellen, dass es über anderen Elementen liegt */
-
     }
 
     .popuplogo {
@@ -970,6 +1009,7 @@ h3 {
         border-top-right-radius: 30px;
         height: 46%;
         justify-content: space-between;
+
     }
 
     .popupleftContent {
@@ -987,7 +1027,6 @@ h3 {
         position: absolute;
         top: 46%;
         transform: translate(0, -50%);
-        /* um das Object nach oben um 50% der eigenen Höhe zu bewegen */
         margin-left: 0;
     }
 
@@ -999,15 +1038,17 @@ h3 {
         padding-top: 24px;
         box-sizing: border-box;
         gap: 15px;
+
         input {
             height: 41px;
             width: auto;
 
         }
-        
+
     }
 
-    .closeEdit, .closeAddContact {
+    .closeEdit,
+    .closeAddContact {
         display: none;
     }
 
