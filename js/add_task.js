@@ -17,7 +17,7 @@ async function onloadAddTask() {
   // await loadContacts();
   await onloadMain();
   await showFirstLetter();
-  contactsDropdown();
+  contactsDropdown('contactList-a');
 
 }
 
@@ -55,13 +55,11 @@ async function taskContacts() {
   }
 }
 
-function contactsDropdown() {
-  let content = document.getElementById("contactList-a");
+function contactsDropdown(id) {
+  let content = document.getElementById(id);
   content.innerHTML = "<ul>";
 
   for (let index = 0; index < contacts.length; index++) {
-    console.log(contacts[index]);
-
     content.innerHTML += generateContacts(contacts[index]);
   }
 
@@ -112,16 +110,14 @@ function addTo(id) {
   displaySelectedContacts();
 }
 
-function toggleDropdown() {
-  const togglearrow = document.getElementById("dropdownarrow");
+function toggleDropdown(arrow="dropdownarrow",contactListId="contactList-a",selectedContacts='selectedContactsDisplay') {
+  const togglearrow = document.getElementById(arrow);
   togglearrow.classList.toggle("open");
 
-  const contactList = document.getElementById("contactList-a");
+  const contactList = document.getElementById(contactListId);
   contactList.classList.toggle("dNone");
 
-  const selectedContactsDisplay = document.getElementById(
-    "selectedContactsDisplay"
-  );
+  const selectedContactsDisplay = document.getElementById(selectedContacts);
 
   if (contactList.classList.contains("dNone")) {
     selectedContactsDisplay.style.display = "flex";
@@ -295,8 +291,8 @@ function showInitials(contact) {
   circleInitials.style.backgroundColor = colors[contact.color];
 }
 
-function displaySelectedContacts() {
-  let container = document.getElementById("selectedContactsDisplay");
+function displaySelectedContacts(id="selectedContactsDisplay") {
+  let container = document.getElementById(id);
   container.innerHTML = "";
 
   selectedContacts.forEach((contact) => {

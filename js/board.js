@@ -5,7 +5,6 @@ let assignedContacts = [];
 async function onloadBoard() {
   await onloadMain();
   generateBoard();
-
 }
 
 
@@ -126,12 +125,16 @@ function showTask(id) {
   content.innerHTML = generateTaskHTML(task);
   generateSubtasksOpenCard(task);
   generateAssignedContacts(task);
-  contactsDropdown();
   loadEdit(task);
 
 }
 function loadEdit(task) {
-  document.getElementById('contactList-a').classList.remove('dNone');
+  contactsDropdown('contactList-edit');
+  // document.getElementById('contactList-edit').classList.remove('dNone');
+  displaySelectedContacts('selectedContactsDisplay-edit');
+  document.getElementById("titleId").value = task.title;
+  document.getElementById("descId").value  = task.description;
+
 
 }
 function generateInitals(task) {
@@ -270,7 +273,7 @@ function searchInTheTasks(id) {
   generateBoard(foundTasks);
 }
 function showAddTask() {
-  contactsDropdown();
+  contactsDropdown("contactList-a");
   const addTaskElement = document.getElementById("showAddTask");
   addTaskElement.classList.add("active"); // Aktiviert die Animation
 }

@@ -1,16 +1,13 @@
-<script src="/js/add_task.js" defer></script>
-<link rel="stylesheet" href="/assets/css/addtask.css">
-
-<body onload="contactsDropdown()">
+<body>
     <div class="editTask">
 
         <span>
             <p>Title</p>
-            <input id="titleId" type="text" placeholder="Enter a title" required>
+            <input id="titleId" type="text">
         </span>
         <span>
             <p>Description</p>
-            <textarea id="descId" placeholder="Enter a Description"></textarea>
+            <textarea id="descId"></textarea>
         </span>
         <span>
             <p>Due date:</p>
@@ -30,14 +27,14 @@
         </span>
         <span>
             <p>Assigned to</p>
-                    <div class="dropdown" onclick="toggleDropdown()">
+                    <div class="dropdown" onclick="toggleDropdown('dropdownarrow-edit','contactList-edit','selectedContactsDisplay-edit')">
                         <span>Select contacts to assign</span>
-                        <img id="dropdownarrow" class="dropdown-arrow"
+                        <img id="dropdownarrow-edit" class="dropdown-arrow"
                             src="/assets/img/03_AddTask/contacts_checked/arrow_drop_down.svg">
                     </div>
-                    <div id="contactList-a" class="contactList-a dNone"></div>
+                    <div id="contactList-edit" class="contactList-a dNone"></div>
         </span>
-        <div id="selectedContactsDisplay"></div>
+        <div id="selectedContactsDisplay-edit"></div>
 
         <span>
             <div class="subtaskContainer">
@@ -54,17 +51,13 @@
     </div>
 </body>
 
-
+<script src="/js/add_task.js" defer></script>
+<link rel="stylesheet" href="/assets/css/addtask.css">
 <style>
     .editTask {
         border-radius: 10px;
         background-color: white;
         padding: 32px 40px;
         box-shadow: 0px 0px 4px 0px #00000029;
-    }
-
-    .editTask.active{
-        right: 25%;
-        transform: translateY(-50%);
     }
 </style>
