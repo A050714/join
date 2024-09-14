@@ -713,7 +713,9 @@ h3 {
 
     #contactList {
         width: calc(100% - 110px);
-        margin: 0px;
+        margin: unset;
+        margin-top: 20px;
+        height: 80vh;
     }
 
     .addNewContact {
