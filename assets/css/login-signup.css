@@ -555,7 +555,6 @@
         }
 
         .signup_option {
-    
             position: absolute;
             left: 50%;
             bottom: 20px;
@@ -586,17 +585,9 @@
         }
 
         .notice{
-            bottom: 1%;
+            bottom: 2%;
             animation: fade-in 1.2s ease forwards;
         }
-        /* .notice{
-            position: absolute; 
-            bottom: 2em;
-            left: 50%;
-            transform: translateX(-25%);
-            width: 100%;
-           
-        } */
 
         .join_logo img{
             scale: 0.6;

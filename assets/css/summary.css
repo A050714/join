@@ -218,7 +218,6 @@
        
    }
    p {
-       
        margin: 0;
        margin-block-start: 0; 
        margin-block-end: 0;
@@ -269,6 +268,8 @@
         .metrics{
             /* padding: 5rem 0 0 4rem; */
             padding:0; 
+           
+
         }
         .metrics_tasks {
             grid-template-columns: repeat(6, 1fr);
@@ -293,8 +294,7 @@
             font-size: 2.5em;
             position: absolute;
             left: 0;
-            top: 70px;
-
+            top: 10vh !important;
         }
 
         .title_key{
@@ -342,16 +342,61 @@
 
         }
         .greeting_name {
-            display: none; 
+            z-index: 2;
+            position: absolute;      
+            top: 55%;                
+            left: 50%;               
+            transform: translate(-50%, -50%);  
+            text-align: center;
+            width: 100%;  
+            animation: fade-out 4s ease forwards;
+          
         }
 
         .greeting_goodmorning{
-            display: none; 
+            z-index: 2;
+            position: absolute;      
+            top: 45%;                
+            left: 50%;               
+            transform: translate(-50%, -50%);  
+            text-align: center;
+            width: 100%;
+            animation: fade-out 4s ease forwards;
+           
         }
 
+        .blur-overlay{
+            position: absolute;
+            z-index: 1;
+            width: 100%;
+            background-color: #f6f7f8;
+            top: 70px;
+            bottom: 70px;
+            animation: fade-out 4s ease-in-out forwards;
+        }
+
+        
+        @keyframes fade-out {
+            0% {
+                opacity: 1;
+                
+            }
+            85% {
+                opacity: 0.99;
+            }
+            100% {
+                opacity: 0;
+                z-index: 0;
+            }
+            
+        }
+
+
+
+        
     }
 
-    /* ipad-Device_responsive design for mobile devices like ipad */
+    /* responsive design for mobile devices  */
     @media (min-width: 320px) and (max-width: 990px) {
         .mainscreen{
             margin-bottom: 90px;
@@ -384,7 +429,7 @@
             width: 100px;
             height: 2px;
             position: absolute; 
-            top: 140px;
+            top: 20vh;
             left:15vw; 
       
         }
@@ -401,11 +446,11 @@
 
         .title_key{
             position:absolute; 
-            top: 110px; 
+            top: 15vh; 
             left:8vw; 
-            font-size: 20px;
+            font-size: 18px;
             text-align: left;
-            
+
         }
 
 
@@ -447,21 +492,32 @@
 
         }
         .greeting_name {
-            scale: 0.4;
+ 
             
         }
 
         .greeting_goodmorning{
-            scale: 0.5;
+
         }
 
       }
-      @media (min-width: 320px) and (max-width: 990px) and (min-height:600px){
-        body {
-            line-height: 1;
-        }
-
+    /* small device with little height */
+    @media (min-width: 320px) and (max-width: 990px) and (max-height: 660px){
+        .title_key {
+            top: 15vh;
       }
+      .blue-line {
+        width: 100px;
+        height: 2px;
+
+        top: 21vh;
+      }
+      .title_join {
+        font-size: 1.7em;
+        top: 10vh;
+      }
+
+    }
 
       @media (min-width: 320px) and (max-width: 990px) and (min-height:800px) {
         .metrcis_content {
