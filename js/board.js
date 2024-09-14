@@ -4,8 +4,8 @@ let assignedContacts = [];
 
 async function onloadBoard() {
   await onloadMain();
-
   generateBoard();
+
 }
 
 
@@ -71,18 +71,16 @@ function calculateSubTasks(task) {
 function generateTodoHTML(element) {
   return /*html*/ `
     <div  onclick='showTask("${element.id}")' class="card" draggable="true" ondragstart="startDragging(${element.id})" id="${element.id}">
-        <label class="categoryLabel ${element.category}" for="category">${
-    element.category == "userstory" ? "User Story" : "Technical Task"
-  }</label>
+        <label class="categoryLabel ${element.category}" for="category">${element.category == "userstory" ? "User Story" : "Technical Task"
+    }</label>
         <div class="titDesc">
             <p class="title">${element.title}</p>
             <p class="description">${element.description}</p>
         </div>
         <div class="progress" id="progressbarID">
             <div class="progress-bar" id="progress-bar">
-                <div class="progress-color" id="progress-color${
-                  element.id
-                }"></div>
+                <div class="progress-color" id="progress-color${element.id
+    }"></div>
             </div>
             <div class='subtasksDiv'  id="subtasksDiv${element.id}">
               <!-- SUBTASK SUM HERE -->
@@ -123,11 +121,18 @@ async function moveto(status) {
 function showTask(id) {
   const task = tasks.find((t) => t.id == id);
   let content = document.getElementById("showTask");
-  content.classList.remove("d-none");
+  content.classList.remove("dNone");
   content.innerHTML = "";
   content.innerHTML = generateTaskHTML(task);
   generateSubtasksOpenCard(task);
   generateAssignedContacts(task);
+  contactsDropdown();
+  loadEdit(task);
+
+}
+function loadEdit(task) {
+  document.getElementById('contactList-a').classList.remove('dNone');
+
 }
 function generateInitals(task) {
   const assignedIDs = task.assignedTo;
@@ -140,8 +145,7 @@ function generateInitals(task) {
     content.innerHTML = "";
     assignedContacts.forEach((contact) => {
       content.innerHTML += /*html*/ `
-        <p class="circle" id="contactcolor" style = "background-color: ${
-          colors[contact.color]
+        <p class="circle" id="contactcolor" style = "background-color: ${colors[contact.color]
         }"> ${getInitials(contact)}</p>
       `;
     });
@@ -160,8 +164,7 @@ function generateAssignedContacts(task) {
     assignedContacts.forEach((contact) => {
       content.innerHTML += /*html*/ `
       <div class="assignedDiv">
-        <p id="contactcolor" style = "background-color: ${
-          colors[contact.color]
+        <p id="contactcolor" style = "background-color: ${colors[contact.color]
         }"> ${getInitials(contact)}</p>
         <p class = "nameP">${contact.name}</p>
       </div>
@@ -254,7 +257,7 @@ function toggleSubtask(taskId, subtaskIndex) {
 }
 
 function closeTask() {
-  document.getElementById("showTask").classList.add("d-none");
+  document.getElementById("showTask").classList.add("dNone");
 }
 
 function searchInTheTasks(id) {
@@ -286,7 +289,7 @@ async function deleteTask(id) {
 }
 
 function showInitials(contact) {
-  
+
   const nameParts = contact.name.trim().split(" ");
   let initials;
 
@@ -304,5 +307,6 @@ function showInitials(contact) {
 
 
 function editTask(id) {
-  
+  document.getElementById('showTask').classList.add("dNone");
+  document.getElementById('editTask').classList.remove("dNone");
 }

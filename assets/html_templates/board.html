@@ -30,11 +30,18 @@
     <aside w3-include-html="/assets/html_templates/sidebar.html"></aside>
     <main>
         <div class="mainscreen">
+
             <div id="showAddTask" class="showAddTask">
                 <div w3-include-html="/assets/html_templates/addTaskTemplate.html"></div>
             </div>
-            <div class="d-none background" id="showTask">
+
+            <div class="dNone background" id="editTask">
+                <div w3-include-html="/assets/html_templates/editTask.html"></div>
             </div>
+
+
+            <div class="dNone background" id="showTask"></div>
+
             <div class="boardUpper">
                 <div class="headLine">
                     <h1>Board</h1>
@@ -78,7 +85,7 @@
                             <p>To do</p>
                             <button><img src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
                         </div>
-                        <div class="progressBoxes" id="todoBox" ondrop="moveto('todo')" ondragover="allowDrop(event)" >
+                        <div class="progressBoxes" id="todoBox" ondrop="moveto('todo')" ondragover="allowDrop(event)">
                         </div>
                     </div>
                     <div class="progressBar">

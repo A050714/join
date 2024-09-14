@@ -17,7 +17,6 @@ async function onloadAddTask() {
   // await loadContacts();
   await onloadMain();
   await showFirstLetter();
-
   contactsDropdown();
 
 }
@@ -61,6 +60,8 @@ function contactsDropdown() {
   content.innerHTML = "<ul>";
 
   for (let index = 0; index < contacts.length; index++) {
+    console.log(contacts[index]);
+
     content.innerHTML += generateContacts(contacts[index]);
   }
 
