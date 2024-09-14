@@ -1,45 +1,113 @@
 <link rel="stylesheet" href="/assets/css/taskCard.css">
-<div class="user-story-card" id="taskCard">
-    <div class="header">
-        <span class="tag">User Story</span>
-        <span class="close-button">&times;</span>
-    </div>
-    <h1>${task.title}</h1>
-    <p>${tasks.description}</p>
-    
-    <div class="details">
-        <span><p class="mainColor" >Due date:</p> <p>${task.duedate}</p> </span>
-        <span><p class="mainColor">Priority:</p> <p>${task.prio}</p></span>
-    </div>
-    
-    <div class="assigned">
-        <p class="mainColor">Assigned To:</p>
-        <div class="assignees">
-            <div class="assignee">
-                <div class="avatar" style="background-color: #2EC7C7;">EM</div>
-                <span>Emmanuel Mauer</span>
-            </div>
-            <div class="assignee">
-                <div class="avatar" style="background-color: #6A44BE;">MB</div>
-                <span>Marcel Bauer</span>
-            </div>
-            <div class="assignee">
-                <div class="avatar" style="background-color: #1A73E8;">AM</div>
-                <span>Anton Mayer</span>
-            </div>
-        </div>
-    </div>
 
-    <div class="subtasks">
-        <p class="mainColor">Subtasks</p>
-        <div class="subtask">
-            <span style="cursor: pointer;" onclick="subTaskDone('ubergabe')"><img src="/assets/img/00_General_elements/checkButton.svg" alt=""></span>
-            <label for="task1">${subTask.title}</label>
+<body>
+    <div class="user-story-card" id="editTaskCard">
+        <div class="header">
+            <span class="close-button">&times;</span>
         </div>
-    </div>
+        <span>
+            <p>Title</p>
+            <input type="text" name="" id="titleInput">
+        </span>
 
-    <div class="actions">
-        <button onclick="deleteTask(task)" class="delete"><img src="/assets/img/00_General_elements/delete.svg" alt="">Delete</button>
-        <button onclick="editTask(task)" class="edit"><img src="/assets/img/00_General_elements/edit.svg" alt="">Edit</button>
+        <span>
+            <p>Description</p>
+            <textarea name="" id=""></textarea>
+        </span>
+
+        <span>
+            <p>Due date</p>
+            <input type="date" name="" id="">
+        </span>
+        <span>
+            <p>Prio</p>
+            <div class="prioBtnDiv">
+                <button type="button" onclick="setPrio('urgent')" class="tasksbtn" id="urgent">Urgent <img
+                        id="svgUrgent" src="/assets/img/03_AddTask/priority/Prio alta.svg" alt=""></button>
+                <button type="button" onclick="setPrio('medium')" class="tasksbtn" id="medium">Medium <img
+                        id="svgMedium" src="/assets/img/03_AddTask/priority/Prio media.svg"></button>
+                <button type="button" onclick="setPrio('low')" class="tasksbtn" id="low">Low <img id="svgLow"
+                        src="/assets/img/03_AddTask/priority/Prio baja(1).svg" alt=""></button>
+            </div>
+        </span>
+        <span>
+            <p>Assigned to</p>
+            <div class="dropdown" onclick="toggleDropdown()">
+                <span>Select contacts to assign</span>
+                <img id="dropdownarrow" class="dropdown-arrow"
+                    src="/assets/img/03_AddTask/contacts_checked/arrow_drop_down.svg">
+            </div>
+            <div id="contactList-a" class="contactList-a dNone"></div>
+        </span>
+
+
+        <span>
+            <p>Subtasks</p>
+            <div class="inputAndButtons">
+                <input class="inputField" id="inputField" type="text" placeholder="Add new subtask">
+                <img onclick="addToSubTasks()" id="addToSubTaskbtn" class="taskicon"
+                    src="/assets/img/03_AddTask/subtasks_icons/add.svg" alt="">
+            </div>
+        </span>
+        <button class="okbtn">OK <img style="height: 24px; width: 24px;" src="/assets/img/check-btn.svg" alt=""></button>
+
+        </span>
     </div>
-</div>
+</body>
+
+<style>
+    .user-story-card {
+        gap: 16px;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .header {
+        display: flex;
+        align-content: center;
+        justify-content: end;
+    }
+
+    input {
+        border-radius: 10px;
+        border: 1px solid #D1D1D1;
+        padding: 12px 21px;
+        gap: 10px;
+        width: 100%;
+    }
+
+    textarea {
+        border-radius: 10px;
+        border: 1px solid #D1D1D1;
+        padding: 18px 16px;
+        width: 100%;
+    }
+
+    .prioBtnDiv {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+    }
+
+    .tasksbtn {
+        box-shadow: 0px 0px 4px 0px #0000001A;
+        border-radius: 10px;
+        border: 1px;
+        padding: 10px 8px;
+
+
+    }
+   .okbtn{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-radius: 10px;
+    background: #2A3647;
+    color: white;
+    padding: 16px;
+}
+
+
+</style>
