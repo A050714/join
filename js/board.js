@@ -70,27 +70,40 @@ function calculateSubTasks(task) {
 
 function generateTodoHTML(element) {
   return /*html*/ `
-    <div  onclick='showTask("${element.id}")' class="card" draggable="true" ondragstart="startDragging(${element.id})" id="${element.id}">
-        <label class="categoryLabel ${element.category}" for="category">${element.category == "userstory" ? "User Story" : "Technical Task"}</label>
+    <div  onclick='showTask("${
+      element.id
+    }")' class="card" draggable="true" ondragstart="startDragging(${
+    element.id
+  })" id="${element.id}">
+        <label class="categoryLabel ${element.category}" for="category">${
+    element.category == "userstory" ? "User Story" : "Technical Task"
+  }</label>
         <div class="titDesc">
             <p class="title">${element.title}</p>
             <p class="description">${element.description}</p>
         </div>
         <div class="progress" id="progressbarID">
             <div class="progress-bar" id="progress-bar">
-                <div class="progress-color" id="progress-color${element.id}"></div>
+                <div class="progress-color" id="progress-color${
+                  element.id
+                }"></div>
             </div>
             <div class='subtasksDiv'  id="subtasksDiv${element.id}">
               <!-- SUBTASK SUM HERE -->
           </div>
         </div>
         <div class="asignedContacts">
-          <div class="staple" id="assignedWrapperCard${element.id}"></div>              
+          <div class="staple" id="assignedWrapperCard${
+            element.id
+          }"></div>              
 
           <div class="prioDiv">
-                    <img class="prioIcon" src="/assets/img/03_AddTask/priority/${element.prio}.svg" alt="">
+                    <img class="prioIcon" src="/assets/img/03_AddTask/priority/${
+                      element.prio
+                    }.svg" alt="">
           </div>
         </div>
+        
     </div>
   `;
 }
@@ -135,7 +148,9 @@ function generateInitals(task) {
     content.innerHTML = "";
     assignedContacts.forEach((contact) => {
       content.innerHTML += /*html*/ `
-        <p class="circle" id="contactcolor" style = "background-color: ${colors[contact.color]}"> ${getInitials(contact)}</p>
+        <p class="circle" id="contactcolor" style = "background-color: ${
+          colors[contact.color]
+        }"> ${showInitials(contact)}</p>
       `;
     });
   }
@@ -152,7 +167,9 @@ function generateAssignedContacts(task) {
     assignedContacts.forEach((contact) => {
       content.innerHTML += /*html*/ `
       <div class="assignedDiv">
-        <p id="contactcolor" style = "background-color:${colors[contact.color]}"> ${getInitials(contact)}</p>
+        <p id="contactcolor" style = "background-color: ${
+          colors[contact.color]
+        }"> ${showInitials(contact)}</p>
         <p class = "nameP">${contact.name}</p>
       </div>
       `;
@@ -160,7 +177,7 @@ function generateAssignedContacts(task) {
   }
 }
 
-function getInitials(contact) {
+function showInitials(contact, id = "contactColor") {
   const nameParts = contact.name.split(" ");
   let initials;
   if (nameParts.length == 1) {
@@ -169,6 +186,9 @@ function getInitials(contact) {
     initials = nameParts[0][0] + nameParts[1][0];
   }
   return initials;
+  let circleInitials = document.getElementById(id);
+  circleInitials.style = `background-color: ${colors[contact.color]}`;
+  return `<p>${initials}</p>`;
 }
 function generateTaskHTML(task) {
   const capitalizedPrio =
@@ -177,20 +197,28 @@ function generateTaskHTML(task) {
   return /*html*/ `
           <div class="user-story-card " id="taskCard">
           <div class="header">
-            <span class="tag ${task.category}">${task.category == "userstory" ? "User Story" : "Technical Task"}</span>
+            <span class="tag ${task.category}">${
+    task.category == "userstory" ? "User Story" : "Technical Task"
+  }</span>
             <span onclick="closeTask()" class="close-button">&times;</span>
           </div>
           <h1 class="fs60fw700">${task.title}</h1>
           <p class="fs20fw400">${task.description}</p>
           
           <div class="details">
-              <span><p class="mainColor" >Due date:</p> <p>${task.dueDate}</p> </span>
-              <span><p class="mainColor">Priority:</p> <p>${capitalizedPrio} </p><img src="/assets/img/03_AddTask/priority/${task.prio}.svg" alt=""></span>
+              <span><p class="mainColor" >Due date:</p> <p>${
+                task.dueDate
+              }</p> </span>
+              <span><p class="mainColor">Priority:</p> <p>${capitalizedPrio} </p><img src="/assets/img/03_AddTask/priority/${
+    task.prio
+  }.svg" alt=""></span>
           </div>
           
           <div class="assigned">
               <p class="mainColor">Assigned To:</p>
-              <div class="startAndgap10" id="assignedWrapper${task.id}"></div>              
+              <div class="startAndgap10" id="assignedWrapper${
+                task.id
+              }"></div>              
           </div>
 
           <div>
@@ -200,7 +228,9 @@ function generateTaskHTML(task) {
           </div>
 
           <div class="actions">
-              <button onclick="deleteTask(${task.id})" class="delete"><img src="/assets/img/00_General_elements/delete.svg" alt="">Delete</button>
+              <button onclick="deleteTask(${
+                task.id
+              })" class="delete"><img src="/assets/img/00_General_elements/delete.svg" alt="">Delete</button>
               <button onclick="editTask(task)" class="edit"><img src="/assets/img/00_General_elements/edit.svg" alt="">Edit</button>
           </div>
       </div>
@@ -216,7 +246,11 @@ function generateSubtasksOpenCard(task) {
     } else {
       content.innerHTML += /*html*/ `
       <span class="dFlex">
-        <img onclick="toggleSubtask(${task.id}, ${index})" src="/assets/img/04_Board/subtasks_check/${subtask.status == "todo" ?"check":"checked"}.svg" alt="">
+        <img onclick="toggleSubtask(${
+          task.id
+        }, ${index})" src="/assets/img/04_Board/subtasks_check/${
+        subtask.status == "todo" ? "check" : "checked"
+      }.svg" alt="">
         <p class="fs16fw400">${subtask.title}</p>
       </span>`;
     }
@@ -292,13 +326,4 @@ function showInitials(contact) {
 
 
 
-function editTask() {
-  contactsDropdown();
-  const editAddTask = document.getElementById("showEditTask");
-  editAddTask.classList.add("active"); // Aktiviert die Animation
-}
-
-function hideEditTask() {
-  const editAddTask = document.getElementById("showEditTask");
-  editAddTask.classList.remove("active"); // Blendet das Element wieder aus
-}
+function editTask(id) {}

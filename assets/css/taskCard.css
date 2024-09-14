@@ -9,9 +9,7 @@
     padding: 25px;
     position: relative;
 }
-p{
-    margin: 0;
-}
+
 .header {
     display: flex;
     justify-content: space-between;
