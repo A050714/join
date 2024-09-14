@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="/assets/css/card.css">
     <link rel="stylesheet" href="/assets/css/taskCard.css">
     <link rel="stylesheet" href="/assets/css/addtaskmobile.css">
-    <link rel="stylesheet" href="/assets/css/contacts.css"><!-- Man braucht hier den contacts.css wegen style of user-info in header -->
+    <link rel="stylesheet" href="/assets/css/contacts.css">
+    <!-- Man braucht hier den contacts.css wegen style of user-info in header -->
     <link rel="stylesheet" href="/style.css">
     <script src="/script.js" defer></script>
     <script src="/js/contacts.js"></script>
@@ -20,94 +21,96 @@
     <script src="/js/add_task.js"></script>
     <script src="/js/board.js"></script>
 
-    
+
 </head>
 
 <body onload="onloadBoard()">
     <header w3-include-html="/assets/html_templates/header.html"></header>
     <aside w3-include-html="/assets/html_templates/sidebar.html"></aside>
     <main>
-    <div class="mainscreen">
-        <div id="showAddTask" class="showAddTask">
-            <div w3-include-html="/assets/html_templates/addTaskTemplate.html"></div>
-        </div>
-        <div class="d-none background" id="showTask">
-        </div>
-        <div class="boardUpper">
-            <div class="headLine">
-                <h1>Board</h1>
-                <div class="searchAndAddDiv">
-                    <span>
-                        <input id="inputSearch" type="text" placeholder="Find Task" oninput="searchInTheTasks('inputSearch')">
-                        <div>
-                            <img class="vector" src="/assets/img/04_Board/search/Vector 3.svg" alt="">
-                            <img class="icons" src="/assets/img/04_Board/search/search.svg" alt="">
-                        </div>
-
-                    </span>
-                    <button onclick="showAddTask(), setPrio('medium');" class="joinBtnprimary" id="addTaskBtn">Add Task<img class="icons"
-                            src="/assets/img/04_Board/add/add.svg" alt=""></button>
-                </div>
+        <div class="mainscreen">
+            <div id="showAddTask" class="showAddTask">
+                <div w3-include-html="/assets/html_templates/addTaskTemplate.html"></div>
             </div>
-
-            <div class="headlineMobile">
-                <div class="h1AndButton">
+            <div class="d-none background" id="showTask">
+            </div>
+            <div class="boardUpper">
+                <div class="headLine">
                     <h1>Board</h1>
-                    <button onclick='window.location.href="/assets/html_templates/add_task.html"' class="joinBtnprimary" id="addTaskBtn">Add Task<img class="icons"
-                            src="/assets/img/04_Board/add/add.svg" alt=""></button>
+                    <div class="searchAndAddDiv">
+                        <span>
+                            <input id="inputSearch" type="text" placeholder="Find Task"
+                                oninput="searchInTheTasks('inputSearch')">
+                            <div>
+                                <img class="vector" src="/assets/img/04_Board/search/Vector 3.svg" alt="">
+                                <img class="icons" src="/assets/img/04_Board/search/search.svg" alt="">
+                            </div>
+
+                        </span>
+                        <button onclick="showAddTask(), setPrio('medium');" class="joinBtnprimary" id="addTaskBtn">Add
+                            Task<img class="icons" src="/assets/img/04_Board/add/add.svg" alt=""></button>
+                    </div>
                 </div>
 
-                <div class="searchAndAddDiv">
-                    <span>
-                        <input type="text" id="mobileInputSearch" placeholder="Find Task" oninput="searchInTheTasks('mobileInputSearch')">
-                        <div>
-                            <img class="vector" src="/assets/img/04_Board/search/Vector 3.svg" alt="">
-                            <img class="icons" src="/assets/img/04_Board/search/search.svg" alt="">
+                <div class="headlineMobile">
+                    <div class="h1AndButton">
+                        <h1>Board</h1>
+                        <button onclick='window.location.href="/assets/html_templates/add_task.html"'
+                            class="joinBtnprimary" id="addTaskBtn">Add Task<img class="icons"
+                                src="/assets/img/04_Board/add/add.svg" alt=""></button>
+                    </div>
+
+                    <div class="searchAndAddDiv">
+                        <span>
+                            <input type="text" id="mobileInputSearch" placeholder="Find Task"
+                                oninput="searchInTheTasks('mobileInputSearch')">
+                            <div>
+                                <img class="vector" src="/assets/img/04_Board/search/Vector 3.svg" alt="">
+                                <img class="icons" src="/assets/img/04_Board/search/search.svg" alt="">
+                            </div>
+                        </span>
+                    </div>
+                </div>
+                <div class="statusBar">
+                    <div class="progressBar">
+                        <div class="asd">
+                            <p>To do</p>
+                            <button><img src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
                         </div>
+                        <div class="progressBoxes" id="todoBox" ondrop="moveto('todo')" ondragover="allowDrop(event)" >
+                        </div>
+                    </div>
+                    <div class="progressBar">
+                        <div class="asd">
+                            <p>In progress</p>
+                            <button><img src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
+                        </div>
+                        <div class="progressBoxes" id="inProgressBox" ondrop="moveto('inProgress')"
+                            ondragover="allowDrop(event)">
+                        </div>
+                    </div>
+                    <div class="progressBar">
+                        <div class="asd">
+                            <p>Await feedback</p>
+                            <button><img src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
+                        </div>
+                        <div class="progressBoxes" id="awaitFeedbackBox" ondrop="moveto('awaitFeedback')"
+                            ondragover="allowDrop(event)">
+                        </div>
+                    </div>
+                    <div class="progressBar">
+                        <div class="asd">
+                            <p>Done</p>
+                        </div>
+                        <div class="progressBoxes" id="doneBox" ondrop="moveto('done')" ondragover="allowDrop(event)">
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                    </span>
-                </div>
-            </div>
         </div>
-
-        <div class="statusBar">
-            <div class="progressBar">
-                <div class="asd">
-                    <p>To do</p>
-                    <button><img src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
-                </div>
-                <div class="progressBoxes" id="todoBox" ondrop="moveto('todo')" ondragover="allowDrop(event)" >
-                </div>
-            </div>
-            <div class="progressBar">
-                <div class="asd">
-                    <p>In progress</p>
-                    <button><img src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
-                </div>
-                <div class="progressBoxes" id="inProgressBox" ondrop="moveto('inProgress')"
-                    ondragover="allowDrop(event)">
-                </div>
-            </div>
-            <div class="progressBar">
-                <div class="asd">
-                    <p>Await feedback</p>
-                    <button><img src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
-                </div>
-                <div class="progressBoxes" id="awaitFeedbackBox" ondrop="moveto('awaitFeedback')"
-                    ondragover="allowDrop(event)">
-                </div>
-            </div>
-            <div class="progressBar">
-                <div class="asd">
-                    <p>Done</p>
-                </div>
-                <div class="progressBoxes" id="doneBox" ondrop="moveto('done')" ondragover="allowDrop(event)">
-                </div>
-            </div>
         </div>
-    </div>
-    </div>
-</main>
+    </main>
 </body>
 
 </html>
