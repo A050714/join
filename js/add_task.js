@@ -17,6 +17,7 @@ async function onloadAddTask() {
   // await loadContacts();
   await onloadMain();
   contactsDropdown();
+  showFirstLetterInHeader()
 }
 
 // async function getData(pfad) {
@@ -65,7 +66,7 @@ function contactsDropdown() {
 
   // Initialen für jeden Kontakt anzeigen
   contacts.forEach((contact) => {
-    showInitials(contact);
+    showInitials(contact,`contactColor-${contact.id}`);
   });
 }
 
@@ -77,7 +78,7 @@ function generateContacts(contact) {
           <div class="contactcolor3" id="contactColor-${contact.id}">
             <!-- Initialen -->
           </div>
-          <p id="contactname-${contact.id}">${contact.name}</p>
+          <p class="pContactname" id="contactname-${contact.id}">${contact.name}</p>
         </div>
         <img id="checkboxtask-${contact.id}" src="/assets/img/03_AddTask/contacts_checked/Check button.svg" alt="Checkbox">
       </div>
@@ -276,6 +277,7 @@ function clearContactList() {
 }
 
 function showInitials(contact) {
+  
   const nameParts = contact.name.trim().split(" ");
   let initials;
 
@@ -286,7 +288,7 @@ function showInitials(contact) {
   }
 
   let circleInitials = document.getElementById(`contactColor-${contact.id}`);
-  circleInitials.innerHTML = `<p>${initials}</p>`;
+  circleInitials.innerHTML = `<p class="pInitals">${initials}</p>`;
   circleInitials.style.backgroundColor = colors[contact.color];
 }
 
@@ -324,9 +326,9 @@ function showAnimation() {
   }, 3000);
 }
 
-
-function showFirstLetter() {
-  console.log(loggedInUser.name); 
-  const firstLetter = loggedInUser.name.charAt(0).toUpperCase(); 
-  document.getElementById('name_menu').innerHTML = firstLetter; 
+function showFirstLetterInHeader() {
+  const firstLetter = localStorage.getItem('firstLetter') || 'G'; // Default to 'G' if no user is logged in
+  document.getElementById('name_menu').innerHTML = firstLetter;
+  console.log(firstLetter); 
 }
+

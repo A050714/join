@@ -1,0 +1,83 @@
+<link rel="stylesheet" href="/style.css">
+<body>
+    <div class="background">
+        <div class="editTask">
+
+            <span>
+                <p>Title</p>
+                <input type="text" name="" id="">
+            </span>
+            <span>
+                <p>Description</p>
+                <textarea name="" id=""></textarea>
+            </span>
+            <span>
+                <p>Due date:</p>
+                <input type="date" name="" id="">
+            </span>
+
+            <span>
+                <p>Priority</p>
+                <div class="prioDiv">
+                    <button type="button" onclick="setPrio('urgent')" class="tasksbtn" id="urgent">Urgent <img
+                        id="svgUrgent" src="/assets/img/03_AddTask/priority/Prio alta.svg" alt=""></button>
+                <button type="button" onclick="setPrio('medium')" class="tasksbtn" id="medium">Medium <img
+                        id="svgMedium" src="/assets/img/03_AddTask/priority/Prio media.svg"></button>
+                <button type="button" onclick="setPrio('low')" class="tasksbtn" id="low">Low <img
+                        id="svgLow" src="/assets/img/03_AddTask/priority/Prio baja(1).svg" alt=""></button>
+                </div>
+            </span>
+            <span>
+                <p>Assigned to</p>
+                <div class="dropdown" onclick="toggleDropdown()">
+                    <span>Select contacts to assign</span>
+                    <img id="dropdownarrow" class="dropdown-arrow"
+                        src="/assets/img/03_AddTask/contacts_checked/arrow_drop_down.svg">
+                </div>
+                <div id="contactList-a" class="contactList-a dNone"></div>
+            </span>
+            <div id="selectedContactsDisplay"></div>
+
+            <span>
+                <p>Subtasks</p>
+                <div class="subtaskContainer">
+                    <p>Subtasks</p>
+                    <div class="inputAndButtons">
+                        <input class="inputField" id="inputField" type="text" placeholder="Add new subtask">
+                        <img onclick="addToSubTasks()" id="addToSubTaskbtn" class="taskicon"
+                            src="/assets/img/03_AddTask/subtasks_icons/add.svg" alt="">
+                    </div>
+                    <div id="subtasks"></div>
+                </div>
+            </span>
+
+        </div>
+    </div>
+</body>
+
+
+<style>
+    .background {
+        background-color: rgb(0, 0, 0, 0.1);
+        z-index: 1;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        cursor: pointer;
+    }
+    .editTask{
+        border-radius: 10px;
+        background-color: white;
+        padding: 32px 40px;
+        box-shadow: 0px 0px 4px 0px #00000029;
+
+    }
+</style>

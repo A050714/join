@@ -1,4 +1,4 @@
-includeHTML();
+
 let theLastIndex;
 let colors = ['#FF7A00', '#FF5EB3', '#6E52FF',
     '#9327FF', '#00BEE8', '#1FD7C1',
@@ -9,6 +9,7 @@ let colors = ['#FF7A00', '#FF5EB3', '#6E52FF',
 
 async function renderAllContacts() {
     await onloadMain();
+    showFirstLetterInHeader(); 
     sortContacts();
     let content = document.getElementById('contactList');
     content.innerHTML = '';
@@ -174,7 +175,7 @@ function showInitials(contact, id = "contactColor") {
         initials = nameParts[0][0] + nameParts[1][0];
     }
     let circleInitials = document.getElementById(id);
-    circleInitials.innerHTML = `<p>${initials}</p>`;
+    circleInitials.innerHTML = `<p class="pInitals">${initials}</p>`;
     circleInitials.style = `background-color: ${colors[contact.color]}`;
 }
 
@@ -228,3 +229,12 @@ function closeMobileMenu() {
     document.getElementById('mobileMenuOverlay').classList.add('dNone')
     document.getElementById('mobileMenuOverlay').classList.remove('header_overlay')
 }
+
+
+// show first Letter of user
+function showFirstLetterInHeader() {
+    const firstLetter = localStorage.getItem('firstLetter') || 'G'; // Default to 'G' if no user is logged in
+    document.getElementById('name_menu').innerHTML = firstLetter;
+    console.log(firstLetter); 
+  }
+

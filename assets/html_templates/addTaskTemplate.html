@@ -1,0 +1,398 @@
+<!-- <link rel="stylesheet" href="/style.css">
+<script src="/js/add_task.js"></script>
+<script src="/js/board.js"></script>
+<script src="/js/contacts.js"></script>
+<script src="/script.js"></script> -->
+
+<body onload="onloadAddTask()">
+
+    <!-- <div class="background"> -->
+    <!-- <div class="showAddTask" id="showAddTask"> -->
+    <h4>Add Task</h4>
+    <form onsubmit="addTask(); return false;" class="formtask">
+        <section class="inputtasks">
+            <div class="inputFields">
+                <div>
+                    <p>Title<span class="required">*</span></p>
+                    <input id="titleId" type="text" placeholder="Enter a title" required>
+                </div>
+                <div>
+                    <p>Description</p>
+                    <textarea id="descId" placeholder="Enter a Description"></textarea>
+                </div>
+                <div>
+                    <p>Assigned to</p>
+                    <div class="dropdown" onclick="toggleDropdown()">
+                        <span>Select contacts to assign</span>
+                        <img id="dropdownarrow" class="dropdown-arrow"
+                            src="/assets/img/03_AddTask/contacts_checked/arrow_drop_down.svg">
+                    </div>
+                    <div id="contactList-a" class="contactList-a dNone"></div>
+                </div>
+                <div id="selectedContactsDisplay"></div>
+            </div>
+            <div class="seperator"></div>
+
+            <div class="inputFields">
+                <p>Due date<span class="required">*</span></p>
+                <input required type="date" id="dateId">
+                <p>Prio</p>
+                <div class="taskbtn">
+                    <button type="button" onclick="setPrio('urgent')" class="tasksbtn" id="urgent">Urgent <img
+                            id="svgUrgent" src="/assets/img/03_AddTask/priority/Prio alta.svg" alt=""></button>
+                    <button type="button" onclick="setPrio('medium')" class="tasksbtn" id="medium">Medium <img
+                            id="svgMedium" src="/assets/img/03_AddTask/priority/Prio media.svg"></button>
+                    <button type="button" onclick="setPrio('low')" class="tasksbtn" id="low">Low <img id="svgLow"
+                            src="/assets/img/03_AddTask/priority/Prio baja(1).svg" alt=""></button>
+                </div>
+                <p>Category<span class="required">*</span></p>
+                <label style="display: none;" for="categoryId">Category</label>
+                <select name="category" id="categoryId">
+                    <option value="" disabled selected>Select task category</option>
+                    <option value="technicaltask">Technical Task</option>
+                    <option value="userstory">User Story</option>
+                </select>
+                <div class="subtaskContainer">
+                    <p>Subtasks</p>
+                    <div class="inputAndButtons">
+                        <input class="inputField" id="inputField" type="text" placeholder="Add new subtask">
+                        <img onclick="addToSubTasks()" id="addToSubTaskbtn" class="taskicon"
+                            src="/assets/img/03_AddTask/subtasks_icons/add.svg" alt="">
+                    </div>
+
+                    <div id="subtasks"></div>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div class="leftfooter">
+                <div>
+                    <p><span class="required">*</span>This field is required</p>
+                </div>
+            </div>
+            <div class="rightfooter">
+                <button type="button" onclick="hideAddTask()" class="clearbtn">Cancel <img
+                        src="/assets/img/00_General_elements/close/default.svg" alt=""></button>
+
+                <button type="submit" class="createtaskbtn">Create Task <img
+                        src="/assets/img/00_General_elements/checkmark_white.svg" alt=""></button>
+            </div>
+        </footer>
+    </form>
+    <div id="taskanimation" class="taskanimation">
+        Task added to board <img src="/assets/img/00_General_elements/menu_Icons/board.svg">
+    </div>
+    <!-- </div> -->
+    <!-- </div> -->
+
+</body>
+<style>
+    .showAddTask {
+        background-color: white;
+        border-radius: 30px;
+        padding: 48px 40px;
+        height: 650px;
+        position: fixed;
+    }
+
+    /* .background {
+        background-color: rgb(0, 0, 0, 0.5);
+        z-index: 1;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        cursor: pointer;
+    } */
+
+    /* .formtask {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        max-width: 970px;
+        gap: 20px;
+        margin-bottom: 0;
+    } */
+
+    /* .inputtasks {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        gap: 50px;
+    } */
+
+    /* .seperator {
+        width: 1px;
+        background-color: #d1d1d1;
+    } */
+
+    .inputFields {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .required {
+        color: #FF8190;
+    }
+
+    h4 {
+        font-size: 61px;
+        margin: 0;
+    }
+
+    /* textarea {
+        width: 100%;
+        height: 120px;
+        padding: 10px;
+        border: 1px solid #D1D1D1;
+        border-radius: 10px;
+    } */
+
+    /* input {
+        width: 100%;
+        padding: 12px 21px 12px 12px;
+        border: 1px solid #D1D1D1;
+        border-radius: 10px;
+    } */
+
+    /* .dropdown {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 16px 6px 16px;
+        border-radius: 10px;
+        border: 1px solid #d1d1d1;
+        width: 410px;
+        height: 48px;
+        background-color: #FFFFFF;
+        margin-top: 8px;
+        cursor: pointer;
+        position: relative;
+    } */
+
+    .contactList-a {
+        height: 200px;
+        position: fixed;
+        overflow-y: scroll;
+        background-color: white;
+        z-index: 2;
+        position: absolute;
+        width: 440px;
+
+        border-radius: 10px;
+        box-shadow: 0px 0px 14px 3px #0000000A;
+
+    }
+
+    /* p {
+        font-size: 24px;
+        margin: 0;
+    } */
+
+    /* .taskbtn {
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+    } */
+
+    .tasksbtn {
+        width: 136px;
+        height: 40px;
+        text-align: center;
+        font-size: 18px;
+        font-family: 'PT Sans';
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        background-color: white;
+        border: 1px solid #D1D1D1;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    /* select {
+        width: 440px;
+        padding: 12px 16px 12px 16px;
+        margin-top: 5px;
+        border: 1px solid #D1D1D1;
+        border-radius: 10px;
+    } */
+
+    .inputAndButtons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        border-radius: 10px;
+        border: 1px solid #D1D1D1;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    /* .inputField {
+        width: 100%;
+        height: 48px;
+        border: none;
+
+    } */
+
+    .taskicon {
+        height: 24px;
+        width: 24px;
+    }
+
+    footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        width: 100%;
+    }
+
+    .rightfooter {
+        position: fixed;
+        right: 40px;
+        bottom: 130px;
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+    }
+
+    .clearbtn {
+        background-color: white;
+        border: 1px solid #2A3647;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        border-radius: 10px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .createtaskbtn {
+        background-color: #2A3647;
+        color: white;
+        padding: 8px;
+        border-radius: 10px;
+        border: none;
+        display: flex;
+        align-items: center;
+        font-family: 'PT Sans';
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    /* .contactlistaddtask {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 45px;
+        width: 400px;
+        padding: 7px;
+        cursor: pointer;
+        border-radius: 10px;
+    } */
+
+    /* .pInitals {
+        font-size: 12px;
+    } */
+
+    /* .frame1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .pContactname {
+        font-size: 20px;
+    } */
+
+    /* .contactcolor3 {
+        max-width: 50px;
+        max-height: 50px;
+        background-color: orange;
+        border-radius: 100% !important;
+        border: solid 2px white;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center;
+        color: white;
+        font-weight: 400;
+        font-size: 16px;
+        padding: 12px;
+    } */
+
+    /* ul,
+    li {
+        list-style-type: none;
+        
+        padding-left: 0;
+        border-radius: 10px;
+        
+    } */
+
+    /* .contact-circle {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 3px solid white;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        line-height: 40px;
+        margin: 5px;
+        font-size: 14px;
+    } */
+
+    /* .taskanimation {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        position: fixed;
+        bottom: -100px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #2A3647;
+        color: white;
+        padding: 15px 30px;
+        border-radius: 20px;
+        font-size: 20px;
+        font-weight: 400;
+        opacity: 0;
+        transition: bottom 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        z-index: 9999;
+    }
+
+    .taskanimation.show {
+        bottom: 300px;
+        opacity: 1;
+    } */
+
+    .showAddTask {
+        position: fixed;
+        right: -100%;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: right 0.5s ease-in-out;
+        z-index: 1000;
+        width: 80%;
+        max-width: 950px;
+    }
+
+    /* Aktiviert die Animation und positioniert das Element zentriert */
+    .showAddTask.active {
+        right: 200px;
+        transform: translateY(-50%);
+    }
+</style>

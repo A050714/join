@@ -1,5 +1,6 @@
 let nearestDeadline;
 let loggedUser;
+let firstLetter = "";
 
 
 async function onloadSummary() {
@@ -7,7 +8,9 @@ async function onloadSummary() {
     await onloadMain();
     loadCurrentStates();
     loadNearestDeadline();
-    greetUser();
+    await greetUser();
+    showFirstLetterInHeader();
+
 }
 
 async function loadTasks() {
@@ -53,13 +56,16 @@ async function greetUser() {
             if (loggedInUser) {
                 document.getElementById('userName').innerHTML = loggedInUser.name;
                 console.log('Logged-in user:', loggedInUser.name);
-                const firstLetter = loggedInUser.name.charAt(0).toUpperCase(); 
+                firstLetter = loggedInUser.name.charAt(0).toUpperCase(); 
                 document.getElementById('name_menu').innerHTML = firstLetter; 
-                console.log('Logged-in user:', loggedInUser.name);
+                console.log('First Letter of Logged-in user:', firstLetter);
+                localStorage.setItem('firstLetter', firstLetter);
+
             } else {
                 console.log('No user is currently logged in.');
                 document.getElementById('userName').innerHTML = "Guest";
                 document.getElementById('name_menu').innerHTML = "G"; 
+
             }
         } else {
             alert('Failed to load user data.');
@@ -68,11 +74,10 @@ async function greetUser() {
     } catch (error) {
         console.error("Error fetching users:", error.message);
         alert('An error occurred. Please try again.');
-    }
-        // loggedUser = users.filter(user => user['logged']==true);
-        // document.getElementById('userName').innerHTML = loggedUser[0].name;
-        // console.log(loggedUser[0].name); 
+    }      
 }
+
+
 
 function loadNearestDeadline() {
     let urgentTasks = tasks.filter(t => t['prio'] == 'urgent')
@@ -84,5 +89,10 @@ function loadNearestDeadline() {
     nearestDeadline = sortedDueDates[0];
     document.getElementById("summary_deadline").innerHTML = nearestDeadline;
 }
+
+
+
+
+
 
 

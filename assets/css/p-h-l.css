@@ -51,6 +51,7 @@ ol li::before {
 ol li h3 {
 display: inline;
 font-size: 1.25em;
+color: black;
 }
 
 ol li p {

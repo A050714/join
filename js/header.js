@@ -1,7 +1,14 @@
+
+function showFirstLetterInHeader() {
+    const firstLetter = localStorage.getItem('firstLetter') || 'G'; // Default to 'G' if no user is logged in
+    document.getElementById('name_menu').innerHTML = firstLetter;
+}
+
 function showHeaderNav() {
     document.getElementById('mobile_headerNav').classList.remove('dNone')
     document.getElementById('test').classList.remove('dNone')
     document.getElementById('test').classList.add('header_overlay')
+ 
 }
 
 function closeHeaderNav() {
@@ -20,6 +27,7 @@ async function logout() {
         for (let userId in usersData) {
             let user = usersData[userId];
             if (user.logged === true) {
+                   
                 // update if the user´s logged out 
                 await fetch(`${BASE_URL}Users/${userId}.json`, {
                     method: 'PATCH',
@@ -38,6 +46,3 @@ async function logout() {
         window.location.href = '/assets/html_templates/login.html';
     }
 }
-
-
-
