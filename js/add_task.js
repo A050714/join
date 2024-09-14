@@ -16,6 +16,8 @@ async function onloadAddTask() {
   // await loadTasks();
   // await loadContacts();
   await onloadMain();
+  await showFirstLetter();
+
   contactsDropdown();
 
 }

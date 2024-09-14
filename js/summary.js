@@ -8,9 +8,9 @@ async function onloadSummary() {
     await onloadMain();
     loadCurrentStates();
     loadNearestDeadline();
-    await greetUser();
-    showFirstLetterInHeader();
+    await showFirstLetter();
 
+    await greetUser();
 }
 
 async function loadTasks() {
@@ -57,13 +57,14 @@ async function greetUser() {
                 document.getElementById('userName').innerHTML = loggedInUser.name;
                 console.log('Logged-in user:', loggedInUser.name);
                 firstLetter = loggedInUser.name.charAt(0).toUpperCase(); 
+                document.getElementById('gmorning').innerHTML="Good morning, ";
                 document.getElementById('name_menu').innerHTML = firstLetter; 
                 console.log('First Letter of Logged-in user:', firstLetter);
                 localStorage.setItem('firstLetter', firstLetter);
 
             } else {
                 console.log('No user is currently logged in.');
-                document.getElementById('userName').innerHTML = "Guest";
+                document.getElementById('userName').innerHTML = "";
                 document.getElementById('name_menu').innerHTML = "G"; 
 
             }

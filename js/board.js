@@ -303,4 +303,6 @@ function showInitials(contact) {
 
 
 
-function editTask(id) {}
+function editTask(id) {
+  
+}

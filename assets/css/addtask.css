@@ -391,8 +391,8 @@ footer {
 }
 
 .contactcolor3 {
-    max-width: 50px;
-    max-height: 50px;
+    min-width:30px;
+    min-height: 30px;
     background-color: orange;
     border-radius: 100% !important;
     border: solid 2px white;

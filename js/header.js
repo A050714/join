@@ -15,7 +15,7 @@ async function showFirstLetter() {
             }
 
             if (loggedInUser) {
-                document.getElementById('userName').innerHTML = loggedInUser.name;
+                // document.getElementById('userName').innerHTML = loggedInUser.name;
                 console.log('Logged-in user:', loggedInUser.name);
                 firstLetter = loggedInUser.name.charAt(0).toUpperCase(); 
                 document.getElementById('name_menu').innerHTML = firstLetter; 
