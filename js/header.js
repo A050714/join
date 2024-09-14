@@ -39,7 +39,7 @@ async function showFirstLetter() {
 }
 
 
-showFirstLetter(); 
+// showFirstLetter(); 
 
 function showHeaderNav() {
     document.getElementById('mobile_headerNav').classList.remove('dNone')
