@@ -116,7 +116,11 @@
        grid-template-rows: auto auto auto;
 
    }
-    /* small device */
+   a {
+    text-decoration: none;
+    color: black;
+    }
+
 
    .metric-box_todo {
        grid-row: 1/2;
@@ -131,6 +135,7 @@
        border-radius: 20px;
        justify-content: center;
    }
+   
 
    /* for small devices like iphone with lower height */
    @media (max-width: 480px) and (max-height: 799px){
@@ -402,6 +407,8 @@
             text-align: left;
             
         }
+
+
 
        .metric-box{
             padding: 0.8em; 

@@ -4,8 +4,17 @@ let assignedContacts = [];
 
 async function onloadBoard() {
   await onloadMain();
+  showFirstLetterInHeader(); 
   generateBoard();
 }
+
+// show first Letter of user
+function showFirstLetterInHeader() {
+  const firstLetter = localStorage.getItem('firstLetter') || 'G'; // Default to 'G' if no user is logged in
+  document.getElementById('name_menu').innerHTML = firstLetter;
+  console.log(firstLetter); 
+}
+
 
 function generateBoard(list = tasks) {
   const sections = [

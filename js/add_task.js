@@ -17,6 +17,7 @@ async function onloadAddTask() {
   // await loadContacts();
   await onloadMain();
   contactsDropdown();
+  showFirstLetterInHeader()
 }
 
 // async function getData(pfad) {
@@ -325,9 +326,9 @@ function showAnimation() {
   }, 3000);
 }
 
-
-function showFirstLetter() {
-  console.log(loggedInUser.name); 
-  const firstLetter = loggedInUser.name.charAt(0).toUpperCase(); 
-  document.getElementById('name_menu').innerHTML = firstLetter; 
+function showFirstLetterInHeader() {
+  const firstLetter = localStorage.getItem('firstLetter') || 'G'; // Default to 'G' if no user is logged in
+  document.getElementById('name_menu').innerHTML = firstLetter;
+  console.log(firstLetter); 
 }
+
