@@ -148,10 +148,6 @@ function generateInitals(task) {
   }
 }
 
-dfasdfas
-
-
-
 function generateAssignedContacts(task) {
   const assignedIDs = task.assignedTo;
   if (assignedIDs != null) {
