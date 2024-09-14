@@ -1,8 +1,45 @@
+async function showFirstLetter() {
+    console.log('test');
+    try {
+        let response = await fetch(`${BASE_URL}Users.json`);
+        if (response.status === 200) {
+            let usersData = await response.json();
+            
+            // Find the user who is currently logged in
+            let loggedInUser = null;
+            for (let userId in usersData) {
+                if (usersData[userId].logged === true) {
+                    loggedInUser = usersData[userId];
+                    break; // Stop once we find the logged-in user
+                }
+            }
 
-function showFirstLetterInHeader() {
-    const firstLetter = localStorage.getItem('firstLetter') || 'G'; // Default to 'G' if no user is logged in
-    document.getElementById('name_menu').innerHTML = firstLetter;
+            if (loggedInUser) {
+                document.getElementById('userName').innerHTML = loggedInUser.name;
+                console.log('Logged-in user:', loggedInUser.name);
+                firstLetter = loggedInUser.name.charAt(0).toUpperCase(); 
+                document.getElementById('name_menu').innerHTML = firstLetter; 
+                console.log('First Letter of Logged-in user:', firstLetter);
+                localStorage.setItem('firstLetter', firstLetter);
+
+            } else {
+                console.log('No user is currently logged in.');
+                document.getElementById('name_menu').innerHTML = "Guest";
+                document.getElementById('name_menu').innerHTML = "G"; 
+
+            }
+        } else {
+            alert('Failed to load user data.');
+            
+        }
+    } catch (error) {
+        console.error("Error fetching users:", error.message);
+        alert('An error occurred. Please try again.');
+    }      
 }
+
+
+showFirstLetter(); 
 
 function showHeaderNav() {
     document.getElementById('mobile_headerNav').classList.remove('dNone')

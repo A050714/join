@@ -17,7 +17,7 @@ async function onloadAddTask() {
   // await loadContacts();
   await onloadMain();
   contactsDropdown();
-  showFirstLetterInHeader()
+
 }
 
 // async function getData(pfad) {
@@ -324,11 +324,5 @@ function showAnimation() {
     // Nach der Animation wird man auf das board weiter geleitet
     window.location.href = "board.html";
   }, 3000);
-}
-
-function showFirstLetterInHeader() {
-  const firstLetter = localStorage.getItem('firstLetter') || 'G'; // Default to 'G' if no user is logged in
-  document.getElementById('name_menu').innerHTML = firstLetter;
-  console.log(firstLetter); 
 }
 
