@@ -11,6 +11,7 @@ header {
     top: 0;
     right: 0;
     box-shadow: 0px 4px 4px 0px #0000001A;
+    z-index: 1000;
 }
 
 header p {
@@ -30,6 +31,7 @@ header p {
 .header_overlay {
     height: 100vh;
     width: 100vw;
+    z-index: 10000;
 }
 
 .mobile_headerNav {
@@ -37,7 +39,7 @@ header p {
     display: flex;
     flex-direction: column;
     top: 90px; /* Direkt unter dem Header */
-    right: 0; /* Am linken Rand des Headers */
+    right: 0;   /* for the animation */
     background-color: #2A3647;
     z-index: 1000; /* Höherer Z-Index, damit das Menü über anderen Inhalten liegt */
     padding: 16px;
@@ -48,7 +50,15 @@ header p {
     max-height: 140px;
     height: 130px;
     justify-content: space-evenly;
+    /* transition: all 0.4s ease; */
+
    }
+
+   .open {
+    /* right: 0;/* Bringt das Menü in Position */
+    /* opacity: 1; Macht das Menü sichtbar */ */
+
+    }
 
    .mobile_headerNav a {
     text-decoration: none;

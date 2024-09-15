@@ -5,6 +5,7 @@ let assignedContacts = [];
 async function onloadBoard() {
   await onloadMain();
   generateBoard();
+  await showFirstLetter(); 
 }
 
 

@@ -39,19 +39,30 @@ async function showFirstLetter() {
 }
 
 
-// showFirstLetter(); 
+
 
 function showHeaderNav() {
-    document.getElementById('mobile_headerNav').classList.remove('dNone')
-    document.getElementById('test').classList.remove('dNone')
-    document.getElementById('test').classList.add('header_overlay')
+    document.getElementById('mobile_headerNav').classList.remove('dNone'); 
+    document.getElementById('test').classList.remove('dNone'); 
+    document.getElementById('test').classList.add('header_overlay'); 
+    // const headerNav = document.getElementById('mobile_headerNav'); 
+    // // For the animation
+    // headerNav.classList.remove('dNone');
+    // headerNav.classList.add('open');
  
 }
 
 function closeHeaderNav() {
-    document.getElementById('mobile_headerNav').classList.add('dNone')
-    document.getElementById('test').classList.add('dNone')
-    document.getElementById('test').classList.remove('header_overlay')
+    document.getElementById('mobile_headerNav').classList.add('dNone'); 
+    document.getElementById('test').classList.add('dNone'); 
+    document.getElementById('test').classList.remove('header_overlay'); 
+//     const headerNav = document.getElementById('mobile_headerNav'); 
+//     // For the animation
+//     headerNav.classList.remove('open');
+//     setTimeout(() => {
+//         headerNav.classList.add('dNone');
+//     }, 400); 
+// }
 }
 
 async function logout() {

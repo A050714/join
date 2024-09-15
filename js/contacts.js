@@ -9,7 +9,7 @@ let colors = ['#FF7A00', '#FF5EB3', '#6E52FF',
 
 async function renderAllContacts() {
     await onloadMain();
-
+    await showFirstLetter(); 
     sortContacts();
     let content = document.getElementById('contactList');
     content.innerHTML = '';

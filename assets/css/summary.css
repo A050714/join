@@ -372,7 +372,7 @@
             background-color: #f6f7f8;
             top: 70px;
             bottom: 70px;
-            animation: fade-out 4s ease-in-out forwards;
+            animation: fade-out 4s ease forwards;
         }
 
         
@@ -492,12 +492,53 @@
 
         }
         .greeting_name {
- 
-            
+            z-index: 2;
+            position: absolute;      
+            top: 55%;                
+            left: 50%;               
+            transform: translate(-50%, -50%);  
+            text-align: center;
+            width: 100%;  
+            animation: fade-out 4s ease forwards;
+          
         }
 
         .greeting_goodmorning{
+            z-index: 2;
+            position: absolute;      
+            top: 45%;                
+            left: 50%;               
+            transform: translate(-50%, -50%);  
+            text-align: center;
+            width: 100%;
+            animation: fade-out 4s ease forwards;
+           
+        }
 
+        .blur-overlay{
+            position: absolute;
+            z-index: 1;
+            width: 100%;
+            background-color: #f6f7f8;
+            top: 70px;
+            bottom: 70px;
+            animation: fade-out 4s ease forwards;
+        }
+
+        
+        @keyframes fade-out {
+            0% {
+                opacity: 1;
+                
+            }
+            85% {
+                opacity: 0.99;
+            }
+            100% {
+                opacity: 0;
+                z-index: 0;
+            }
+            
         }
 
       }
