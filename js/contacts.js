@@ -72,7 +72,25 @@ function sortContacts() {
 
 
 function togglePopup() {
+    toggleMobileImg()
     let overlay = document.getElementById('overlay');
+    let popup = document.getElementById('addcontactpopup');
+    if (overlay.classList.contains('hidden')) {
+        overlay.classList.remove('hidden');  
+        setTimeout(() => {
+            overlay.classList.add('show');   
+            popup.classList.add('show');     
+        }, 10); 
+    } else {
+        overlay.classList.remove('show');
+        popup.classList.remove('show');
+        setTimeout(() => {
+            overlay.classList.add('hidden'); 
+        }, 500);  
+    }
+}
+
+function toggleMobileImg(){
     let edit = 'person_add_bg_dark.svg';
     let activeEdit = 'person_add_bg_light.svg';
     let addImage = document.getElementById('addNewContactMobile');
@@ -81,15 +99,25 @@ function togglePopup() {
     } else if (addImage.src.includes(activeEdit)) {
         addImage.src = '/assets/img/05_Contacts/person_add_mobile/' + edit;
     }
-    overlay.classList.toggle('show');
-    overlay.classList.toggle("hidden");
 }
 
 
 function toggleEditPopup() {
     let overlay = document.getElementById('editOverlay');
-    overlay.classList.toggle('show');
-    overlay.classList.toggle("hidden");
+    let popup = document.getElementById('editcontactpopup');
+    if (overlay.classList.contains('hidden')) {
+        overlay.classList.remove('hidden');  
+        setTimeout(() => {
+            overlay.classList.add('show');   
+            popup.classList.add('show');     
+        }, 10); 
+    } else {
+        overlay.classList.remove('show');
+        popup.classList.remove('show');
+        setTimeout(() => {
+            overlay.classList.add('hidden'); 
+        }, 500);  
+    }
 }
 
 
@@ -105,7 +133,8 @@ async function createContact() {
     name.value = "";
     mail.value = "";
     phone.value = "";
-    location.reload();
+    togglePopup();
+    ctAddedAnimation();
 }
 
 
@@ -130,7 +159,7 @@ function showContact(index) {
         document.getElementById(theLastIndex).classList.remove('chosenContact');
         document.getElementById(theLastIndex).classList.add('singleContacts');
     }
-    document.getElementById('showContact').classList.remove('d-none')
+    document.getElementById('showContact').classList.remove('dNone')
     let contact = contacts[index];
     fillContactData(contact)
     document.getElementById(`Id_${index}`).classList.add('chosenContact');
@@ -231,3 +260,19 @@ function closeMobileMenu() {
 }
 
 
+function ctAddedAnimation() {
+    const animation = document.getElementById("ctAddedAnimation");
+    animation.classList.add("show");
+  
+    setTimeout(() => {
+      animation.classList.remove("show");
+  
+      // Nach der Animation wird man auf das board weiter geleitet
+      window.location.href = "contacts.html";
+    }, 2000);
+  }
+
+  function popUpAnimation() {
+    const animation = document.getElementById("addcontactpopup");
+    animation.classList.add("show");
+  }

@@ -21,28 +21,49 @@
     <aside w3-include-html="/assets/html_templates/sidebar.html"></aside>
     <main>
         <div class="mainscreen">
-          
-                <div class="addNewContact" id="addNewContact">
-                    <div id="contactList">
-                    </div>
-                    <img onclick="togglePopup()" class="addNewContactMobile" id="addNewContactMobile"
-                        src="/assets/img/05_Contacts/person_add_mobile/person_add_bg_dark.svg" alt="">
+
+            <div class="addNewContact" id="addNewContact">
+                <div id="contactList">
                 </div>
-                <div class="rightSide" id="rightSide">
-                    <div class="openContact" id="openContact">
-                        <div class="betterWAT" id="betterWAT">
-                            <h1>Contacts</h1>
-                            <div class="betterWAT_border">
-                                <div class="border"></div>
-                                <p>Better with a team</p>
-                            </div>
+                <img onclick="togglePopup()" class="addNewContactMobile" id="addNewContactMobile"
+                    src="/assets/img/05_Contacts/person_add_mobile/person_add_bg_dark.svg" alt="">
+            </div>
+            <div class="rightSide" id="rightSide">
+                <div class="openContact" id="openContact">
+                    <div class="betterWAT" id="betterWAT">
+                        <h1>Contacts</h1>
+                        <div class="betterWAT_border">
+                            <div class="border"></div>
+                            <p>Better with a team</p>
                         </div>
-                        <img class=" mobileArrow dNone" onclick="showContactsMobile()"
-                            src="/assets/img/00_General_elements/blue_arrow_left.svg" alt="">
-                        <img onclick="showMobileMenu()" class="addNewContactMobile"
-                            src="/assets/img/05_Contacts/contacts_menu_mobile/menu_dark.svg" alt="">
-                        <div id="mobileMenuOverlay" class="dNone" onclick="closeMobileMenu()">
-                            <div class="mobileMenu dNone" id="mobileMenu">
+                    </div>
+                    <img class=" mobileArrow dNone" onclick="showContactsMobile()"
+                        src="/assets/img/00_General_elements/blue_arrow_left.svg" alt="">
+                    <img onclick="showMobileMenu()" class="addNewContactMobile"
+                        src="/assets/img/05_Contacts/contacts_menu_mobile/menu_dark.svg" alt="">
+                    <div id="mobileMenuOverlay" class="dNone" onclick="closeMobileMenu()">
+                        <div class="mobileMenu dNone" id="mobileMenu">
+                            <button onclick="toggleEditPopup(),fillContactValues()" class="contactbuttons">
+                                <div class="editIcon">
+                                    <div class="icons editimg"></div>
+                                    <p>Edit</p>
+                                </div>
+                            </button>
+                            <button onclick="deleteContact()" class="contactbuttons">
+                                <div class="deleteIcon">
+                                    <div class="icons deleteimg"></div>
+                                    <p>Delete</p>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="showContact dNone" id="showContact">
+                    <div class="contacthead">
+                        <div class="contactcolor" id="contactColor"></div>
+                        <div>
+                            <h2 id="contactName"></h2>
+                            <div class="editdelete">
                                 <button onclick="toggleEditPopup(),fillContactValues()" class="contactbuttons">
                                     <div class="editIcon">
                                         <div class="icons editimg"></div>
@@ -58,126 +79,105 @@
                             </div>
                         </div>
                     </div>
-                    <div class="showContact d-none" id="showContact">
-                        <div class="contacthead">
-                            <div class="contactcolor" id="contactColor"></div>
-                            <div>
-                                <h2 id="contactName"></h2>
-                                <div class="editdelete">
-                                    <button onclick="toggleEditPopup(),fillContactValues()" class="contactbuttons">
-                                        <div class="editIcon">
-                                            <div class="icons editimg"></div>
-                                            <p>Edit</p>
-                                        </div>
-                                    </button>
-                                    <button onclick="deleteContact()" class="contactbuttons">
-                                        <div class="deleteIcon">
-                                            <div class="icons deleteimg"></div>
-                                            <p>Delete</p>
-                                        </div>
-                                    </button>
-                                </div>
-                            </div>
+                    <div class="informationPhoneMail">
+                        <div class="contactinformation">
+                            <p>Contact Information</p>
                         </div>
-                        <div class="informationPhoneMail">
-                            <div class="contactinformation">
-                                <p>Contact Information</p>
-                            </div>
-                            <div>
-                                <div class="kontakdaten">
-                                    <div class="kontakdatenDetails">
-                                        <p>Email</p>
-                                        <a href="#" id="contactMail"></a>
-                                    </div>
-                                    <div class="kontakdatenDetails">
-                                        <p>Phone</p>
-                                        <span id="contactPhone"></span>
-                                    </div>
+                        <div>
+                            <div class="kontakdaten">
+                                <div class="kontakdatenDetails">
+                                    <p>Email</p>
+                                    <a href="#" id="contactMail"></a>
+                                </div>
+                                <div class="kontakdatenDetails">
+                                    <p>Phone</p>
+                                    <span id="contactPhone"></span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="overlay hidden" id="overlay">
-                    <div class="addcontactpopup" id="addcontactpopup">
-                        <div class="popupleft">
-                            <img class="closeMobile" onclick="togglePopup()"
-                                src="/assets/img/00_General_elements/close/variant3.svg" alt="">
-                            <div>
-                                <div class="popupleftContent">
-                                    <img class="popuplogo" src="/assets\img\00_General_elements\Join logo vector.svg"
-                                        alt="popuplogo">
-                                    <h3>Add contact</h3>
-                                    <p>Tasks are better with a team!</p>
-                                    <div class="border-horizontal"></div>
-                                </div>
-                            </div>
-                            <div id="divideEvenly"></div>
-                        </div>
-                        <div class="addcontactbg">
-                            <img class="addcontactperson"
-                                src="/assets\img\05_Contacts\add_contact_text\person-white.svg" alt="">
-                        </div>
-                        <form class="inputfieldscontactpopup" id="editedContact"
-                            onsubmit=" createContact();return false;">
-                            <img class="close closeAddContact" onclick="togglePopup()"
-                                src="/assets\img\00_General_elements\close\default.svg" alt="">
-                            <input autocomplete="off" class="inputnameimg" minlength="1" type="text" placeholder="Name"
-                                id="newName" required>
-                            <input autocomplete="off" class="inputemailimg" minlength="1" type="email"
-                                placeholder="Email" id="newMail" required>
-                            <input autocomplete="off" class="inputphoneimg" minlength="1" type="text"
-                                placeholder="Phone" id="newPhone" required>
-                            <div class="addcontactbtn">
-                                <button class=" addCancelbutton cancelbutton" onclick="togglePopup()">Cancel
-                                    <img src="/assets/img/00_General_elements/cancel/cancel_black.svg" alt="">
-                                </button>
-                                <button type="submit" class="addCreateButton createbutton" id="saveNewContact">Create
-                                    contact
-                                    <img src="/assets/img/00_General_elements/checkmark_white.svg" alt="">
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="overlay hidden" id="editOverlay">
-                    <div class="addcontactpopup" id="editcontactpopup">
-                        <div class="popupleft">
-                            <img class="closeMobile" onclick="toggleEditPopup()"
-                                src="/assets/img/00_General_elements/close/variant3.svg" alt="">
+            </div>
+            <div class="overlay hidden" id="overlay">
+                <div class="addcontactpopup" id="addcontactpopup">
+                    <div class="popupleft">
+                        <img class="closeMobile dNone" id="closeMobile" onclick="togglePopup()"
+                            src="/assets/img/00_General_elements/close/variant3.svg" alt="">
+                        <div>
                             <div class="popupleftContent">
                                 <img class="popuplogo" src="/assets\img\00_General_elements\Join logo vector.svg"
                                     alt="popuplogo">
-                                <h3>Edit contact</h3>
+                                <h3>Add contact</h3>
+                                <p>Tasks are better with a team!</p>
                                 <div class="border-horizontal"></div>
                             </div>
-                            <div id="divideEvenly"></div>
                         </div>
-                        <div class="addcontactbg" id="addcontactbg">
-                            <img id="editContactInitials" class="addcontactperson"
-                                src="/assets\img\05_Contacts\add_contact_text\person-white.svg" alt="">
-                        </div>
-                        <form class="inputfieldscontactpopup" id="editedContact" onsubmit="editContact();return false;">
-                            <img class="close closeEdit" onclick="toggleEditPopup()"
-                                src="/assets\img\00_General_elements\close\default.svg" alt="">
-                            <input autocomplete="off" class="inputnameimg" minlength="1" type="text" placeholder="Name"
-                                id="editName" required>
-                            <input autocomplete="off" class="inputemailimg" minlength="1" type="email"
-                                placeholder="Email" id="editMail" required>
-                            <input autocomplete="off" class="inputphoneimg" minlength="1" type="text"
-                                placeholder="Phone" id="editPhone" required>
-                            <div class="addcontactbtn">
-                                <button class="cancelbutton" onclick="toggleEditPopup()">Delete <img
-                                        src="/assets/img/00_General_elements/cancel/cancel_black.svg" alt=""></button>
-                                <button type="submit" class="createbutton" id="saveEditedContact">Save <img
-                                        src="/assets/img/00_General_elements/checkmark_white.svg" alt=""></button>
-                            </div>
-                        </form>
+                        <div id="divideEvenly"></div>
                     </div>
+                    <div class="addcontactbg">
+                        <img class="addcontactperson" src="/assets\img\05_Contacts\add_contact_text\person-white.svg"
+                            alt="">
+                    </div>
+                    <form class="inputfieldscontactpopup" id="editedContact" onsubmit=" createContact();return false;">
+                        <img class="close closeAddContact" onclick="togglePopup()"
+                            src="/assets\img\00_General_elements\close\default.svg" alt="">
+                        <input autocomplete="off" class="inputnameimg" minlength="1" type="text" placeholder="Name"
+                            id="newName" required>
+                        <input autocomplete="off" class="inputemailimg" minlength="1" type="email" placeholder="Email"
+                            id="newMail" required>
+                        <input autocomplete="off" class="inputphoneimg" minlength="1" type="text" placeholder="Phone"
+                            id="newPhone" required>
+                        <div class="addcontactbtn">
+                            <button class=" addCancelbutton cancelbutton" onclick="togglePopup()">Cancel
+                                <img src="/assets/img/00_General_elements/cancel/cancel_black.svg" alt="">
+                            </button>
+                            <button type="submit" class="addCreateButton createbutton" id="saveNewContact">Create
+                                contact
+                                <img src="/assets/img/00_General_elements/checkmark_white.svg" alt="">
+                            </button>
+                        </div>
+                    </form>
                 </div>
-           
+            </div>
+            <div class="overlay hidden" id="editOverlay">
+                <div class="addcontactpopup" id="editcontactpopup">
+                    <div class="popupleft">
+                        <img class="closeMobile" onclick="toggleEditPopup()"
+                            src="/assets/img/00_General_elements/close/variant3.svg" alt="">
+                        <div class="popupleftContent">
+                            <img class="popuplogo" src="/assets\img\00_General_elements\Join logo vector.svg"
+                                alt="popuplogo">
+                            <h3>Edit contact</h3>
+                            <div class="border-horizontal"></div>
+                        </div>
+                        <div id="divideEvenly"></div>
+                    </div>
+                    <div class="addcontactbg" id="addcontactbg">
+                        <img id="editContactInitials" class="addcontactperson"
+                            src="/assets\img\05_Contacts\add_contact_text\person-white.svg" alt="">
+                    </div>
+                    <form class="inputfieldscontactpopup" id="editedContact" onsubmit="editContact();return false;">
+                        <img class="close closeEdit" onclick="toggleEditPopup()"
+                            src="/assets\img\00_General_elements\close\default.svg" alt="">
+                        <input autocomplete="off" class="inputnameimg" minlength="1" type="text" placeholder="Name"
+                            id="editName" required>
+                        <input autocomplete="off" class="inputemailimg" minlength="1" type="email" placeholder="Email"
+                            id="editMail" required>
+                        <input autocomplete="off" class="inputphoneimg" minlength="1" type="text" placeholder="Phone"
+                            id="editPhone" required>
+                        <div class="addcontactbtn">
+                            <button class="cancelbutton" onclick="toggleEditPopup()">Delete <img
+                                    src="/assets/img/00_General_elements/cancel/cancel_black.svg" alt=""></button>
+                            <button type="submit" class="createbutton" id="saveEditedContact">Save <img
+                                    src="/assets/img/00_General_elements/checkmark_white.svg" alt=""></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
         </div>
         </div>
+        <div id="ctAddedAnimation" class="taskanimation">Contact successfully created</div>
     </main>
 
 </body>
