@@ -5,7 +5,7 @@ let assignedContacts = [];
 async function onloadBoard() {
   await onloadMain();
   generateBoard();
-  await showFirstLetter(); 
+  await showFirstLetter();
 }
 
 
@@ -130,13 +130,12 @@ function showTask(id) {
 
 }
 function loadEdit(task) {
-  contactsDropdown('contactList-edit');
-  // document.getElementById('contactList-edit').classList.remove('dNone');
-  displaySelectedContacts('selectedContactsDisplay-edit');
-  document.getElementById("titleId").value = task.title;
-  document.getElementById("descId").value  = task.description;
-
-
+  contactsDropdown('contactList-edit','selectedContactsDisplayEdit');
+  getselect(task);
+  document.getElementById("titleId-edit").value = task.title;
+  document.getElementById("descId-edit").value = task.description;
+  document.getElementById("dateId-edit").value = task.dueDate;
+  setPrioEdit(`${task.prio}-edit`);
 }
 function generateInitals(task) {
   const assignedIDs = task.assignedTo;
@@ -175,6 +174,7 @@ function generateAssignedContacts(task) {
       `;
     });
   }
+  // contactsDropdown('contactList-edit');
 }
 
 function getInitials(contact, id = "contactColor") {
@@ -274,7 +274,7 @@ function searchInTheTasks(id) {
   generateBoard(foundTasks);
 }
 function showAddTask() {
-  contactsDropdown("contactList-a");
+  // contactsDropdown("contactList-edit");
   const addTaskElement = document.getElementById("showAddTask");
   addTaskElement.classList.add("active"); // Aktiviert die Animation
 }
@@ -313,4 +313,84 @@ function showInitials(contact) {
 function editTask(id) {
   document.getElementById('showTask').classList.add("dNone");
   document.getElementById('editTask').classList.remove("dNone");
+  getSelectedContacts();
+}
+
+
+function setPrioEdit(id) {
+  const urgent = document.getElementById("urgent-edit");
+  const medium = document.getElementById("medium-edit");
+  const low = document.getElementById("low-edit");
+  const chosenBtn = document.getElementById(id);
+
+  resetPrioStylesEdit();
+
+  if (chosenBtn === urgent) {
+    chosenBtn.style.backgroundColor = "rgba(255, 61, 0, 1)";
+    chosenBtn.style.color = "white";
+    document.getElementById("svgUrgent-edit").src =
+      "/assets/img/03_AddTask/priority/Capa 1.svg";
+    selectedPrio = "urgent";
+  }
+
+  if (chosenBtn === medium) {
+    chosenBtn.style.backgroundColor = "rgba(255, 168, 0, 1)";
+    chosenBtn.style.color = "white";
+    document.getElementById("svgMedium-edit").src =
+      "/assets/img/03_AddTask/priority/Capa 2.svg";
+    selectedPrio = "medium";
+  }
+
+  if (chosenBtn === low) {
+    chosenBtn.style.backgroundColor = "rgba(122, 226, 41, 1)";
+    chosenBtn.style.color = "white";
+    document.getElementById("svgLow-edit").src =
+      "/assets/img/03_AddTask/priority/Prio baja.svg";
+    selectedPrio = "low";
+  }
+}
+
+
+
+function resetPrioStylesEdit() {
+  const urgent = document.getElementById("urgent-edit");
+  const medium = document.getElementById("medium-edit");
+  const low = document.getElementById("low-edit");
+
+  urgent.style.backgroundColor = "transparent";
+  urgent.style.color = "black";
+  medium.style.backgroundColor = "transparent";
+  medium.style.color = "black";
+  low.style.backgroundColor = "transparent";
+  low.style.color = "black";
+
+  document.getElementById("svgUrgent-edit").src =
+    "/assets/img/03_AddTask/priority/Prio alta.svg";
+  document.getElementById("svgMedium-edit").src =
+    "/assets/img/03_AddTask/priority/Prio media.svg";
+  document.getElementById("svgLow-edit").src =
+    "/assets/img/03_AddTask/priority/Prio baja(1).svg";
+}
+
+function getAssignedContacts(task) {
+  selectedContacts = contacts.filter((contact) =>
+    (task.assignedTo).includes(contact.id)
+  );
+}
+
+function getselect(task) {
+  getAssignedContacts(task);
+
+  for (let i = 0; i < contacts.length; i++) {
+    if (selectedContacts.some(e => e.id == i)) {
+      document.getElementById(`contact-${i}`).classList.add('selected');
+      let contactDiv = document.getElementById(`contact-${i}`);
+      let checkbox = document.getElementById(`checkboxtask-${i}`);
+      let contactname = document.getElementById(`contactname-${i}`);
+      contactDiv.style.backgroundColor = "#2A3647";
+      checkbox.src = "/assets/img/03_AddTask/contacts_checked/checkwhite.svg";
+      contactname.style.color = "white";
+    }
+    displaySelectedContacts('selectedContactsDisplayEdit');
+  }
 }

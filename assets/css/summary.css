@@ -394,6 +394,13 @@
 
     /* responsive design for mobile devices  */
     @media (min-width: 320px) and (max-width: 990px) {
+        #widget_1{
+            background: #091931 !important; 
+            border-radius: 16px;
+        }
+        #widget_4, #widget_2, #widget_3{
+            background: #2A3647 ;
+        }
         .mainscreen{
             margin-bottom: 90px;
         }

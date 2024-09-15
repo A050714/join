@@ -1,40 +1,42 @@
+<script src="/js/add_task.js"></script>
 <body>
     <div class="editTask">
 
         <span>
             <p>Title</p>
-            <input id="titleId" type="text">
+            <input id="titleId-edit" type="text">
         </span>
         <span>
             <p>Description</p>
-            <textarea id="descId"></textarea>
+            <textarea id="descId-edit"></textarea>
         </span>
         <span>
             <p>Due date:</p>
-            <input required type="date" id="dateId">
+            <input required type="date" id="dateId-edit">
         </span>
 
         <span>
             <p>Priority</p>
             <div class="taskbtn">
-                <button type="button" onclick="setPrio('urgent')" class="tasksbtn" id="urgent">Urgent <img
-                        id="svgUrgent" src="/assets/img/03_AddTask/priority/Prio alta.svg" alt=""></button>
-                <button type="button" onclick="setPrio('medium')" class="tasksbtn" id="medium">Medium <img
-                        id="svgMedium" src="/assets/img/03_AddTask/priority/Prio media.svg"></button>
-                <button type="button" onclick="setPrio('low')" class="tasksbtn" id="low">Low <img id="svgLow"
+                <button type="button" onclick="setPrioEdit('urgent-edit')" class="tasksbtn" id="urgent-edit">Urgent <img
+                        id="svgUrgent-edit" src="/assets/img/03_AddTask/priority/Prio alta.svg" alt=""></button>
+                <button type="button" onclick="setPrioEdit('medium-edit')" class="tasksbtn" id="medium-edit">Medium <img
+                        id="svgMedium-edit" src="/assets/img/03_AddTask/priority/Prio media.svg"></button>
+                <button type="button" onclick="setPrioEdit('low-edit')" class="tasksbtn" id="low-edit">Low <img id="svgLow-edit"
                         src="/assets/img/03_AddTask/priority/Prio baja(1).svg" alt=""></button>
             </div>
         </span>
         <span>
             <p>Assigned to</p>
-                    <div class="dropdown" onclick="toggleDropdown('dropdownarrow-edit','contactList-edit','selectedContactsDisplay-edit')">
-                        <span>Select contacts to assign</span>
-                        <img id="dropdownarrow-edit" class="dropdown-arrow"
-                            src="/assets/img/03_AddTask/contacts_checked/arrow_drop_down.svg">
-                    </div>
-                    <div id="contactList-edit" class="contactList-a dNone"></div>
+            <div class="dropdown"
+                onclick="toggleDropdown('dropdownarrow-edit','contactList-edit','selectedContactsDisplayEdit')">
+                <span>Select contacts to assign</span>
+                <img id="dropdownarrow-edit" class="dropdown-arrow"
+                    src="/assets/img/03_AddTask/contacts_checked/arrow_drop_down.svg">
+            </div>
+            <div id="contactList-edit" class="contactList-a dNone"></div>
         </span>
-        <div id="selectedContactsDisplay-edit"></div>
+        <div style="height: 100px;" id="selectedContactsDisplayEdit"></div>
 
         <span>
             <div class="subtaskContainer">
@@ -47,7 +49,7 @@
                 <div id="subtasks"></div>
             </div>
         </span>
-
+        <button>OK</button>
     </div>
 </body>
 
@@ -55,9 +57,52 @@
 <link rel="stylesheet" href="/assets/css/addtask.css">
 <style>
     .editTask {
-        border-radius: 10px;
+        border-radius: 30px;
         background-color: white;
         padding: 32px 40px;
         box-shadow: 0px 0px 4px 0px #00000029;
+        max-width: 320px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-height: 570px !important;
     }
+
+    .dropdown {
+        width: unset !important;
+    }
+
+    .taskbtn {
+        gap: 8px !important;
+    }
+
+    span {
+        width: 100% !important;
+    }
+
+    textarea {
+        padding: unset !important;
+    }
+    .contactList-a{
+        max-height: 200px !important;
+        height: 100% !important;
+        width: 320px !important;
+        position: absolute !important;
+    }
+    .contactlistaddtask{
+        width: 300px !important;
+        height: 35px !important;
+    }
+    .contactcolor3{
+        height: 20px !important;
+        width: 20px !important;
+    }
+   p{
+    font-size: 16px;
+   }
 </style>
+
+<script>
+    
+</script>

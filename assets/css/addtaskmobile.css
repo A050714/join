@@ -2,6 +2,12 @@
     .seperator {
         display: none;
     }
+    body{
+        overflow: scroll !important;
+    }
+    .addtask{
+        padding-bottom: 100px;
+    }
 
     .inputtasks {
         display: flex;
@@ -30,19 +36,17 @@
         gap: 8px;
         margin-top: 35px;
     }
+}
+@media (max-width: 900px) {
+    #widget_2{
+        background: #091931 !important; 
+        border-radius: 16px;
 
-    #widget_2,
-    #widget_3 {
-        font-size: 16px;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        gap: 8px;
-        padding-top: 8px;
-        padding-bottom: 8px;
+    }
+    #widget_1, #widget_3, #widget_4{
+        background: #2A3647;
     }
 }
-
 @media (max-width:769px) {
     .addtask {
         padding-left: 0;
@@ -55,17 +59,6 @@
         display: flex;
         justify-content: flex-start;
         padding-left: 16px;
-    }
-
-    #widget_2,
-    #widget_3 {
-        font-size: 16px;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        gap: 8px;
-        padding-top: 8px;
-        padding-bottom: 8px;
     }
 
     .rightinputfields {
@@ -194,16 +187,5 @@
 
     .clearbtn {
         display: none;
-    }
-
-    #widget_2,
-    #widget_3 {
-        font-size: 16px;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        gap: 8px;
-        padding-top: 8px;
-        padding-bottom: 8px;
     }
 }

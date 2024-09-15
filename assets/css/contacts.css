@@ -562,30 +562,7 @@ h3 {
     font-size: 14px !important;
 }
 
-.user-info {
-    display: flex;
-    gap: 16px;
-    cursor: pointer;
-    margin-right: 1em;
-    align-items: center;
-}
 
-.user-icon {
-    position: absolute;
-    right: 5px;
-    color: #29ABE2;
-    font-size: 20px;
-    min-width: 42px;
-    height: 42px;
-    border-radius: 100%;
-    border: solid 2px rgb(0, 0, 0);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    cursor: pointer;
-    margin-bottom: 2px;
-}
 
 .contacthead2 {
     display: flex;
@@ -894,6 +871,14 @@ h3 {
 }
 
 @media (max-width: 990px) {
+    #widget_4{
+        background: #091931 !important; 
+        border-radius: 16px;
+
+    }
+    #widget_1, #widget_2, #widget_3{
+        background: #2A3647;
+    }
 
     .closeMobile {
         display: block !important;

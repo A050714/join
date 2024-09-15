@@ -17,7 +17,7 @@ async function onloadAddTask() {
   // await loadContacts();
   await onloadMain();
   await showFirstLetter();
-  contactsDropdown('contactList-a');
+  contactsDropdown('contactList-a','selectedContactsDisplay');
 
 }
 
@@ -43,38 +43,27 @@ async function putTaskToBoard(data = {}, taskIndex) {
   }
 }
 
-async function taskContacts() {
-  try {
-    let response = await fetch(BASE_URL);
-    let responseToJson = await response.json();
-    contacts = Object.values(responseToJson);
-    console.log(contacts);
-    contactsDropdown();
-  } catch (error) {
-    console.error("Fehler beim Abrufen der Kontaktdaten:", error);
-  }
-}
 
-function contactsDropdown(id) {
+function contactsDropdown(id,id2) {
   let content = document.getElementById(id);
-  content.innerHTML = "<ul>";
+  // content.innerHTML = "<ul>";
 
   for (let index = 0; index < contacts.length; index++) {
-    content.innerHTML += generateContacts(contacts[index]);
+    content.innerHTML += generateContacts(contacts[index],id2);
   }
 
-  content.innerHTML += "</ul>";
+  // content.innerHTML += "</ul>";
 
   // Initialen für jeden Kontakt anzeigen
   contacts.forEach((contact) => {
-    showInitials(contact,`contactColor-${contact.id}`);
+    showInitials(contact, `contactColor-${contact.id}`);
   });
 }
 
-function generateContacts(contact) {
+function generateContacts(contact,id2) {
   return /*html*/ `
     <li id="contact-${contact.id}">
-      <div onclick='addTo(${contact.id})' class="contactlistaddtask">
+      <div onclick='addTo(${contact.id},${id2})' class="contactlistaddtask">
         <div class="frame1">
           <div class="contactcolor3" id="contactColor-${contact.id}">
             <!-- Initialen -->
@@ -87,7 +76,9 @@ function generateContacts(contact) {
   `;
 }
 
-function addTo(id) {
+function addTo(id,id2) {
+  console.log(id2.id);
+  
   let contact = contacts.find((c) => c.id === id);
 
   let contactDiv = document.getElementById(`contact-${contact.id}`);
@@ -106,11 +97,10 @@ function addTo(id) {
     contactname.style.color = "";
     selectedContacts = selectedContacts.filter((c) => c.id !== contact.id);
   }
-
-  displaySelectedContacts();
+  displaySelectedContacts(id2.id);
 }
 
-function toggleDropdown(arrow="dropdownarrow",contactListId="contactList-a",selectedContacts='selectedContactsDisplay') {
+function toggleDropdown(arrow = "dropdownarrow", contactListId = "contactList-a", selectedContacts = 'selectedContactsDisplay') {
   const togglearrow = document.getElementById(arrow);
   togglearrow.classList.toggle("open");
 
@@ -276,7 +266,7 @@ function clearContactList() {
 }
 
 function showInitials(contact) {
-  
+
   const nameParts = contact.name.trim().split(" ");
   let initials;
 
@@ -291,7 +281,7 @@ function showInitials(contact) {
   circleInitials.style.backgroundColor = colors[contact.color];
 }
 
-function displaySelectedContacts(id="selectedContactsDisplay") {
+function displaySelectedContacts(id) {
   let container = document.getElementById(id);
   container.innerHTML = "";
 

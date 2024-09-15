@@ -63,6 +63,9 @@ main {
 
 
 @media (max-width: 990px) {
+    .mainscreen_phl{
+        padding-bottom: 100px;
+    }
 
     .mobile_headerNav {
         height: 204px;
@@ -133,16 +136,6 @@ main {
         margin-right: 0;
     }
 
-
-
-    #widget_1,
-    #widget_2,
-    #widget_3,
-    #widget_4 {
-        cursor: pointer;
-     }
-
- 
     .sidebarfooter {
         display: none;
     }

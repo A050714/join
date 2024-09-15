@@ -14,6 +14,30 @@ header {
     z-index: 1000;
 }
 
+.user-info {
+    display: flex;
+    gap: 16px;
+    cursor: pointer;
+    margin-right: 1em;
+    align-items: center;
+}
+
+.user-icon {
+    position: absolute;
+    right: 5px;
+    color: #29ABE2;
+    font-size: 20px;
+    min-width: 42px;
+    height: 42px;
+    border-radius: 100%;
+    border: solid 2px rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 2px;
+}
 header p {
     font-family: 'PT Sans';
     font-size: 24px;
