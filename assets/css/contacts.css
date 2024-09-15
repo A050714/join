@@ -919,6 +919,7 @@ h3 {
     #contactList {
         height: 80vh;
         width: 100%;
+        margin-top: 0;
     }
 
     .contactinformation {
