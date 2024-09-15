@@ -20,7 +20,7 @@
         <div class="login-container">
             <a href="./login.html" class="back"><img src="./../img/00_General_elements/blue_arrow_left.svg" alt=""></a>
             <h1 class="login_title">Sign up</h1>
-            <form id="loginForm_signup" onsubmit="signup(); return false;">
+            <form id="loginForm_signup" onsubmit="signup(); return false;" >
                 <div class="input-group">
                     <input type="name" id="name_signup" placeholder="Name " required>
                     <span class="icon"><img src="/assets/img/01_Login_SignUp_ForgotPW/person.png" alt="mail"></i>
@@ -42,7 +42,8 @@
                     <label for="privacyAccept">I accept the <a href="">Privacy Policy</a></label>
                 </div>
                 <div class="button_signup">
-                    <button type="submit">Sign up</button>
+                    <button type="submit" >Sign up</button>
+                    <div class="popup_message" id="spMessagePopup">You Signed Up Successfully</div>
                 </div>
 
             </form>

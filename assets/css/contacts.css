@@ -724,7 +724,7 @@ h3 {
     }
 }
 
-.taskanimation {
+.popup_message {
     display: flex;
     align-items: center;
     gap: 16px;

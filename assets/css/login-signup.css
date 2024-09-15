@@ -223,6 +223,30 @@
     cursor: pointer;
    }
 
+   .popup_message {
+    display: none;
+    align-items: center;
+    text-align: center;
+    position: fixed;
+    bottom: 35%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: hsl(215, 26%, 22%);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: 400;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 9999;
+}
+
+.show {
+    display: block; /* Show when needed */
+    opacity: 1;     /* Fade in */
+}
+
    /* Sidebar */
    .sidebar{
        background-color:#1c1e29;

@@ -63,10 +63,13 @@ async function signup() {
                 const userId = responseToJson.name;
                 console.log("User created successfully:", responseToJson);
                 console.log("UserId is", userId); 
-                alert('You´ve signed up successfully!'); 
-                    
-                window.location.href = '/assets/html_templates/login.html'; 
-                //  in order to relocate to another login side after signing up succesfully
+                // alert('You´ve signed up successfully!'); 
+                showMessagePopup("You Signed Up Successfully!");
+
+                  // Redirect to login page after a delay of 2s
+                setTimeout(() => {
+                    window.location.href = '/assets/html_templates/login.html'; 
+                }, 2000); 
         
             } else {
                 alert ('Failed to sign up.'); 
@@ -77,6 +80,18 @@ async function signup() {
         }
 
     }   
+
+    function showMessagePopup(message) {
+        const popup = document.getElementById('spMessagePopup');
+        popup.innerHTML = message; // Set the message content
+        popup.classList.add('show'); // Add the show class to display the popup
+    
+        // Hide the message popup after 3 seconds
+        setTimeout(() => {
+            popup.classList.remove('show');
+        }, 3000);
+    }
+    
 
 
 
@@ -119,6 +134,7 @@ async function login(event) {
 
                     // Log the user in successfully
                     alert('Login successful!');
+                    
                     window.location.href = '/assets/html_templates/summary.html';
                     break;
                 }
@@ -166,6 +182,12 @@ async function login(event) {
       
         alert('You are logged in as a guest!');
         window.location.href = '/assets/html_templates/summary.html';  
+    }
+
+
+    function showMessgaePopup(){
+        const message = document.getElementById('spMessagePopup');
+        message.classList.remove('dNone');          
     }
 
     
