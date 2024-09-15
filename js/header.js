@@ -42,26 +42,11 @@ async function showFirstLetter() {
 
 
 function showHeaderNav() {
-    // document.getElementById('mobile_headerNav').classList.remove('dNone'); 
-    // document.getElementById('test').classList.remove('dNone'); 
-    // document.getElementById('test').classList.add('header_overlay'); 
     const menu = document.getElementById('mobile_headerNav');
     menu.classList.toggle('active');
  
 }
 
-function closeHeaderNav() {
-    document.getElementById('mobile_headerNav').classList.add('dNone'); 
-    document.getElementById('test').classList.add('dNone'); 
-    document.getElementById('test').classList.remove('header_overlay'); 
-//     const headerNav = document.getElementById('mobile_headerNav'); 
-//     // For the animation
-//     headerNav.classList.remove('open');
-//     setTimeout(() => {
-//         headerNav.classList.add('dNone');
-//     }, 400); 
-// }
-}
 
 async function logout() {
     // Fetch users from Firebase

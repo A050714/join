@@ -386,7 +386,7 @@
             }
             100% {
                 opacity: 0;
-                z-index: 0;
+                z-index: -3000;
             }
             
         }
@@ -531,12 +531,13 @@
                 opacity: 1;
                 
             }
-            85% {
+            95% {
                 opacity: 0.99;
+                z-index: 1;
             }
             100% {
                 opacity: 0;
-                z-index: 0;
+                z-index: -1;
             }
             
         }
@@ -560,7 +561,7 @@
 
     }
 
-      @media (min-width: 320px) and (max-width: 990px) and (min-height:800px) {
+      @media (min-width: 320px) and (max-width: 990px) and (min-height:850px) {
         .metrcis_content {
             display: flex;
             flex-direction: column;
