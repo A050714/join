@@ -547,6 +547,8 @@ h3 {
 }
 
 .user-icon {
+    position: absolute;
+    right: 5px;
     color: #29ABE2;
     font-size: 20px;
     min-width: 42px;

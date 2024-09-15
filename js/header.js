@@ -42,13 +42,11 @@ async function showFirstLetter() {
 
 
 function showHeaderNav() {
-    document.getElementById('mobile_headerNav').classList.remove('dNone'); 
-    document.getElementById('test').classList.remove('dNone'); 
-    document.getElementById('test').classList.add('header_overlay'); 
-    // const headerNav = document.getElementById('mobile_headerNav'); 
-    // // For the animation
-    // headerNav.classList.remove('dNone');
-    // headerNav.classList.add('open');
+    // document.getElementById('mobile_headerNav').classList.remove('dNone'); 
+    // document.getElementById('test').classList.remove('dNone'); 
+    // document.getElementById('test').classList.add('header_overlay'); 
+    const menu = document.getElementById('mobile_headerNav');
+    menu.classList.toggle('active');
  
 }
 
