@@ -90,6 +90,7 @@ function togglePopup() {
     }
 }
 
+
 function toggleMobileImg(){
     let edit = 'person_add_bg_dark.svg';
     let activeEdit = 'person_add_bg_light.svg';
@@ -154,12 +155,14 @@ async function deleteContact() {
 
 
 function showContact(index) {
+    let contactContainer = document.getElementById('showContact')
     checkScreenWidth()
     if (theLastIndex != null) {
         document.getElementById(theLastIndex).classList.remove('chosenContact');
         document.getElementById(theLastIndex).classList.add('singleContacts');
     }
-    document.getElementById('showContact').classList.remove('dNone')
+
+    contactContainer.classList.remove('dNone')
     let contact = contacts[index];
     fillContactData(contact)
     document.getElementById(`Id_${index}`).classList.add('chosenContact');
@@ -167,6 +170,7 @@ function showContact(index) {
     document.getElementById('openContact').style.display = "flex";
     document.getElementById('betterWAT').style.display = "flex";
     theLastIndex = `Id_${index}`;
+    contactContainer.classList.add('show');
 }
 
 
@@ -262,17 +266,9 @@ function closeMobileMenu() {
 
 function ctAddedAnimation() {
     const animation = document.getElementById("ctAddedAnimation");
-    animation.classList.add("show");
-  
+    animation.classList.add("show"); 
     setTimeout(() => {
       animation.classList.remove("show");
-  
-      // Nach der Animation wird man auf das board weiter geleitet
       window.location.href = "contacts.html";
     }, 2000);
-  }
-
-  function popUpAnimation() {
-    const animation = document.getElementById("addcontactpopup");
-    animation.classList.add("show");
   }
