@@ -1,72 +1,103 @@
 <script src="/js/add_task.js"></script>
+
 <body>
-    <div class="editTask">
+    <div class="editTaskBg">
+        <span class="btnSpan">
+            <button class="" onclick="closeEdit()"><img
+                    src="/assets/img/00_General_elements/close.svg" alt=""></button>
+        </span>
+        <div class="editTask">
 
-        <span>
-            <p>Title</p>
-            <input id="titleId-edit" type="text">
-        </span>
-        <span>
-            <p>Description</p>
-            <textarea id="descId-edit"></textarea>
-        </span>
-        <span>
-            <p>Due date:</p>
-            <input required type="date" id="dateId-edit">
-        </span>
+            <span>
+                <p>Title</p>
+                <input id="titleId-edit" type="text">
+            </span>
+            <span>
+                <p>Description</p>
+                <textarea id="descId-edit"></textarea>
+            </span>
+            <span>
+                <p>Due date:</p>
+                <input required type="date" id="dateId-edit">
+            </span>
 
-        <span>
-            <p>Priority</p>
-            <div class="taskbtn">
-                <button type="button" onclick="setPrioEdit('urgent-edit')" class="tasksbtn" id="urgent-edit">Urgent <img
-                        id="svgUrgent-edit" src="/assets/img/03_AddTask/priority/Prio alta.svg" alt=""></button>
-                <button type="button" onclick="setPrioEdit('medium-edit')" class="tasksbtn" id="medium-edit">Medium <img
-                        id="svgMedium-edit" src="/assets/img/03_AddTask/priority/Prio media.svg"></button>
-                <button type="button" onclick="setPrioEdit('low-edit')" class="tasksbtn" id="low-edit">Low <img id="svgLow-edit"
-                        src="/assets/img/03_AddTask/priority/Prio baja(1).svg" alt=""></button>
-            </div>
-        </span>
-        <span>
-            <p>Assigned to</p>
-            <div class="dropdown"
-                onclick="toggleDropdown('dropdownarrow-edit','contactList-edit','selectedContactsDisplayEdit')">
-                <span>Select contacts to assign</span>
-                <img id="dropdownarrow-edit" class="dropdown-arrow"
-                    src="/assets/img/03_AddTask/contacts_checked/arrow_drop_down.svg">
-            </div>
-            <div id="contactList-edit" class="contactList-a dNone"></div>
-        </span>
-        <div style="height: 100px;" id="selectedContactsDisplayEdit"></div>
-
-        <span>
-            <div class="subtaskContainer">
-                <p>Subtasks</p>
-                <div class="inputAndButtons">
-                    <input class="inputField" id="inputField-edit" type="text" placeholder="Add new subtask">
-                    <img onclick="addToSubTasksEdit()" id="addToSubTaskbtn-edit" class="taskicon"
-                        src="/assets/img/03_AddTask/subtasks_icons/add.svg" alt="">
+            <span>
+                <p>Priority</p>
+                <div class="taskbtn">
+                    <button type="button" onclick="setPrioEdit('urgent-edit')" class="tasksbtn" id="urgent-edit">Urgent
+                        <img id="svgUrgent-edit" src="/assets/img/03_AddTask/priority/Prio alta.svg" alt=""></button>
+                    <button type="button" onclick="setPrioEdit('medium-edit')" class="tasksbtn" id="medium-edit">Medium
+                        <img id="svgMedium-edit" src="/assets/img/03_AddTask/priority/Prio media.svg"></button>
+                    <button type="button" onclick="setPrioEdit('low-edit')" class="tasksbtn" id="low-edit">Low <img
+                            id="svgLow-edit" src="/assets/img/03_AddTask/priority/Prio baja(1).svg" alt=""></button>
                 </div>
-                <div id="subtasks-edit"></div>
-            </div>
+            </span>
+            <span>
+                <p>Assigned to</p>
+                <div class="dropdown"
+                    onclick="toggleDropdown('dropdownarrow-edit','contactList-edit','selectedContactsDisplayEdit')">
+                    <span>Select contacts to assign</span>
+                    <img id="dropdownarrow-edit" class="dropdown-arrow"
+                        src="/assets/img/03_AddTask/contacts_checked/arrow_drop_down.svg">
+                </div>
+                <div id="contactList-edit" class="contactList-a dNone"></div>
+            </span>
+            <div style="height: 100px;" id="selectedContactsDisplayEdit"></div>
+
+            <span>
+                <div class="subtaskContainer">
+                    <p>Subtasks</p>
+                    <div class="inputAndButtons">
+                        <input class="inputField" id="inputField-edit" type="text" placeholder="Add new subtask">
+                        <img onclick="addToSubTasksEdit()" id="addToSubTaskbtn-edit" class="taskicon"
+                            src="/assets/img/03_AddTask/subtasks_icons/add.svg" alt="">
+                    </div>
+                    <div id="subtasks-edit"></div>
+                </div>
+            </span>
+        </div>
+        <span class="btnSpan">
+            <button class="editBtn" onclick="saveEditTask()">Ok <img
+                    src="/assets/img/00_General_elements/editTaskCheck.svg" alt=""></button>
         </span>
-        <button onclick="saveEditTask()">OK</button>
     </div>
+
 </body>
 
 <script src="/js/add_task.js" defer></script>
 <link rel="stylesheet" href="/assets/css/addtask.css">
 <style>
-    .editTask {
-        border-radius: 30px;
+    .btnSpan {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+    }
+
+    .editBtn {
+        margin-top: 10px !important;
+        background: #2A3647;
+        padding: 16px;
+        border-radius: 10px;
+        color: white;
+        font-size: 21px !important;
+    }
+    .editTaskBg{
         background-color: white;
         padding: 32px 40px;
         box-shadow: 0px 0px 4px 0px #00000029;
+        border-radius: 30px;
         max-width: 320px;
-        display: flex;
+    }
+    .editTask {
+        overflow: scroll;
+       
+        /* max-width: 320px; */
+        /* display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        max-height: 570px !important;
+        justify-content: center; */
+        max-height: 540px !important;
     }
 
     .dropdown {
@@ -77,35 +108,38 @@
         gap: 8px !important;
     }
 
-    span {
+    .editTask span {
         width: 100% !important;
     }
 
     textarea {
         padding: unset !important;
     }
-    .contactList-a{
+
+    .contactList-a {
         max-height: 200px !important;
         height: 100% !important;
         width: 320px !important;
         position: absolute !important;
     }
-    .contactlistaddtask{
+
+    .contactlistaddtask {
         width: 300px !important;
         height: 35px !important;
     }
-    .contactcolor3{
+
+    .contactcolor3 {
         height: 20px !important;
         width: 20px !important;
     }
-   p{
-    font-size: 16px;
-   }
-   #subtasks-edit{
-   
-   }
+
+    p {
+        font-size: 16px;
+    }
+
+    #subtasks-edit {}
 </style>
 
 <script>
-    
+
 </script>

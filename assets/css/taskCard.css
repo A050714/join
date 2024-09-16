@@ -4,7 +4,7 @@
     border-radius: 30px;
     box-shadow: 0px 0px 4px 0px #00000029;
 
-    width: 320px;
+    max-width: 320px;
     /* Breiter für mehr Platz */
     padding: 48px 40px;
     position: relative;
@@ -40,6 +40,7 @@
     font-size: 24px;
     /* Größer für bessere Sichtbarkeit */
     cursor: pointer;
+    /* width: unset !important; */
 }
 
 .details p {
@@ -190,4 +191,10 @@ button {
 }
 .technicaltask{
     background-color: #1FD7C1;
+}
+.btnSpan {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
 }

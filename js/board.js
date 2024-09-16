@@ -52,19 +52,22 @@ function genereteNoTasks(message) {
 
 function calculateSubTasks(task) {
   let content = document.getElementById(`subtasksDiv${task.id}`);
-  let subTasks = task.subTasks;
-  let doneSubtasks = subTasks.filter((t) => t.status == "done");
-  if (subTasks == "empty") {
-    document.getElementById("progressbarID").classList.add("dNone");
-  } else {
-    content.innerHTML = `${doneSubtasks.length}/${subTasks.length} Subtasks`;
-    let percentWidth = (doneSubtasks.length / subTasks.length) * 100;
-    if (percentWidth <= 0) {
-      percentWidth = 10;
+  if (task.subTask != null) {
+
+    let subTasks = task.subTasks;
+    let doneSubtasks = subTasks.filter((t) => t.status == "done");
+    if (subTasks == "empty") {
+      document.getElementById("progressbarID").classList.add("dNone");
+    } else {
+      content.innerHTML = `${doneSubtasks.length}/${subTasks.length} Subtasks`;
+      let percentWidth = (doneSubtasks.length / subTasks.length) * 100;
+      if (percentWidth <= 0) {
+        percentWidth = 10;
+      }
+      document.getElementById(
+        `progress-color${task.id}`
+      ).style.width = `${percentWidth}%`;
     }
-    document.getElementById(
-      `progress-color${task.id}`
-    ).style.width = `${percentWidth}%`;
   }
 }
 
@@ -111,7 +114,7 @@ async function moveto(status) {
   let currentTask = tasks.find((task) => task.id == currentDraggedElement);
   currentTask.status = status;
   document.getElementById(currentDraggedElement).classList.remove("rotate");
-  currentTask = tasks[currentDraggedElement];
+  currentTask = tasks[currentDraggedElement - 1];
   await postData(`Tasks/${currentTask.id}`, currentTask);
   tasks = [];
   await loadTasks();
@@ -195,8 +198,10 @@ function generateTaskHTML(task) {
           <div class="user-story-card " id="taskCard">
           <div class="header">
             <span class="tag ${task.category}">${task.category == "userstory" ? "User Story" : "Technical Task"}</span>
-            <span onclick="closeTask()" class="close-button">&times;</span>
-          </div>
+            <span class="btnSpan">
+            <button class="" onclick="closeTask()"><img
+                    src="/assets/img/00_General_elements/close.svg" alt=""></button>
+          </span>          </div>
           <h1 class="fs60fw700">${task.title}</h1>
           <p class="fs20fw400">${task.description}</p>
           
@@ -226,18 +231,23 @@ function generateTaskHTML(task) {
 function generateSubtasksOpenCard(task) {
   let content = document.getElementById(`subtasksOpenCard${task.id}`);
   content.innerHTML = ""; // Reset content to avoid duplicate entries
-  task.subTasks.forEach((subtask, index) => {
-    if (subtask == "empty") {
-      content.innerHTML += /*html*/ `
+  if (task.subTasks != null) {
+    task.subTasks.forEach((subtask, index) => {
+      if (subtask == "empty") {
+        content.innerHTML += /*html*/ `
       <p>...No Subtasks...</p>`;
-    } else {
-      content.innerHTML += /*html*/ `
+      } else {
+        content.innerHTML += /*html*/ `
       <span class="dFlex">
         <img onclick="toggleSubtask(${task.id}, ${index})" src="/assets/img/04_Board/subtasks_check/${subtask.status == "todo" ? "check" : "checked"}.svg" alt="">
         <p class="fs16fw400">${subtask.title}</p>
       </span>`;
-    }
-  });
+      }
+    });
+  } else {
+    content.innerHTML += /*html*/ `
+      <p>...No Subtasks...</p>`;
+  }
 }
 
 function toggleSubtask(taskId, subtaskIndex) {
@@ -273,6 +283,7 @@ function searchInTheTasks(id) {
   generateBoard(foundTasks);
 }
 function showAddTask() {
+  contactsDropdown('contactList-a', 'selectedContactsDisplay');
   const addTaskElement = document.getElementById("showAddTask");
   addTaskElement.classList.add("active"); // Aktiviert die Animation
 }
@@ -397,9 +408,12 @@ function getselect(t) {
 }
 
 function addToSubTasksEdit() {
+  if (taskEdit.subTasks.includes('empty')) {
+    taskEdit.subTasks.pop();
+    renderSubTasksEdit(taskEdit);
+    return;
+  }
   let inputValue = document.getElementById("inputField-edit").value.trim();
-  console.log(inputValue);
-
   if (inputValue !== "") {
     taskEdit.subTasks.push({ title: inputValue, status: "todo" });
     document.getElementById("inputField-edit").value = "";
@@ -410,23 +424,36 @@ function addToSubTasksEdit() {
 function renderSubTasksEdit(t) {
   let content = document.getElementById("subtasks-edit");
   content.innerHTML = "";
+  if (t.subTask != null) {
+    t.subTasks.forEach((subTask, index) => {
+      if (subTask == 'empty') {
+        content.innerHTML = ``;
+      } else {
 
-  t.subTasks.forEach((subTask, index) => {
-    content.innerHTML += `
-      <li>${subTask.title} <button onclick="removeSubTaskEdit(${index})">Remove</button></li>
-    `;
-  });
+        content.innerHTML += `
+        <li>${subTask.title} <button onclick="removeSubTaskEdit(${index})">Remove</button></li>
+        `;
+      }
+    });
+  }
+
 }
 
 function removeSubTaskEdit(index) {
   taskEdit.subTasks.splice(index, 1);
   renderSubTasksEdit(taskEdit);
 }
-function saveEditTask() {
+async function saveEditTask() {
   taskEdit.title = document.getElementById("titleId-edit").value;
   taskEdit.description = document.getElementById("descId-edit").value;
   taskEdit.dueDate = document.getElementById("dateId-edit").value;
   taskEdit.assignedTo = selectedContacts.map((c) => c.id);
-  postData(`Tasks/${taskEdit.id}`, taskEdit);
+
+  await postData(`Tasks/${taskEdit.id}`, taskEdit);
   location.reload();
+}
+function closeEdit(){
+  document.getElementById('showTask').classList.remove("dNone");
+  document.getElementById('editTask').classList.add("dNone");
+  taskEdit = [];
 }
