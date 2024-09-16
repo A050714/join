@@ -42,14 +42,14 @@
             <div class="subtaskContainer">
                 <p>Subtasks</p>
                 <div class="inputAndButtons">
-                    <input class="inputField" id="inputField" type="text" placeholder="Add new subtask">
-                    <img onclick="addToSubTasks()" id="addToSubTaskbtn" class="taskicon"
+                    <input class="inputField" id="inputField-edit" type="text" placeholder="Add new subtask">
+                    <img onclick="addToSubTasksEdit()" id="addToSubTaskbtn-edit" class="taskicon"
                         src="/assets/img/03_AddTask/subtasks_icons/add.svg" alt="">
                 </div>
-                <div id="subtasks"></div>
+                <div id="subtasks-edit"></div>
             </div>
         </span>
-        <button>OK</button>
+        <button onclick="saveEditTask()">OK</button>
     </div>
 </body>
 
@@ -100,6 +100,9 @@
     }
    p{
     font-size: 16px;
+   }
+   #subtasks-edit{
+   
    }
 </style>
 

@@ -25,7 +25,6 @@ async function onloadAddTask() {
 //   let response = await fetch(BASE_URL + pfad + ".json");
 //   return (responseToJson = await response.json());
 // }
-
 async function putTaskToBoard(data = {}, taskIndex) {
   try {
     let response = await fetch(BASE_URL + "Tasks/" + taskIndex + ".json", {
@@ -77,10 +76,7 @@ function generateContacts(contact,id2) {
 }
 
 function addTo(id,id2) {
-  console.log(id2.id);
-  
   let contact = contacts.find((c) => c.id === id);
-
   let contactDiv = document.getElementById(`contact-${contact.id}`);
   let checkbox = document.getElementById(`checkboxtask-${contact.id}`);
   let contactname = document.getElementById(`contactname-${contact.id}`);
@@ -184,7 +180,7 @@ function addToSubTasks() {
   if (inputValue !== "") {
     task.subTasks.push({ title: inputValue, status: "todo" });
     document.getElementById("inputField").value = "";
-    renderSubTasks(inputValue);
+    renderSubTasks();
   }
 }
 
@@ -211,7 +207,7 @@ async function addTask() {
   task.category = document.getElementById("categoryId").value;
   task.assignedTo = selectedContacts.map((c) => c.id);
   task.prio = selectedPrio;
-  task.id = tasks.length;
+  task.id = tasks.length+1;
 
   if (task.subTasks.length === 0) {
     task.subTasks.push("empty");

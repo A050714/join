@@ -1,7 +1,7 @@
 let currentTask;
 let currentDraggedElement;
 let assignedContacts = [];
-
+let taskEdit;
 async function onloadBoard() {
   await onloadMain();
   generateBoard();
@@ -119,23 +119,23 @@ async function moveto(status) {
 }
 
 function showTask(id) {
-  const task = tasks.find((t) => t.id == id);
+  taskEdit = tasks.find((t) => t.id == id);
+
   let content = document.getElementById("showTask");
   content.classList.remove("dNone");
   content.innerHTML = "";
-  content.innerHTML = generateTaskHTML(task);
-  generateSubtasksOpenCard(task);
-  generateAssignedContacts(task);
-  loadEdit(task);
-
+  content.innerHTML = generateTaskHTML(taskEdit);
+  generateSubtasksOpenCard(taskEdit);
+  generateAssignedContacts(taskEdit);
+  loadEdit(taskEdit);
 }
-function loadEdit(task) {
-  contactsDropdown('contactList-edit','selectedContactsDisplayEdit');
-  getselect(task);
-  document.getElementById("titleId-edit").value = task.title;
-  document.getElementById("descId-edit").value = task.description;
-  document.getElementById("dateId-edit").value = task.dueDate;
-  setPrioEdit(`${task.prio}-edit`);
+function loadEdit(t) {
+  contactsDropdown('contactList-edit', 'selectedContactsDisplayEdit');
+  getselect(t);
+  document.getElementById("titleId-edit").value = taskEdit.title;
+  document.getElementById("descId-edit").value = taskEdit.description;
+  document.getElementById("dateId-edit").value = taskEdit.dueDate;
+  setPrioEdit(`${taskEdit.prio}-edit`);
 }
 function generateInitals(task) {
   const assignedIDs = task.assignedTo;
@@ -174,7 +174,6 @@ function generateAssignedContacts(task) {
       `;
     });
   }
-  // contactsDropdown('contactList-edit');
 }
 
 function getInitials(contact, id = "contactColor") {
@@ -274,7 +273,6 @@ function searchInTheTasks(id) {
   generateBoard(foundTasks);
 }
 function showAddTask() {
-  // contactsDropdown("contactList-edit");
   const addTaskElement = document.getElementById("showAddTask");
   addTaskElement.classList.add("active"); // Aktiviert die Animation
 }
@@ -314,6 +312,9 @@ function editTask(id) {
   document.getElementById('showTask').classList.add("dNone");
   document.getElementById('editTask').classList.remove("dNone");
   getSelectedContacts();
+
+  renderSubTasksEdit(taskEdit);
+
 }
 
 
@@ -330,7 +331,7 @@ function setPrioEdit(id) {
     chosenBtn.style.color = "white";
     document.getElementById("svgUrgent-edit").src =
       "/assets/img/03_AddTask/priority/Capa 1.svg";
-    selectedPrio = "urgent";
+    taskEdit.prio = "urgent";
   }
 
   if (chosenBtn === medium) {
@@ -338,7 +339,7 @@ function setPrioEdit(id) {
     chosenBtn.style.color = "white";
     document.getElementById("svgMedium-edit").src =
       "/assets/img/03_AddTask/priority/Capa 2.svg";
-    selectedPrio = "medium";
+    taskEdit.prio = "medium";
   }
 
   if (chosenBtn === low) {
@@ -346,7 +347,7 @@ function setPrioEdit(id) {
     chosenBtn.style.color = "white";
     document.getElementById("svgLow-edit").src =
       "/assets/img/03_AddTask/priority/Prio baja.svg";
-    selectedPrio = "low";
+    taskEdit.prio = "low";
   }
 }
 
@@ -372,14 +373,14 @@ function resetPrioStylesEdit() {
     "/assets/img/03_AddTask/priority/Prio baja(1).svg";
 }
 
-function getAssignedContacts(task) {
+function getAssignedContacts(t) {
   selectedContacts = contacts.filter((contact) =>
-    (task.assignedTo).includes(contact.id)
+    (t.assignedTo).includes(contact.id)
   );
 }
 
-function getselect(task) {
-  getAssignedContacts(task);
+function getselect(t) {
+  getAssignedContacts(t);
 
   for (let i = 0; i < contacts.length; i++) {
     if (selectedContacts.some(e => e.id == i)) {
@@ -393,4 +394,39 @@ function getselect(task) {
     }
     displaySelectedContacts('selectedContactsDisplayEdit');
   }
+}
+
+function addToSubTasksEdit() {
+  let inputValue = document.getElementById("inputField-edit").value.trim();
+  console.log(inputValue);
+
+  if (inputValue !== "") {
+    taskEdit.subTasks.push({ title: inputValue, status: "todo" });
+    document.getElementById("inputField-edit").value = "";
+    renderSubTasksEdit(taskEdit);
+  }
+}
+
+function renderSubTasksEdit(t) {
+  let content = document.getElementById("subtasks-edit");
+  content.innerHTML = "";
+
+  t.subTasks.forEach((subTask, index) => {
+    content.innerHTML += `
+      <li>${subTask.title} <button onclick="removeSubTaskEdit(${index})">Remove</button></li>
+    `;
+  });
+}
+
+function removeSubTaskEdit(index) {
+  taskEdit.subTasks.splice(index, 1);
+  renderSubTasksEdit(taskEdit);
+}
+function saveEditTask() {
+  taskEdit.title = document.getElementById("titleId-edit").value;
+  taskEdit.description = document.getElementById("descId-edit").value;
+  taskEdit.dueDate = document.getElementById("dateId-edit").value;
+  taskEdit.assignedTo = selectedContacts.map((c) => c.id);
+  postData(`Tasks/${taskEdit.id}`, taskEdit);
+  location.reload();
 }
