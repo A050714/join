@@ -155,7 +155,9 @@ async function deleteContact() {
 
 
 function showContact(index) {
+   
     let contactContainer = document.getElementById('showContact')
+    contactContainer.classList.remove('show');
     checkScreenWidth()
     if (theLastIndex != null) {
         document.getElementById(theLastIndex).classList.remove('chosenContact');
@@ -171,6 +173,9 @@ function showContact(index) {
     document.getElementById('betterWAT').style.display = "flex";
     theLastIndex = `Id_${index}`;
     contactContainer.classList.add('show');
+    setTimeout(() => {
+        contactContainer.classList.remove("show");
+      }, 2000);
 }
 
 
