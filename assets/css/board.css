@@ -226,7 +226,51 @@
 
 }
 
+.subtaskShow {
+    gap: 16px;
+    padding: 6px 16px
+}
 
+.subtaskList{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-radius: 10px;
+    /* padding: 4px 16px; */
+}
+.subtaskList:hover{
+    .subtaskListSpan{
+        display: flex !important;
+    }
+    background-color: #eeeeee;
+}
+
+.subtaskListSpan{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.h16{
+    height: 16px;
+}
+.editDelBtn:hover{
+    transform: scale(1.5);
+}
+.editDelBtn{
+    transition: transform .2s; /* Animation */
+
+}
+.subtaskTitle{
+    font-size: 16px !important;
+    font-weight: 400 !important;
+}
+
+.hw16{
+    height: 16px;
+    width: 16px;
+}
 
 @media (max-width: 1300px) {
     .statusBar {
@@ -236,53 +280,68 @@
     body {
         overflow: scroll !important;
     }
-    .progressBoxes{
+
+    .progressBoxes {
         height: unset;
         flex-direction: row;
     }
 }
+
 @media (max-width:990px) {
-    #widget_1, #widget_2, #widget_4{
+
+    #widget_1,
+    #widget_2,
+    #widget_4 {
         background: #2A3647;
     }
-    #widget_3{
-        background: #091931 !important; 
+
+    #widget_3 {
+        background: #091931 !important;
         border-radius: 16px;
     }
-    
-    #showAddTask{
+
+    #showAddTask {
         display: none;
     }
-    .headLine{
+
+    .headLine {
         display: none;
     }
-    .headlineMobile{
+
+    .headlineMobile {
         display: flex;
         padding-top: 100px;
     }
-    .headlineMobile .joinBtnprimary{
+
+    .headlineMobile .joinBtnprimary {
         font-size: 0;
         gap: 0;
     }
-    .statusBar{
+
+    .statusBar {
         padding-left: 15px;
         padding-right: 15px;
         padding-bottom: 100px;
     }
-    main{
+
+    main {
         margin-top: 0 !important;
     }
+
     .emptydiv {
         width: 90%;
     }
-    .asd p{
+
+    .asd p {
         font-size: 27px;
     }
-    .asd button{
+
+    .asd button {
         height: 30px;
         width: 30px;
     }
-    .asd .icons{
+
+    .asd .icons {
         height: 15px;
         width: 15px;
     }

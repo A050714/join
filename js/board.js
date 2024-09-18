@@ -52,7 +52,7 @@ function genereteNoTasks(message) {
 
 function calculateSubTasks(task) {
   let content = document.getElementById(`subtasksDiv${task.id}`);
-  if (task.subTask != null) {
+  if (task.subTasks != null) {
 
     let subTasks = task.subTasks;
     let doneSubtasks = subTasks.filter((t) => t.status == "done");
@@ -238,7 +238,7 @@ function generateSubtasksOpenCard(task) {
       <p>...No Subtasks...</p>`;
       } else {
         content.innerHTML += /*html*/ `
-      <span class="dFlex">
+      <span class="subtaskShow dFlex">
         <img onclick="toggleSubtask(${task.id}, ${index})" src="/assets/img/04_Board/subtasks_check/${subtask.status == "todo" ? "check" : "checked"}.svg" alt="">
         <p class="fs16fw400">${subtask.title}</p>
       </span>`;
@@ -424,19 +424,39 @@ function addToSubTasksEdit() {
 function renderSubTasksEdit(t) {
   let content = document.getElementById("subtasks-edit");
   content.innerHTML = "";
-  if (t.subTask != null) {
+  if (t.subTasks != null) {
     t.subTasks.forEach((subTask, index) => {
       if (subTask == 'empty') {
         content.innerHTML = ``;
       } else {
 
-        content.innerHTML += `
-        <li>${subTask.title} <button onclick="removeSubTaskEdit(${index})">Remove</button></li>
+        content.innerHTML += /*html*/`
+          <div class='editDiv dNone' id='editInputDiv'>
+            <div class='subtaskListSpan'>
+              <input type="text" id='editSubtaskInput'>
+              <button class='editDelBtn' onclick="removeSubTaskEdit(${index})"><img class='hw16' src="/assets/img/00_General_elements/delete.svg" alt=""></button>
+              <img class='h16' src="/assets/img/00_General_elements/Vector 3 (1).svg" alt="">
+              <button class='editDelBtn' onclick="editSubtaskEdit(${index})"><img class='hw16' src="/assets/img/00_General_elements/Subtasks icons11.svg" alt=""></button></li>
+            </div>
+          </div> 
+          <div class='subtaskList'>
+            <p class='subtaskTitle'>• ${subTask.title}</p>
+            <div class='subtaskListSpan dNone'>  
+              <button class='editDelBtn' onclick="editSubtaskEdit(${index})"><img class='hw16' src="/assets/img/00_General_elements/edit.svg" alt=""></button></li>
+              <img class='h16' src="/assets/img/00_General_elements/Vector 3 (1).svg" alt="">
+              <button class='editDelBtn' onclick="removeSubTaskEdit(${index})"><img class='hw16' src="/assets/img/00_General_elements/delete.svg" alt=""></button></li>
+            </div>
+          </div>
+
         `;
       }
     });
   }
 
+}
+
+function editSubtaskEdit(index) {
+  document.getElementById('editInputDiv').classList.remove('dNone');
 }
 
 function removeSubTaskEdit(index) {

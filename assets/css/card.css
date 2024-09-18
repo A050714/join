@@ -7,6 +7,7 @@
     flex-direction: column;
     min-height: 220px !important;
     min-width: 210px !important;
+    width: 250px;
     cursor: pointer;
     /* min-width: 180px !important;
     min-height: 190px !important; */
