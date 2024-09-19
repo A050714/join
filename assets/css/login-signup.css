@@ -136,8 +136,10 @@
        font-weight: 600;
    } 
 
+
    button:hover{
-    background-color:#2A3647 ;
+    box-shadow: ;
+    background-color:#3498db;
     padding: 5px;
     border-radius: 8px;
     color: white;
@@ -208,8 +210,14 @@
    /* Sign Up Site */
    .privacyAccept{
     text-align: center;
-
    }
+
+   .privacyAccept a {
+    text-decoration: none;
+    color: #3498db;
+    font-weight: 600;
+   }
+
    .button_signup{
     padding-top: 20px;
     text-align: center;

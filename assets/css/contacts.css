@@ -6,13 +6,17 @@ body {
     max-width: 1920px;
     margin: 0 auto;
     display: flex;
+
 }
 
 .rightContainer {
+    /* width: calc(100% - 232px); */
     width: 100%;
     display: flex;
     padding-left: 232px;
     flex-direction: column;
+    /* overflow-y: auto; */
+    /* height: 100%; */
 }
 
 .mainscreen {
@@ -36,14 +40,10 @@ h1 {
     width: 32px;
     align-self: flex-end;
     cursor: pointer;
-    
-
 }
 
 .close:hover {
     transform: scale(1.03);
-    border-radius: 25px;
-    background: #EEEEEE;
 }
 
 .rightSide {
@@ -56,6 +56,8 @@ h1 {
     -webkit-box-shadow: inset 4px 4px 8px 0px rgba(0, 0, 0, 0.15);
     -moz-box-shadow: inset 4px 4px 8px 0px rgba(0, 0, 0, 0.15);
     box-shadow: inset 4px 4px 8px 0px rgba(0, 0, 0, 0.15);
+
+
 }
 
 .openContact,
@@ -125,19 +127,16 @@ h1 {
     height: 32px;
 }
 
-.kontakdatenDetails {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+
+
+.showContact {
+    margin: 24px;
 }
 
-.kontakdatenDetails p {
-    font-size: 16px;
-    font-weight: 700;
-}
 .contactcolor {
     width: 120px;
     height: 120px;
+    /* background-color: orange; */
     border-radius: 100%;
     border: 3px solid white;
     display: flex;
@@ -148,20 +147,12 @@ h1 {
     font-size: 47px;
 }
 
-.pInitals {
-    font-size: 47px !important;
-}
-
 .contacthead {
     display: flex;
     gap: 54px;
     width: 100%;
     height: 120px;
-    align-items: center;
-}
 
-.contacthead h2 {
-    margin-bottom: 8px;
 }
 
 .editdelete {
@@ -174,27 +165,10 @@ h1 {
 }
 
 .showContact {
-    align-items: center;
+    display: flex;
     justify-content: space-between;
-    border-radius: 30px;
-    display: flex;
     flex-direction: column;
-    z-index: 1;
-    position: fixed;
-    top: 491px;
-    right: -100%; 
-    transform: translate(50%, -50%);
-    transition: right 0.5s ease-in-out, opacity 0.5s ease-in-out;
-    opacity: 0; 
 }
-
-.showContact.show {
-    display: flex;
-    right: calc(100vw - 909px) ; 
-    opacity: 1; 
-
-}
-
 
 h2 {
     font-family: 'PT Sans';
@@ -221,8 +195,7 @@ h2 {
     cursor: pointer;
 }
 
-.contactinformation p {
-    font-size: 20px;
+.contactinformation {
     margin-top: 37px;
     margin-bottom: 37px;
 }
@@ -236,11 +209,13 @@ h2 {
     display: flex;
     flex-direction: column;
     gap: 21px;
+
     a {
         text-decoration: none;
         color: #007CEE;
     }
 }
+
 
 .popupleft {
     display: flex;
@@ -254,6 +229,7 @@ h2 {
     gap: 12px;
     padding: 0px 48px;
 }
+
 
 h3 {
     font-family: 'PT Sans';
@@ -293,10 +269,12 @@ h3 {
     font-size: 47px;
     color: white;
     border: 3px solid white;
+
 }
 
 .addcontactperson {
     height: 64px;
+
 }
 
 .addcontactpopup {
@@ -324,6 +302,7 @@ h3 {
 }
 
 .overlay {
+
     position: fixed;
     top: 0;
     left: 0;
@@ -344,11 +323,14 @@ h3 {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.0);
+    /* Dark background with opacity */
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
 }
+
+
 
 .show {
     display: flex;
@@ -370,10 +352,12 @@ h3 {
     width: 100%;
     max-width: 412px;
     min-width: 50px; 
+
 }
 
 .inputfieldscontactpopup input:focus {
     outline-color: #29ABE2;
+
 }
 
 .inputnameimg {
@@ -522,7 +506,13 @@ h3 {
     align-items: flex-start;
     justify-content: center;
     flex-direction: column;
-    p {
+
+    .a {
+        color: #007CEE;
+        text-decoration: none;
+    }
+
+    .p {
         margin: 0 !important;
         font-size: 20px !important;
     }
@@ -534,10 +524,8 @@ h3 {
 }
 
 .nameEmailDiv a {
-    color: #007CEE;
-    text-decoration: none;
-    word-break: break-word;
-    overflow-wrap: break-word;
+    color: #007CEE !important;
+    text-decoration: none !important;
 }
 
 .singleContacts:hover {
@@ -549,6 +537,7 @@ h3 {
     font-size: 16px;
     font-weight: 400;
 }
+
 
 .horizontalLine {
     width: 100%;
@@ -573,7 +562,30 @@ h3 {
     font-size: 14px !important;
 }
 
+.user-info {
+    display: flex;
+    gap: 16px;
+    cursor: pointer;
+    margin-right: 1em;
+    align-items: center;
+}
 
+.user-icon {
+    position: absolute;
+    right: 5px;
+    color: #29ABE2;
+    font-size: 20px;
+    min-width: 42px;
+    height: 42px;
+    border-radius: 100%;
+    border: solid 2px rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 2px;
+}
 
 .contacthead2 {
     display: flex;
@@ -589,6 +601,8 @@ h3 {
     flex-direction: column;
     min-width: 431px;
     height: 100%;
+    /* max-width: 456px; */
+    /* box-shadow: 4px 0 6px 0 rgba(0, 0, 0, 0.1); */
 }
 
 .contactbtnDiv {
@@ -617,11 +631,6 @@ h3 {
     margin: 0;
 }
 
-.informationPhoneMail {
-    width: 100%;
-    padding-left: 8px;
-}
-
 .chosenContact {
     background-color: #2A3647;
     color: white;
@@ -640,6 +649,7 @@ h3 {
     background: url("/assets/img/03_AddTask/subtasks_icons/edit.svg") no-repeat;
 }
 
+
 .deleteimg {
     background: url("/assets/img/03_AddTask/subtasks_icons/delete.svg") no-repeat;
 }
@@ -649,6 +659,7 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
+
     p {
         font-size: 16px;
     }
@@ -656,6 +667,7 @@ h3 {
 
 .editIcon:hover {
     color: #29ABE2;
+
     .editimg {
         background: url("/assets/img/03_AddTask/subtasks_icons/edit (2).svg") no-repeat;
     }
@@ -663,6 +675,7 @@ h3 {
 
 .deleteIcon:hover {
     color: #29ABE2;
+
     .deleteimg {
         background: url("/assets/img/03_AddTask/subtasks_icons/delete (3).svg") no-repeat;
     }
@@ -671,6 +684,7 @@ h3 {
 .showMobileContact {
     display: unset !important;
     height: 100% !important;
+
 }
 
 .closeMobile {
@@ -690,6 +704,8 @@ h3 {
     display: none;
 }
 
+
+
 .mobileMenu {
     width: 116px;
     height: 100px;
@@ -702,6 +718,7 @@ h3 {
     flex-direction: column;
     gap: 8px;
     box-shadow: 0px 4px 4px 0px #00000040;
+
     button {
         padding-left: 20px;
     }
@@ -714,7 +731,7 @@ h3 {
     position: fixed;
     bottom: 20%;
     right: -100%;
-    transform: translateY(-50%);
+    transform: translateY(0);
     background-color: #2A3647;
     color: white;
     padding: 15px 30px;
@@ -787,11 +804,11 @@ h3 {
     .mainscreen {
         display: flex;
         flex-direction: column-reverse;
-        height: 100vh;
     }
 
     h1 {
         font-size: 32px;
+
     }
 
     h2 {
@@ -802,6 +819,7 @@ h3 {
         font-size: 16px;
     }
 
+
     .rightSide {
         padding: 0px 0px 20px 0px;
         justify-content: center;
@@ -811,8 +829,6 @@ h3 {
     }
 
     .showContact {
-        all: unset;
-        display: none;
         margin: 0;
         flex-direction: row;
         width: 100%;
@@ -832,6 +848,7 @@ h3 {
 
     .contactinformation {
         margin: 10px 0px;
+
         p {
             padding-bottom: 12px;
         }
@@ -844,8 +861,7 @@ h3 {
     .kontakdaten a {
         text-decoration: none;
         color: #007CEE;
-        word-break: break-word;
-        overflow-wrap: break-word;
+        ;
     }
 
     .contactcolor {
@@ -855,7 +871,6 @@ h3 {
 
     .informationPhoneMail {
         width: 50%;
-        padding-right: 24px;
     }
 
     .contacthead {
@@ -871,18 +886,14 @@ h3 {
 
     .betterWAT {
         justify-content: center;
+
     }
+
+
+
 }
 
 @media (max-width: 990px) {
-    #widget_4{
-        background: #091931 !important; 
-        border-radius: 16px;
-
-    }
-    #widget_1, #widget_2, #widget_3{
-        background: #2A3647;
-    }
 
     .closeMobile {
         display: block !important;
@@ -928,14 +939,17 @@ h3 {
     .deleteIcon {
         p {
             font-size: 16px !important;
+
         }
     }
 
     .editIcon:active,
     .deleteIcon:active {
+
         p {
             color: #007CEE;
         }
+
     }
 
     .rightSide {
@@ -962,12 +976,15 @@ h3 {
         padding: unset;
         align-items: flex-start;
         height: auto;
+
         h1 {
             font-size: 47px;
         }
+
         p {
             font-size: 20px;
         }
+
     }
 
     .mobileArrow {
@@ -1012,6 +1029,7 @@ h3 {
 
     .kontakdaten {
         flex-direction: column;
+
         p {
             font-weight: 700;
         }
@@ -1043,12 +1061,15 @@ h3 {
         border-top-right-radius: 30px;
         height: 46%;
         justify-content: flex-start;
+
         h3 {
             font-size: 47px;
         }
+
         p {
             font-size: 20px;
         }
+
     }
 
     .popupleftContent {
@@ -1079,10 +1100,12 @@ h3 {
         padding-top: 24px;
         box-sizing: border-box;
         gap: 15px;
+
         input {
             height: 41px;
             min-width: unset;
         }
+
     }
 
     .closeEdit,
@@ -1094,7 +1117,9 @@ h3 {
         justify-content: center;
         gap: 10px;
         width: 100%;
+
         button {
+
             font-size: 20px;
         }
     }
@@ -1102,9 +1127,11 @@ h3 {
     .cancelbutton {
         margin: 0;
         max-width: 82px;
+
         img {
             display: none;
         }
+
     }
 
     .addCancelbutton {
@@ -1147,6 +1174,7 @@ h3 {
 
     .inputfieldscontactpopup {
         gap: 8px;
+
         input {
             height: 31px;
         }
