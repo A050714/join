@@ -228,29 +228,36 @@
 
 .subtaskShow {
     gap: 16px;
-    padding: 6px 16px
+    padding: 4px 12px
+}
+.subtaskShow:hover{
+    background-color: #EEEEEE;
+    border-radius: 10px;
 }
 
 .subtaskList{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-radius: 8px;
+    cursor: pointer;
+    padding-left: 20px;
     width: 100%;
-    border-radius: 10px;
     /* padding: 4px 16px; */
 }
 .subtaskList:hover{
-    .subtaskListSpan{
+    .editButtons{
         display: flex !important;
     }
-    background-color: #eeeeee;
+    background: #EEEEEE;
+
 }
 
-.subtaskListSpan{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.editDiv{
     width: 100%;
+}
+.editButtons{
+    display: none;
 }
 .h16{
     height: 16px;
@@ -265,6 +272,8 @@
 .subtaskTitle{
     font-size: 16px !important;
     font-weight: 400 !important;
+    display: list-item;
+    list-style: disc;
 }
 
 .hw16{
