@@ -54,6 +54,8 @@ async function signup() {
             })
         });
 
+        
+
         // let  responseToJson = await response.json(); 
         // const userId = responseToJson.name; 
 

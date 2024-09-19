@@ -18,6 +18,7 @@ async function renderAllContacts() {
     }
 
 
+
 function divideByFirstLetter(content) {
     let firstLetter = '';
     for (let index = 0; index < contacts.length; index++) {
@@ -155,7 +156,6 @@ async function deleteContact() {
 
 
 function showContact(index) {
-   
     let contactContainer = document.getElementById('showContact')
     contactContainer.classList.remove('show');
     checkScreenWidth()
@@ -163,7 +163,6 @@ function showContact(index) {
         document.getElementById(theLastIndex).classList.remove('chosenContact');
         document.getElementById(theLastIndex).classList.add('singleContacts');
     }
-
     contactContainer.classList.remove('dNone')
     let contact = contacts[index];
     fillContactData(contact)
@@ -173,9 +172,6 @@ function showContact(index) {
     document.getElementById('betterWAT').style.display = "flex";
     theLastIndex = `Id_${index}`;
     contactContainer.classList.add('show');
-    setTimeout(() => {
-        contactContainer.classList.remove("show");
-      }, 2000);
 }
 
 

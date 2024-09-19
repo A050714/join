@@ -844,6 +844,8 @@ h3 {
     .kontakdaten a {
         text-decoration: none;
         color: #007CEE;
+        word-break: break-word;
+        overflow-wrap: break-word;
     }
 
     .contactcolor {
@@ -853,6 +855,7 @@ h3 {
 
     .informationPhoneMail {
         width: 50%;
+        padding-right: 24px;
     }
 
     .contacthead {
