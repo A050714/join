@@ -43,9 +43,17 @@ async function showFirstLetter() {
 
 function showHeaderNav() {
     const menu = document.getElementById('mobile_headerNav');
+    const userIcon = document.getElementById('name_menu');
     menu.classList.toggle('active');
- 
+    // Add now an eventlistener
+    document.addEventListener('click', function closeClickOutside(event) {
+        if (!menu.contains(event.target) && !userIcon.contains(event.target)) {
+            menu.classList.remove('active'); // Close the menu if clicked outside
+            document.removeEventListener('click', closeClickOutside); // Remove listener once the menu is closed
+        }
+    });
 }
+
 
 
 async function logout() {
