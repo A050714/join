@@ -4,6 +4,7 @@ const BASE_URL =
 let tasks = [];
 let contacts = [];
 let users = [];
+let loggedUserContact;
 includeHTML();
 async function onloadMain() {
   await loadTasks();
