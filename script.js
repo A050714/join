@@ -82,6 +82,14 @@ async function loadContacts() {
   }
 }
 
+async function postContactData(name,mail,phone = "+49 123 45678") {
+  let userrespone = await getData("Contacts") || {};
+  let UserKeysArray = Object.keys(userrespone);
+  let userIndex = UserKeysArray.length;
+  let contactColorIndex = userIndex % colors.length;
+  await postData(`Contacts/${userIndex}`, { "name": name, "mail": mail, "phone": phone, "color": contactColorIndex, "id": userIndex })
+}
+
 async function deleteData(path = "") {
   let response = await fetch(BASE_URL + path + ".json", {
     method: "DELETE",

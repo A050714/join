@@ -135,9 +135,9 @@ async function login(event) {
                             logged: true
                         })
                     });
-                    loggedUserContact = contacts.filter(contact => //++++++++++++++++++++++++++++++++++++++++++++++++
-                        users.some(user => user.email === contact.mail)//++++++++++++++++++++++++++++++++++++++++++++++++
-                      );
+                        loggedUserContact = contacts.find(c => c.mail == email)
+                        console.log(loggedUserContact);
+                        
                       
                     
                     // Log the user in successfully

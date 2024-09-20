@@ -28,10 +28,10 @@ function divideByFirstLetter(content) {
             content.innerHTML += `<div class="letterDiv"><h2>${firstLetter}</h2></div>`
             content.innerHTML += `<div class="horizontalLine"></div>`  
         }
-        if (contact == loggedUserContact) {
+     /*   if (contact == loggedUserContact) {
             contact.name += " (You)";
-        }
-        content.innerHTML += singleContactHTML(index, contact);
+        }*/
+       content.innerHTML += singleContactHTML(index, contact);
         showInitials(contact, `contactColor${contact.id}`)
 }
 }
@@ -54,7 +54,7 @@ function singleContactHTML(index, contact) {
                 <div class="contacthead2">
                             <div class="contactcolor2" id="contactColor${contact.id}"></div>
                             <div class="nameEmailDiv">
-                                <p id="contactName2">${contact.name}</p>
+                                <p id="contactName2">${contact == loggedUserContact? contact.name + " (You)": contact.name}</p>
                                 <a href="mailto:${contact.mail}">${contact.mail}</a>
                             </div>
                         </div>
@@ -138,14 +138,6 @@ async function createContact() {
     phone.value = "";
     togglePopup();
     ctAddedAnimation();
-}
-
-async function postContactData(name,mail,phone="") {
-    let userrespone = await getData("Contacts") || {};
-    let UserKeysArray = Object.keys(userrespone);
-    let userIndex = UserKeysArray.length;
-    let contactColorIndex = userIndex % colors.length;
-    await postData(`Contacts/${userIndex}`, { "name": name, "mail": mail, "phone": phone, "color": contactColorIndex, "id": userIndex })
 }
 
 
