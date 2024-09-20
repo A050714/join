@@ -1,3 +1,11 @@
+/**
+ * Fetches the user data and displays the first letter of the currently logged-in user's name.
+ * If no user is logged in, it sets the display to "Guest" with the initial "G".
+ *
+ * @async
+ * @function showFirstLetter
+ * @throws Will alert the user if there is a problem fetching the data.
+ */
 async function showFirstLetter() {
     console.log('test');
     try {
@@ -38,9 +46,12 @@ async function showFirstLetter() {
     }      
 }
 
-
-
-
+/**
+ * Toggles the visibility of the mobile header navigation and adds an event listener 
+ * to close the menu when clicking outside of it.
+ *
+ * @function showHeaderNav
+ */
 function showHeaderNav() {
     const menu = document.getElementById('mobile_headerNav');
     const userIcon = document.getElementById('name_menu');
@@ -54,8 +65,14 @@ function showHeaderNav() {
     });
 }
 
-
-
+/**
+ * Logs out the currently logged-in user by updating the user's logged status to `false`.
+ * Redirects to the login page after logout.
+ *
+ * @async
+ * @function logout
+ * @throws Will alert the user if there is a problem with the logout process.
+ */
 async function logout() {
     // Fetch users from Firebase
     let response = await fetch(`${BASE_URL}Users.json`);
