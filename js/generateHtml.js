@@ -157,6 +157,8 @@ function generateSubtasksOpenCard(task) {
 
 function closeTask() {
   document.getElementById("showTask").classList.add("dNone");
+  document.getElementById('taskCard').classList.remove('active');
+
 }
 
 function showInitials(contact) {
