@@ -54,6 +54,8 @@ async function signup() {
             })
         });
 
+        await postContactData(name, email); //++++++++++++++++++++++++++++++++++++++++++++++++
+
         
 
         // let  responseToJson = await response.json(); 
@@ -133,7 +135,11 @@ async function login(event) {
                             logged: true
                         })
                     });
-
+                    loggedUserContact = contacts.filter(contact => //++++++++++++++++++++++++++++++++++++++++++++++++
+                        users.some(user => user.email === contact.mail)//++++++++++++++++++++++++++++++++++++++++++++++++
+                      );
+                      
+                    
                     // Log the user in successfully
                     alert('Login successful!');
                     
