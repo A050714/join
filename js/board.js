@@ -57,7 +57,7 @@ async function moveto(status) {
   let currentTask = tasks.find((task) => task.id == currentDraggedElement);
   currentTask.status = status;
   document.getElementById(currentDraggedElement).classList.remove("rotate");
-  currentTask = tasks[currentDraggedElement - 1];
+  //currentTask = tasks[currentDraggedElement - 1];
   await postData(`Tasks/${currentTask.id}`, currentTask);
   tasks = [];
   await loadTasks();
@@ -72,6 +72,9 @@ function showTask(id) {
   content.classList.remove("dNone");
   content.innerHTML = "";
   content.innerHTML = generateTaskHTML(taskEdit);
+  setTimeout(() => {
+    document.getElementById('taskCard').classList.add('active');
+  }, 0.1);
   generateSubtasksOpenCard(taskEdit);
   generateAssignedContacts(taskEdit);
   loadEdit(taskEdit);
