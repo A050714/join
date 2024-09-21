@@ -184,7 +184,7 @@
 }
 
 .background {
-    background-color: rgb(0, 0, 0, 0.5);
+    background-color: rgb(0, 0, 0, 0.2);
     z-index: 1;
     position: fixed;
     left: 0;
@@ -235,27 +235,6 @@
     border-radius: 10px;
 }
 
-.subtaskList{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 8px;
-    cursor: pointer;
-    padding-left: 20px;
-    width: 100%;
-    /* padding: 4px 16px; */
-}
-.subtaskList:hover{
-    .editButtons{
-        display: flex !important;
-    }
-    background: #EEEEEE;
-
-}
-
-.editDiv{
-    width: 100%;
-}
 .editButtons{
     display: none;
 }

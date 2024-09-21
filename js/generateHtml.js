@@ -182,11 +182,13 @@ function renderEdit(index) {
       <div class='editDiv' id='editInputDiv'>
               <div class='subtaskListSpan'>
                 <input type="text" id='editSubtaskInput'>
-                <button class='editDelBtn' onclick="removeSubTaskEdit(${index})"><img class='hw16' src="/assets/img/00_General_elements/delete.svg" alt=""></button>
-                <img class='h16' src="/assets/img/00_General_elements/Vector 3 (1).svg" alt="">
-                <button class='editDelBtn' onclick="saveSubTaskEdit(${index})"><img class='hw16' src="/assets/img/00_General_elements/Subtasks icons11.svg" alt=""></button></li>
+                <div class="dFlex">
+                  <button class='editDelBtn' onclick="removeSubTaskEdit(${index})"><img class='hw16' src="/assets/img/00_General_elements/delete.svg" alt=""></button>
+                  <img class='h16' src="/assets/img/00_General_elements/Vector 3 (1).svg" alt="">
+                  <button class='editDelBtn' onclick="saveSubTaskEdit(${index})"><img class='hw16' src="/assets/img/00_General_elements/Subtasks icons11.svg" alt=""></button></li>
+                </div>
               </div>
-            </div> 
+        </div> 
     `
 }
 
