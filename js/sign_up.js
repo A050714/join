@@ -54,6 +54,8 @@ async function signup() {
             })
         });
 
+        await postContactData(name, email); //++++++++++++++++++++++++++++++++++++++++++++++++
+
         
 
         // let  responseToJson = await response.json(); 
@@ -133,7 +135,11 @@ async function login(event) {
                             logged: true
                         })
                     });
-
+                        loggedUserContact = contacts.find(c => c.mail == email)
+                        console.log(loggedUserContact);
+                        
+                      
+                    
                     // Log the user in successfully
                     alert('Login successful!');
                     
