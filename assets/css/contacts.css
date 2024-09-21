@@ -187,13 +187,14 @@ h1 {
     transform: translate(50%, -50%);
     transition: right 0.5s ease-in-out, opacity 0.5s ease-in-out;
     opacity: 0;
-    padding-left: 90px;
+    width: 500px;
+
 
 }
 
 .showContact.show {
     display: flex;
-    right: calc(100vw - 909px);
+    right: calc(100% - 963px);
     opacity: 1;
 
 }
