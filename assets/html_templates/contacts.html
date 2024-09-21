@@ -38,10 +38,10 @@
                     </div>
                     <img class=" mobileArrow dNone" onclick="showContactsMobile()"
                         src="/assets/img/00_General_elements/blue_arrow_left.svg" alt="">
-                    <img onclick="showMobileMenu()" class="addNewContactMobile"
+                    <img onclick="showMobileMenu()" id="showMenuMobile" class="addNewContactMobile"
                         src="/assets/img/05_Contacts/contacts_menu_mobile/menu_dark.svg" alt="">
-                    <div id="mobileMenuOverlay" class="dNone" onclick="closeMobileMenu()">
-                        <div class="mobileMenu dNone" id="mobileMenu">
+                    <div id="mobileMenuOverlay" class="" onclick="closeMobileMenu()">
+                        <div class="mobileMenu" id="mobileMenu">
                             <button onclick="toggleEditPopup(),fillContactValues()" class="contactbuttons">
                                 <div class="editIcon">
                                     <div class="icons editimg"></div>
@@ -141,7 +141,7 @@
             <div class="overlay hidden" id="editOverlay">
                 <div class="addcontactpopup" id="editcontactpopup">
                     <div class="popupleft">
-                        <img class="closeMobile" onclick="toggleEditPopup()"
+                        <img class="closeMobile dNone" onclick="toggleEditPopup()"
                             src="/assets/img/00_General_elements/close/variant3.svg" alt="">
                         <div class="popupleftContent">
                             <img class="popuplogo" src="/assets\img\00_General_elements\Join logo vector.svg"
