@@ -39,11 +39,9 @@
                             <textarea id="descId" placeholder="Enter a Description"></textarea>
                         </div>
                         <div>
-                            <p>Assigned to</p>
-                            <div class="dropdown" onclick="toggleDropdown()">
-                                <span>Select contacts to assign</span>
-                                <img id="dropdownarrow" class="dropdown-arrow"
-                                    src="/assets/img/03_AddTask/contacts_checked/arrow_drop_down.svg">
+                            <div class="dropdown" tabindex="0" onclick="toggleDropdown()">
+                                <input type="text" id="searchInput" placeholder="Select contacts to assign" onkeyup="filterContacts()">
+                                <img id="dropdownarrow" class="dropdown-arrow" src="/assets/img/03_AddTask/contacts_checked/arrow_drop_down.svg">
                             </div>
                             <div id="contactList-a" class="contactList-a dNone"></div>
                         </div>
@@ -72,10 +70,12 @@
                         </select>
                         <div class="subtaskContainer">
                             <p>Subtasks</p>
-                            <div class="inputAndButtons">
-                                <input class="inputField" id="inputField" type="text" placeholder="Add new subtask">
-                                <img onclick="addToSubTasks()" id="addToSubTaskbtn" class="taskicon"
-                                    src="/assets/img/03_AddTask/subtasks_icons/add.svg" alt="">
+                            <div class="inputAndButtons" tabindex="0">
+                                <input type="text" id="subtaskInput" placeholder="Add new subtask" oninput="handleInput()" />
+                                <img id="addToSubTaskbtn" class="taskicon" src="/assets/img/03_AddTask/subtasks_icons/add.svg">
+                                <img id="crossIcon" class="subtaskicon hide" src="/assets/img/00_General_elements/close/default.svg" alt="cross" onclick="clearInput()">
+                                <span class="separator hide" id="separator">|</span>
+                                <img id="checkIcon" class="subtaskicon hide" src="/assets/img/00_General_elements/Subtasks icons11.svg" alt="check" onclick="addToSubTasks()">
                             </div>
 
                             <div id="subtasks"></div>
@@ -90,10 +90,10 @@
                     </div>
                     <div class="rightfooter">
                         <button type="button" onclick="clearForm()" class="clearbtn">Clear <img
-                                src="/assets/img/00_General_elements/close/default.svg" alt=""></button>
+                                src="/assets/img/00_General_elements/close/default.svg"></button>
 
                         <button type="submit" class="createtaskbtn">Create Task  <img
-                                src="/assets/img/00_General_elements/checkmark_white.svg" alt=""></button>
+                                src="/assets/img/00_General_elements/checkmark_white.svg"></button>
                     </div>
                 </footer>
             </form>
