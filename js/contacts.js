@@ -108,6 +108,17 @@ function toggleMobileImg(){
     }
 }
 
+function toggleMobileMenu(){
+    let edit = 'menu_dark.svg';
+    let activeEdit = 'menu_light.svg';
+    let addImage = document.getElementById('showMenuMobile');
+    if (addImage.src.includes(edit)) {
+        addImage.src = '/assets/img/05_Contacts/contacts_menu_mobile/' + activeEdit;
+    } else if (addImage.src.includes(activeEdit)) {
+        addImage.src = '/assets/img/05_Contacts/contacts_menu_mobile/' + edit;
+    }
+}
+
 
 function toggleEditPopup() {
     let overlay = document.getElementById('editOverlay');
@@ -253,15 +264,18 @@ function showContactsMobile() {
 
 
 function showMobileMenu() {
-    document.getElementById('mobileMenu').style.display = "flex";
-    document.getElementById('mobileMenuOverlay').classList.remove('dNone')
+    toggleMobileMenu()
+    document.getElementById('mobileMenu').classList.add("show");
+    
+
     document.getElementById('mobileMenuOverlay').classList.add('header_overlay')
 }
 
 
 function closeMobileMenu() {
-    document.getElementById('mobileMenu').classList.add('dNone')
-    document.getElementById('mobileMenuOverlay').classList.add('dNone')
+    toggleMobileMenu()
+    document.getElementById('mobileMenu').classList.remove('show')
+
     document.getElementById('mobileMenuOverlay').classList.remove('header_overlay')
 }
 
