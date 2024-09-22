@@ -274,7 +274,7 @@
    /* Sidebar */
    .sidebar{
        background-color:#1c1e29;
-       color:white; 
+       color: #a0a0a0; 
        width: 10% ;
        padding: 20px;
        display: flex; 
