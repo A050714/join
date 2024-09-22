@@ -386,3 +386,20 @@ function hideIcons(index) {
   if (deleteIcon) deleteIcon.classList.add("hide");
   if (separatorEditDelete) separatorEditDelete.classList.add("hide");
 }
+<<<<<<< Updated upstream
+=======
+
+function cancelEdit(index) {
+  const titleElement = document.getElementById(`title-${index}`);
+  const editInput = document.getElementById(`edit-${index}`);
+  const saveButton = document.getElementById(`save-${index}`);
+  const cancelButton = document.getElementById(`cancel-${index}`);
+
+  editInput.classList.add("hide");
+  titleElement.classList.remove("hide");
+  saveButton.classList.add("hide");
+  cancelButton.classList.add("hide");
+  removeSubTask();
+  showIcons(index);
+}
+>>>>>>> Stashed changes
