@@ -57,7 +57,9 @@ h1 {
     -moz-box-shadow: inset 4px 4px 8px 0px rgba(0, 0, 0, 0.15);
     box-shadow: inset 4px 4px 8px 0px rgba(0, 0, 0, 0.15);
 }
-
+#widget_4{
+    background: #091931;
+}
 .openContact,
 .betterWAT {
     display: flex;

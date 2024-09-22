@@ -51,6 +51,11 @@ body {
     color: #CDCDCD;
     font-family: 'PT Sans';
     font-weight: 400;
+    font-size: 16px;
+}
+.sidebarfooter a:hover{
+    color: #29ABE2;
+    font-weight: 700;
 }
 
 .sidelinks {
@@ -60,6 +65,18 @@ body {
     flex-direction: column;
     gap: 15px;
     height: 229px;
+}
+
+.widget{
+    cursor: pointer;
+    width: 232px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 130px;
+}
+.widget:hover{
+    background: #2A3D59;
 }
 
 .sidebarfooter {
@@ -82,8 +99,8 @@ body {
 }
 
 .sidelinks a {
-text-decoration: none;
-display: flex;
-align-items: center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
 
 }

@@ -177,7 +177,12 @@
     justify-content: space-between;
     align-items: center;
 }
-
+#widget_3{
+    background: #091931;
+}
+#widget_2{
+    background: unset !important;
+}
 .prioIcon {
     height: 32px;
     width: 32px;

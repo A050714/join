@@ -58,6 +58,10 @@ main {
 
 
 @media (max-width: 990px) {
+    .widget{
+        padding-left: 0px;
+        width: unset;
+    }
 
     .mobile_headerNav {
         height: 204px;
