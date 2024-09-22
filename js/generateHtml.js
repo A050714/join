@@ -1,8 +1,8 @@
 function generateTodoHTML(element) {
   return /*html*/ `
       <div  onclick='showTask("${element.id}")' class="card" draggable="true" ondragstart="startDragging(${element.id})" id="${element.id}">
-          <label class="categoryLabel ${element.category}" for="category">${element.category == "userstory" ? "User Story" : "Technical Task"
-    }</label>
+          <span class="categoryLabel ${element.category}">${element.category == "userstory" ? "User Story" : "Technical Task"
+    }</span>
           <div class="titDesc">
               <p class="title">${element.title}</p>
               <p class="description">${element.description}</p>
