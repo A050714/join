@@ -136,23 +136,6 @@ a {
 }
 
 
-<<<<<<< Updated upstream
-   .metric-box_todo {
-       grid-row: 1/2;
-       grid-column:1/4;
-   }
-   .metric-box{
-       background-color: white;
-       padding: 1.5vh;
-       display: flex;
-       align-items: center;
-       margin: 1rem;
-       border-radius: 20px;
-       justify-content: center;
-       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-       transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease;
-   }
-=======
 .metric-box_todo {
     grid-row: 1/2;
     grid-column: 1/4;
@@ -168,7 +151,6 @@ a {
     justify-content: center;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
->>>>>>> Stashed changes
 
 
 .metric-box:hover {
