@@ -35,9 +35,6 @@ function divideByFirstLetter(content) {
             content.innerHTML += `<div class="letterDiv"><h2>${firstLetter}</h2></div>`
             content.innerHTML += `<div class="horizontalLine"></div>`  
         }
-     /*   if (contact == loggedUserContact) {
-            contact.name += " (You)";
-        }*/
        content.innerHTML += singleContactHTML(index, contact);
         showInitials(contact, `contactColor${contact.id}`)
 }
