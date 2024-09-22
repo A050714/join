@@ -133,14 +133,15 @@
         border: none !important;
 
     }
-    #editSubtaskInput{
+
+    #editSubtaskInput {
         width: auto !important;
 
     }
 
     .subtaskList {
         display: flex;
-        align-items: center;
+        align-items: baseline;
         justify-content: space-between;
         border-radius: 8px;
         cursor: pointer;
@@ -200,7 +201,7 @@
     #descId-edit {
         width: 348px;
         height: 88px;
-        padding: unset !important;
+        padding: 8px !important;
 
     }
 
@@ -214,6 +215,50 @@
         }
 
         border-bottom: 1px solid #29ABE2;
+    }
+
+    @media (max-width:990px) {
+        .editTaskBg {
+            max-width: 280px;
+            padding: 30px 10px;
+        }
+
+        #titleId-edit {
+            width: 244px !important;
+        }
+        
+
+        #descId-edit {
+            width: 260px !important;
+        }
+
+        #dateId-edit {
+            width: 244px !important;
+        }
+
+        .dropdown {
+            width: 244px !important;
+        }
+
+        #contactList-edit {
+            width: 275px !important;
+        }
+
+        #selectedContactsDisplayEdit {
+            width: 244px !important;
+        }
+        .inputSubtaskDiv{
+            width: 265px !important;
+        }
+        .subtaskList{
+            width: 244px !important;
+        }
+        .tasksbtn{
+            font-size: 14px !important;
+        }
+        .contactlistaddtask{
+            width: 250px !important;
+        }
     }
 </style>
 

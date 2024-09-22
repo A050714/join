@@ -92,8 +92,12 @@ li {
     cursor: pointer;
 }
 
-#subtasks{
+#subtasks {
+    position: relative;
     display: block;
+    height: 130px;
+    overflow-y: scroll;
+    /* z-index: 1; */
 }
 
 .clearbtn:hover {

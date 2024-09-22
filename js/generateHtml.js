@@ -119,7 +119,7 @@ function generateTaskHTML(task) {
                 <div class="startAndgap10" id="assignedWrapper${task.id}"></div>              
             </div>
   
-            <div>
+            <div class='subTDiv'>
                 <p class="mainColor">Subtasks</p>
                 <div id="subtasksOpenCard${task.id}">
                 </div>

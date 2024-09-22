@@ -45,10 +45,12 @@
                 </select>
                 <div class="subtaskContainer">
                     <p>Subtasks</p>
-                    <div class="inputAndButtons">
-                        <input class="inputField" id="inputField" type="text" placeholder="Add new subtask">
-                        <img onclick="addToSubTasks()" id="addToSubTaskbtn" class="taskicon"
-                            src="/assets/img/03_AddTask/subtasks_icons/add.svg" alt="">
+                    <div class="inputAndButtons" tabindex="0">
+                        <input type="text" id="subtaskInput" placeholder="Add new subtask" oninput="handleInput()" />
+                        <img id="addToSubTaskbtn" class="taskicon" src="/assets/img/03_AddTask/subtasks_icons/add.svg">
+                        <img id="crossIcon" class="subtaskicon hide" src="/assets/img/00_General_elements/close/default.svg" alt="cross" onclick="clearInput()">
+                        <span class="separator hide" id="separator">|</span>
+                        <img id="checkIcon" class="subtaskicon hide" src="/assets/img/00_General_elements/Subtasks icons11.svg" alt="check" onclick="addToSubTasks()">
                     </div>
 
                     <div id="subtasks"></div>
