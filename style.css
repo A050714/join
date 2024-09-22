@@ -13,12 +13,7 @@ main {
     margin-left: 232px;
     margin-top: 95px;
     max-width: 1920px;
-
 }
-.mainscreen_phl {
-    padding: 5em 6em 0 6em;
-}
-
 
 
 
@@ -63,9 +58,6 @@ main {
 
 
 @media (max-width: 990px) {
-    .mainscreen_phl{
-        padding-bottom: 100px;
-    }
 
     .mobile_headerNav {
         height: 204px;

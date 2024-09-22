@@ -9,10 +9,8 @@ body{
 }
 
 .back_button{
-    margin-right:5em ;
+    margin-right:1em ;
     border: none;
-
-    
 }
 
 .back_button:hover{
@@ -66,4 +64,21 @@ a {
 
 a:hover {
     text-decoration: none;
+}
+
+.mainscreen_phl {
+    padding: 1vh 5em 0 6em;
+}
+
+
+
+@media (max-width: 990px) {
+
+    .mainscreen_phl{
+        margin-bottom: 100px;
+        margin-top: 70px;
+        padding: 1vh 3vh 0 3vh;
+    }
+
+
 }

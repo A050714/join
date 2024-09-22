@@ -148,7 +148,8 @@
 
     button.guestLogin {
         border: 2px solid #1a2b47;
-        color: white;
+        background-color:wHITE;
+        color: #1a2b47; 
         padding: 10px 20px;
         border-radius: 8px;
         font-size: medium;
@@ -230,7 +231,7 @@
    .privacyAccept a {
     text-decoration: none;
     color: #3498db;
-    font-weight: 600;
+    font-weight: 500;
    }
 
    .button_signup{
@@ -273,7 +274,7 @@
    /* Sidebar */
    .sidebar{
        background-color:#1c1e29;
-       color: white;
+       color:white; 
        width: 10% ;
        padding: 20px;
        display: flex; 
