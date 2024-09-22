@@ -1,7 +1,12 @@
-// const BASE_URL = "https://join-cf5b4-default-rtdb.europe-west1.firebasedatabase.app/";
-
 // Creating Sign Up Function
-
+/**
+ * Registers a new user by sending their details (name, email, password) to Firebase.
+ * It first logs out any currently logged-in users, checks if the passwords match, and ensures the privacy policy is accepted.
+ * 
+ * @async
+ * @function signup
+ * @throws {Error} Alerts the user if an error occurs during the sign-up process or if the data is invalid.
+ */
 async function signup() {
     const name = document.getElementById('name_signup').value; 
     const email = document.getElementById('email_signup').value; 
@@ -56,8 +61,7 @@ async function signup() {
 
         await postContactData(name, email); //++++++++++++++++++++++++++++++++++++++++++++++++
 
-        
-
+    
         // let  responseToJson = await response.json(); 
         // const userId = responseToJson.name; 
 
@@ -98,9 +102,17 @@ async function signup() {
     
 
 
-
-    // // LOGIN Part
-
+/**
+ * Logs in a user by checking their email and password against stored users in Firebase.
+ * If the login is successful, the user is marked as logged in and redirected to the summary page.
+ * 
+ * @async
+ * @function login
+ * @param {Event} event - The form submit event to prevent the default behavior.
+ * @throws {Error} Alerts the user if the login fails or an error occurs during the login process.
+ */
+  
+// // LOGIN Part
 async function login(event) {
     event.preventDefault();
 
@@ -176,110 +188,30 @@ async function login(event) {
     }
 }
 
-    // Guest Login
-    function guestLogin() {
-        // Create a default guest user object
-        const guestUser = {
-            name: "Guest",
-            email: "guest@example.com",
-            role: "guest"  // define a role if your application uses role-based access
-        };
+/**
+ * Logs in a guest user with a default "Guest" role and redirects to the summary page.
+ * 
+ * @function guestLogin
+ */
+// Guest Login
+function guestLogin() {
+    // Create a default guest user object
+    const guestUser = {
+        name: "Guest",
+        email: "guest@example.com",
+        role: "guest"  // define a role if your application uses role-based access
+    };
+
+    // Optionally store the guest user data in sessionStorage
+    sessionStorage.setItem('user', JSON.stringify(guestUser));
     
-        // Optionally store the guest user data in sessionStorage
-        sessionStorage.setItem('user', JSON.stringify(guestUser));
-      
-        alert('You are logged in as a guest!');
-        window.location.href = '/assets/html_templates/summary.html';  
-    }
-
-
-    function showMessgaePopup(){
-        const message = document.getElementById('spMessagePopup');
-        message.classList.remove('dNone');          
-    }
-
-    
-       
-
-    
+    alert('You are logged in as a guest!');
+    window.location.href = '/assets/html_templates/summary.html';  
+}
 
 
 
-
-
-// // Creating Sign Up Function
-
-// async function signup() {
-//     const name = document.getElementById('name_signup').value;
-//     const email = document.getElementById('email_signup').value;
-//     const password = document.getElementById('password_signup').value;
-//     const confirmPassword = document.getElementById('confirmPassword').value;
-//     const privacyAccepted = document.getElementById('privacyAccept').checked;
-//     // check the inputs
-//     if (password !== confirmPassword) {
-//         alert("Passwords do not match. Please try it again");
-//         return;
-//     }
-
-//     if (!privacyAccepted) {
-//         alert("You must accept the privacy policy to sign up.");
-//         return;
-//     }
-
-//     // Function: using POST to send the user data to firebase
-//     let user = {
-//         name: name,
-//         email: email,
-//         password: password,
-//         logged: false,
-//         id: users.length
-//     }
-//     await saveUser(user, users.length);
-// }
-
-
-
-// // // LOGIN Part
-
-// async function login(event) {
-//     event.preventDefault();  // Prevent the form from submitting the traditional way
-
-//     const email = document.getElementById('email').value;
-//     const password = document.getElementById('password').value;
-
-//     for (let user of users) {
-//         if (user.email == email && user.password == password) {
-//             user.logged = true;
-//             saveUser(user, user.id);
-//             alert("Login successful");
-//             window.location.href = '/assets/html_templates/summary.html';
-//             return; // Beendet die Funktion nach einem erfolgreichen Login
-//         }
-//     }
-
-//     alert("Login failed"); // Nur angezeigt, wenn keine Übereinstimmung gefunden wurde
-// }
-
-
-// // Guest Login
-// function guestLogin() {
-//     // Create a default guest user object
-//     const guestUser = {
-//         name: "Guest",
-//         email: "guest@example.com",
-//         role: "guest"  // define a role if your application uses role-based access
-//     };
-
-//     // Optionally store the guest user data in sessionStorage
-//     sessionStorage.setItem('user', JSON.stringify(guestUser));
-
-//     alert('You are logged in as a guest!');
-//     window.location.href = '/assets/html_templates/summary.html';
-// }
-
-
-
-
-
-
-
+function showMessgaePopup(){
+    const message = document.getElementById('spMessagePopup');
+    message.classList.remove('dNone');          
+}

@@ -3,6 +3,14 @@ let loggedUser;
 let firstLetter = "";
 
 
+/**
+ * Initializes the summary page by loading tasks, user data, and deadlines.
+ * Calls various functions to display the current state, nearest deadline, and user greeting.
+ * 
+ * @async
+ * @function onloadSummary
+ * @throws {Error} Alerts the user if an error occurs during the process.
+ */
 async function onloadSummary() {
     // await loadTasks();
     await onloadMain();
@@ -13,6 +21,14 @@ async function onloadSummary() {
     await greetUser();
 }
 
+/**
+ * Loads tasks from the backend (Firebase) and filters them into an array.
+ * This function assumes there is a `getData` method that fetches tasks.
+ * 
+ * @async
+ * @function loadTasks
+ * @throws {Error} Alerts the user if there is an issue fetching or processing tasks.
+ */
 async function loadTasks() {
     let tasksRespone = await getData("Tasks");
     let tasksKeysArray = Object.keys(tasksRespone);
@@ -24,6 +40,12 @@ async function loadTasks() {
     }
 }
 
+/**
+ * Loads and displays the current states of tasks such as To-do, Done, In Progress, Awaiting Feedback, and Urgent tasks.
+ * Updates the UI to reflect the number of tasks in each state.
+ * 
+ * @function loadCurrentStates
+ */
 function loadCurrentStates() {
     let toDo = tasks.filter(t => t['status'] == 'todo');
     let done = tasks.filter(t => t['status'] == 'done');
@@ -38,6 +60,14 @@ function loadCurrentStates() {
     document.getElementById('summary_prio').innerHTML = prio.length;
 }
 
+/**
+ * Fetches user data and displays a greeting message based on the time of day.
+ * If a user is logged in, it also displays the first letter of their name.
+ * 
+ * @async
+ * @function greetUser
+ * @throws {Error} Alerts the user if there is an issue fetching user data or if no user is logged in.
+ */
 async function greetUser() {
     try {
         let response = await fetch(`${BASE_URL}Users.json`);
@@ -108,7 +138,12 @@ async function greetUser() {
 }
 
 
-
+/**
+ * Loads and displays the nearest deadline from the list of tasks marked as "urgent."
+ * The deadline is shown in a user-friendly format in the summary section.
+ * 
+ * @function loadNearestDeadline
+ */
 function loadNearestDeadline() {
     let urgentTasks = tasks.filter(t => t['prio'] == 'urgent')
     let dueDates = urgentTasks.map(t => t.dueDate);
