@@ -335,22 +335,22 @@ function showContactsMobile() {
 
 
 /**
- * Displays the mobile menu by toggling its image and adding the 'show' class to the mobile menu element and the 'header_overlay' class to the mobile menu overlay element.
+ * Displays the mobile menu by toggling its image and adding the 'show' class to the mobile menu element and the 'headerOverlay' class to the mobile menu overlay element.
  */
 function showMobileMenu() {
     toggleMobileMenu()
     document.getElementById('mobileMenu').classList.add("show");
-    document.getElementById('mobileMenuOverlay').classList.add('header_overlay')
+    document.getElementById('mobileMenuOverlay').classList.add('headerOverlay')
 }
 
 
 /**
- * Closes the mobile menu by toggling its image and removing the 'show' class from the mobile menu element and the 'header_overlay' class from the mobile menu overlay element.
+ * Closes the mobile menu by toggling its image and removing the 'show' class from the mobile menu element and the 'headerOverlay' class from the mobile menu overlay element.
  */
 function closeMobileMenu() {
     toggleMobileMenu()
     document.getElementById('mobileMenu').classList.remove('show')
-    document.getElementById('mobileMenuOverlay').classList.remove('header_overlay')
+    document.getElementById('mobileMenuOverlay').classList.remove('headerOverlay')
 }
 
 

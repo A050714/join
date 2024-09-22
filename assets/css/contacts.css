@@ -68,7 +68,7 @@ h1 {
     height: 73px;
 }
 
-.betterWAT_border {
+.betterWATBorder {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -342,7 +342,7 @@ h3 {
 }
 
 
-.header_overlay {
+.headerOverlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -1042,7 +1042,7 @@ h3 {
         padding-top: 32px;
     }
 
-    .betterWAT_border {
+    .betterWATBorder {
         display: flex;
         flex-direction: column-reverse;
         gap: 8px;
@@ -1226,8 +1226,8 @@ h3 {
     }
 
     .addcontactbg {
-        height: 90px;
-        width: 90px;
+        height: 95px;
+        min-width: 95px;
     }
 
     .inputfieldscontactpopup {
@@ -1236,5 +1236,9 @@ h3 {
         input {
             height: 31px;
         }
+    }
+
+    #contactList {
+        height: 77vh;
     }
 }
