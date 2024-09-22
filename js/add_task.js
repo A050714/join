@@ -18,6 +18,7 @@ async function onloadAddTask() {
   contactsDropdown("contactList-a", "selectedContactsDisplay");
 }
 
+
 async function putTaskToBoard(data = {}, taskIndex) {
   try {
     let response = await fetch(BASE_URL + "Tasks/" + taskIndex + ".json", {
