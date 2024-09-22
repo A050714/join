@@ -1,4 +1,13 @@
-let task = {title: "",description: "",assignedTo: [],dueDate: "",prio: "",category: "",subTasks: [],status: "todo",};
+let task = {
+  title: "",
+  description: "",
+  assignedTo: [],
+  dueDate: "",
+  prio: "",
+  category: "",
+  subTasks: [],
+  status: "todo",
+};
 
 let selectedPrio = "";
 let selectedContacts = [];
@@ -9,12 +18,7 @@ async function onloadAddTask() {
   contactsDropdown("contactList-a", "selectedContactsDisplay");
 }
 
-/**
- * Updates a task in the Firebase Realtime Database.
- * @param {Object} [data={}] - The data to update.
- * @param {number} taskIndex - The index of the task in the database.
- * @returns {Promise<Object>} - Resolves with the database response.
- */
+
 async function putTaskToBoard(data = {}, taskIndex) {
   try {
     let response = await fetch(BASE_URL + "Tasks/" + taskIndex + ".json", {
@@ -32,50 +36,64 @@ async function putTaskToBoard(data = {}, taskIndex) {
   }
 }
 
-/**
- * Populates a dropdown with all contacts.
- * @param {string} id - The id of the html element to populate.
- * @param {string} id2 - The id of the html element that will display the selected contacts.
- */
 function contactsDropdown(id, id2) {
   let content = document.getElementById(id);
+
   for (let index = 0; index < contacts.length; index++) {
     content.innerHTML += generateContacts(contacts[index], id2);
   }
+
   contacts.forEach((contact) => {
     showInitials(contact, `contactColor-${contact.id}`);
   });
 }
 
-/**
- * Toggles a contact's selection in the add task page.
- * @param {number} id - The id of the contact to toggle.
- * @param {Object} id2 - The element to display the selected contacts in.
- */
+function generateContacts(contact, id2) {
+  return /*html*/ `
+    <li id="contact-${contact.id}">
+      <div onclick='addTo(${contact.id},${id2})' class="contactlistaddtask">
+        <div class="frame1">
+          <div class="contactcolor3" id="contactColor-${contact.id}"></div>
+          <p class="pContactname" id="contactname-${contact.id}">${contact.name}</p>
+        </div>
+        <img id="checkboxtask-${contact.id}" src="/assets/img/03_AddTask/contacts_checked/Check button.svg" alt="Checkbox">
+      </div>
+    </li>
+  `;
+}
+
 function addTo(id, id2) {
   let contact = contacts.find((c) => c.id === id);
   let contactDiv = document.getElementById(`contact-${contact.id}`);
   let checkbox = document.getElementById(`checkboxtask-${contact.id}`);
   let contactname = document.getElementById(`contactname-${contact.id}`);
   contactDiv.classList.toggle("selected");
-  let isSelected = contactDiv.classList.contains("selected");
-  updateContactStyle(contactDiv, contactname, checkbox, isSelected);
-  toggleSelectedContact(contact, isSelected);
+
+  if (contactDiv.classList.contains("selected")) {
+    contactDiv.style.backgroundColor = "#2A3647";
+    checkbox.src = "/assets/img/03_AddTask/contacts_checked/checkwhite.svg";
+    contactname.style.color = "white";
+    selectedContacts.push(contact);
+  } else {
+    contactDiv.style.backgroundColor = "";
+    checkbox.src = "/assets/img/03_AddTask/contacts_checked/Check button.svg";
+    contactname.style.color = "";
+    selectedContacts = selectedContacts.filter((c) => c.id !== contact.id);
+  }
   displaySelectedContacts(id2.id);
 }
 
-/**
- * Toggles the display of a contact list dropdown.
- * @param {string} [arrow="dropdownarrow"] - The id of the element to toggle the open class on.
- * @param {string} [contactListId="contactList-a"] - The id of the contact list element to toggle the dNone class on.
- * @param {string} [selectedContacts="selectedContactsDisplay"] - The id of the element to toggle the display of.
- */
-function toggleDropdown(arrow = "dropdownarrow",contactListId = "contactList-a",selectedContacts = "selectedContactsDisplay") {
+function toggleDropdown(
+  arrow = "dropdownarrow",
+  contactListId = "contactList-a",
+  selectedContacts = "selectedContactsDisplay"
+) {
   const togglearrow = document.getElementById(arrow);
   togglearrow.classList.toggle("open");
   const contactList = document.getElementById(contactListId);
   contactList.classList.toggle("dNone");
   const selectedContactsDisplay = document.getElementById(selectedContacts);
+
   if (contactList.classList.contains("dNone")) {
     selectedContactsDisplay.style.display = "flex";
   } else {
@@ -83,21 +101,14 @@ function toggleDropdown(arrow = "dropdownarrow",contactListId = "contactList-a",
   }
 }
 
-/**
- * Returns an array of the selected contact's ids.
- * @returns {Array.<number>} - An array of the selected contact's ids.
- */
 function getSelectedContacts() {
   return selectedContacts.map((contact) => contact.id);
 }
 
-/**
- * Filters the contact list based on user input in the search input field.
- * @function
- */
 function filterContacts() {
   const input = document.getElementById("searchInput").value.toLowerCase();
   const contacts = document.querySelectorAll(".contactlistaddtask");
+
   contacts.forEach((contact) => {
     const contactName = contact
       .querySelector(".pContactname")
@@ -110,28 +121,63 @@ function filterContacts() {
   });
 }
 
-/**
- * Sets the priority of the task to the given priority.
- * @function
- * @param {string} priority - The priority of the task, one of "urgent", "medium", or "low".
- */
-function setPrio(priority) {
-  if (priority === "urgent") {
-    setPrioUrgent();
-  } else if (priority === "medium") {
-    setPrioMedium();
-  } else if (priority === "low") {
-    setPrioLow();
+function setPrio(id) {
+  const urgent = document.getElementById("urgent");
+  const medium = document.getElementById("medium");
+  const low = document.getElementById("low");
+  const chosenBtn = document.getElementById(id);
+
+  resetPrioStyles();
+
+  if (chosenBtn === urgent) {
+    chosenBtn.style.backgroundColor = "rgba(255, 61, 0, 1)";
+    chosenBtn.style.color = "white";
+    document.getElementById("svgUrgent").src =
+      "/assets/img/03_AddTask/priority/Capa 1.svg";
+    selectedPrio = "urgent";
+  }
+
+  if (chosenBtn === medium) {
+    chosenBtn.style.backgroundColor = "rgba(255, 168, 0, 1)";
+    chosenBtn.style.color = "white";
+    document.getElementById("svgMedium").src =
+      "/assets/img/03_AddTask/priority/Capa 2.svg";
+    selectedPrio = "medium";
+  }
+
+  if (chosenBtn === low) {
+    chosenBtn.style.backgroundColor = "rgba(122, 226, 41, 1)";
+    chosenBtn.style.color = "white";
+    document.getElementById("svgLow").src =
+      "/assets/img/03_AddTask/priority/Prio baja.svg";
+    selectedPrio = "low";
   }
 }
 
-/**
- * Adds a new subtask to the current task with the given title.
- * @function
- */
+function resetPrioStyles() {
+  const urgent = document.getElementById("urgent");
+  const medium = document.getElementById("medium");
+  const low = document.getElementById("low");
+
+  urgent.style.backgroundColor = "transparent";
+  urgent.style.color = "black";
+  medium.style.backgroundColor = "transparent";
+  medium.style.color = "black";
+  low.style.backgroundColor = "transparent";
+  low.style.color = "black";
+
+  document.getElementById("svgUrgent").src =
+    "/assets/img/03_AddTask/priority/Prio alta.svg";
+  document.getElementById("svgMedium").src =
+    "/assets/img/03_AddTask/priority/Prio media.svg";
+  document.getElementById("svgLow").src =
+    "/assets/img/03_AddTask/priority/Prio baja(1).svg";
+}
+
 function addToSubTasks() {
   let inputValue = document.getElementById("subtaskInput").value.trim();
   console.log(inputValue);
+
   if (inputValue !== "") {
     task.subTasks.push({ title: inputValue, status: "todo" });
     document.getElementById("subtaskInput").value = "";
@@ -139,37 +185,65 @@ function addToSubTasks() {
   }
 }
 
-/**
- * Starts edit mode for the subtask with the given index.
- * In edit mode, the user can edit the title of the subtask. The edit, save, and
- * cancel buttons are displayed, and the delete button is hidden. The user can
- * cancel the edit mode by clicking on the cancel button, or save the changes by
- * clicking on the save button.
- * @param {number} index - The index of the subtask to start edit mode for.
- */
-function startEdit(index) {
-  toggleElementVisibility(`editIcon-${index}`, "add");
-  toggleElementVisibility(`deleteIcon-${index}`, "add");
-  toggleElementVisibility(`separator-edit-delete-${index}`, "add");
-  toggleElementVisibility(`title-${index}`, "add");
-  toggleElementVisibility(`edit-${index}`, "remove");
-  toggleElementVisibility(`save-${index}`, "remove");
-  toggleElementVisibility(`cancel-${index}`, "remove");
-  toggleElementVisibility(`separator-save-${index}`, "remove");
-  toggleElementVisibility(`separator-cancel-${index}`, "remove");
-  const listItem = document.getElementById(`subtask-${index}`);
-  if (listItem) {
-    listItem.onmouseover = null;
-    listItem.onmouseout = null;
-  }
+function renderSubTasks() {
+  let content = document.getElementById("subtasks");
+  content.innerHTML = "";
+
+  task.subTasks.forEach((subTask, index) => {
+    content.innerHTML += /*html*/ `
+      <li class="subtask-item" id="subtask-${index}" onmouseover="showIcons(${index})" onmouseout="hideIcons(${index})">
+        <span class="subtask-title" id="title-${index}">${subTask.title}</span>
+        <input type="text" class="subtask-edit hide" id="edit-${index}" value="${subTask.title}" />
+        <div class="icons" id="icons-${index}">
+          <img src="/assets/img/03_AddTask/subtasks_icons/edit.svg" alt="Edit" class="icon hide" id="editIcon-${index}" onclick="startEdit(${index})">
+          <span class="separator hide" id="separator-edit-delete-${index}">|</span>
+          <img src="/assets/img/03_AddTask/subtasks_icons/delete.svg" alt="Delete" class="icon hide" id="deleteIcon-${index}" onclick="removeSubTask(${index})">
+          <span class="separator hide" id="separator-save-${index}">|</span>
+          <img src="/assets/img/00_General_elements/edit.svg" alt="Save" class="icon hide" id="save-${index}" onclick="saveEdit(${index})">
+          <span class="separator hide" id="separator-cancel-${index}">|</span>
+          <img src="/assets/img/03_AddTask/subtasks_icons/delete.svg" alt="Cancel" class="icon hide" id="cancel-${index}" onclick="cancelEdit(${index})">
+        </div>
+      </li>
+    `;
+  });
 }
-/**
- * Saves the changes made to the subtask with the given index.
- * @param {number} index - The index of the subtask to save the changes for.
- */
+
+function startEdit(index) {
+  const titleElement = document.getElementById(`title-${index}`);
+  const editInput = document.getElementById(`edit-${index}`);
+  const saveButton = document.getElementById(`save-${index}`);
+  const cancelButton = document.getElementById(`cancel-${index}`);
+
+  const editIcon = document.getElementById(`editIcon-${index}`);
+  const deleteIcon = document.getElementById(`deleteIcon-${index}`);
+  const separatorEditDelete = document.getElementById(
+    `separator-edit-delete-${index}`
+  );
+
+  editIcon.classList.add("hide");
+  deleteIcon.classList.add("hide");
+  separatorEditDelete.classList.add("hide");
+
+  titleElement.classList.add("hide");
+  editInput.classList.remove("hide");
+  saveButton.classList.remove("hide");
+  cancelButton.classList.remove("hide");
+
+  const separatorSave = document.getElementById(`separator-save-${index}`);
+  const separatorCancel = document.getElementById(`separator-cancel-${index}`);
+
+  separatorSave.classList.remove("hide");
+  separatorCancel.classList.remove("hide");
+
+  const listItem = document.getElementById(`subtask-${index}`);
+  listItem.onmouseover = null;
+  listItem.onmouseout = null;
+}
+
 function saveEdit(index) {
   const editInput = document.getElementById(`edit-${index}`);
   const newTitle = editInput.value.trim();
+
   if (newTitle !== "") {
     task.subTasks[index].title = newTitle;
     renderSubTasks();
@@ -178,57 +252,66 @@ function saveEdit(index) {
   }
 }
 
-/**
- * Cancels the edit mode for the subtask with the given index.
- * @param {number} index - The index of the subtask to cancel the edit mode for.
- */
 function cancelEdit(index) {
-  toggleElementVisibility(`title-${index}`, "remove");
-  toggleElementVisibility(`edit-${index}`, "add");
-  toggleElementVisibility(`save-${index}`, "add");
-  toggleElementVisibility(`cancel-${index}`, "add");
-  toggleElementVisibility(`editIcon-${index}`, "remove");
-  toggleElementVisibility(`deleteIcon-${index}`, "remove");
-  toggleElementVisibility(`separator-edit-delete-${index}`, "remove");
+  const titleElement = document.getElementById(`title-${index}`);
+  const editInput = document.getElementById(`edit-${index}`);
+  const saveButton = document.getElementById(`save-${index}`);
+  const cancelButton = document.getElementById(`cancel-${index}`);
+
+  titleElement.classList.remove("hide");
+  editInput.classList.add("hide");
+
+  saveButton.classList.add("hide");
+  cancelButton.classList.add("hide");
+
+  const editIcon = document.getElementById(`editIcon-${index}`);
+  const deleteIcon = document.getElementById(`deleteIcon-${index}`);
+  const separatorEditDelete = document.getElementById(
+    `separator-edit-delete-${index}`
+  );
+
+  editIcon.classList.remove("hide");
+  deleteIcon.classList.remove("hide");
+  separatorEditDelete.classList.remove("hide");
 }
 
-/**
- * Removes the subtask with the given index from the task's subtask list.
- * The subtask is removed from the task's subtask list, and the UI is updated
- * to reflect the change.
- * @param {number} index - The index of the subtask to remove.
- */
 function removeSubTask(index) {
   task.subTasks.splice(index, 1);
   renderSubTasks();
 }
 
-/**
- * Adds a new task to the board.
- * This function retrieves the task data from the add task form, adds the task
- * to the task list, saves the task to the board, resets the form, loads the
- * tasks to display, and shows a task added animation.
- */
 async function addTask() {
-  const taskData = getTaskData();
-  if (taskData.subTasks.length === 0) {
-    taskData.subTasks.push("empty");
+  task.title = document.getElementById("titleId").value;
+  task.description = document.getElementById("descId").value;
+  task.dueDate = document.getElementById("dateId").value;
+  task.category = document.getElementById("categoryId").value;
+  task.assignedTo = selectedContacts.map((c) => c.id);
+  task.prio = selectedPrio;
+  task.id = tasks.length + 1;
+
+  if (task.subTasks.length === 0) {
+    task.subTasks.push("empty");
   }
-  tasks.push(taskData);
-  await putTaskToBoard(taskData, taskData.id);
-  resetTask();
+
+  tasks.push(task);
+  await putTaskToBoard(task, task.id);
+
+  tasks = [];
+  task = {
+    title: "",
+    description: "",
+    assignedTo: [],
+    dueDate: "",
+    prio: "",
+    category: "",
+    subTasks: [],
+    status: "todo",
+  };
   await loadTasks();
   showAnimation();
   clearForm();
 }
 
-/**
- * Resets the add task form to its initial state.
- * This function is called after a task has been added to the board.
- * It resets the title, description, date, subtasks, category, and priority
- * fields of the add task form, and clears the selected contacts and priority
- * styles. Finally, it clears the contact list.
- */
 function clearForm() {
   document.getElementById("titleId").value = "";
   document.getElementById("descId").value = "";
@@ -243,20 +326,14 @@ function clearForm() {
   clearContactList();
 }
 
-/**
- * Clears the contact list by removing all selected contacts.
- * This function is called by the `clearForm` function to clear the contact list
- * after a task has been added to the board.
- * It iterates over all contacts in the contact list and resets their styles to
- * their initial state by removing the selected class and setting the background
- * color, checkbox source, and text color to their initial values.
- */
 function clearContactList() {
   document.getElementById("selectedContactsDisplay").innerHTML = "";
+
   contacts.forEach((contact) => {
     let contactDiv = document.getElementById(`contact-${contact.id}`);
     let checkbox = document.getElementById(`checkboxtask-${contact.id}`);
     let contactname = document.getElementById(`contactname-${contact.id}`);
+
     contactDiv.style.backgroundColor = "";
     checkbox.src = "/assets/img/03_AddTask/contacts_checked/Check button.svg";
     contactname.style.color = "";
@@ -264,130 +341,101 @@ function clearContactList() {
   });
 }
 
-/**
- * Calculates and displays the initials for a given contact.
- * @param {Object} contact Contact object with name and color properties
- * This function takes a contact object and calculates the initials for the
- * contact based on the name. The initials are then displayed in a circle
- * element with the contact's color.
- */
 function showInitials(contact) {
   const nameParts = contact.name.trim().split(" ");
   let initials;
+
   if (nameParts.length === 1) {
     initials = nameParts[0][0]; // Nur einen Buchstaben, wenn der Name nur ein Wort ist
   } else {
     initials = nameParts[0][0] + nameParts[1][0]; // Zwei Buchstaben (z.B. "MT" für Mike Tyson)
   }
+
   let circleInitials = document.getElementById(`contactColor-${contact.id}`);
   circleInitials.innerHTML = `<p class="pInitals">${initials}</p>`;
   circleInitials.style.backgroundColor = colors[contact.color];
 }
 
-/**
- * Displays the selected contacts in a container element.
- * @param {string} id The id of the container element
- * This function takes the id of a container element and displays all the
- * selected contacts in the container. The contacts are displayed as circles
- * with the contact's initials and color.
- */
 function displaySelectedContacts(id) {
   let container = document.getElementById(id);
   container.innerHTML = "";
+
   selectedContacts.forEach((contact) => {
-    const initials = getInitials(contact.name);
-    const contactCircle = createContactCircle(initials, colors[contact.color]);
+    const nameParts = contact.name.trim().split(" ");
+    let initials;
+    if (nameParts.length === 1) {
+      initials = nameParts[0][0];
+    } else {
+      initials = nameParts[0][0] + nameParts[1][0];
+    }
+
+    let contactCircle = document.createElement("div");
+    contactCircle.classList.add("contact-circle");
+    contactCircle.style.backgroundColor = colors[contact.color];
+    contactCircle.innerText = initials;
+
     container.appendChild(contactCircle);
   });
 }
 
-/**
- * Shows a task added animation and redirects to the board after 3 seconds.
- * This function is called after a task has been added to the board.
- * It retrieves the task added animation element, adds the show class to the element
- * to display the animation, waits for 3 seconds, removes the show class, and finally
- * redirects to the board.
- */
 function showAnimation() {
   const animation = document.getElementById("taskanimation");
   animation.classList.add("show");
+
   setTimeout(() => {
     animation.classList.remove("show");
     window.location.href = "board.html";
   }, 3000);
 }
 
-/**
- * Handles the input field for adding subtasks.
- * This function is called every time the input field is changed.
- * It retrieves the current value of the input field, toggles the visibility of
- * the add button, cross icon, separator, and check icon based on whether the
- * input field is empty or not.
- */
-
 function handleInput() {
-  const input = document.getElementById("subtaskInput").value.trim();
-  const elementsToToggle = [
-    { elementId: "addToSubTaskbtn", action: input === "" ? "remove" : "add" },
-    { elementId: "crossIcon", action: input === "" ? "add" : "remove" },
-    { elementId: "separator", action: input === "" ? "add" : "remove" },
-    { elementId: "checkIcon", action: input === "" ? "add" : "remove" },
-  ];
-  toggleElementsVisibility(elementsToToggle);
+  const input = document.getElementById("subtaskInput").value.trim(); 
+  const addToSubTaskbtn = document.getElementById("addToSubTaskbtn"); 
+  const crossIcon = document.getElementById("crossIcon"); 
+  const separator = document.getElementById("separator"); 
+  const checkIcon = document.getElementById("checkIcon"); 
+
+  if (input !== "") {
+    addToSubTaskbtn.classList.add("hide");
+    crossIcon.classList.remove("hide");
+    separator.classList.remove("hide");
+    checkIcon.classList.remove("hide");
+  } else {
+    addToSubTaskbtn.classList.remove("hide");
+    crossIcon.classList.add("hide");
+    separator.classList.add("hide");
+    checkIcon.classList.add("hide");
+  }
 }
 
-/**
- * Clears the input field for adding a subtask and handles the visibility of
- * related icons.
- * This function is called when the cross icon is clicked.
- * It retrieves the input field, clears its value, and calls the handleInput
- * function to toggle the visibility of the add button, cross icon, separator, and
- * check icon based on whether the input field is empty or not.
- */
 function clearInput() {
   const inputField = document.getElementById("subtaskInput");
   inputField.value = "";
   handleInput();
 }
 
-/**
- * Shows the edit and delete icons for the subtask with the given index.
- * This function is called when the mouse is hovered over the subtask item.
- * It retrieves the edit icon, delete icon, and separator between them, and
- * removes the "hide" class from each of them, if they exist, effectively making
- * them visible.
- * @param {number} index - The index of the subtask to show the icons for.
- */
 function showIcons(index) {
   const editIcon = document.getElementById(`editIcon-${index}`);
   const deleteIcon = document.getElementById(`deleteIcon-${index}`);
   const separatorEditDelete = document.getElementById(
     `separator-edit-delete-${index}`
   );
+
   if (editIcon) editIcon.classList.remove("hide");
   if (deleteIcon) deleteIcon.classList.remove("hide");
   if (separatorEditDelete) separatorEditDelete.classList.remove("hide");
 }
 
-/**
- * Hides the edit and delete icons for the subtask with the given index.
- * This function is called when the mouse is moved away from the subtask item.
- * It retrieves the edit icon, delete icon, and separator between them, and
- * adds the "hide" class to each of them, if they exist, effectively making
- * them invisible.
- * @param {number} index - The index of the subtask to hide the icons for.
- */
 function hideIcons(index) {
   const editIcon = document.getElementById(`editIcon-${index}`);
   const deleteIcon = document.getElementById(`deleteIcon-${index}`);
   const separatorEditDelete = document.getElementById(
     `separator-edit-delete-${index}`
   );
+
   if (deleteIcon) deleteIcon.classList.add("hide");
   if (separatorEditDelete) separatorEditDelete.classList.add("hide");
 }
-<<<<<<< Updated upstream
-=======
 
 function cancelEdit(index) {
   const titleElement = document.getElementById(`title-${index}`);
@@ -402,4 +450,3 @@ function cancelEdit(index) {
   removeSubTask();
   showIcons(index);
 }
->>>>>>> Stashed changes
