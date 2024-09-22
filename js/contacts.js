@@ -7,6 +7,9 @@ let colors = ['#FF7A00', '#FF5EB3', '#6E52FF',
     '#FFE62B', '#FF4646', '#FFBB2B'];
 
 
+/**
+ * Renders all contacts in the contact list, including the contact button and sorted by first letter.
+ */
 async function renderAllContacts() {
     await onloadMain();
     await showFirstLetter(); 
@@ -18,7 +21,11 @@ async function renderAllContacts() {
     }
 
 
-
+/**
+ * Divides the list of contacts into sections based on the first letter of each contact's name.
+ *
+ * @param {HTMLElement} content - The HTML element where the contact list will be rendered.
+ */
 function divideByFirstLetter(content) {
     let firstLetter = '';
     for (let index = 0; index < contacts.length; index++) {
@@ -37,8 +44,6 @@ function divideByFirstLetter(content) {
 }
 
 
-
-
 function addContactButtonHTML() {
     return `
     <button class="contactbtn" id="addNewContact" onclick="togglePopup()">Add new Contact <img class="newcontactimg"
@@ -48,6 +53,13 @@ function addContactButtonHTML() {
 }
 
 
+/**
+ * Generates the HTML for a single contact item.
+ *
+ * @param {number} index - The index of the contact in the list.
+ * @param {object} contact - The contact object containing name, mail, and id.
+ * @return {string} The HTML string representing the single contact item.
+ */
 function singleContactHTML(index, contact) {
     return `
             <div class="singleContacts" id="Id_${index}" onclick="showContact(${index})">            
@@ -62,6 +74,9 @@ function singleContactHTML(index, contact) {
 }
 
 
+/**
+ * Sorts the list of contacts in ascending order based on their names.
+ */
 function sortContacts() {
     contacts.sort(function (a, b) {
         if (!a) return 1;
@@ -77,6 +92,9 @@ function sortContacts() {
 }
 
 
+/**
+ * Toggles the visibility of the popup overlay and add contact popup.
+ */
 function togglePopup() {
     toggleMobileImg()
     let overlay = document.getElementById('overlay');
@@ -97,6 +115,9 @@ function togglePopup() {
 }
 
 
+/**
+ * Toggles the image source of the mobile add contact button between active and inactive states.
+ */
 function toggleMobileImg(){
     let edit = 'person_add_bg_dark.svg';
     let activeEdit = 'person_add_bg_light.svg';
@@ -108,6 +129,9 @@ function toggleMobileImg(){
     }
 }
 
+/**
+ * Toggles the mobile menu image between its active and inactive states.
+ */
 function toggleMobileMenu(){
     let edit = 'menu_dark.svg';
     let activeEdit = 'menu_light.svg';
@@ -120,6 +144,9 @@ function toggleMobileMenu(){
 }
 
 
+/**
+ * Toggles the visibility of the edit contact popup overlay.
+ */
 function toggleEditPopup() {
     let overlay = document.getElementById('editOverlay');
     let popup = document.getElementById('editcontactpopup');
@@ -139,6 +166,9 @@ function toggleEditPopup() {
 }
 
 
+/**
+ * Creates a new contact by retrieving input values, posting the data, and resetting the input fields.
+ */
 async function createContact() {
     let name = document.getElementById('newName').value;
     let mail = document.getElementById('newMail').value;
@@ -152,11 +182,22 @@ async function createContact() {
 }
 
 
+/**
+ * Finds the index of a contact in the contacts array by its ID.
+ *
+ * @param {Array} contacts - The array of contacts to search in.
+ * @param {string|number} idToFind - The ID of the contact to find.
+ * @return {number} The index of the contact in the array, or -1 if not found.
+ */
 function findIndexById(contacts, idToFind) {
     return contacts.findIndex(contact => contact.id === idToFind);
 }
 
 
+/**
+ * Deletes a contact by retrieving its name, finding its Firebase ID, 
+ * deleting the data, and updating the local contacts array.
+ */
 async function deleteContact() {
     let contactName = document.getElementById('contactName').innerHTML;
     let firebaseID = contacts.find(x => x && x.name === contactName).id;
@@ -167,6 +208,11 @@ async function deleteContact() {
 }
 
 
+/**
+ * Displays a contact based on the provided index, updating the UI accordingly.
+ *
+ * @param {number} index - The index of the contact to display.
+ */
 function showContact(index) {
     let contactContainer = document.getElementById('showContact')
     contactContainer.classList.remove('show');
@@ -187,6 +233,11 @@ function showContact(index) {
 }
 
 
+/**
+ * Fills the contact card with the provided contact's data.
+ *
+ * @param {Object} contact - The contact object containing name, mail, and phone properties.
+ */
 function fillContactData(contact) {
     let contactCardName = document.getElementById('contactName');
     let contactCardMail = document.getElementById('contactMail');
@@ -198,6 +249,9 @@ function fillContactData(contact) {
 }
 
 
+/**
+ * Checks the current screen width and adjusts the visibility of contact details and contact list accordingly.
+ */
 function checkScreenWidth() {
     const screenWidth = window.innerWidth;
     const contactDetailsDiv = document.getElementById('rightSide');
@@ -212,6 +266,12 @@ function checkScreenWidth() {
 }
 
 
+/**
+ * Displays the initials of a contact in a circular element.
+ *
+ * @param {Object} contact - The contact object containing name and color properties.
+ * @param {string} [id="contactColor"] - The ID of the HTML element to display the initials in.
+ */
 function showInitials(contact, id = "contactColor") {
     const nameParts = contact.name.split(' ');
     let initials;
@@ -226,6 +286,9 @@ function showInitials(contact, id = "contactColor") {
 }
 
 
+/**
+ * Fills the edit contact form fields with the current contact's data and displays their initials.
+ */
 async function fillContactValues() {
     let name = document.getElementById('contactName').innerHTML;
     let mail = document.getElementById('contactMail').innerHTML;
@@ -239,6 +302,11 @@ async function fillContactValues() {
 }
 
 
+/**
+ * Edits an existing contact by retrieving the updated values from the edit form,
+ * finding the corresponding contact in the contacts list, and sending a PATCH request
+ * to the Firebase database to update the contact information.
+ */
 async function editContact() {
     let contactName = document.getElementById('contactName').innerHTML;
     let name = document.getElementById('editName').value;
@@ -258,28 +326,37 @@ async function editContact() {
 }
 
 
+/**
+ * Redirects the user to the mobile version of the contacts page.
+ */
 function showContactsMobile() {
     window.location.href = "/assets/html_templates/contacts.html"
 }
 
 
+/**
+ * Displays the mobile menu by toggling its image and adding the 'show' class to the mobile menu element and the 'header_overlay' class to the mobile menu overlay element.
+ */
 function showMobileMenu() {
     toggleMobileMenu()
     document.getElementById('mobileMenu').classList.add("show");
-    
-
     document.getElementById('mobileMenuOverlay').classList.add('header_overlay')
 }
 
 
+/**
+ * Closes the mobile menu by toggling its image and removing the 'show' class from the mobile menu element and the 'header_overlay' class from the mobile menu overlay element.
+ */
 function closeMobileMenu() {
     toggleMobileMenu()
     document.getElementById('mobileMenu').classList.remove('show')
-
     document.getElementById('mobileMenuOverlay').classList.remove('header_overlay')
 }
 
 
+/**
+ * Displays a contact added animation and redirects to the contacts page after a short delay.
+ */
 function ctAddedAnimation() {
     const animation = document.getElementById("ctAddedAnimation");
     animation.classList.add("show"); 
