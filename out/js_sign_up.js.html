@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: js/sign_up.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: js/sign_up.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// Creating Sign Up Function
+/**
+ * Registers a new user by sending their details (name, email, password) to Firebase.
+ * It first logs out any currently logged-in users, checks if the passwords match, and ensures the privacy policy is accepted.
+ * Logs out any currently logged-in users and then registers the new user by sending their data to Firebase.
+ * Upon successful sign-up, the user is redirected to the login page.
+ * 
+ * @async
+ * @function signup
+ * @throws {Error} Alerts the user if an error occurs during the sign-up process or if the data is invalid.
+ */
+async function signup() {
+    const name = document.getElementById('name_signup').value; 
+    const email = document.getElementById('email_signup').value; 
+    const password = document.getElementById('password_signup').value;  
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const privacyAccepted = document.getElementById('privacyAccept').checked; 
+    // check the inputs
+    if (password !== confirmPassword) {
+        alert("Passwords do not match. Please try it again");
+        return;
+    }
+
+    if(!privacyAccepted) {
+        alert("You must accept the privacy policy to sign up.");
+        return;
+    }
+
+    
+   
+    try{
+        // Fetch current users to log out any who are logged in
+        let usersResponse = await fetch(`${BASE_URL}Users.json`);
+        let usersData = await usersResponse.json();
+
+        // Mark all users as logged out
+        for (let userId in usersData) {
+            if (usersData[userId].logged === true) {
+                await fetch(`${BASE_URL}Users/${userId}.json`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        logged: false
+                    })
+                });
+            }
+        }
+
+        // Function: using POST to send the user data to firebase     
+        let response = await fetch (`${BASE_URL}Users.json`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                password: password
+            })
+        });
+
+        await postContactData(name, email); //++++++++++++++++++++++++++++++++++++++++++++++++
+
+    
+        // let  responseToJson = await response.json(); 
+        // const userId = responseToJson.name; 
+
+            // server´s response after POST sending date to firebase
+            if (response.status == 200){ 
+                let responseToJson = await response.json(); 
+                const userId = responseToJson.name;
+                console.log("User created successfully:", responseToJson);
+                console.log("UserId is", userId); 
+                // alert('You´ve signed up successfully!'); 
+                showMessagePopup("You Signed Up Successfully!");
+
+                  // Redirect to login page after a delay of 2s
+                setTimeout(() => {
+                    window.location.href = '/assets/html_templates/login.html'; 
+                }, 2000); 
+        
+            } else {
+                alert ('Failed to sign up.'); 
+            }
+        }catch (error) {
+            console.error("Error fetching users:", error.message);
+            alert('An error occurred. Please try again.');
+        }
+
+    }   
+
+/**
+ * Displays a popup message for the user and hides it after 3 seconds.
+ * 
+ * @function showMessagePopup
+ * @param {string} message - The message to be displayed in the popup.
+ */
+function showMessagePopup(message) {
+    const popup = document.getElementById('spMessagePopup');
+    popup.innerHTML = message; // Set the message content
+    popup.classList.add('show'); // Add the show class to display the popup
+
+    // Hide the message popup after 3 seconds
+    setTimeout(() => {
+        popup.classList.remove('show');
+    }, 3000);
+}
+    
+
+
+/**
+ * Logs in a user by checking their email and password against stored users in Firebase.
+ * If the login is successful, the user is marked as logged in and redirected to the summary page.
+ * 
+ * @async
+ * @function login
+ * @param {Event} event - The form submit event to prevent the default behavior.
+ * @throws {Error} Alerts the user if the login fails or an error occurs during the login process.
+ */
+  
+// // LOGIN Part
+async function login(event) {
+    event.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    try {
+        let response = await fetch(`${BASE_URL}Users.json`);
+        
+        if (response.status === 200) {
+            let usersData = await response.json();
+            let userFound = false;
+            let loggedInUserId;
+            let loggedInUserName = ''; 
+
+            // Loop through users to find the matching email and password
+            for (let userId in usersData) {
+                let user = usersData[userId];
+
+                if (user.email === email &amp;&amp; user.password === password) {
+                    userFound = true;
+                    loggedInUserId = userId;
+                    loggedInUserName = user.name; 
+
+                    // Mark the user as logged in
+                    await fetch(`${BASE_URL}Users/${userId}.json`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            logged: true
+                        })
+                    });
+                        loggedUserContact = contacts.find(c => c.mail == email)
+                        console.log(loggedUserContact);
+                        
+                      
+                    
+                    // Log the user in successfully
+                    alert('Login successful!');
+                    
+                    window.location.href = '/assets/html_templates/summary.html';
+                    break;
+                }
+            }
+
+            // If user found, log out all other users
+            if (userFound) {
+                for (let userId in usersData) {
+                    if (userId !== loggedInUserId &amp;&amp; usersData[userId].logged === true) {
+                        // Mark other users as logged out
+                        await fetch(`${BASE_URL}Users/${userId}.json`, {
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                logged: false
+                            })
+                        });
+                    }
+                }
+            } else {
+                alert('Invalid email or password.');
+            }
+        } else {
+            alert('Failed to log in. Please try again.');
+        }
+    } catch (error) {
+        console.error("Error fetching users:", error.message);
+        alert('An error occurred. Please try again.');
+    }
+}
+
+/**
+ * Logs in a guest user with a default "Guest" role and redirects to the summary page.
+ * 
+ * @function guestLogin
+ */
+// Guest Login
+function guestLogin() {
+    // Create a default guest user object
+    const guestUser = {
+        name: "Guest",
+        email: "guest@example.com",
+        role: "guest"  // define a role if your application uses role-based access
+    };
+
+    // Optionally store the guest user data in sessionStorage
+    sessionStorage.setItem('user', JSON.stringify(guestUser));
+    
+    alert('You are logged in as a guest!');
+    window.location.href = '/assets/html_templates/summary.html';  
+}
+
+
+
+function showMessgaePopup(){
+    const message = document.getElementById('spMessagePopup');
+    message.classList.remove('dNone');          
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#BASE_URL">BASE_URL</a></li><li><a href="global.html#addToSubTasksEdit">addToSubTasksEdit</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#checkScreenWidth">checkScreenWidth</a></li><li><a href="global.html#closeEdit">closeEdit</a></li><li><a href="global.html#closeMobileMenu">closeMobileMenu</a></li><li><a href="global.html#createContact">createContact</a></li><li><a href="global.html#ctAddedAnimation">ctAddedAnimation</a></li><li><a href="global.html#deleteContact">deleteContact</a></li><li><a href="global.html#deleteData">deleteData</a></li><li><a href="global.html#deleteTask">deleteTask</a></li><li><a href="global.html#divideByFirstLetter">divideByFirstLetter</a></li><li><a href="global.html#editContact">editContact</a></li><li><a href="global.html#editSubtaskEdit">editSubtaskEdit</a></li><li><a href="global.html#editTask">editTask</a></li><li><a href="global.html#fillContactData">fillContactData</a></li><li><a href="global.html#fillContactValues">fillContactValues</a></li><li><a href="global.html#findIndexById">findIndexById</a></li><li><a href="global.html#generateBoard">generateBoard</a></li><li><a href="global.html#getAssignedContacts">getAssignedContacts</a></li><li><a href="global.html#getData">getData</a></li><li><a href="global.html#getInitials">getInitials</a></li><li><a href="global.html#getselect">getselect</a></li><li><a href="global.html#greetUser">greetUser</a></li><li><a href="global.html#guestLogin">guestLogin</a></li><li><a href="global.html#hideAddTask">hideAddTask</a></li><li><a href="global.html#includeHTML">includeHTML</a></li><li><a href="global.html#loadContacts">loadContacts</a></li><li><a href="global.html#loadCurrentStates">loadCurrentStates</a></li><li><a href="global.html#loadEdit">loadEdit</a></li><li><a href="global.html#loadNearestDeadline">loadNearestDeadline</a></li><li><a href="global.html#loadTasks">loadTasks</a></li><li><a href="global.html#loadUsers">loadUsers</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#logout">logout</a></li><li><a href="global.html#moveto">moveto</a></li><li><a href="global.html#onloadBoard">onloadBoard</a></li><li><a href="global.html#onloadMain">onloadMain</a></li><li><a href="global.html#onloadSummary">onloadSummary</a></li><li><a href="global.html#postContactData">postContactData</a></li><li><a href="global.html#postData">postData</a></li><li><a href="global.html#removeSubTaskEdit">removeSubTaskEdit</a></li><li><a href="global.html#renderAllContacts">renderAllContacts</a></li><li><a href="global.html#renderSubTasksEdit">renderSubTasksEdit</a></li><li><a href="global.html#resetPrioStylesEdit">resetPrioStylesEdit</a></li><li><a href="global.html#saveEditTask">saveEditTask</a></li><li><a href="global.html#saveSubTaskEdit">saveSubTaskEdit</a></li><li><a href="global.html#saveUser">saveUser</a></li><li><a href="global.html#searchInTheTasks">searchInTheTasks</a></li><li><a href="global.html#setPrioEdit">setPrioEdit</a></li><li><a href="global.html#showAddTask">showAddTask</a></li><li><a href="global.html#showContact">showContact</a></li><li><a href="global.html#showContactsMobile">showContactsMobile</a></li><li><a href="global.html#showFirstLetter">showFirstLetter</a></li><li><a href="global.html#showHeaderNav">showHeaderNav</a></li><li><a href="global.html#showInitials">showInitials</a></li><li><a href="global.html#showMessagePopup">showMessagePopup</a></li><li><a href="global.html#showMobileMenu">showMobileMenu</a></li><li><a href="global.html#showTask">showTask</a></li><li><a href="global.html#signup">signup</a></li><li><a href="global.html#singleContactHTML">singleContactHTML</a></li><li><a href="global.html#sortContacts">sortContacts</a></li><li><a href="global.html#startDragging">startDragging</a></li><li><a href="global.html#toggleEditPopup">toggleEditPopup</a></li><li><a href="global.html#toggleMobileImg">toggleMobileImg</a></li><li><a href="global.html#toggleMobileMenu">toggleMobileMenu</a></li><li><a href="global.html#togglePopup">togglePopup</a></li><li><a href="global.html#toggleSubtask">toggleSubtask</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Mon Sep 23 2024 16:52:38 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
