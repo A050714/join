@@ -216,19 +216,19 @@ top: 50%;
 }
 
 .signup_option p {
-padding-right: 20px;
+    padding-right: 20px;
 }
 
 .signup_option button a {
-color: whITE;
-text-decoration: none;
+    color: whITE;
+    text-decoration: none;
 }
 /* Sign Up Site */
 .privacyAccept{
-margin-left: 20px;
-display: flex;
-align-items: center;
-cursor: pointer;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: center;
 }
 
 
