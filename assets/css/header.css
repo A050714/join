@@ -43,6 +43,10 @@ header p {
     font-size: 24px;
 }
 
+header a {
+    cursor: pointer;
+}
+
 .ser-icon {
     border-radius: 100%;
     border: 1px;
