@@ -7,7 +7,7 @@ function generateTodoHTML(element) {
               <p class="title">${element.title}</p>
               <p class="description">${element.description}</p>
           </div>
-          <div class="progress" id="progressbarID">
+          <div class="progress" id="progressbarID-${element.id}">
               <div class="progress-bar" id="progress-bar">
                   <div class="progress-color" id="progress-color${element.id
     }"></div>
@@ -41,7 +41,7 @@ function calculateSubTasks(task) {
     let subTasks = task.subTasks;
     let doneSubtasks = subTasks.filter((t) => t.status == "done");
     if (subTasks == "empty") {
-      document.getElementById("progressbarID").classList.add("dNone");
+      document.getElementById(`progressbarID-${task.id}`).classList.add("dNone");
     } else {
       content.innerHTML = `${doneSubtasks.length}/${subTasks.length} Subtasks`;
       let percentWidth = (doneSubtasks.length / subTasks.length) * 100;
@@ -156,9 +156,15 @@ function generateSubtasksOpenCard(task) {
 }
 
 function closeTask() {
-  document.getElementById("showTask").classList.add("dNone");
-  document.getElementById('taskCard').classList.remove('active');
+  let background = document.getElementById("showTask");
+  let tascCard = document.getElementById('taskCard');
 
+  if(!background.classList.contains("dNone")){
+    tascCard.classList.remove('active');
+    setTimeout(() => {
+      background.classList.add("dNone");
+    },500)
+  }
 }
 
 function showInitials(contact) {

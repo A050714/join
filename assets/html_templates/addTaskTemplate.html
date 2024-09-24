@@ -78,16 +78,6 @@
 </body>
 <style>
     
-
-
-    .showAddTask {
-        background-color: white;
-        border-radius: 30px;
-        padding: 48px 40px;
-        height: 650px;
-        position: fixed;
-    }
-
     .inputFields {
         display: flex;
         flex-direction: column;
@@ -191,19 +181,39 @@
     }
 
     .showAddTask {
-        position: fixed;
-        right: -100%;
-        top: 50%;
-        transform: translateY(-50%);
+        transform: translate(-50%);
         transition: right 0.5s ease-in-out;
         z-index: 1000;
-        width: 80%;
+        width: 100%;
         max-width: 950px;
+        padding: 48px 40px;
+        height: 650px;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 30px;
+        display: flex;
+        background-color: white;
+        position: fixed;
+        top: 50%;
+        right: -100%;
+        opacity: 0;
     }
 
     /* Aktiviert die Animation und positioniert das Element zentriert */
     .showAddTask.active {
-        right: 25%;
-        transform: translateY(-50%);
+        right: 50%;
+        transform: translate(50%,-50%);
+        opacity: 1;
+    }
+    .showAddTask.deactive{
+        right: -100%;
+        transform: translate(50%,-50%);
+        opacity: 1;
+    }
+
+    @media (max-width: 1050px) {
+        .showAddTask{
+            max-width: 850px !important;
+        }
     }
 </style>

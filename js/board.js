@@ -84,7 +84,6 @@ async function moveto(status) {
   let currentTask = tasks.find((task) => task.id == currentDraggedElement);
   currentTask.status = status;
   document.getElementById(currentDraggedElement).classList.remove("rotate");
-  //currentTask = tasks[currentDraggedElement - 1];
   await postData(`Tasks/${currentTask.id}`, currentTask);
   tasks = [];
   await loadTasks();
@@ -187,9 +186,14 @@ function searchInTheTasks(id) {
  * @return {void}
  */
 function showAddTask() {
+  if(window.innerWidth<= 990){
+    window.location.href="/assets/html_templates/add_task.html";
+  }
   contactsDropdown('contactList-a', 'selectedContactsDisplay');
   const addTaskElement = document.getElementById("showAddTask");
   addTaskElement.classList.add("active"); // Aktiviert die Animation
+  addTaskElement.classList.remove("deactive"); // Blendet das Element wieder aus
+
 }
 
 /**
@@ -199,10 +203,10 @@ function showAddTask() {
  */
 function hideAddTask() {
   const addTaskElement = document.getElementById("showAddTask");
-  addTaskElement.classList.remove("active"); // Blendet das Element wieder aus
-  // contactsDropdown('contactList-edit', 'selectedContactsDisplayEdit');
   document.getElementById('selectedContactsDisplayEdit').innerHTML = '';
   document.getElementById('contactList-edit').innerHTML = '';
+  addTaskElement.classList.add("deactive"); // Blendet das Element wieder aus
+  addTaskElement.classList.remove("active");
 }
 
 /**

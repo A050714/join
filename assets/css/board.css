@@ -2,7 +2,9 @@
     display: flex;
     flex-direction: column;
 }
-
+.width100{
+    width: 100%;
+}
 .headLine {
     display: flex;
     align-items: center;
@@ -166,7 +168,7 @@
     flex-direction: column;
     gap: 16px;
     /* margin-top: 50px; */
-    height: 600px;
+    height: 55vh;
     overflow-y: scroll;
     width: 100%;
 }
@@ -200,7 +202,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
 }
 
 .h1AndButton {
@@ -214,7 +216,7 @@
     border-radius: 10px;
     border: dashed #A8A8A8 1px;
     background-color: #E7E7E7;
-    width: 100%;
+    width: auto;
     box-shadow: 0px 0px 4px 0px #00000029;
     font-size: 16px;
     font-weight: 400;
@@ -222,7 +224,8 @@
     text-align: center;
     padding: 12px 0px;
     gap: 10px;
-    width: 250px;
+    max-width: 250px;
+    min-width: 212px;
 
 }
 
