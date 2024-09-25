@@ -20,7 +20,7 @@ function generateTodoHTML(element) {
             <div class="staple" id="assignedWrapperCard${element.id}"></div>              
   
             <div class="prioDiv">
-                      <img class="prioIcon" src="/assets/img/03_AddTask/priority/${element.prio}.svg" alt="">
+                      <img class="prioIcon" src="./../../assets/img/03_AddTask/priority/${element.prio}.svg" alt="">
             </div>
           </div>
           
@@ -104,14 +104,14 @@ function generateTaskHTML(task) {
               <span class="tag ${task.category}">${task.category == "userstory" ? "User Story" : "Technical Task"}</span>
               <span class="btnSpan">
               <button class="" onclick="closeTask()"><img
-                      src="/assets/img/00_General_elements/close.svg" alt=""></button>
+                      src="./../../assets/img/00_General_elements/close.svg" alt=""></button>
             </span>          </div>
             <h1 class="fs60fw700">${task.title}</h1>
             <p class="fs20fw400">${task.description}</p>
             
             <div class="details">
                 <span><p class="mainColor" >Due date:</p> <p>${task.dueDate}</p> </span>
-                <span><p class="mainColor">Priority:</p> <p>${capitalizedPrio} </p><img src="/assets/img/03_AddTask/priority/${task.prio}.svg" alt=""></span>
+                <span><p class="mainColor">Priority:</p> <p>${capitalizedPrio} </p><img src="./../../assets/img/03_AddTask/priority/${task.prio}.svg" alt=""></span>
             </div>
             
             <div class="assigned">
@@ -126,8 +126,8 @@ function generateTaskHTML(task) {
             </div>
   
             <div class="actions">
-                <button onclick="deleteTask(${task.id})" class="delete"><img src="/assets/img/00_General_elements/delete.svg" alt="">Delete</button>
-                <button onclick="editTask(task)" class="edit"><img src="/assets/img/00_General_elements/edit.svg" alt="">Edit</button>
+                <button onclick="deleteTask(${task.id})" class="delete"><img src="./../../assets/img/00_General_elements/delete.svg" alt="">Delete</button>
+                <button onclick="editTask(task)" class="edit"><img src="./../../assets/img/00_General_elements/edit.svg" alt="">Edit</button>
             </div>
         </div>
     `;
@@ -144,7 +144,7 @@ function generateSubtasksOpenCard(task) {
       } else {
         content.innerHTML += /*html*/ `
         <span class="subtaskShow dFlex">
-          <img onclick="toggleSubtask(${task.id}, ${index})" src="/assets/img/04_Board/subtasks_check/${subtask.status == "todo" ? "check" : "checked"}.svg" alt="">
+          <img onclick="toggleSubtask(${task.id}, ${index})" src="./../../assets/img/04_Board/subtasks_check/${subtask.status == "todo" ? "check" : "checked"}.svg" alt="">
           <p class="fs16fw400">${subtask.title}</p>
         </span>`;
       }
@@ -189,9 +189,9 @@ function renderEdit(index) {
               <div class='subtaskListSpan'>
                 <input type="text" id='editSubtaskInput'>
                 <div class="dFlex">
-                  <button class='editDelBtn' onclick="removeSubTaskEdit(${index})"><img class='hw16' src="/assets/img/00_General_elements/delete.svg" alt=""></button>
-                  <img class='h16' src="/assets/img/00_General_elements/Vector 3 (1).svg" alt="">
-                  <button class='editDelBtn' onclick="saveSubTaskEdit(${index})"><img class='hw16' src="/assets/img/00_General_elements/Subtasks icons11.svg" alt=""></button></li>
+                  <button class='editDelBtn' onclick="removeSubTaskEdit(${index})"><img class='hw16' src="./../../assets/img/00_General_elements/delete.svg" alt=""></button>
+                  <img class='h16' src="./../../assets/img/00_General_elements/Vector 3 (1).svg" alt="">
+                  <button class='editDelBtn' onclick="saveSubTaskEdit(${index})"><img class='hw16' src="./../../assets/img/00_General_elements/Subtasks icons11.svg" alt=""></button></li>
                 </div>
               </div>
         </div> 
@@ -203,9 +203,9 @@ function generateSubTasks(subTask, index) {
     <div class='subtaskList'>
       <p class='subtaskTitle'>${subTask.title}</p>
       <div class='editButtons'>  
-        <button class='editDelBtn' onclick="editSubtaskEdit(${index})"><img class='hw16' src="/assets/img/00_General_elements/edit.svg" alt=""></button></li>
+        <button class='editDelBtn' onclick="editSubtaskEdit(${index})"><img class='hw16' src="./../../assets/img/00_General_elements/edit.svg" alt=""></button></li>
         <img class='h16' src="/assets/img/00_General_elements/Vector 3 (1).svg" alt="">
-        <button class='editDelBtn' onclick="removeSubTaskEdit(${index})"><img class='hw16' src="/assets/img/00_General_elements/delete.svg" alt=""></button></li>
+        <button class='editDelBtn' onclick="removeSubTaskEdit(${index})"><img class='hw16' src="./../../assets/img/00_General_elements/delete.svg" alt=""></button></li>
       </div>
     </div>
   `;

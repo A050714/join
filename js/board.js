@@ -3,6 +3,9 @@ let currentDraggedElement;
 let assignedContacts = [];
 let taskEdit;
 
+
+
+
 /**
  * Initializes the board by loading the main content, generating the board layout, and displaying the first letter.
  *
@@ -187,7 +190,7 @@ function searchInTheTasks(id) {
  */
 function showAddTask() {
   if(window.innerWidth<= 990){
-    window.location.href="/assets/html_templates/add_task.html";
+    window.location.href="./../../assets/html_templates/add_task.html";
   }
   contactsDropdown('contactList-a', 'selectedContactsDisplay');
   const addTaskElement = document.getElementById("showAddTask");
@@ -252,21 +255,21 @@ function setPrioEdit(id) {
     chosenBtn.style.backgroundColor = "rgba(255, 61, 0, 1)";
     chosenBtn.style.color = "white";
     document.getElementById("svgUrgent-edit").src =
-      "/assets/img/03_AddTask/priority/Capa 1.svg";
+      "./../../assets/img/03_AddTask/priority/Capa 1.svg";
     taskEdit.prio = "urgent";
   }
   if (chosenBtn === medium) {
     chosenBtn.style.backgroundColor = "rgba(255, 168, 0, 1)";
     chosenBtn.style.color = "white";
     document.getElementById("svgMedium-edit").src =
-      "/assets/img/03_AddTask/priority/Capa 2.svg";
+      "./../../assets/img/03_AddTask/priority/Capa 2.svg";
     taskEdit.prio = "medium";
   }
   if (chosenBtn === low) {
     chosenBtn.style.backgroundColor = "rgba(122, 226, 41, 1)";
     chosenBtn.style.color = "white";
     document.getElementById("svgLow-edit").src =
-      "/assets/img/03_AddTask/priority/Prio baja.svg";
+      "./../../assets/img/03_AddTask/priority/Prio baja.svg";
     taskEdit.prio = "low";
   }
 }
@@ -287,11 +290,11 @@ function resetPrioStylesEdit() {
   low.style.backgroundColor = "transparent";
   low.style.color = "black";
   document.getElementById("svgUrgent-edit").src =
-    "/assets/img/03_AddTask/priority/Prio alta.svg";
+    "./../../assets/img/03_AddTask/priority/Prio alta.svg";
   document.getElementById("svgMedium-edit").src =
-    "/assets/img/03_AddTask/priority/Prio media.svg";
+    "./../../assets/img/03_AddTask/priority/Prio media.svg";
   document.getElementById("svgLow-edit").src =
-    "/assets/img/03_AddTask/priority/Prio baja(1).svg";
+    "./../../assets/img/03_AddTask/priority/Prio baja(1).svg";
 }
 
 /**
@@ -321,7 +324,7 @@ function getselect(t) {
       let checkbox = document.getElementById(`checkboxtask-${i}`);
       let contactname = document.getElementById(`contactname-${i}`);
       contactDiv.style.backgroundColor = "#2A3647";
-      checkbox.src = "/assets/img/03_AddTask/contacts_checked/checkwhite.svg";
+      checkbox.src = "./../../assets/img/03_AddTask/contacts_checked/checkwhite.svg";
       contactname.style.color = "white";
     }
     displaySelectedContacts('selectedContactsDisplayEdit');

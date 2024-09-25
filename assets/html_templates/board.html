@@ -5,33 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Board</title>
-    <link rel="stylesheet" href="/assets/css/header.css">
-    <link rel="stylesheet" href="/assets/css/sidebar.css">
-    <link rel="stylesheet" href="/assets/css/board.css">
-    <link rel="stylesheet" href="/assets/css/card.css">
-    <link rel="stylesheet" href="/assets/css/taskCard.css">
-    <link rel="stylesheet" href="/style.css">
-    <script src="/script.js" defer></script>
-    <script src="/js/header.js"></script>
-    <script src="/js/contacts.js"></script>
-    <script src="/js/add_task.js"></script>
-    <script src="/js/board.js"></script>
-    <script src="/js/generateHtml.js"></script>
+    <link rel="stylesheet" href="./../../assets/css/header.css">
+    <link rel="stylesheet" href="./../../assets/css/sidebar.css">
+    <link rel="stylesheet" href="./../../assets/css/board.css">
+    <link rel="stylesheet" href="./../../assets/css/card.css">
+    <link rel="stylesheet" href="./../../assets/css/addtask.css">
+    <link rel="stylesheet" href="./../../assets/css/taskCard.css">
+    <link rel="stylesheet" href="./../../style.css">
+    <script src="./../.././script.js" defer></script>
+    <script src="./../.././js/header.js"></script>
+    <script src="./../.././js/contacts.js"></script>
+    <script src="./../.././js/add_task.js"></script>
+    <script src="./../.././js/board.js"></script>
+    <script src="./../.././js/generateHtml.js"></script>
 
 </head>
 
 <body onload="onloadBoard()">
-    <header w3-include-html="/assets/html_templates/header.html"></header>
-    <aside w3-include-html="/assets/html_templates/sidebar.html"></aside>
+    <header w3-include-html="./../../assets/html_templates/header.html"></header>
+    <aside w3-include-html="./../../assets/html_templates/sidebar.html"></aside>
     <main>
         <div class="mainscreen">
 
             <div id="showAddTask" class="showAddTask">
-                <div class="width100" w3-include-html="/assets/html_templates/addTaskTemplate.html"></div>
+                <div class="width100" w3-include-html="./../../assets/html_templates/addTaskTemplate.html"></div>
             </div>
 
             <div class="dNone background" id="editTask">
-                <div w3-include-html="/assets/html_templates/editTask.html"></div>
+                <div w3-include-html="./../../assets/html_templates/editTask.html"></div>
             </div>
 
 
@@ -45,22 +46,22 @@
                             <input id="inputSearch" type="text" placeholder="Find Task"
                                 oninput="searchInTheTasks('inputSearch')">
                             <div>
-                                <img class="vector" src="/assets/img/04_Board/search/Vector 3.svg" alt="">
-                                <img class="icons" src="/assets/img/04_Board/search/search.svg" alt="">
+                                <img class="vector" src="./../../assets/img/04_Board/search/Vector 3.svg" alt="">
+                                <img class="icons" src="./../../assets/img/04_Board/search/search.svg" alt="">
                             </div>
 
                         </span>
                         <button onclick="showAddTask(), setPrio('medium');" class="joinBtnprimary" id="addTaskBtn">Add
-                            Task<img class="icons" src="/assets/img/04_Board/add/add.svg" alt=""></button>
+                            Task<img class="icons" src="./../../assets/img/04_Board/add/add.svg" alt=""></button>
                     </div>
                 </div>
 
                 <div class="headlineMobile">
                     <div class="h1AndButton">
                         <h1>Board</h1>
-                        <button onclick='window.location.href="/assets/html_templates/add_task.html"'
+                        <button onclick='window.location.href="./../../assets/html_templates/add_task.html"'
                             class="joinBtnprimary" id="addTaskBtn">Add Task<img class="icons"
-                                src="/assets/img/04_Board/add/add.svg" alt=""></button>
+                                src="./../../assets/img/04_Board/add/add.svg" alt=""></button>
                     </div>
 
                     <div class="searchAndAddDiv">
@@ -68,8 +69,8 @@
                             <input type="text" id="mobileInputSearch" placeholder="Find Task"
                                 oninput="searchInTheTasks('mobileInputSearch')">
                             <div>
-                                <img class="vector" src="/assets/img/04_Board/search/Vector 3.svg" alt="">
-                                <img class="icons" src="/assets/img/04_Board/search/search.svg" alt="">
+                                <img class="vector" src="./../../assets/img/04_Board/search/Vector 3.svg" alt="">
+                                <img class="icons" src="./../../assets/img/04_Board/search/search.svg" alt="">
                             </div>
                         </span>
                     </div>
@@ -79,7 +80,7 @@
                         <div class="asd">
                             <p>To do</p>
                             <button onclick="showAddTask(), setPrio('medium');"><img
-                                    src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
+                                    src="./../../assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
                         </div>
                         <div class="progressBoxes" id="todoBox" ondrop="moveto('todo')" ondragover="allowDrop(event)">
                         </div>
@@ -88,7 +89,7 @@
                         <div class="asd">
                             <p>In progress</p>
                             <button onclick="showAddTask(), setPrio('medium');"><img
-                                    src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
+                                    src="./../../assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
                         </div>
                         <div class="progressBoxes" id="inProgressBox" ondrop="moveto('inProgress')"
                             ondragover="allowDrop(event)">
@@ -98,7 +99,7 @@
                         <div class="asd">
                             <p>Await feedback</p>
                             <button onclick="showAddTask(), setPrio('medium');"><img
-                                    src="/assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
+                                    src="./../../assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
                         </div>
                         <div class="progressBoxes" id="awaitFeedbackBox" ondrop="moveto('awaitFeedback')"
                             ondragover="allowDrop(event)">

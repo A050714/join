@@ -16,7 +16,7 @@
                     <div class="dropdown" onclick="toggleDropdown()">
                         <span>Select contacts to assign</span>
                         <img id="dropdownarrow" class="dropdown-arrow"
-                            src="/assets/img/03_AddTask/contacts_checked/arrow_drop_down.svg">
+                            src="./../../assets/img/03_AddTask/contacts_checked/arrow_drop_down.svg">
                     </div>
                     <div id="contactList-a" class="contactList-a dNone"></div>
                 </div>
@@ -30,11 +30,11 @@
                 <p>Prio</p>
                 <div class="taskbtn">
                     <button type="button" onclick="setPrio('urgent')" class="tasksbtn" id="urgent">Urgent <img
-                            id="svgUrgent" src="/assets/img/03_AddTask/priority/Prio alta.svg" alt=""></button>
+                            id="svgUrgent" src="./../../assets/img/03_AddTask/priority/Prio alta.svg" alt=""></button>
                     <button type="button" onclick="setPrio('medium')" class="tasksbtn" id="medium">Medium <img
-                            id="svgMedium" src="/assets/img/03_AddTask/priority/Prio media.svg"></button>
+                            id="svgMedium" src="./../../assets/img/03_AddTask/priority/Prio media.svg"></button>
                     <button type="button" onclick="setPrio('low')" class="tasksbtn" id="low">Low <img id="svgLow"
-                            src="/assets/img/03_AddTask/priority/Prio baja(1).svg" alt=""></button>
+                            src="./../../assets/img/03_AddTask/priority/Prio baja(1).svg" alt=""></button>
                 </div>
                 <p>Category<span class="required">*</span></p>
                 <label style="display: none;" for="categoryId">Category</label>
@@ -47,10 +47,10 @@
                     <p>Subtasks</p>
                     <div class="inputAndButtons" tabindex="0">
                         <input type="text" id="subtaskInput" placeholder="Add new subtask" oninput="handleInput()" />
-                        <img id="addToSubTaskbtn" class="taskicon" src="/assets/img/03_AddTask/subtasks_icons/add.svg">
-                        <img id="crossIcon" class="subtaskicon hide" src="/assets/img/00_General_elements/close/default.svg" alt="cross" onclick="clearInput()">
+                        <img id="addToSubTaskbtn" class="taskicon" src="./../../assets/img/03_AddTask/subtasks_icons/add.svg">
+                        <img id="crossIcon" class="subtaskicon hide" src="./../../assets/img/00_General_elements/close/default.svg" alt="cross" onclick="clearInput()">
                         <span class="separator hide" id="separator">|</span>
-                        <img id="checkIcon" class="subtaskicon hide" src="/assets/img/00_General_elements/Subtasks icons11.svg" alt="check" onclick="addToSubTasks()">
+                        <img id="checkIcon" class="subtaskicon hide" src="./../../assets/img/00_General_elements/Subtasks icons11.svg" alt="check" onclick="addToSubTasks()">
                     </div>
 
                     <div id="subtasks"></div>
@@ -65,15 +65,15 @@
             </div>
             <div class="rightfooter">
                 <button type="button" onclick="hideAddTask()" class="clearbtn">Cancel <img
-                        src="/assets/img/00_General_elements/close/default.svg" alt=""></button>
+                        src="./../../assets/img/00_General_elements/close/default.svg" alt=""></button>
 
                 <button type="submit" class="createtaskbtn">Create Task <img
-                        src="/assets/img/00_General_elements/checkmark_white.svg" alt=""></button>
+                        src="./../../assets/img/00_General_elements/checkmark_white.svg" alt=""></button>
             </div>
         </footer>
     </form>
     <div id="taskanimation" class="taskanimation">
-        Task added to board <img src="/assets/img/00_General_elements/menu_Icons/board.svg">
+        Task added to board <img src="./../../assets/img/00_General_elements/menu_Icons/board.svg">
     </div>
 </body>
 <style>

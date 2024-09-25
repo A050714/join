@@ -78,7 +78,7 @@ function generateContacts(contact, id2) {
           <div class="contactcolor3" id="contactColor-${contact.id}"></div>
           <p class="pContactname" id="contactname-${contact.id}">${contact.name}</p>
         </div>
-        <img id="checkboxtask-${contact.id}" src="/assets/img/03_AddTask/contacts_checked/Check button.svg" alt="Checkbox">
+        <img id="checkboxtask-${contact.id}" src="./../../assets/img/03_AddTask/contacts_checked/Check button.svg" alt="Checkbox">
       </div>
     </li>
   `;
@@ -99,12 +99,12 @@ function addTo(id, id2) {
 
   if (contactDiv.classList.contains("selected")) {
     contactDiv.style.backgroundColor = "#2A3647";
-    checkbox.src = "/assets/img/03_AddTask/contacts_checked/checkwhite.svg";
+    checkbox.src = "./../../assets/img/03_AddTask/contacts_checked/checkwhite.svg";
     contactname.style.color = "white";
     selectedContacts.push(contact);
   } else {
     contactDiv.style.backgroundColor = "";
-    checkbox.src = "/assets/img/03_AddTask/contacts_checked/Check button.svg";
+    checkbox.src = "./../../assets/img/03_AddTask/contacts_checked/Check button.svg";
     contactname.style.color = "";
     selectedContacts = selectedContacts.filter((c) => c.id !== contact.id);
   }
@@ -168,19 +168,19 @@ function setPrio(id) {
   if (chosenBtn === urgent) {
     chosenBtn.style.backgroundColor = "rgba(255, 61, 0, 1)";
     chosenBtn.style.color = "white";
-    document.getElementById("svgUrgent").src ="/assets/img/03_AddTask/priority/Capa 1.svg";
+    document.getElementById("svgUrgent").src ="./../../assets/img/03_AddTask/priority/Capa 1.svg";
     selectedPrio = "urgent";
   }
   if (chosenBtn === medium) {
     chosenBtn.style.backgroundColor = "rgba(255, 168, 0, 1)";
     chosenBtn.style.color = "white";
-    document.getElementById("svgMedium").src ="/assets/img/03_AddTask/priority/Capa 2.svg";
+    document.getElementById("svgMedium").src ="./../../assets/img/03_AddTask/priority/Capa 2.svg";
     selectedPrio = "medium";
   }
   if (chosenBtn === low) {
     chosenBtn.style.backgroundColor = "rgba(122, 226, 41, 1)";
     chosenBtn.style.color = "white";
-    document.getElementById("svgLow").src ="/assets/img/03_AddTask/priority/Prio baja.svg";
+    document.getElementById("svgLow").src ="./../../assets/img/03_AddTask/priority/Prio baja.svg";
     selectedPrio = "low";
   }
 }
@@ -198,9 +198,9 @@ function resetPrioStyles() {
   medium.style.color = "black";
   low.style.backgroundColor = "transparent";
   low.style.color = "black";
-  document.getElementById("svgUrgent").src ="/assets/img/03_AddTask/priority/Prio alta.svg";
-  document.getElementById("svgMedium").src ="/assets/img/03_AddTask/priority/Prio media.svg";
-  document.getElementById("svgLow").src ="/assets/img/03_AddTask/priority/Prio baja(1).svg";
+  document.getElementById("svgUrgent").src ="./../../assets/img/03_AddTask/priority/Prio alta.svg";
+  document.getElementById("svgMedium").src ="./../../assets/img/03_AddTask/priority/Prio media.svg";
+  document.getElementById("svgLow").src ="./../../assets/img/03_AddTask/priority/Prio baja(1).svg";
 }
 
 /**
@@ -228,13 +228,13 @@ function renderSubTasks() {
         <span class="subtask-title" id="title-${index}">${subTask.title}</span>
         <input type="text" class="subtask-edit hide" id="edit-${index}" value="${subTask.title}" />
         <div class="icons" id="icons-${index}">
-          <img src="/assets/img/03_AddTask/subtasks_icons/edit.svg" alt="Edit" class="icon hide" id="editIcon-${index}" onclick="startEdit(${index})">
+          <img src="./../../assets/img/03_AddTask/subtasks_icons/edit.svg" alt="Edit" class="icon hide" id="editIcon-${index}" onclick="startEdit(${index})">
           <span class="separator hide" id="separator-edit-delete-${index}">|</span>
-          <img src="/assets/img/03_AddTask/subtasks_icons/delete.svg" alt="Delete" class="icon hide" id="deleteIcon-${index}" onclick="removeSubTask(${index})">
+          <img src="./../../assets/img/03_AddTask/subtasks_icons/delete.svg" alt="Delete" class="icon hide" id="deleteIcon-${index}" onclick="removeSubTask(${index})">
           <span class="separator hide" id="separator-save-${index}">|</span>
-          <img src="/assets/img/00_General_elements/edit.svg" alt="Save" class="icon hide" id="save-${index}" onclick="saveEdit(${index})">
+          <img src="./../../assets/img/00_General_elements/edit.svg" alt="Save" class="icon hide" id="save-${index}" onclick="saveEdit(${index})">
           <span class="separator hide" id="separator-cancel-${index}">|</span>
-          <img src="/assets/img/03_AddTask/subtasks_icons/delete.svg" alt="Cancel" class="icon hide" id="cancel-${index}" onclick="cancelEdit(${index})">
+          <img src="./../../assets/img/03_AddTask/subtasks_icons/delete.svg" alt="Cancel" class="icon hide" id="cancel-${index}" onclick="cancelEdit(${index})">
         </div>
       </li>
     `;
@@ -374,7 +374,7 @@ function clearContactList() {
     let checkbox = document.getElementById(`checkboxtask-${contact.id}`);
     let contactname = document.getElementById(`contactname-${contact.id}`);
     contactDiv.style.backgroundColor = "";
-    checkbox.src = "/assets/img/03_AddTask/contacts_checked/Check button.svg";
+    checkbox.src = "./../../assets/img/03_AddTask/contacts_checked/Check button.svg";
     contactname.style.color = "";
     contactDiv.classList.remove("selected");
   });

@@ -78,7 +78,7 @@ async function signup() {
 
                   // Redirect to login page after a delay of 2s
                 setTimeout(() => {
-                    window.location.href = '/assets/html_templates/login.html'; 
+                    window.location.href = './../../assets/html_templates/login.html'; 
                 }, 2000); 
         
             } else {
@@ -163,7 +163,7 @@ async function login(event) {
                     // Log the user in successfully
                     alert('Login successful!');
                     
-                    window.location.href = '/assets/html_templates/summary.html';
+                    window.location.href = './../../assets/html_templates/summary.html';
                     break;
                 }
             }
@@ -214,7 +214,7 @@ function guestLogin() {
     sessionStorage.setItem('user', JSON.stringify(guestUser));
     
     alert('You are logged in as a guest!');
-    window.location.href = '/assets/html_templates/summary.html';  
+    window.location.href = './../../assets/html_templates/summary.html';  
 }
 
 
@@ -223,3 +223,5 @@ function showMessgaePopup(){
     const message = document.getElementById('spMessagePopup');
     message.classList.remove('dNone');          
 }
+
+
