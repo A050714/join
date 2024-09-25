@@ -907,7 +907,8 @@
 
 
 <div class="description">
-    Deletes a contact by retrieving its name, finding its Firebase ID, deleting the data, and updating the local contacts array.
+    Deletes a contact by retrieving its name, finding its Firebase ID, 
+deleting the data, and updating the local contacts array.
 </div>
 
 
@@ -1446,7 +1447,9 @@
 
 
 <div class="description">
-    Edits an existing contact by retrieving the updated values from the edit form,finding the corresponding contact in the contacts list, and sending a PATCH requestto the Firebase database to update the contact information.
+    Edits an existing contact by retrieving the updated values from the edit form,
+finding the corresponding contact in the contacts list, and sending a PATCH request
+to the Firebase database to update the contact information.
 </div>
 
 
@@ -3092,7 +3095,8 @@
 
 
 <div class="description">
-    Fetches user data and displays a greeting message based on the time of day.If a user is logged in, it also displays the first letter of their name.
+    Fetches user data and displays a greeting message based on the time of day.
+If a user is logged in, it also displays the first letter of their name.
 </div>
 
 
@@ -3403,7 +3407,8 @@
 
 
 <div class="description">
-    Includes external HTML content into elements with the `w3-include-html` attribute.Uses AJAX requests to fetch the HTML and inserts it into the specified elements.
+    Includes external HTML content into elements with the `w3-include-html` attribute.
+Uses AJAX requests to fetch the HTML and inserts it into the specified elements.
 </div>
 
 
@@ -3597,7 +3602,8 @@
 
 
 <div class="description">
-    Loads and displays the current states of tasks such as To-do, Done, In Progress, Awaiting Feedback, and Urgent tasks.Updates the UI to reflect the number of tasks in each state.
+    Loads and displays the current states of tasks such as To-do, Done, In Progress, Awaiting Feedback, and Urgent tasks.
+Updates the UI to reflect the number of tasks in each state.
 </div>
 
 
@@ -3840,7 +3846,8 @@
 
 
 <div class="description">
-    Loads and displays the nearest deadline from the list of tasks marked as "urgent."The deadline is shown in a user-friendly format in the summary section.
+    Loads and displays the nearest deadline from the list of tasks marked as "urgent."
+The deadline is shown in a user-friendly format in the summary section.
 </div>
 
 
@@ -3928,7 +3935,8 @@
 
 
 <div class="description">
-    Loads tasks from the backend (Firebase) and filters them into an array.This function assumes there is a `getData` method that fetches tasks.
+    Loads tasks from the backend (Firebase) and filters them into an array.
+This function assumes there is a `getData` method that fetches tasks.
 </div>
 
 
@@ -4257,7 +4265,8 @@
 
 
 <div class="description">
-    Logs in a user by checking their email and password against stored users in Firebase.If the login is successful, the user is marked as logged in and redirected to the summary page.
+    Logs in a user by checking their email and password against stored users in Firebase.
+If the login is successful, the user is marked as logged in and redirected to the summary page.
 </div>
 
 
@@ -4423,7 +4432,8 @@
 
 
 <div class="description">
-    Logs out the currently logged-in user by updating the user's logged status to `false`.Redirects to the login page after logout.
+    Logs out the currently logged-in user by updating the user's logged status to `false`.
+Redirects to the login page after logout.
 </div>
 
 
@@ -4898,7 +4908,8 @@
 
 
 <div class="description">
-    Initializes the summary page by loading tasks, user data, and deadlines.Calls various functions to display the current state, nearest deadline, and user greeting.
+    Initializes the summary page by loading tasks, user data, and deadlines.
+Calls various functions to display the current state, nearest deadline, and user greeting.
 </div>
 
 
@@ -7062,7 +7073,8 @@
 
 
 <div class="description">
-    Fetches the user data and displays the first letter of the currently logged-in user's name.If no user is logged in, it sets the display to "Guest" with the initial "G".
+    Fetches the user data and displays the first letter of the currently logged-in user's name.
+If no user is logged in, it sets the display to "Guest" with the initial "G".
 </div>
 
 
@@ -7162,7 +7174,8 @@
 
 
 <div class="description">
-    Toggles the visibility of the mobile header navigation and adds an event listener to close the menu when clicking outside of it.
+    Toggles the visibility of the mobile header navigation and adds an event listener 
+to close the menu when clicking outside of it.
 </div>
 
 
@@ -7822,7 +7835,10 @@
 
 
 <div class="description">
-    Registers a new user by sending their details (name, email, password) to Firebase.It first logs out any currently logged-in users, checks if the passwords match, and ensures the privacy policy is accepted.Logs out any currently logged-in users and then registers the new user by sending their data to Firebase.Upon successful sign-up, the user is redirected to the login page.
+    Registers a new user by sending their details (name, email, password) to Firebase.
+It first logs out any currently logged-in users, checks if the passwords match, and ensures the privacy policy is accepted.
+Logs out any currently logged-in users and then registers the new user by sending their data to Firebase.
+Upon successful sign-up, the user is redirected to the login page.
 </div>
 
 
