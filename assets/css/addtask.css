@@ -110,7 +110,7 @@ li {
 .clearbtn:hover img {
     height: 27px !important;
     width: 28px !important;
-    content: url('/assets/img/03_AddTask/closeblue.svg');
+    content: url('./../../assets/img/03_AddTask/closeblue.svg');
 }
 
 select {
