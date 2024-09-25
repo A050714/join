@@ -44,7 +44,7 @@ function divideByFirstLetter(content) {
 function addContactButtonHTML() {
     return `
     <button class="contactbtn" id="addNewContact" onclick="togglePopup()">Add new Contact <img class="newcontactimg"
-                        src="/assets/img/00_General_elements/person_add.svg" alt=""></button>
+                        src="./../img/00_General_elements/person_add.svg" alt=""></button>
                         <div class = "contactBtnBackground"></div>
     `
 }
@@ -120,9 +120,9 @@ function toggleMobileImg(){
     let activeEdit = 'person_add_bg_light.svg';
     let addImage = document.getElementById('addNewContactMobile');
     if (addImage.src.includes(edit)) {
-        addImage.src = '/assets/img/05_Contacts/person_add_mobile/' + activeEdit;
+        addImage.src = './../img/05_Contacts/person_add_mobile/' + activeEdit;
     } else if (addImage.src.includes(activeEdit)) {
-        addImage.src = '/assets/img/05_Contacts/person_add_mobile/' + edit;
+        addImage.src = './../img/05_Contacts/person_add_mobile/' + edit;
     }
 }
 
@@ -134,9 +134,9 @@ function toggleMobileMenu(){
     let activeEdit = 'menu_light.svg';
     let addImage = document.getElementById('showMenuMobile');
     if (addImage.src.includes(edit)) {
-        addImage.src = '/assets/img/05_Contacts/contacts_menu_mobile/' + activeEdit;
+        addImage.src = './../img/05_Contacts/contacts_menu_mobile/' + activeEdit;
     } else if (addImage.src.includes(activeEdit)) {
-        addImage.src = '/assets/img/05_Contacts/contacts_menu_mobile/' + edit;
+        addImage.src = './../img/05_Contacts/contacts_menu_mobile/' + edit;
     }
 }
 
@@ -327,7 +327,7 @@ async function editContact() {
  * Redirects the user to the mobile version of the contacts page.
  */
 function showContactsMobile() {
-    window.location.href = "/assets/html_templates/contacts.html"
+    window.location.href = "./../html_templates/contacts.html"
 }
 
 
@@ -359,6 +359,6 @@ function ctAddedAnimation() {
     animation.classList.add("show"); 
     setTimeout(() => {
       animation.classList.remove("show");
-      window.location.href = "contacts.html";
+      window.location.href = "./../html_templates/contacts.html";
     }, 2000);
   }

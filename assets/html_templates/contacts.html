@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
-    <link rel="stylesheet" href="/assets/css/sidebar.css">
-    <link rel="stylesheet" href="/assets/css/header.css">
-    <link rel="stylesheet" href="/assets/css/contacts.css">
+    <link rel="stylesheet" href="./../css/sidebar.css">
+    <link rel="stylesheet" href="./../css/header.css">
+    <link rel="stylesheet" href="./../css/contacts.css">
 
-    <link rel="stylesheet" href="/style.css">
-    <script src="/script.js"></script>
-    <script src="/js/header.js"></script>
-    <script src="/js/contacts.js"></script>
+    <link rel="stylesheet" href="./../../style.css">
+    <script src="./../../script.js"></script>
+    <script src="./../../js/header.js"></script>
+    <script src="./../../js/contacts.js"></script>
 </head>
 
 <body onload="renderAllContacts()">
@@ -24,7 +24,7 @@
                 <div id="contactList">
                 </div>
                 <img onclick="togglePopup()" class="addNewContactMobile" id="addNewContactMobile"
-                    src="/assets/img/05_Contacts/person_add_mobile/person_add_bg_dark.svg" alt="">
+                    src="./../img/05_Contacts/person_add_mobile/person_add_bg_dark.svg" alt="">
             </div>
             <div class="rightSide" id="rightSide">
                 <div class="openContact" id="openContact">
@@ -36,9 +36,9 @@
                         </div>
                     </div>
                     <img class=" mobileArrow dNone" onclick="showContactsMobile()"
-                        src="/assets/img/00_General_elements/blue_arrow_left.svg" alt="">
+                        src="./../img/00_General_elements/blue_arrow_left.svg" alt="">
                     <img onclick="showMobileMenu()" id="showMenuMobile" class="addNewContactMobile"
-                        src="/assets/img/05_Contacts/contacts_menu_mobile/menu_dark.svg" alt="">
+                        src="./../img/05_Contacts/contacts_menu_mobile/menu_dark.svg" alt="">
                     <div id="mobileMenuOverlay" class="" onclick="closeMobileMenu()">
                         <div class="mobileMenu" id="mobileMenu">
                             <button onclick="toggleEditPopup(),fillContactValues()" class="contactbuttons">
@@ -100,10 +100,10 @@
                 <div class="addcontactpopup" id="addcontactpopup">
                     <div class="popupleft">
                         <img class="closeMobile dNone" id="closeMobile" onclick="togglePopup()"
-                            src="/assets/img/00_General_elements/close/variant3.svg" alt="">
+                            src="./../img/00_General_elements/close/variant3.svg" alt="">
                         <div>
                             <div class="popupleftContent">
-                                <img class="popuplogo" src="/assets\img\00_General_elements\Join logo vector.svg"
+                                <img class="popuplogo" src="./../img/00_General_elements/Join logo vector.svg"
                                     alt="popuplogo">
                                 <h3>Add contact</h3>
                                 <p>Tasks are better with a team!</p>
@@ -113,12 +113,12 @@
                         <div id="divideEvenly"></div>
                     </div>
                     <div class="addcontactbg">
-                        <img class="addcontactperson" src="/assets\img\05_Contacts\add_contact_text\person-white.svg"
+                        <img class="addcontactperson" src="./../img/05_Contacts/add_contact_text/person-white.svg"
                             alt="">
                     </div>
                     <form class="inputfieldscontactpopup" id="editedContact" onsubmit=" createContact();return false;">
                         <img class="close closeAddContact" onclick="togglePopup()"
-                            src="/assets\img\00_General_elements\close\default.svg" alt="">
+                            src="./../img/00_General_elements/close/default.svg" alt="">
                         <input autocomplete="off" class="inputnameimg" minlength="1" type="text" placeholder="Name"
                             id="newName" required>
                         <input autocomplete="off" class="inputemailimg" minlength="1" type="email" placeholder="Email"
@@ -127,11 +127,11 @@
                             id="newPhone" required>
                         <div class="addcontactbtn">
                             <button class=" addCancelbutton cancelbutton" onclick="togglePopup()">Cancel
-                                <img src="/assets/img/00_General_elements/cancel/cancel_black.svg" alt="">
+                                <img src="./../img/00_General_elements/cancel/cancel_black.svg" alt="">
                             </button>
                             <button type="submit" class="addCreateButton createbutton" id="saveNewContact">Create
                                 contact
-                                <img src="/assets/img/00_General_elements/checkmark_white.svg" alt="">
+                                <img src="./../img/00_General_elements/checkmark_white.svg" alt="">
                             </button>
                         </div>
                     </form>
@@ -141,9 +141,9 @@
                 <div class="addcontactpopup" id="editcontactpopup">
                     <div class="popupleft">
                         <img class="closeMobile dNone" onclick="toggleEditPopup()"
-                            src="/assets/img/00_General_elements/close/variant3.svg" alt="">
+                            src="./../img/00_General_elements/close/variant3.svg" alt="">
                         <div class="popupleftContent">
-                            <img class="popuplogo" src="/assets\img\00_General_elements\Join logo vector.svg"
+                            <img class="popuplogo" src="./../img/00_General_elements/Join logo vector.svg"
                                 alt="popuplogo">
                             <h3>Edit contact</h3>
                             <div class="border-horizontal"></div>
@@ -152,11 +152,11 @@
                     </div>
                     <div class="addcontactbg" id="addcontactbg">
                         <img id="editContactInitials" class="addcontactperson"
-                            src="/assets\img\05_Contacts\add_contact_text\person-white.svg" alt="">
+                            src="./../img/05_Contacts/add_contact_text/person-white.svg" alt="">
                     </div>
                     <form class="inputfieldscontactpopup" id="editedContact" onsubmit="editContact();return false;">
                         <img class="close closeEdit" onclick="toggleEditPopup()"
-                            src="/assets\img\00_General_elements\close\default.svg" alt="">
+                            src="./../img/00_General_elements/close/default.svg" alt="">
                         <input autocomplete="off" class="inputnameimg" minlength="1" type="text" placeholder="Name"
                             id="editName" required>
                         <input autocomplete="off" class="inputemailimg" minlength="1" type="email" placeholder="Email"
@@ -165,9 +165,9 @@
                             id="editPhone" required>
                         <div class="addcontactbtn">
                             <button class="cancelbutton" onclick="toggleEditPopup()">Delete <img
-                                    src="/assets/img/00_General_elements/cancel/cancel_black.svg" alt=""></button>
+                                    src="./../img/00_General_elements/cancel/cancel_black.svg" alt=""></button>
                             <button type="submit" class="createbutton" id="saveEditedContact">Save <img
-                                    src="/assets/img/00_General_elements/checkmark_white.svg" alt=""></button>
+                                    src="./../img/00_General_elements/checkmark_white.svg" alt=""></button>
                         </div>
                     </form>
                 </div>
