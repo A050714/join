@@ -100,6 +100,6 @@ async function logout() {
 
         alert('You have logged out!');
         loggedUserContact = {};
-        window.location.href = './join/assets/html_templates/login.html';
+        window.location.href = './../../assets/html_templates/login.html';
     }
 }

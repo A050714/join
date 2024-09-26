@@ -224,7 +224,7 @@ button {
 }
 @media (max-width:990px) {
     .fs60fw700{
-        font-size: 37px;
+        font-size: 24px;
         margin-top: 0;
         margin-bottom: 0;
         max-width: 250px;
@@ -235,10 +235,10 @@ button {
 
     }
     .mainColor{
-        font-size: 16px;
+        font-size: 14px;
     }
     .details p {
-        font-size: 16px;
+        font-size: 14px;
     }
     .nameP{
         font-size: 16px;
@@ -252,5 +252,13 @@ button {
     .header{
         margin: 0;
 
+    }
+    #contactcolor{
+        width: 30px;
+        height: 30px;
+        font-size: 10px;
+    }
+    button{
+        font-size: 12px;
     }
 }
