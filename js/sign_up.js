@@ -214,7 +214,7 @@ function guestLogin() {
     sessionStorage.setItem('user', JSON.stringify(guestUser));
     
     alert('You are logged in as a guest!');
-    window.location.href = './../../assets/html_templates/summary.html';  
+    window.location.href = '\summary.html';  
 }
 
 
