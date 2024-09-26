@@ -7,11 +7,12 @@
  * @throws Will alert the user if there is a problem fetching the data.
  */
 async function showFirstLetter() {
-    console.log('test');
     try {
         let response = await fetch(`${BASE_URL}Users.json`);
         if (response.status === 200) {
             let usersData = await response.json();
+            console.log(response.status);
+            
             
             // Find the user who is currently logged in
             let loggedInUser = null;
@@ -31,7 +32,6 @@ async function showFirstLetter() {
                 localStorage.setItem('firstLetter', firstLetter);
 
             } else {
-                console.log('No user is currently logged in.');
                 document.getElementById('name_menu').innerHTML = "Guest";
                 document.getElementById('name_menu').innerHTML = "G"; 
 
@@ -100,6 +100,6 @@ async function logout() {
 
         alert('You have logged out!');
         loggedUserContact = {};
-        window.location.href = '/join/assets/html_templates/login.html';
+        window.location.href = './join/assets/html_templates/login.html';
     }
 }
