@@ -85,7 +85,6 @@ async function greetUser() {
 
             if (loggedInUser) {
                 document.getElementById('userName').innerHTML = loggedInUser.name;
-                console.log('Logged-in user:', loggedInUser.name);
 
                 // Tageszeitabhängige Begrüßung
                 const currentTime = new Date().getHours(); // to get the current hour of the day
@@ -100,12 +99,10 @@ async function greetUser() {
                 }
                 
                 document.getElementById('gmorning').innerHTML= greetingMessage;
-                console.log("Greeting message", greetingMessage);              
                 
                 //Display the firstLetter 
                 firstLetter = loggedInUser.name.charAt(0).toUpperCase(); 
                 document.getElementById('name_menu').innerHTML = firstLetter; 
-                console.log('First Letter of Logged-in user:', firstLetter);
                 localStorage.setItem('firstLetter', firstLetter);  //optional 
             } else {
                  // Tageszeitabhängige Begrüßung
@@ -121,8 +118,6 @@ async function greetUser() {
                  }
                  
                  document.getElementById('gmorning').innerHTML= greetingMessage;
-                 console.log("Greeting message", greetingMessage);  
-                console.log('No user is currently logged in.');
                 document.getElementById('userName').innerHTML = "";
                 document.getElementById('name_menu').innerHTML = "G"; 
 

@@ -64,12 +64,26 @@ function generateInitals(task) {
     let content = document.getElementById(`assignedWrapperCard${task.id}`);
 
     content.innerHTML = "";
-    assignedContacts.forEach((contact) => {
-      content.innerHTML += /*html*/ `
-          <p class="circle" id="contactcolor" style = "background-color: ${colors[contact.color]
-        }"> ${getInitials(contact)}</p>
+    for (let index = 0; index < assignedContacts.length; index++) {
+      const element = assignedContacts[index];
+      if(index <= 3){
+        content.innerHTML += /*html*/ `
+          <p class="circle" id="contactcolor" style = "background-color: ${colors[element.color]
+        }"> ${getInitials(element)}</p>
         `;
-    });
+      }else{
+        content.innerHTML += /*html*/ `
+          <p class="circleEnd"> +${assignedContacts.length-4}</p>
+        `;
+        break;
+      }      
+    }
+    // assignedContacts.forEach((contact) => {      
+    //   content.innerHTML += /*html*/ `
+    //       <p class="circle" id="contactcolor" style = "background-color: ${colors[contact.color]
+    //     }"> ${getInitials(contact)}</p>
+    //     `;
+    // });
   }
 }
 

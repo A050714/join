@@ -11,7 +11,6 @@ async function showFirstLetter() {
         let response = await fetch(`${BASE_URL}Users.json`);
         if (response.status === 200) {
             let usersData = await response.json();
-            console.log(response.status);
             
             
             // Find the user who is currently logged in
@@ -25,10 +24,8 @@ async function showFirstLetter() {
 
             if (loggedInUser) {
                 // document.getElementById('userName').innerHTML = loggedInUser.name;
-                console.log('Logged-in user:', loggedInUser.name);
                 firstLetter = loggedInUser.name.charAt(0).toUpperCase(); 
                 document.getElementById('name_menu').innerHTML = firstLetter; 
-                console.log('First Letter of Logged-in user:', firstLetter);
                 localStorage.setItem('firstLetter', firstLetter);
 
             } else {

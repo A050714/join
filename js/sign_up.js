@@ -71,8 +71,6 @@ async function signup() {
             if (response.status == 200){ 
                 let responseToJson = await response.json(); 
                 const userId = responseToJson.name;
-                console.log("User created successfully:", responseToJson);
-                console.log("UserId is", userId); 
                 // alert('You´ve signed up successfully!'); 
                 showMessagePopup("You Signed Up Successfully!");
 
@@ -156,7 +154,6 @@ async function login(event) {
                         })
                     });
                         loggedUserContact = contacts.find(c => c.mail == email)
-                        console.log(loggedUserContact);
                         
                       
                     

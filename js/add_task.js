@@ -208,7 +208,6 @@ function resetPrioStyles() {
  */
 function addToSubTasks() {
   let inputValue = document.getElementById("subtaskInput").value.trim();
-  console.log(inputValue);
   if (inputValue !== "") {
     task.subTasks.push({ title: inputValue, status: "todo" });
     document.getElementById("subtaskInput").value = "";

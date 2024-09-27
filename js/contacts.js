@@ -294,7 +294,6 @@ async function fillContactValues() {
     document.getElementById('editMail').value = mail;
     document.getElementById('editPhone').value = phone;
     let contact = contacts.find(x => x.name && x.name === name);
-    console.log(contact.id);
     showInitials(contact, `addcontactbg`)
 }
 
