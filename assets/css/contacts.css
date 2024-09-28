@@ -17,6 +17,7 @@ body {
 
 .mainscreen {
     display: flex;
+    height: 100vh;
 }
 
 h1 {
@@ -610,7 +611,7 @@ h3 {
     padding: 0px 20px;
     width: calc(100% - 100px);
     overflow-y: scroll;
-    height: 770px;
+    height: calc(100% - 150px);
 }
 
 .letterDiv {
@@ -772,7 +773,7 @@ h3 {
         width: calc(100% - 110px);
         margin: unset;
         margin-top: 20px;
-        height: 70vh;
+
     }
 
     .addNewContact {
