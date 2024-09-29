@@ -8,12 +8,45 @@
 
 #selectedContactsDisplay{
     display: flex;
+    
     flex-wrap: wrap;
+    max-height: 56px;
+    height: 100%;
+    
+    align-items: center;
 }
 
 .contactList-a::-webkit-scrollbar {
     width: 10px; 
 }
+.circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    margin-left: 8px;
+    border: 2px solid white;
+  }
+  .circleEnd{
+    color: white !important;
+    background-color: darkgray;
+    border: solid, orange;
+    border-radius: 50%;
+    padding: 5px;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    display: flex;
+    font-size: 15px !important;
+    align-items: center;
+    justify-content: center;
+    margin-left: 12px;
+  }
 
 .contactList-a::-webkit-scrollbar-track {
     background: #f1f1f1; 
@@ -213,9 +246,9 @@ p {
 }
 
 textarea {
-    width: 100%;
+    width: 96%;
     height: 120px;
-    padding: 0;
+    padding: 8px;
     border: 1px solid #D1D1D1;
     border-radius: 10px;
     outline: none;

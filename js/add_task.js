@@ -99,12 +99,14 @@ function addTo(id, id2) {
 
   if (contactDiv.classList.contains("selected")) {
     contactDiv.style.backgroundColor = "#2A3647";
-    checkbox.src = "./../../assets/img/03_AddTask/contacts_checked/checkwhite.svg";
+    checkbox.src =
+      "./../../assets/img/03_AddTask/contacts_checked/checkwhite.svg";
     contactname.style.color = "white";
     selectedContacts.push(contact);
   } else {
     contactDiv.style.backgroundColor = "";
-    checkbox.src = "./../../assets/img/03_AddTask/contacts_checked/Check button.svg";
+    checkbox.src =
+      "./../../assets/img/03_AddTask/contacts_checked/Check button.svg";
     contactname.style.color = "";
     selectedContacts = selectedContacts.filter((c) => c.id !== contact.id);
   }
@@ -127,9 +129,12 @@ function toggleDropdown(
   const contactList = document.getElementById(contactListId);
   contactList.classList.toggle("dNone");
   const selectedContactsDisplay = document.getElementById(selectedContacts);
-  if (contactList.classList.contains("dNone")) {selectedContactsDisplay.style.display = "flex";} 
-  else {selectedContactsDisplay.style.display = "none";}
-  closeDropdownOnClickOutside()
+  if (contactList.classList.contains("dNone")) {
+    selectedContactsDisplay.style.display = "flex";
+  } else {
+    selectedContactsDisplay.style.display = "none";
+  }
+  closeDropdownOnClickOutside();
 }
 
 /**
@@ -140,13 +145,18 @@ function toggleDropdown(
  * @function closeDropdownOnClickOutside
  */
 function closeDropdownOnClickOutside() {
-  document.addEventListener('click', function(event) {
-    const dropdown = document.querySelector('.dropdown');
+  document.addEventListener("click", function (event) {
+    const dropdown = document.querySelector(".dropdown");
     const contactList = document.getElementById("contactList-a");
     const togglearrow = document.getElementById("dropdownarrow");
-    const selectedContactsDisplay = document.getElementById("selectedContactsDisplay");
+    const selectedContactsDisplay = document.getElementById(
+      "selectedContactsDisplay"
+    );
 
-    if (!dropdown.contains(event.target) && !contactList.contains(event.target)) {
+    if (
+      !dropdown.contains(event.target) &&
+      !contactList.contains(event.target)
+    ) {
       if (!contactList.classList.contains("dNone")) {
         contactList.classList.add("dNone");
         togglearrow.classList.remove("open");
@@ -175,8 +185,11 @@ function filterContacts() {
     const contactName = contact
       .querySelector(".pContactname")
       .textContent.toLowerCase();
-    if (contactName.startsWith(input)) {contact.style.display = "flex";} 
-    else {contact.style.display = "none";}
+    if (contactName.startsWith(input)) {
+      contact.style.display = "flex";
+    } else {
+      contact.style.display = "none";
+    }
   });
 }
 
@@ -193,19 +206,22 @@ function setPrio(id) {
   if (chosenBtn === urgent) {
     chosenBtn.style.backgroundColor = "rgba(255, 61, 0, 1)";
     chosenBtn.style.color = "white";
-    document.getElementById("svgUrgent").src ="./../../assets/img/03_AddTask/priority/Capa 1.svg";
+    document.getElementById("svgUrgent").src =
+      "./../../assets/img/03_AddTask/priority/Capa 1.svg";
     selectedPrio = "urgent";
   }
   if (chosenBtn === medium) {
     chosenBtn.style.backgroundColor = "rgba(255, 168, 0, 1)";
     chosenBtn.style.color = "white";
-    document.getElementById("svgMedium").src ="./../../assets/img/03_AddTask/priority/Capa 2.svg";
+    document.getElementById("svgMedium").src =
+      "./../../assets/img/03_AddTask/priority/Capa 2.svg";
     selectedPrio = "medium";
   }
   if (chosenBtn === low) {
     chosenBtn.style.backgroundColor = "rgba(122, 226, 41, 1)";
     chosenBtn.style.color = "white";
-    document.getElementById("svgLow").src ="./../../assets/img/03_AddTask/priority/Prio baja.svg";
+    document.getElementById("svgLow").src =
+      "./../../assets/img/03_AddTask/priority/Prio baja.svg";
     selectedPrio = "low";
   }
 }
@@ -223,9 +239,12 @@ function resetPrioStyles() {
   medium.style.color = "black";
   low.style.backgroundColor = "transparent";
   low.style.color = "black";
-  document.getElementById("svgUrgent").src ="./../../assets/img/03_AddTask/priority/Prio alta.svg";
-  document.getElementById("svgMedium").src ="./../../assets/img/03_AddTask/priority/Prio media.svg";
-  document.getElementById("svgLow").src ="./../../assets/img/03_AddTask/priority/Prio baja(1).svg";
+  document.getElementById("svgUrgent").src =
+    "./../../assets/img/03_AddTask/priority/Prio alta.svg";
+  document.getElementById("svgMedium").src =
+    "./../../assets/img/03_AddTask/priority/Prio media.svg";
+  document.getElementById("svgLow").src =
+    "./../../assets/img/03_AddTask/priority/Prio baja(1).svg";
 }
 
 /**
@@ -274,7 +293,9 @@ function renderSubTasks() {
 function startEdit(index) {
   document.getElementById(`editIcon-${index}`).classList.add("hide");
   document.getElementById(`deleteIcon-${index}`).classList.add("hide");
-  document.getElementById(`separator-edit-delete-${index}`).classList.add("hide");
+  document
+    .getElementById(`separator-edit-delete-${index}`)
+    .classList.add("hide");
   document.getElementById(`title-${index}`).classList.add("hide");
   document.getElementById(`edit-${index}`).classList.remove("hide");
   document.getElementById(`save-${index}`).classList.remove("hide");
@@ -298,7 +319,9 @@ function saveEdit(index) {
   if (newTitle !== "") {
     task.subTasks[index].title = newTitle;
     renderSubTasks();
-  } else {alert("Title cannot be empty!"); }
+  } else {
+    alert("Title cannot be empty!");
+  }
 }
 
 /**
@@ -317,7 +340,9 @@ function cancelEdit(index) {
   document.getElementById(`cancel-${index}`).classList.add("hide");
   document.getElementById(`editIcon-${index}`).classList.remove("hide");
   document.getElementById(`deleteIcon-${index}`).classList.remove("hide");
-  document.getElementById(`separator-edit-delete-${index}`).classList.remove("hide");
+  document
+    .getElementById(`separator-edit-delete-${index}`)
+    .classList.remove("hide");
 }
 
 /**
@@ -344,7 +369,9 @@ async function addTask() {
   task.assignedTo = selectedContacts.map((c) => c.id);
   task.prio = selectedPrio;
   task.id = tasks.length + 1;
-  if (task.subTasks.length === 0) {task.subTasks.push("empty"); }
+  if (task.subTasks.length === 0) {
+    task.subTasks.push("empty");
+  }
   tasks.push(task);
   await putTaskToBoard(task, task.id);
   tasks = [];
@@ -398,7 +425,8 @@ function clearContactList() {
     let checkbox = document.getElementById(`checkboxtask-${contact.id}`);
     let contactname = document.getElementById(`contactname-${contact.id}`);
     contactDiv.style.backgroundColor = "";
-    checkbox.src = "./../../assets/img/03_AddTask/contacts_checked/Check button.svg";
+    checkbox.src =
+      "./../../assets/img/03_AddTask/contacts_checked/Check button.svg";
     contactname.style.color = "";
     contactDiv.classList.remove("selected");
   });
@@ -411,8 +439,11 @@ function clearContactList() {
 function showInitials(contact) {
   const nameParts = contact.name.trim().split(" ");
   let initials;
-  if (nameParts.length === 1) {initials = nameParts[0][0]; 
-  } else {initials = nameParts[0][0] + nameParts[1][0];  }
+  if (nameParts.length === 1) {
+    initials = nameParts[0][0];
+  } else {
+    initials = nameParts[0][0] + nameParts[1][0];
+  }
   let circleInitials = document.getElementById(`contactColor-${contact.id}`);
   circleInitials.innerHTML = `<p class="pInitals">${initials}</p>`;
   circleInitials.style.backgroundColor = colors[contact.color];
@@ -425,19 +456,45 @@ function showInitials(contact) {
 function displaySelectedContacts(id) {
   let container = document.getElementById(id);
   container.innerHTML = "";
-  selectedContacts.forEach((contact) => {
-    const nameParts = contact.name.trim().split(" ");
-    let initials;
-    if (nameParts.length === 1) {initials = nameParts[0][0];
-    } else {initials = nameParts[0][0] + nameParts[1][0];    }
-    let contactCircle = document.createElement("div");
-    contactCircle.classList.add("contact-circle");
-    contactCircle.style.backgroundColor = colors[contact.color];
-    contactCircle.innerText = initials;
-    container.appendChild(contactCircle);
-  });
+  // selectedContacts.forEach((contact) => {
+  //   const nameParts = contact.name.trim().split(" ");
+  //   let initials;
+  //   if (nameParts.length === 1) {initials = nameParts[0][0];
+  //   } else {initials = nameParts[0][0] + nameParts[1][0];    }
+  //   let contactCircle = document.createElement("div");
+  //   contactCircle.classList.add("contact-circle");
+  //   contactCircle.style.backgroundColor = colors[contact.color];
+  //   contactCircle.innerText = initials;
+  //   container.appendChild(contactCircle);
+  // });
+  for (let index = 0; index < selectedContacts.length; index++) {
+    const element = selectedContacts[index];
+    if (index <= 3) {
+      container.innerHTML += /*html*/ `
+        <p class="circle" id="contactcolor" style = "background-color: ${
+          colors[element.color]
+        }"> ${getInitials(element)}</p>
+      `;
+    } else {
+      container.innerHTML += /*html*/ `
+        <p class="circleEnd"> +${selectedContacts.length - 4}</p>
+      `;
+      break;
+    }
+  }
 }
 
+
+function getInitials(contact, id = "contactColor") {
+  const nameParts = contact.name.split(" ");
+  let initials;
+  if (nameParts.length == 1) {
+    initials = nameParts[0][0];
+  } else {
+    initials = nameParts[0][0] + nameParts[1][0];
+  }
+  return initials;
+}
 /**
  * Displays a task added animation and redirects to the board page after a short delay.
  */
@@ -490,7 +547,9 @@ function clearInput() {
 function showIcons(index) {
   const editIcon = document.getElementById(`editIcon-${index}`);
   const deleteIcon = document.getElementById(`deleteIcon-${index}`);
-  const separatorEditDelete = document.getElementById(`separator-edit-delete-${index}`);
+  const separatorEditDelete = document.getElementById(
+    `separator-edit-delete-${index}`
+  );
   if (editIcon) editIcon.classList.remove("hide");
   if (deleteIcon) deleteIcon.classList.remove("hide");
   if (separatorEditDelete) separatorEditDelete.classList.remove("hide");
@@ -505,7 +564,9 @@ function showIcons(index) {
  */
 function hideIcons(index) {
   const deleteIcon = document.getElementById(`deleteIcon-${index}`);
-  const separatorEditDelete = document.getElementById(`separator-edit-delete-${index}`);
+  const separatorEditDelete = document.getElementById(
+    `separator-edit-delete-${index}`
+  );
   if (deleteIcon) deleteIcon.classList.add("hide");
   if (separatorEditDelete) separatorEditDelete.classList.add("hide");
 }
@@ -527,11 +588,3 @@ function cancelEdit(index) {
   removeSubTask();
   showIcons(index);
 }
-
-
-
-
-
-
-
-

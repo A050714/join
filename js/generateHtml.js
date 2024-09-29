@@ -66,7 +66,7 @@ function generateInitals(task) {
     content.innerHTML = "";
     for (let index = 0; index < assignedContacts.length; index++) {
       const element = assignedContacts[index];
-      if(index <= 3){
+      if(index <= 2){
         content.innerHTML += /*html*/ `
           <p class="circle" id="contactcolor" style = "background-color: ${colors[element.color]
         }"> ${getInitials(element)}</p>
