@@ -6,8 +6,33 @@
     position: relative;
 }
 
+#selectedContactsDisplay{
+    display: flex;
+    flex-wrap: wrap;
+}
 
+.contactList-a::-webkit-scrollbar {
+    width: 10px; 
+}
 
+.contactList-a::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 10px; 
+}
+
+.contactList-a::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 10px; 
+}
+
+.contactList-a::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+.contactList-a {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+}
 
 .subtask-item {
     display: flex;
@@ -96,9 +121,29 @@ li {
     position: relative;
     display: block;
     height: 130px;
-    overflow-y: scroll;
-    /* z-index: 1; */
+    overflow-y: auto;
+    z-index: 1;
 }
+
+
+#subtasks::-webkit-scrollbar {
+    width: 10px;
+    }
+
+#subtasks::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+#subtasks::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+#subtasks::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
 
 .clearbtn:hover {
     border: 1px solid #29ABE2;
@@ -131,9 +176,10 @@ h4 {
     font-size: 61px;
 }
 
-#widget_2{
+#widget_2 {
     background: #091931;
 }
+
 select {
     width: 440px;
     padding: 12px 16px 12px 16px;

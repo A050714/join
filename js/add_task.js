@@ -129,6 +129,31 @@ function toggleDropdown(
   const selectedContactsDisplay = document.getElementById(selectedContacts);
   if (contactList.classList.contains("dNone")) {selectedContactsDisplay.style.display = "flex";} 
   else {selectedContactsDisplay.style.display = "none";}
+  closeDropdownOnClickOutside()
+}
+
+/**
+ * Closes the contact list dropdown when the user clicks anywhere outside of it.
+ * Listens for a click event on the document and checks if the target of the event
+ * is the dropdown element or one of its children. If not, it will add the class
+ * "dNone" to the contact list element, effectively hiding it.
+ * @function closeDropdownOnClickOutside
+ */
+function closeDropdownOnClickOutside() {
+  document.addEventListener('click', function(event) {
+    const dropdown = document.querySelector('.dropdown');
+    const contactList = document.getElementById("contactList-a");
+    const togglearrow = document.getElementById("dropdownarrow");
+    const selectedContactsDisplay = document.getElementById("selectedContactsDisplay");
+
+    if (!dropdown.contains(event.target) && !contactList.contains(event.target)) {
+      if (!contactList.classList.contains("dNone")) {
+        contactList.classList.add("dNone");
+        togglearrow.classList.remove("open");
+        selectedContactsDisplay.style.display = "flex";
+      }
+    }
+  });
 }
 
 /**
@@ -502,3 +527,11 @@ function cancelEdit(index) {
   removeSubTask();
   showIcons(index);
 }
+
+
+
+
+
+
+
+
