@@ -123,12 +123,12 @@ async function greetUser() {
 
             }
         } else {
-            alert('Failed to load user data.');
+            showMessagePopup('Failed to load user data.');
             
         }
     } catch (error) {
         console.error("Error fetching users:", error.message);
-        alert('An error occurred. Please try again.');
+        showMessagePopup('An error occurred. Please try again.');
     }      
 }
 

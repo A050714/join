@@ -7,7 +7,7 @@
  * 
  * @async
  * @function signup
- * @throws {Error} Alerts the user if an error occurs during the sign-up process or if the data is invalid.
+ * @throws {Error} Displays the user if an error occurs during the sign-up process or if the data is invalid.
  */
 async function signup() {
     const name = document.getElementById('name_signup').value; 
@@ -17,12 +17,12 @@ async function signup() {
     const privacyAccepted = document.getElementById('privacyAccept').checked; 
     // check the inputs
     if (password !== confirmPassword) {
-        alert("Passwords do not match. Please try it again");
+        showMessagePopup("Passwords do not match. Please try it again");
         return;
     }
 
     if(!privacyAccepted) {
-        alert("You must accept the privacy policy to sign up.");
+        showMessagePopup("You must accept the privacy policy to sign up.");
         return;
     }
 
@@ -80,11 +80,12 @@ async function signup() {
                 }, 2000); 
         
             } else {
-                alert ('Failed to sign up.'); 
+                showMessagePopup('Failed to sign up.');                
             }
         }catch (error) {
             console.error("Error fetching users:", error.message);
-            alert('An error occurred. Please try again.');
+            showMessagePopup('An error occurred. Please try again.');
+   
         }
 
     }   
@@ -115,7 +116,7 @@ function showMessagePopup(message) {
  * @async
  * @function login
  * @param {Event} event - The form submit event to prevent the default behavior.
- * @throws {Error} Alerts the user if the login fails or an error occurs during the login process.
+ * @throws {Error} Display the user if the login fails or an error occurs during the login process.
  */
   
 // // LOGIN Part
@@ -158,9 +159,12 @@ async function login(event) {
                       
                     
                     // Log the user in successfully
-                    alert('Login successful!');
+                    showMessagePopup("Login successful!");
                     
-                    window.location.href = './../../assets/html_templates/summary.html';
+                    // Redirect after a short delay
+                    setTimeout(() => {
+                        window.location.href = './../../assets/html_templates/summary.html';
+                    }, 2000); // Delay for 2 seconds before redirecting
                     break;
                 }
             }
@@ -182,14 +186,14 @@ async function login(event) {
                     }
                 }
             } else {
-                alert('Invalid email or password.');
+                showMessagePopup('Invalid email or password.');
             }
         } else {
-            alert('Failed to log in. Please try again.');
+            showMessagePopup('Failed to log in. Please try again.');
         }
     } catch (error) {
         console.error("Error fetching users:", error.message);
-        alert('An error occurred. Please try again.');
+        showMessagePopup('An error occurred. Please try again.');
     }
 }
 
@@ -210,8 +214,11 @@ function guestLogin() {
     // Optionally store the guest user data in sessionStorage
     sessionStorage.setItem('user', JSON.stringify(guestUser));
     
-    alert('You are logged in as a guest!');
-    window.location.href = '\summary.html';  
+    showMessagePopup('You are logged in as a guest!');
+    // Redirect after a short delay
+    setTimeout(() => {
+        window.location.href = './../../assets/html_templates/summary.html';
+    }, 2000); // Delay for 2 seconds before redirecting
 }
 
 

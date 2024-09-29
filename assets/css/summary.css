@@ -623,7 +623,7 @@ p {
 @media (min-width: 320px) and (max-width: 990px) and (min-height:850px) {
     .metrcis_content {
         display: flex;
-        flex-direction: column;
+
     }
 
     .metric-box img {
@@ -755,7 +755,7 @@ p {
 @media (min-width: 991px) and (min-height: 990px) {
     .metrcis_content {
         display: flex;
-        flex-direction: column;
+
     }
 
     .metric-box {
@@ -769,7 +769,7 @@ p {
 
     .metrics_tasks {
         height: 100%;
-        width: 90%;
+        width: 60%;
         display: grid;
         grid-template-columns: repeat(6, 1fr);
         grid-template-rows: auto auto auto;

@@ -34,12 +34,12 @@ async function showFirstLetter() {
 
             }
         } else {
-            alert('Failed to load user data.');
+            showMessagePopup('Failed to load user data.');
             
         }
     } catch (error) {
         console.error("Error fetching users:", error.message);
-        alert('An error occurred. Please try again.');
+        showMessagePopup('An error occurred. Please try again.');
     }      
 }
 
@@ -95,8 +95,31 @@ async function logout() {
             }
         }
 
-        alert('You have logged out!');
+        showMessagePopup('You have logged out!');
         loggedUserContact = {};
-        window.location.href = './../../assets/html_templates/login.html';
+       
     }
 }
+
+/**
+ * Displays a popup message for the user and hides it after 3 seconds.
+ * 
+ * @function showMessagePopup
+ * @param {string} message - The message to be displayed in the popup.
+ */
+function showMessagePopup(message) {
+    const popup = document.getElementById('spMessagePopup');
+    if (popup) {
+        popup.innerHTML = message; // Set the message content
+        popup.classList.add('show'); // Add the show class to display the popup
+
+        // Hide the message popup after 3 seconds
+        setTimeout(() => {
+            popup.classList.remove('show');
+            window.location.href = './../../assets/html_templates/login.html';
+        }, 3000);
+    } else {
+        console.error("Popup element not found.");
+    }
+}
+
