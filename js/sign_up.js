@@ -1,3 +1,15 @@
+function togglePassword(fieldId, iconId) {
+    const passwordField = document.getElementById(fieldId);
+    const icon = document.getElementById(iconId);
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        icon.src = "./../img/01_Login_SignUp_ForgotPW/person.png"; 
+         
+    } else {
+        passwordField.type = "password";
+        icon.src = "./../img/01_Login_SignUp_ForgotPW/visibility_off.png" ; 
+    }
+}
 // Creating Sign Up Function
 /**
  * Registers a new user by sending their details (name, email, password) to Firebase.
@@ -19,14 +31,7 @@ async function signup() {
     if (password !== confirmPassword) {
         showMessagePopup("Passwords do not match. Please try it again");
         return;
-    }
-
-    if(!privacyAccepted) {
-        showMessagePopup("You must accept the privacy policy to sign up.");
-        return;
-    }
-
-    
+    } 
    
     try{
         // Fetch current users to log out any who are logged in

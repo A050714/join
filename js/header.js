@@ -96,6 +96,9 @@ async function logout() {
         }
 
         showMessagePopup('You have logged out!');
+        setTimeout(() => {
+            window.location.href = './../../assets/html_templates/login.html';
+        }, 3000);
         loggedUserContact = {};
        
     }
@@ -116,9 +119,6 @@ function showMessagePopup(message) {
         // Hide the message popup after 3 seconds
         setTimeout(() => {
             popup.classList.remove('show');
-            if(message == 'You Signed Up Successfully!' || 'You have logged out!'){
-                window.location.href = './../../assets/html_templates/login.html';
-            }
         }, 3000);
     } else {
         console.error("Popup element not found.");
