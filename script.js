@@ -131,7 +131,7 @@ async function loadContacts() {
  * @param {string} [phone="+49 123 45678"] - The phone number of the contact.
  * @returns {Promise<void>}
  */
-async function postContactData(name,mail,phone = "+49 123 45678") {
+async function postContactData(name,mail,phone = " ") {
   let userrespone = await getData("Contacts") || {};
   let UserKeysArray = Object.keys(userrespone);
   let userIndex = UserKeysArray.length;
