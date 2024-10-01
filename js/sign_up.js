@@ -159,8 +159,15 @@ async function login(event) {
                             logged: true
                         })
                     });
-                        loggedUserContact = contacts.find(c => c.mail == email)
-                        
+                    loggedUserContact = contacts.find(c => c.mail == email); 
+                
+                    if (rememberMe) {
+                        // Store user in localStorage for persistent login
+                        localStorage.setItem('user', JSON.stringify(user));
+                    } else {
+                        // Store user in sessionStorage for the session duration
+                        sessionStorage.setItem('user', JSON.stringify(user));
+                    }
                       
                     
                     // Log the user in successfully
