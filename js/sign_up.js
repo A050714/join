@@ -37,6 +37,30 @@ async function signup() {
         // Fetch current users to log out any who are logged in
         let usersResponse = await fetch(`${BASE_URL}Users.json`);
         let usersData = await usersResponse.json();
+        let emailExists = false;
+        let usernameExists = false;
+        for (let userId in usersData) {
+            let user = usersData[userId];
+
+            if (user.email === email) {
+                emailExists = true;
+                break; // No need to check further if the email already exists
+            }
+
+            if (user.name === name && user.email !== email) {
+                usernameExists = true; // Username already taken by another email
+            }
+        }
+
+        if (emailExists) {
+            showMessagePopup('This email is already registered. Please use a different email.');
+            return;
+        }
+
+        if (usernameExists) {
+            showMessagePopup('This username is already registered. Please choose a different one.');
+            return;
+        }
 
         // Mark all users as logged out
         for (let userId in usersData) {
