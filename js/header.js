@@ -125,3 +125,78 @@ function showMessagePopup(message) {
     }
 }
 
+
+// for guestrole
+// Check if user is logged in when the page loads
+document.addEventListener('DOMContentLoaded', async function() {
+    try {
+        // Fetch all users from Firebase
+        let response = await fetch(`${BASE_URL}Users.json`);
+        
+        if (response.status === 200) {
+            let usersData = await response.json();
+            let userLoggedIn = false;
+
+            // Check if there's any user with logged: true
+            for (let userId in usersData) {
+                if (usersData[userId].logged === true) {
+                    userLoggedIn = true;
+                    break;
+                }
+            }
+
+            if (userLoggedIn) {
+                // If a logged-in user is found, allow access to the page
+                grantAccess();
+            } else {
+                // If no user is logged in, restrict access and show a message
+                restrictAccess();
+            }
+        } else {
+            showMessagePopup('Error fetching user data. Please try again.');
+        }
+    } catch (error) {
+        console.error('Error fetching users from Firebase:', error);
+        showMessagePopup('An error occurred while checking login status.');
+    }
+});
+
+function grantAccess() {
+    // Allow access to the page, can add more page-specific functionality here
+    console.log("User is logged in. Access granted.");
+}
+
+function restrictAccess() {
+    // Show a popup message and restrict access
+    showMessagePopup('You are not logged in as a user. Please log in to have the full access of the page.');
+
+    // Disable links or redirect to the login page
+    disableLinks();
+}
+
+function disableLinks() {
+    // Disable all links on the page
+    const links = document.querySelectorAll('a');
+    links.forEach(link => {
+        link.removeAttribute('href'); // Remove link functionality
+        link.classList.add('disabled'); // Add disabled class to style the link
+    });
+
+
+}
+function showMessagePopup(message) {
+    const popup = document.getElementById('spMessagePopup');
+    if (popup) {
+        popup.innerHTML = message; // Set the message content
+        popup.classList.add('show'); // Add the show class to display the popup
+
+        // Hide the message popup after 3 seconds
+        setTimeout(() => {
+            popup.classList.remove('show');
+        }, 3000);
+    } else {
+        console.error("Popup element not found.");
+    }
+
+}
+

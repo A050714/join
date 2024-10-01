@@ -110,7 +110,7 @@ header a {
     align-items: center;
     text-align: center;
     position: fixed;
-    bottom: 50%;
+    bottom: 40%;
     left: 50%;
     transform: translate(-50%,-50%);
     background-color: hsl(215, 26%, 22%);
