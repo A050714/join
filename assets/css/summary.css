@@ -168,11 +168,11 @@ a {
 }
 
 .metric-box_todo:hover img {
-    content: url('./../img/02_Summary/pencil/pencil_hover.png');
+    content: url('./../img/02_Summary/pencil/pencil.svg');
 }
 
 .metric-box_done:hover img {
-    content: url('./../img/02_Summary/check/check_hover.png');
+    content: url('./../img/02_Summary/check/check_hover.svg');
 }
 
 .metric-box .blue-line {
@@ -333,7 +333,7 @@ p {
     }
 
     .metric-box_done:hover img {
-        content: url('./../img/02_Summary/check/check_default.png');
+        content: url('./../img/02_Summary/check/check_default.svg');
     }
 
     .metric-box:active {
@@ -347,7 +347,7 @@ p {
     }
 
     .metric-box_done:active img {
-        content: url('./../img/02_Summary/check/check_hover.png');
+        content: url('./../img/02_Summary/check/check_hover.svg');
     }
 
 
@@ -518,7 +518,7 @@ p {
     }
 
     .metric-box_done:hover img {
-        content: url('./../img/02_Summary/check/check_default.png');
+        content: url('./../img/02_Summary/check/check_default.svg');
     }
 
     .metric-box:active {
@@ -532,7 +532,7 @@ p {
     }
 
     .metric-box_done:active img {
-        content: url('./../img/02_Summary/check/check_hover.png');
+        content: url('./../img/02_Summary/check/check_hover.svg');
     }
 
 
@@ -685,7 +685,7 @@ p {
     }
 
     .metric-box_done:hover img {
-        content: url('./../img/02_Summary/check/check_hover.png');
+        content: url('./../img/02_Summary/check/check_hover.svg');
     }
 
     .metric-box:active {
@@ -699,7 +699,7 @@ p {
     }
 
     .metric-box_done:active img {
-        content: url('./../img/02_Summary/check/check_hover.png');
+        content: url('./../img/02_Summary/check/check_hover.svg');
     }
 
     .metrics .metrics_header {

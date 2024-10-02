@@ -3,11 +3,11 @@ function togglePassword(fieldId, iconId) {
     const icon = document.getElementById(iconId);
     if (passwordField.type === "password") {
         passwordField.type = "text";
-        icon.src = "./../img/01_Login_SignUp_ForgotPW/person.png"; 
+        icon.src = "./../img/01_Login_SignUp_ForgotPW/visibility.svg"; 
          
     } else {
         passwordField.type = "password";
-        icon.src = "./../img/01_Login_SignUp_ForgotPW/visibility_off.png" ; 
+        icon.src = "./../img/01_Login_SignUp_ForgotPW/visibility_off.svg" ; 
     }
 }
 // Creating Sign Up Function
@@ -239,23 +239,101 @@ async function login(event) {
  * @function guestLogin
  */
 // Guest Login
-function guestLogin() {
-    // Create a default guest user object
-    const guestUser = {
-        name: "Guest",
-        email: "guest@example.com",
-        role: "guest"  // define a role if your application uses role-based access
-    };
+async function guestLogin(){
+    try {
+        // Fetch all current users from Firebase
+        let usersResponse = await fetch(`${BASE_URL}Users.json`);
+        let usersData = await usersResponse.json();
 
-    // Optionally store the guest user data in sessionStorage
-    sessionStorage.setItem('user', JSON.stringify(guestUser));
-    
-    showMessagePopup('You are logged in as a guest!');
-    // Redirect after a short delay
-    setTimeout(() => {
-        window.location.href = './../../assets/html_templates/summary.html';
-    }, 2000); // Delay for 2 seconds before redirecting
+        let guestUserId = null;
+
+        // Check if a guest user already exists, if yes, get its userId
+        for (let userId in usersData) {
+            let user = usersData[userId];
+
+            if (user.role === 'guest') {
+                guestUserId = userId;
+                break;
+            }
+        }
+
+        // If guest user doesn't exist, create one
+        if (!guestUserId) {
+            let createGuestResponse = await fetch(`${BASE_URL}Users.json`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: "Guest",
+                    email: "guest@example.com",
+                    role: "guest",
+                    logged: true 
+                })
+            });
+
+            let guestData = await createGuestResponse.json();
+            guestUserId = guestData.name; // The generated guest user ID in Firebase
+        } else {
+            // If guest user exists, update its logged status to true
+            await fetch(`${BASE_URL}Users/${guestUserId}.json`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    logged: true 
+                })
+            });
+        }
+
+        // Log out all other users (set logged: false for all except guest)
+        for (let userId in usersData) {
+            if (userId !== guestUserId && usersData[userId].logged === true) {
+                await fetch(`${BASE_URL}Users/${userId}.json`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        logged: false // Mark other users as logged out
+                    })
+                });
+            }
+        }
+
+
+        showMessagePopup('You are logged in as a guest!');
+
+        // Redirect to the summary page after a short delay
+        setTimeout(() => {
+            window.location.href = './../../assets/html_templates/summary.html';
+        }, 2000);
+
+    } catch (error) {
+        console.error("Error during guest login:", error);
+        showMessagePopup('An error occurred during guest login. Please try again.');
+    }
 }
+
+
+// function guestLogin() {
+//     // Create a default guest user object
+//     const guestUser = {
+//         name: "Guest",
+//         email: "guest@example.com",
+//         role: "guest"  // define a role if your application uses role-based access
+//     };
+
+//     // Optionally store the guest user data in sessionStorage
+//     sessionStorage.setItem('user', JSON.stringify(guestUser));
+    
+//     showMessagePopup('You are logged in as a guest!');
+//     // Redirect after a short delay
+//     setTimeout(() => {
+//         window.location.href = './../../assets/html_templates/summary.html';
+//     }, 2000); // Delay for 2 seconds before redirecting
+// }
 
 
 
