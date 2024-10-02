@@ -16,9 +16,9 @@
     align-items: center;
 }
 
-.contactList-a::-webkit-scrollbar {
+/*.contactList-a::-webkit-scrollbar {
     width: 10px; 
-}
+}*/
 .circle {
     width: 40px;
     height: 40px;
@@ -48,7 +48,7 @@
     margin-left: 12px;
   }
 
-.contactList-a::-webkit-scrollbar-track {
+/*.contactList-a::-webkit-scrollbar-track {
     background: #f1f1f1; 
     border-radius: 10px; 
 }
@@ -66,7 +66,7 @@
     scrollbar-width: thin;
     scrollbar-color: #888 #f1f1f1;
 }
-
+*/
 .subtask-item {
     display: flex;
     justify-content: space-between;
