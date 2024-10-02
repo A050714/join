@@ -84,28 +84,33 @@ async function greetUser() {
             }
 
             if (loggedInUser) {
-                document.getElementById('userName').innerHTML = loggedInUser.name;
 
                 // Tageszeitabhängige Begrüßung
                 const currentTime = new Date().getHours(); // to get the current hour of the day
                 let greetingMessage;
 
                 if (currentTime < 12) {
-                    greetingMessage = "Good morning, ";
+                    greetingMessage = "Good morning";
                 } else if (currentTime < 18) {
-                    greetingMessage = "Good afternoon, ";
+                    greetingMessage = "Good afternoon";
                 } else {
-                    greetingMessage = "Good evening, ";
+                    greetingMessage = "Good evening";
+                }
+
+                if (loggedInUser.role === 'guest') {
+                    document.getElementById('gmorning').innerHTML = greetingMessage;
+                    document.getElementById('userName').innerHTML = ""; // No name for guest
+                    document.getElementById('name_menu').innerHTML = "G"; 
+                } else {
+                    // If it's a regular user, show the greeting with their name
+                    document.getElementById('gmorning').innerHTML = greetingMessage + ", " + loggedInUser.name;
                 }
                 
-                document.getElementById('gmorning').innerHTML= greetingMessage;
-                
                 //Display the firstLetter 
-                firstLetter = loggedInUser.name.charAt(0).toUpperCase(); 
+                const firstLetter = loggedInUser.name.charAt(0).toUpperCase(); 
                 document.getElementById('name_menu').innerHTML = firstLetter; 
-                localStorage.setItem('firstLetter', firstLetter);  //optional 
-            } else {
-                 // Tageszeitabhängige Begrüßung
+                } else {
+                 // if for not logged in user
                  const currentTime = new Date().getHours(); // to get the current hour of the day
                  let greetingMessage;
  
@@ -119,9 +124,8 @@ async function greetUser() {
                  
                  document.getElementById('gmorning').innerHTML= greetingMessage;
                 document.getElementById('userName').innerHTML = "";
-                document.getElementById('name_menu').innerHTML = "G"; 
-
-            }
+                document.getElementById('name_menu').innerHTML = ""; 
+                }
         } else {
             showMessagePopup('Failed to load user data.');
             

@@ -26,11 +26,10 @@ async function showFirstLetter() {
                 // document.getElementById('userName').innerHTML = loggedInUser.name;
                 firstLetter = loggedInUser.name.charAt(0).toUpperCase(); 
                 document.getElementById('name_menu').innerHTML = firstLetter; 
-                localStorage.setItem('firstLetter', firstLetter);
 
             } else {
-                document.getElementById('name_menu').innerHTML = "Guest";
-                document.getElementById('name_menu').innerHTML = "G"; 
+                document.getElementById('name_menu').innerHTML = "";
+                document.getElementById('name_menu').innerHTML = ""; 
 
             }
         } else {
