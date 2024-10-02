@@ -38,6 +38,10 @@ header {
     cursor: pointer;
     margin-bottom: 2px;
 }
+
+.user-icon:hover {
+    background-color: rgb(218, 215, 215)
+}
 header p {
     font-family: 'PT Sans';
     font-size: 24px;
@@ -61,6 +65,9 @@ header a {
     right: 55px;
 }
 
+.helpme-icon img:hover{
+    scale: 1.1;
+}
 .header_overlay {
     height: 100vh;
     width: 100vw;
