@@ -531,10 +531,15 @@ h3 {
     justify-content: center;
     flex-direction: column;
 
-    p {
-        margin: 0 !important;
-        font-size: 20px !important;
-    }
+ 
+}
+
+.singlecontactmail {
+    font-size: 16px;
+    color: #007CEE;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    margin-top: 5px;
 }
 
 #contactName2 {
@@ -542,12 +547,6 @@ h3 {
     font-size: 20px !important;
 }
 
-.nameEmailDiv a {
-    color: #007CEE;
-    text-decoration: none;
-    word-break: break-word;
-    overflow-wrap: break-word;
-}
 
 .singleContacts:hover {
     background: linear-gradient(180deg, #F9F9F9 0%, #F0F0F0 100%);
@@ -814,7 +813,7 @@ input[type=number] {
         font-size: 18px;
     }
 
-    .nameEmailDiv a {
+    .singlecontactmail {
         font-size: 14px;
     }
 }
@@ -836,6 +835,10 @@ input[type=number] {
     }
 
     .openContact p {
+        font-size: 16px;
+    }
+
+    .singlecontactmail {
         font-size: 16px;
     }
 
