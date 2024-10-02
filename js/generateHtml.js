@@ -113,7 +113,7 @@ function generateTaskHTML(task) {
     task.prio.charAt(0).toUpperCase() + task.prio.slice(1);
 
   return /*html*/ `
-            <div class="user-story-card " id="taskCard">
+            <div class="user-story-card scrollbar" id="taskCard">
             <div class="header">
               <span class="tag ${task.category}">${task.category == "userstory" ? "User Story" : "Technical Task"}</span>
               <span class="btnSpan">
