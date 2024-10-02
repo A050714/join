@@ -263,6 +263,9 @@ top: 50%;
     text-align: center;
 }
 
+#signupBtn:disabled {
+    cursor: not-allowed;
+}
 
 .back {
     display: inline-block;

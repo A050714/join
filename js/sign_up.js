@@ -119,6 +119,21 @@ async function signup() {
 
     }   
 
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('loginForm_signup');
+        const registerBtn = document.getElementById('signupBtn');
+
+        // Listen for input or change events to validate the form
+        form.addEventListener('input', function () {
+            // Enable button only if form is valid
+            if (form.checkValidity()) {
+                signupBtn.disabled = false;
+            } else {
+                signupBtn.disabled = true;
+            }
+        });
+    });
+
 /**
  * Displays a popup message for the user and hides it after 3 seconds.
  * 

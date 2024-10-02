@@ -150,6 +150,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             } else {
                 // If no user is logged in, restrict access and show a message
                 restrictAccess();
+
             }
         } else {
             showMessagePopup('Error fetching user data. Please try again.');
@@ -161,28 +162,34 @@ document.addEventListener('DOMContentLoaded', async function() {
 });
 
 function grantAccess() {
-    // Allow access to the page, can add more page-specific functionality here
-    console.log("User is logged in. Access granted.");
+    // Allow access to the page
 }
 
 function restrictAccess() {
-    // Show a popup message and restrict access
-    showMessagePopup('You are not logged in as a user. Please log in to have the full access of the page.');
+    disableLinks() ; 
+    const currentPath = window.location.pathname;
 
-    // Disable links or redirect to the login page
-    disableLinks();
+    if (currentPath.includes("privacy.html") || currentPath.includes("legal_notice.html")) {
+        return; // Do not redirect 
+    }
+
+    // For other pages, redirect to the login page
+    showMessagePopup('You are not logged in. Please log in to get full access to other pages.');
+    setTimeout(() => {
+        window.location.href = "./../../assets/html_templates/login.html";
+    }, 1000);
 }
-
 function disableLinks() {
-    // Disable all links on the page
+
     const links = document.querySelectorAll('a');
     links.forEach(link => {
         link.removeAttribute('href'); // Remove link functionality
         link.classList.add('disabled'); // Add disabled class to style the link
     });
-
-
 }
+
+
+
 function showMessagePopup(message) {
     const popup = document.getElementById('spMessagePopup');
     if (popup) {
@@ -192,7 +199,9 @@ function showMessagePopup(message) {
         // Hide the message popup after 3 seconds
         setTimeout(() => {
             popup.classList.remove('show');
+            window.location.href = "./../../assets/html_templates/login.html"
         }, 3000);
+
     } else {
         console.error("Popup element not found.");
     }
