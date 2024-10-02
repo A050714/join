@@ -81,8 +81,37 @@
         display: flex;
         flex-direction: column;
         max-width: 300px;
-        height: 376px;
+        height: 335px;
         gap: 8px;
+    }
+
+    #subtasks {
+        position: relative;
+        display: block;
+        height: 82px;
+        overflow-y: auto;
+        
+    }
+
+    .subtaskContainer{
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    textarea {
+        width: 99%;
+        height: 88px;
+        padding: 2px;
+        border: 1px solid #D1D1D1;
+        border-radius: 10px;
+        outline: none;
+    }
+
+    textarea::placeholder{
+        color: #D1D1D1;
+        font-size: 16px;
+        font-family: 'PT Sans';
     }
     
 
@@ -107,10 +136,12 @@
     }
 
     input {
-        width: 89%;
-        padding: 17px 21px 17px 12px;
+        width: 87%;
+        padding: 10px 21px 10px 12px;
         border: 1px solid #D1D1D1;
         border-radius: 10px;
+        font-family: 'PT Sans';
+        font-size: 16px;
     }
 
     .tasksbtn {
@@ -162,7 +193,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 6px 16px 6px 16px;
+        padding: 6px 16px 6px 8px;
         border-radius: 10px;
         border: 1px solid #d1d1d1;
         width: 270px;

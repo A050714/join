@@ -6,6 +6,7 @@
     position: relative;
 }
 
+
 #selectedContactsDisplay{
     display: flex;
     
@@ -254,6 +255,11 @@ textarea {
     outline: none;
 }
 
+textarea::placeholder{
+    color: #D1D1D1;
+    
+}
+
 textarea:focus {
     border: 1px solid #29ABE2;
 }
@@ -269,6 +275,10 @@ input {
     border-radius: 10px;
     cursor: pointer;
     outline: none;
+}
+
+input::placeholder{
+    color: #D1D1D1;
 }
 
 input:focus {
@@ -540,11 +550,19 @@ footer {
     background-color: #FFFFFF;
     margin-top: 8px;
     cursor: pointer;
+}
 
+#dateId{
+    color: #d1d1d1;
+}
+
+#searchInput::placeholder{
+    color: black;
 }
 
 .dropdown input {
     border: none;
+    
 }
 
 .dropdown:focus {
