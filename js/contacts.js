@@ -64,7 +64,7 @@ function singleContactHTML(index, contact) {
                             <div class="contactcolor2" id="contactColor${contact.id}"></div>
                             <div class="nameEmailDiv">
                                 <p id="contactName2">${contact == loggedUserContact? contact.name + " (You)": contact.name}</p>
-                                <a href="mailto:${contact.mail}">${contact.mail}</a>
+                                <p class="singlecontactmail">${contact.mail}</p>
                             </div>
                         </div>
         `;
