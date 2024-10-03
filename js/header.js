@@ -114,10 +114,11 @@ function showMessagePopup(message) {
     if (popup) {
         popup.innerHTML = message; // Set the message content
         popup.classList.add('show'); // Add the show class to display the popup
-
+        popup.classList.add('offlinemessage');
         // Hide the message popup after 3 seconds
         setTimeout(() => {
             popup.classList.remove('show');
+            popup.classList.remove('offlinemessage');
         }, 3000);
     } else {
         console.error("Popup element not found.");
@@ -156,7 +157,7 @@ async function checkLog() {
         }
     } catch (error) {
         console.error('Error fetching users from Firebase:', error);
-        showMessagePopup('An error occurred while checking login status.');
+        showMessagePopup('<p>An error occurred while checking login status.</p>');
     }
 }
 function grantAccess() {
@@ -164,7 +165,7 @@ function grantAccess() {
 }
 
 function restrictAccess() {
-    disableLinks();
+    // disableLinks();
     const currentPath = window.location.pathname;
 
     if (currentPath.includes("privacy.html") || currentPath.includes("legal_notice.html")) {
@@ -174,35 +175,36 @@ function restrictAccess() {
     // For other pages, redirect to the login page
     showMessagePopup('You are not logged in. Please log in to get full access to other pages.');
     setTimeout(() => {
+        
         window.location.href = "./../../assets/html_templates/login.html";
-    }, 1000);
+    }, 3000);
 }
-function disableLinks() {
+// function disableLinks() {
 
-    const links = document.querySelectorAll('a');
-    links.forEach(link => {
-        link.href('./../../assets/html_templates/login.html'); // Remove link functionality
-        link.classList.add('disabled'); // Add disabled class to style the link
-    });
-}
+//     const links = document.querySelectorAll('a');
+//     links.forEach(link => {
+//         window.location.href('./../../assets/html_templates/login.html'); // Remove link functionality
+//         link.classList.add('disabled'); // Add disabled class to style the link
+//     });
+// }
 
 
 
-function showMessagePopup(message) {
-    const popup = document.getElementById('spMessagePopup');
-    if (popup) {
-        popup.innerHTML = message; // Set the message content
-        popup.classList.add('show'); // Add the show class to display the popup
+// function showMessagePopup(message) {
+//     const popup = document.getElementById('spMessagePopup');
+//     if (popup) {
+//         popup.innerHTML = message; // Set the message content
+//         popup.classList.add('show'); // Add the show class to display the popup
 
-        // Hide the message popup after 3 seconds
-        setTimeout(() => {
-            popup.classList.remove('show');
-            window.location.href = "./../../assets/html_templates/login.html"
-        }, 3000);
+//         // Hide the message popup after 3 seconds
+//         setTimeout(() => {
+//             popup.classList.remove('show');
+//             window.location.href = "./../../assets/html_templates/login.html"
+//         }, 3000);
 
-    } else {
-        console.error("Popup element not found.");
-    }
+//     } else {
+//         console.error("Popup element not found.");
+//     }
 
-}
+// }
 
