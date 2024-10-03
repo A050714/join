@@ -103,7 +103,8 @@ async function greetUser() {
                     document.getElementById('name_menu').innerHTML = "G"; 
                 } else {
                     // If it's a regular user, show the greeting with their name
-                    document.getElementById('gmorning').innerHTML = greetingMessage + ", " + loggedInUser.name;
+                    document.getElementById('gmorning').innerHTML = greetingMessage + ",";
+                    document.getElementById('userName').innerHTML = loggedInUser.name;
                 }
                 
                 //Display the firstLetter 

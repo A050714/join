@@ -11,8 +11,8 @@ async function showFirstLetter() {
         let response = await fetch(`${BASE_URL}Users.json`);
         if (response.status === 200) {
             let usersData = await response.json();
-            
-            
+
+
             // Find the user who is currently logged in
             let loggedInUser = null;
             for (let userId in usersData) {
@@ -24,22 +24,22 @@ async function showFirstLetter() {
 
             if (loggedInUser) {
                 // document.getElementById('userName').innerHTML = loggedInUser.name;
-                firstLetter = loggedInUser.name.charAt(0).toUpperCase(); 
-                document.getElementById('name_menu').innerHTML = firstLetter; 
+                firstLetter = loggedInUser.name.charAt(0).toUpperCase();
+                document.getElementById('name_menu').innerHTML = firstLetter;
 
             } else {
                 document.getElementById('name_menu').innerHTML = "";
-                document.getElementById('name_menu').innerHTML = ""; 
+                document.getElementById('name_menu').innerHTML = "";
 
             }
         } else {
             showMessagePopup('Failed to load user data.');
-            
+
         }
     } catch (error) {
         console.error("Error fetching users:", error.message);
         showMessagePopup('An error occurred. Please try again.');
-    }      
+    }
 }
 
 /**
@@ -79,7 +79,7 @@ async function logout() {
         for (let userId in usersData) {
             let user = usersData[userId];
             if (user.logged === true) {
-                   
+
                 // update if the user´s logged out 
                 await fetch(`${BASE_URL}Users/${userId}.json`, {
                     method: 'PATCH',
@@ -99,7 +99,7 @@ async function logout() {
             window.location.href = './../../assets/html_templates/login.html';
         }, 3000);
         loggedUserContact = {};
-       
+
     }
 }
 
@@ -125,13 +125,13 @@ function showMessagePopup(message) {
 }
 
 
-// for guestrole
-// Check if user is logged in when the page loads
-document.addEventListener('DOMContentLoaded', async function() {
+async function checkLog() {
+    // for guestrole
+    // Check if user is logged in when the page loads
     try {
         // Fetch all users from Firebase
         let response = await fetch(`${BASE_URL}Users.json`);
-        
+
         if (response.status === 200) {
             let usersData = await response.json();
             let userLoggedIn = false;
@@ -150,7 +150,6 @@ document.addEventListener('DOMContentLoaded', async function() {
             } else {
                 // If no user is logged in, restrict access and show a message
                 restrictAccess();
-
             }
         } else {
             showMessagePopup('Error fetching user data. Please try again.');
@@ -159,14 +158,13 @@ document.addEventListener('DOMContentLoaded', async function() {
         console.error('Error fetching users from Firebase:', error);
         showMessagePopup('An error occurred while checking login status.');
     }
-});
-
+}
 function grantAccess() {
     // Allow access to the page
 }
 
 function restrictAccess() {
-    disableLinks() ; 
+    disableLinks();
     const currentPath = window.location.pathname;
 
     if (currentPath.includes("privacy.html") || currentPath.includes("legal_notice.html")) {
@@ -183,7 +181,7 @@ function disableLinks() {
 
     const links = document.querySelectorAll('a');
     links.forEach(link => {
-        link.removeAttribute('href'); // Remove link functionality
+        link.href('./../../assets/html_templates/login.html'); // Remove link functionality
         link.classList.add('disabled'); // Add disabled class to style the link
     });
 }

@@ -150,6 +150,8 @@ a {
     border-radius: 20px;
     justify-content: center;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    /* transition: transform 0.3s ease-in-out; */
+
 }
 
 
@@ -157,8 +159,11 @@ a {
     background-color: #2A3647;
     color: white;
     cursor: pointer;
-    scale: 1.1;
+    /* scale: 1.1;
+    transform: scale(1.05); */
+
 }
+
 
 
 .metric-box img {
@@ -263,7 +268,11 @@ p {
 
 /* Small Device_responsive design for small devices like smartphone */
 
-
+@media (max-width: 1060px) {
+    .metric-box{
+        margin: 0;
+    }
+}
 @media (max-width: 480px) {
     .mainscreen {
         margin-bottom: 90px;
@@ -557,7 +566,7 @@ p {
     .greeting_name {
         z-index: 2;
         position: absolute;
-        top: 55%;
+        top: 60%;
         left: 50%;
         transform: translate(-50%, -50%);
         text-align: center;
@@ -684,13 +693,15 @@ p {
     .metric-box {
         padding: 2vh 1vw;
         margin: 2.5vh;
+        transition: transform 0.3s ease-in-out;
     }
 
 
     .metric-box:hover {
         background-color: #2A3647; 
-        scale: 1.05;
         color: white;
+        transform: scale(1.05);
+
     }
 
     .metric-box_done:hover img {
@@ -716,12 +727,12 @@ p {
     }
 
     .metrics_greeting {
-        padding-left: 4vw;
+        padding-left: 2vw;
 
     }
 
     .greeting_name {
-        font-size: 5em;
+        font-size: 3em;
 
     }
 

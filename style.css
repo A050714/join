@@ -151,7 +151,7 @@ Not supports in Firefox and IE */
     .sidelinks a {
         display: flex;
         flex-direction: column;
-        padding: 10px;
+        padding: 8px;
         border-radius: 10px;
         font-size: 14px;
     }
