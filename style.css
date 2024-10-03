@@ -153,6 +153,7 @@ Not supports in Firefox and IE */
         flex-direction: column;
         padding: 10px;
         border-radius: 10px;
+        font-size: 14px;
     }
 
     #sidebar {
@@ -167,6 +168,8 @@ Not supports in Firefox and IE */
 
     .sidebarimg {
         margin-right: 0;
+        width: 24px;
+        height: 24px;
     }
 
     .sidebarfooter {
