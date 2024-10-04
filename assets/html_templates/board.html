@@ -80,37 +80,36 @@
                     <div class="progressBar">
                         <div class="asd">
                             <p>To do</p>
-                            <button onclick="showAddTask(), setPrio('medium');"><img
+                            <button onclick="showAddTask('todo'), setPrio('medium');"><img
                                     src="./../../assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
                         </div>
-                        <div class="progressBoxes scrollbar" id="todoBox" ondrop="moveto('todo')" ondragover="allowDrop(event)">
+                        <div class="progressBoxes scrollbar" id="todoBox" ondrop="moveto('todo'), removeHighlight('todoBox')" ondragleave="removeHighlight('todoBox')" ondragover="allowDrop(event); highlight('todoBox')">
                         </div>
                     </div>
                     <div class="progressBar">
                         <div class="asd">
                             <p>In progress</p>
-                            <button onclick="showAddTask(), setPrio('medium');"><img
+                            <button onclick="showAddTask('inProgress'), setPrio('medium');"><img
                                     src="./../../assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
                         </div>
-                        <div class="progressBoxes scrollbar" id="inProgressBox" ondrop="moveto('inProgress')"
-                            ondragover="allowDrop(event)">
+                        <div class="progressBoxes scrollbar" id="inProgressBox" ondrop="moveto('inProgress'),removeHighlight('inProgressBox')" ondragleave="removeHighlight('inProgressBox')" ondragover="allowDrop(event),highlight('inProgressBox')">
                         </div>
                     </div>
                     <div class="progressBar">
                         <div class="asd">
                             <p>Await feedback</p>
-                            <button onclick="showAddTask(), setPrio('medium');"><img
+                            <button onclick="showAddTask('awaitFeedback'), setPrio('medium');"><img
                                     src="./../../assets/img/04_Board/add/Group 11.svg" alt="" class="icons"></button>
                         </div>
-                        <div class="progressBoxes scrollbar" id="awaitFeedbackBox" ondrop="moveto('awaitFeedback')"
-                            ondragover="allowDrop(event)">
+                        <div class="progressBoxes scrollbar" id="awaitFeedbackBox" ondrop="moveto('awaitFeedback'),removeHighlight('awaitFeedbackBox')" ondragleave="removeHighlight('awaitFeedbackBox')"
+                            ondragover="allowDrop(event); highlight('awaitFeedbackBox')">
                         </div>
                     </div>
                     <div class="progressBar">
                         <div class="asd">
                             <p>Done</p>
                         </div>
-                        <div class="progressBoxes scrollbar" id="doneBox" ondrop="moveto('done')" ondragover="allowDrop(event)">
+                        <div class="progressBoxes scrollbar" id="doneBox" ondrop="moveto('done'),removeHighlight('doneBox')" ondragover="allowDrop(event),highlight('doneBox')" ondragleave="removeHighlight('doneBox')">
                         </div>
                     </div>
                 </div>

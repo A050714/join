@@ -73,7 +73,7 @@ function generateInitals(task) {
         `;
       }else{
         content.innerHTML += /*html*/ `
-          <p class="circleEnd"> +${assignedContacts.length-4}</p>
+          <p class="circleEnd"> +${assignedContacts.length-3}</p>
         `;
         break;
       }      
@@ -179,6 +179,7 @@ function closeTask() {
       background.classList.add("dNone");
     },500)
   }
+  taskEdit= [];
 }
 
 function showInitials(contact) {
@@ -223,4 +224,13 @@ function generateSubTasks(subTask, index) {
       </div>
     </div>
   `;
+}
+
+function highlight(id){
+  document.getElementById(id).classList.add('drag-area-highlight');
+}
+function removeHighlight(id){
+  setTimeout(() => {
+    document.getElementById(id).classList.remove('drag-area-highlight');
+  }, 10);
 }

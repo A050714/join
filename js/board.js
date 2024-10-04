@@ -208,6 +208,8 @@ function showAddTask() {
 function hideAddTask() {
   const addTaskElement = document.getElementById("showAddTask");
   document.getElementById('selectedContactsDisplayEdit').innerHTML = '';
+  document.getElementById('selectedContactsDisplay').innerHTML = '';
+  document.getElementById('contactList-a').innerHTML = '';
   document.getElementById('contactList-edit').innerHTML = '';
   addTaskElement.classList.add("deactive"); // Blendet das Element wieder aus
   addTaskElement.classList.remove("active");
@@ -428,5 +430,5 @@ async function saveEditTask() {
 function closeEdit() {
   document.getElementById('showTask').classList.remove("dNone");
   document.getElementById('editTask').classList.add("dNone");
-  taskEdit = [];
+  // taskEdit = [];
 }
