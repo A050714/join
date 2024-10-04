@@ -111,6 +111,16 @@ function addTo(id, id2) {
     contactname.style.color = "";
     selectedContacts = selectedContacts.filter((c) => c.id !== contact.id);
   }
+
+  if (selectedContacts.length > 0) {
+    searchInput.required = false;
+    searchInput.value = `${selectedContacts.length} contact${selectedContacts.length > 1 ? 's' : ''} assigned`;
+  } else {
+    searchInput.required = true; 
+    searchInput.value = ""; 
+    searchInput.placeholder = "Select contacts to assign";
+  }
+
   displaySelectedContacts(id2.id);
 }
 
@@ -136,7 +146,7 @@ function toggleDropdown(
     selectedContactsDisplay.style.display = "none";
   }
   closeDropdownOnClickOutside();
-}
+  }
 
 /**
  * Closes the contact list dropdown when the user clicks anywhere outside of it.
@@ -369,7 +379,8 @@ async function addTask() {
   task.category = document.getElementById("categoryId").value;
   task.assignedTo = selectedContacts.map((c) => c.id);
   task.prio = selectedPrio;
-  task.id = tasks.length + 1;
+  task.id = getNewId();
+  
   if (task.subTasks.length === 0) {
     task.subTasks.push("empty");
   }
@@ -389,6 +400,16 @@ async function addTask() {
   await loadTasks();
   showAnimation();
   clearForm();
+}
+
+function getNewId() {
+  let high = 0;
+  tasks.forEach((e) => {
+    if (e.id > high) {
+      high = e.id;
+    }
+  });
+  return high + 1;
 }
 
 /**
@@ -457,17 +478,7 @@ function showInitials(contact) {
 function displaySelectedContacts(id) {
   let container = document.getElementById(id);
   container.innerHTML = "";
-  // selectedContacts.forEach((contact) => {
-  //   const nameParts = contact.name.trim().split(" ");
-  //   let initials;
-  //   if (nameParts.length === 1) {initials = nameParts[0][0];
-  //   } else {initials = nameParts[0][0] + nameParts[1][0];    }
-  //   let contactCircle = document.createElement("div");
-  //   contactCircle.classList.add("contact-circle");
-  //   contactCircle.style.backgroundColor = colors[contact.color];
-  //   contactCircle.innerText = initials;
-  //   container.appendChild(contactCircle);
-  // });
+  
   for (let index = 0; index < selectedContacts.length; index++) {
     const element = selectedContacts[index];
     if (index <= 3) {
@@ -484,7 +495,6 @@ function displaySelectedContacts(id) {
     }
   }
 }
-
 
 function getInitials(contact, id = "contactColor") {
   const nameParts = contact.name.split(" ");
@@ -589,3 +599,15 @@ function cancelEdit(index) {
   removeSubTask();
   showIcons(index);
 }
+
+
+function setMinDate() {
+  const today = new Date();
+  const day = String(today.getDate()).padStart(2, '0'); 
+  const month = String(today.getMonth() + 1).padStart(2, '0'); 
+  const year = today.getFullYear();
+  const minDate = `${year}-${month}-${day}`; 
+  document.getElementById("dateId").setAttribute("min", minDate);
+}
+
+

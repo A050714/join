@@ -35,12 +35,12 @@
                         </div>
                         <div>
                             <p>Description</p>
-                            <textarea id="descId" placeholder="Enter a Description"></textarea>
+                            <textarea class="scrollbar" id="descId" placeholder="Enter a Description"></textarea>
                         </div>
                         <div>
                             <p>Assigned to</p>
                             <div class="dropdown" tabindex="0" onclick="toggleDropdown()">
-                                <input type="text" id="searchInput" placeholder="Select contacts to assign" onkeyup="filterContacts()">
+                                <input required type="text" id="searchInput" placeholder="Select contacts to assign" onkeyup="filterContacts()">
                                 <img id="dropdownarrow" class="dropdown-arrow" src="./../../assets/img/03_AddTask/contacts_checked/arrow_drop_down.svg">
                             </div>
                             <div id="contactList-a" class="contactList-a scrollbar dNone"></div>
@@ -51,7 +51,7 @@
 
                     <div class="rightinputfields">
                         <p>Due date<span class="required">*</span></p>
-                        <input required type="date" id="dateId">
+                        <input onclick="setMinDate()" required type="date" id="dateId">
                         <p>Prio</p>
                         <div class="taskbtn">
                             <button type="button" onclick="setPrio('urgent')" class="tasksbtn" id="urgent">Urgent <img
