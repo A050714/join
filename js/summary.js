@@ -2,11 +2,9 @@ let nearestDeadline;
 let loggedUser;
 let firstLetter = "";
 
-
 /**
  * Initializes the summary page by loading tasks, user data, and deadlines.
  * Calls various functions to display the current state, nearest deadline, and user greeting.
- * 
  * @async
  * @function onloadSummary
  * @throws {Error} Alerts the user if an error occurs during the process.
@@ -25,7 +23,6 @@ async function onloadSummary() {
 /**
  * Loads tasks from the backend (Firebase) and filters them into an array.
  * This function assumes there is a `getData` method that fetches tasks.
- * 
  * @async
  * @function loadTasks
  * @throws {Error} Alerts the user if there is an issue fetching or processing tasks.
@@ -61,8 +58,14 @@ function loadCurrentStates() {
     document.getElementById('summary_prio').innerHTML = prio.length;
 }
 
-
-
+/**
+ * Fetches user data and displays a greeting message based on the time of day.
+ * If a user is logged in, it also displays the first letter of their name.
+ * 
+ * @async
+ * @function greetUser
+ * @throws {Error} Alerts the user if there is an issue fetching user data or if no user is logged in.
+ */
 async function greetUser() {
     try {
         let user = await fetchLoggedInUser();
@@ -79,7 +82,12 @@ async function greetUser() {
     }
 }
 
-
+/**
+ * Fetches the logged-in user's data from Firebase.
+ * @async
+ * @function fetchLoggedInUser
+ * @returns {Promise<object|null>} The logged-in user's data as a JSON object if found, null otherwise.
+ */
 async function fetchLoggedInUser() {
     let response = await fetch(`${BASE_URL}Users.json`);
     if (response.status === 200) {
@@ -93,6 +101,10 @@ async function fetchLoggedInUser() {
     return null;
 }
 
+/**
+ * Returns a greeting message based on the current time of day.
+ * @returns {string} A greeting message: "Good morning", "Good afternoon", or "Good evening".
+ */
 function determineGreeting() {
     const currentTime = new Date().getHours();
     if (currentTime < 12) return "Good morning";
@@ -100,7 +112,12 @@ function determineGreeting() {
     return "Good evening";
 }
 
-
+/**
+ * Updates the user interface to display the greeting message and the user's name or an abbreviation of it.
+ * If the user is a guest, only the greeting message is displayed.
+ * @param {Object} user - The user object containing the user's name and role.
+ * @param {string} greetingMessage - The greeting message to display.
+ */
 function updateUIForUser(user, greetingMessage) {
     document.getElementById('gmorning').innerHTML = greetingMessage;
     if (user.role === 'guest') {
@@ -111,8 +128,6 @@ function updateUIForUser(user, greetingMessage) {
         document.getElementById('name_menu').innerHTML = user.name.charAt(0).toUpperCase();
     }
 }
-
-
 
 /**
  * Loads and displays the nearest deadline from the list of tasks marked as "urgent."
@@ -130,5 +145,6 @@ function loadNearestDeadline() {
     nearestDeadline = sortedDueDates[0];
     document.getElementById("summary_deadline").innerHTML = nearestDeadline;
 }
+
 
 
