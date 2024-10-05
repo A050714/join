@@ -61,83 +61,57 @@ function loadCurrentStates() {
     document.getElementById('summary_prio').innerHTML = prio.length;
 }
 
-/**
- * Fetches user data and displays a greeting message based on the time of day.
- * If a user is logged in, it also displays the first letter of their name.
- * 
- * @async
- * @function greetUser
- * @throws {Error} Alerts the user if there is an issue fetching user data or if no user is logged in.
- */
+
+
 async function greetUser() {
-
     try {
-        let response = await fetch(`${BASE_URL}Users.json`);
-        if (response.status === 200) {
-            let usersData = await response.json();
-            
-            // Find the user who is currently logged in
-            let loggedInUser = null;
-            for (let userId in usersData) {
-                if (usersData[userId].logged === true) {
-                    loggedInUser = usersData[userId];
-                    break; // Stop once we find the logged-in user
-                }
-            }
-
-            if (loggedInUser) {
-
-                // Tageszeitabhängige Begrüßung
-                const currentTime = new Date().getHours(); // to get the current hour of the day
-                let greetingMessage;
-
-                if (currentTime < 12) {
-                    greetingMessage = "Good morning";
-                } else if (currentTime < 18) {
-                    greetingMessage = "Good afternoon";
-                } else {
-                    greetingMessage = "Good evening";
-                }
-
-                if (loggedInUser.role === 'guest') {
-                    document.getElementById('gmorning').innerHTML = greetingMessage;
-                    document.getElementById('userName').innerHTML = ""; // No name for guest
-                    document.getElementById('name_menu').innerHTML = "G"; 
-                } else {
-                    // If it's a regular user, show the greeting with their name
-                    document.getElementById('gmorning').innerHTML = greetingMessage + ",";
-                    document.getElementById('userName').innerHTML = loggedInUser.name;
-                }
-                
-                //Display the firstLetter 
-                const firstLetter = loggedInUser.name.charAt(0).toUpperCase(); 
-                document.getElementById('name_menu').innerHTML = firstLetter; 
-                } else {
-                 // if for not logged in user
-                 const currentTime = new Date().getHours(); // to get the current hour of the day
-                 let greetingMessage;
- 
-                 if (currentTime < 12) {
-                     greetingMessage = "Good morning";
-                 } else if (currentTime < 18) {
-                     greetingMessage = "Good afternoon";
-                 } else {
-                     greetingMessage = "Good evening";
-                 }
-                 
-                 document.getElementById('gmorning').innerHTML= greetingMessage;
-                document.getElementById('userName').innerHTML = "";
-                document.getElementById('name_menu').innerHTML = ""; 
-                }
+        let user = await fetchLoggedInUser();
+        let greetingMessage = determineGreeting();
+        if (user) {
+            updateUIForUser(user, greetingMessage);
         } else {
-            showMessagePopup('Failed to load user data.');
-            
+            document.getElementById('gmorning').innerHTML = greetingMessage;
+            document.getElementById('userName').innerHTML = "";
+            document.getElementById('name_menu').innerHTML = "";
         }
     } catch (error) {
-        console.error("Error fetching users:", error.message);
         showMessagePopup('An error occurred. Please try again.');
-    }      
+    }
 }
+
+
+async function fetchLoggedInUser() {
+    let response = await fetch(`${BASE_URL}Users.json`);
+    if (response.status === 200) {
+        let usersData = await response.json();
+        for (let userId in usersData) {
+            if (usersData[userId].logged === true) {
+                return usersData[userId]; // Return the logged-in user
+            }
+        }
+    }
+    return null;
+}
+
+function determineGreeting() {
+    const currentTime = new Date().getHours();
+    if (currentTime < 12) return "Good morning";
+    if (currentTime < 18) return "Good afternoon";
+    return "Good evening";
+}
+
+
+function updateUIForUser(user, greetingMessage) {
+    document.getElementById('gmorning').innerHTML = greetingMessage;
+    if (user.role === 'guest') {
+        document.getElementById('userName').innerHTML = "";
+        document.getElementById('name_menu').innerHTML = "G";
+    } else {
+        document.getElementById('userName').innerHTML = user.name;
+        document.getElementById('name_menu').innerHTML = user.name.charAt(0).toUpperCase();
+    }
+}
+
 
 
 /**
