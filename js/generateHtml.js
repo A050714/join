@@ -37,20 +37,16 @@ function genereteNoTasks(message) {
 function calculateSubTasks(task) {
   let content = document.getElementById(`subtasksDiv${task.id}`);
   if (task.subTasks != null) {
-
     let subTasks = task.subTasks;
     let doneSubtasks = subTasks.filter((t) => t.status == "done");
-    if (subTasks == "empty") {
-      document.getElementById(`progressbarID-${task.id}`).classList.add("dNone");
-    } else {
+    if (subTasks == "empty") {document.getElementById(`progressbarID-${task.id}`).classList.add("dNone");} 
+    else {
       content.innerHTML = `${doneSubtasks.length}/${subTasks.length} Subtasks`;
       let percentWidth = (doneSubtasks.length / subTasks.length) * 100;
       if (percentWidth <= 0) {
         percentWidth = 10;
       }
-      document.getElementById(
-        `progress-color${task.id}`
-      ).style.width = `${percentWidth}%`;
+      document.getElementById(`progress-color${task.id}`).style.width = `${percentWidth}%`;
     }
   }
 }
@@ -62,28 +58,25 @@ function generateInitals(task) {
       assignedIDs.includes(contact.id)
     );
     let content = document.getElementById(`assignedWrapperCard${task.id}`);
-
     content.innerHTML = "";
-    for (let index = 0; index < assignedContacts.length; index++) {
-      const element = assignedContacts[index];
-      if(index <= 2){
-        content.innerHTML += /*html*/ `
-          <p class="circle" id="contactcolor" style = "background-color: ${colors[element.color]
-        }"> ${getInitials(element)}</p>
-        `;
-      }else{
-        content.innerHTML += /*html*/ `
-          <p class="circleEnd"> +${assignedContacts.length-3}</p>
-        `;
-        break;
-      }      
-    }
-    // assignedContacts.forEach((contact) => {      
-    //   content.innerHTML += /*html*/ `
-    //       <p class="circle" id="contactcolor" style = "background-color: ${colors[contact.color]
-    //     }"> ${getInitials(contact)}</p>
-    //     `;
-    // });
+    generateBackgroundColor(assignedContacts, content);
+  }
+}
+
+function generateBackgroundColor(assignedContacts, content){
+  for (let index = 0; index < assignedContacts.length; index++) {
+    const element = assignedContacts[index];
+    if(index <= 2){
+      content.innerHTML += /*html*/ `
+        <p class="circle" id="contactcolor" style = "background-color: ${colors[element.color]
+      }"> ${getInitials(element)}</p>
+      `;
+    }else{
+      content.innerHTML += /*html*/ `
+        <p class="circleEnd"> +${assignedContacts.length-3}</p>
+      `;
+      break;
+    }      
   }
 }
 
@@ -94,7 +87,6 @@ function generateAssignedContacts(task) {
       assignedIDs.includes(contact.id)
     );
     let content = document.getElementById(`assignedWrapper${task.id}`);
-
     content.innerHTML = "";
     assignedContacts.forEach((contact) => {
       content.innerHTML += /*html*/ `
@@ -111,7 +103,6 @@ function generateAssignedContacts(task) {
 function generateTaskHTML(task) {
   const capitalizedPrio =
     task.prio.charAt(0).toUpperCase() + task.prio.slice(1);
-
   return /*html*/ `
             <div class="user-story-card scrollbar" id="taskCard">
             <div class="header">
@@ -172,7 +163,6 @@ function generateSubtasksOpenCard(task) {
 function closeTask() {
   let background = document.getElementById("showTask");
   let tascCard = document.getElementById('taskCard');
-
   if(!background.classList.contains("dNone")){
     tascCard.classList.remove('active');
     setTimeout(() => {
@@ -183,16 +173,13 @@ function closeTask() {
 }
 
 function showInitials(contact) {
-
   const nameParts = contact.name.trim().split(" ");
   let initials;
-
   if (nameParts.length === 1) {
-    initials = nameParts[0][0]; // Nur einen Buchstaben, wenn der Name nur ein Wort ist
+    initials = nameParts[0][0]; 
   } else {
-    initials = nameParts[0][0] + nameParts[1][0]; // Zwei Buchstaben (z.B. "MT" für Mike Tyson)
+    initials = nameParts[0][0] + nameParts[1][0]; 
   }
-
   let circleInitials = document.getElementById(`contactColor-${contact.id}`);
   circleInitials.innerHTML = `<p class="pInitals">${initials}</p>`;
   circleInitials.style.backgroundColor = colors[contact.color];

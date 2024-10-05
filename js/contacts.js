@@ -1,4 +1,3 @@
-
 let theLastIndex;
 let colors = ['#FF7A00', '#FF5EB3', '#6E52FF',
     '#9327FF', '#00BEE8', '#1FD7C1',
@@ -22,7 +21,6 @@ async function renderAllContacts() {
 
 /**
  * Divides the list of contacts into sections based on the first letter of each contact's name.
- *
  * @param {HTMLElement} content - The HTML element where the contact list will be rendered.
  */
 function divideByFirstLetter(content) {
