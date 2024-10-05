@@ -11,6 +11,7 @@ let firstLetter = "";
  * @function onloadSummary
  * @throws {Error} Alerts the user if an error occurs during the process.
  */
+
 async function onloadSummary() {
     // await loadTasks();
     await checkLog();
@@ -18,7 +19,6 @@ async function onloadSummary() {
     loadCurrentStates();
     loadNearestDeadline();
     await showFirstLetter();
-
     await greetUser();
 }
 
@@ -70,6 +70,7 @@ function loadCurrentStates() {
  * @throws {Error} Alerts the user if there is an issue fetching user data or if no user is logged in.
  */
 async function greetUser() {
+
     try {
         let response = await fetch(`${BASE_URL}Users.json`);
         if (response.status === 200) {
@@ -155,6 +156,5 @@ function loadNearestDeadline() {
     nearestDeadline = sortedDueDates[0];
     document.getElementById("summary_deadline").innerHTML = nearestDeadline;
 }
-
 
 

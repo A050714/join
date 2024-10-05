@@ -233,6 +233,7 @@ async function login(event) {
     }
 }
 
+
 /**
  * Logs in a guest user with a default "Guest" role and redirects to the summary page.
  * 
@@ -315,26 +316,6 @@ async function guestLogin(){
         showMessagePopup('An error occurred during guest login. Please try again.');
     }
 }
-
-
-// function guestLogin() {
-//     // Create a default guest user object
-//     const guestUser = {
-//         name: "Guest",
-//         email: "guest@example.com",
-//         role: "guest"  // define a role if your application uses role-based access
-//     };
-
-//     // Optionally store the guest user data in sessionStorage
-//     sessionStorage.setItem('user', JSON.stringify(guestUser));
-    
-//     showMessagePopup('You are logged in as a guest!');
-//     // Redirect after a short delay
-//     setTimeout(() => {
-//         window.location.href = './../../assets/html_templates/summary.html';
-//     }, 2000); // Delay for 2 seconds before redirecting
-// }
-
 
 
 function showMessgaePopup(){

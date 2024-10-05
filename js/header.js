@@ -112,10 +112,10 @@ async function logout() {
 function showMessagePopup(message) {
     const popup = document.getElementById('spMessagePopup');
     if (popup) {
-        popup.innerHTML = message; // Set the message content
-        popup.classList.add('show'); // Add the show class to display the popup
+        popup.innerHTML = message; 
+        popup.classList.add('show'); 
         popup.classList.add('offlinemessage');
-        // Hide the message popup after 3 seconds
+
         setTimeout(() => {
             popup.classList.remove('show');
             popup.classList.remove('offlinemessage');
@@ -125,19 +125,17 @@ function showMessagePopup(message) {
     }
 }
 
-
 async function checkLog() {
-    // for guestrole
-    // Check if user is logged in when the page loads
+
     try {
-        // Fetch all users from Firebase
+
         let response = await fetch(`${BASE_URL}Users.json`);
 
         if (response.status === 200) {
             let usersData = await response.json();
             let userLoggedIn = false;
 
-            // Check if there's any user with logged: true
+
             for (let userId in usersData) {
                 if (usersData[userId].logged === true) {
                     userLoggedIn = true;
@@ -145,13 +143,10 @@ async function checkLog() {
                 }
             }
 
-            if (userLoggedIn) {
-                // If a logged-in user is found, allow access to the page
-                grantAccess();
-            } else {
-                // If no user is logged in, restrict access and show a message
+            if (!userLoggedIn) {
                 restrictAccess();
-            }
+                return; 
+            } 
         } else {
             showMessagePopup('Error fetching user data. Please try again.');
         }
@@ -160,51 +155,19 @@ async function checkLog() {
         showMessagePopup('<p>An error occurred while checking login status.</p>');
     }
 }
-function grantAccess() {
-    // Allow access to the page
-}
+
 
 function restrictAccess() {
-    // disableLinks();
-    const currentPath = window.location.pathname;
-
-    if (currentPath.includes("privacy.html") || currentPath.includes("legal_notice.html")) {
-        return; // Do not redirect 
-    }
-
-    // For other pages, redirect to the login page
-    showMessagePopup('You are not logged in. Please log in to get full access to other pages.');
-    setTimeout(() => {
-        
-        window.location.href = "./../../assets/html_templates/login.html";
-    }, 3000);
+    const link1 = document.getElementById('widget_1');
+    const link2 = document.getElementById('widget_2');
+    const link3 = document.getElementById('widget_3');
+    const link4 = document.getElementById('widget_4');
+    link1.style.display = 'none';
+    link2.style.display = 'none';
+    link3.style.display = 'none';
+    link4.style.display = 'none';
 }
-// function disableLinks() {
-
-//     const links = document.querySelectorAll('a');
-//     links.forEach(link => {
-//         window.location.href('./../../assets/html_templates/login.html'); // Remove link functionality
-//         link.classList.add('disabled'); // Add disabled class to style the link
-//     });
-// }
 
 
 
-// function showMessagePopup(message) {
-//     const popup = document.getElementById('spMessagePopup');
-//     if (popup) {
-//         popup.innerHTML = message; // Set the message content
-//         popup.classList.add('show'); // Add the show class to display the popup
-
-//         // Hide the message popup after 3 seconds
-//         setTimeout(() => {
-//             popup.classList.remove('show');
-//             window.location.href = "./../../assets/html_templates/login.html"
-//         }, 3000);
-
-//     } else {
-//         console.error("Popup element not found.");
-//     }
-
-// }
 

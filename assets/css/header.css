@@ -131,22 +131,7 @@ header a {
     z-index: 9999;
 }
 
-.offlinemessage{
-    background-color: #d1d1d1;
-    color: black;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    vertical-align: middle;
-    height: 100vh !important;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    transform: unset;
-    
-}
+
 
 .show {
     display: flex; /* Show when needed */
