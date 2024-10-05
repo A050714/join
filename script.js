@@ -30,6 +30,7 @@ async function onloadMain() {
  * @function includeHTML
  */
 function includeHTML() {
+  checkLog()
   var z, i, elmnt, file, xhttp;
   /* Loop through a collection of all HTML elements: */
   z = document.getElementsByTagName("*");
@@ -50,7 +51,9 @@ function includeHTML() {
           }
           /* Remove the attribute, and call this function once more: */
           elmnt.removeAttribute("w3-include-html");
+          
           includeHTML();
+          
         }
       };
       xhttp.open("GET", file, true);
@@ -216,4 +219,47 @@ async function saveUser(data,path) {
   users=[];
   await loadUsers();
 
+}
+
+
+async function checkLog() {
+
+  try {
+
+      let response = await fetch(`${BASE_URL}Users.json`);
+
+      if (response.status === 200) {
+          let usersData = await response.json();
+          let userLoggedIn = false;
+
+
+          for (let userId in usersData) {
+              if (usersData[userId].logged === true) {
+                  userLoggedIn = true;
+                  break;
+              }
+          }
+
+          if (userLoggedIn) {
+            grantAccess();
+              return; 
+          } 
+      } else {
+          showMessagePopup('Error fetching user data. Please try again.');
+      }
+  } catch (error) {
+      console.error('Error fetching users from Firebase:', error);
+      showMessagePopup('<p>An error occurred while checking login status.</p>');
+  }
+}
+
+function grantAccess() {
+  const link1 = document.getElementById('widget_1');
+  const link2 = document.getElementById('widget_2');
+  const link3 = document.getElementById('widget_3');
+  const link4 = document.getElementById('widget_4');
+  link1.style.display = 'flex';
+  link2.style.display = 'flex';
+  link3.style.display = 'flex';
+  link4.style.display = 'flex';
 }

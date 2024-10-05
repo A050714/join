@@ -125,48 +125,9 @@ function showMessagePopup(message) {
     }
 }
 
-async function checkLog() {
-
-    try {
-
-        let response = await fetch(`${BASE_URL}Users.json`);
-
-        if (response.status === 200) {
-            let usersData = await response.json();
-            let userLoggedIn = false;
 
 
-            for (let userId in usersData) {
-                if (usersData[userId].logged === true) {
-                    userLoggedIn = true;
-                    break;
-                }
-            }
 
-            if (!userLoggedIn) {
-                restrictAccess();
-                return; 
-            } 
-        } else {
-            showMessagePopup('Error fetching user data. Please try again.');
-        }
-    } catch (error) {
-        console.error('Error fetching users from Firebase:', error);
-        showMessagePopup('<p>An error occurred while checking login status.</p>');
-    }
-}
-
-
-function restrictAccess() {
-    const link1 = document.getElementById('widget_1');
-    const link2 = document.getElementById('widget_2');
-    const link3 = document.getElementById('widget_3');
-    const link4 = document.getElementById('widget_4');
-    link1.style.display = 'none';
-    link2.style.display = 'none';
-    link3.style.display = 'none';
-    link4.style.display = 'none';
-}
 
 
 
