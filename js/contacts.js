@@ -6,7 +6,6 @@ let colors = ['#FF7A00', '#FF5EB3', '#6E52FF',
     '#FFC701', '#0038FF', '#C3FF2B',
     '#FFE62B', '#FF4646', '#FFBB2B'];
 
-
 /**
  * Renders all contacts in the contact list, including the contact button and sorted by first letter.
  */
@@ -20,7 +19,6 @@ async function renderAllContacts() {
     content.innerHTML += addContactButtonHTML();
     divideByFirstLetter(content)
     }
-
 
 /**
  * Divides the list of contacts into sections based on the first letter of each contact's name.
@@ -41,7 +39,6 @@ function divideByFirstLetter(content) {
 }
 }
 
-
 function addContactButtonHTML() {
     return `
     <button class="contactbtn" id="addNewContact" onclick="togglePopup()">Add new Contact <img class="newcontactimg"
@@ -49,7 +46,6 @@ function addContactButtonHTML() {
                         <div class = "contactBtnBackground"></div>
     `
 }
-
 
 /**
  * Generates the HTML for a single contact item.
@@ -71,7 +67,6 @@ function singleContactHTML(index, contact) {
         `;
 }
 
-
 /**
  * Sorts the list of contacts in ascending order based on their names.
  */
@@ -88,7 +83,6 @@ function sortContacts() {
         return 0;
     });
 }
-
 
 /**
  * Toggles the visibility of the popup overlay and add contact popup.
@@ -111,7 +105,6 @@ function togglePopup() {
         }, 500);  
     }
 }
-
 
 /**
  * Toggles the image source of the mobile add contact button between active and inactive states.
@@ -141,7 +134,6 @@ function toggleMobileMenu(){
     }
 }
 
-
 /**
  * Toggles the visibility of the edit contact popup overlay.
  */
@@ -163,7 +155,6 @@ function toggleEditPopup() {
     }
 }
 
-
 /**
  * Creates a new contact by retrieving input values, posting the data, and resetting the input fields.
  */
@@ -179,7 +170,6 @@ async function createContact() {
     ctAddedAnimation();
 }
 
-
 /**
  * Finds the index of a contact in the contacts array by its ID.
  *
@@ -190,7 +180,6 @@ async function createContact() {
 function findIndexById(contacts, idToFind) {
     return contacts.findIndex(contact => contact.id === idToFind);
 }
-
 
 /**
  * Deletes a contact by retrieving its name, finding its Firebase ID, 
@@ -204,7 +193,6 @@ async function deleteContact() {
     contacts.splice(index, 1)
     location.reload();
 }
-
 
 /**
  * Displays a contact based on the provided index, updating the UI accordingly.
@@ -230,7 +218,6 @@ function showContact(index) {
     contactContainer.classList.add('show');
 }
 
-
 /**
  * Fills the contact card with the provided contact's data.
  *
@@ -245,7 +232,6 @@ function fillContactData(contact) {
     contactCardPhone.innerHTML = `${contact.phone}`;
     showInitials(contact);
 }
-
 
 /**
  * Checks the current screen width and adjusts the visibility of contact details and contact list accordingly.
@@ -262,7 +248,6 @@ function checkScreenWidth() {
         contactList.classList.remove('dNone')
     }
 }
-
 
 /**
  * Displays the initials of a contact in a circular element.
@@ -283,7 +268,6 @@ function showInitials(contact, id = "contactColor") {
     circleInitials.style = `background-color: ${colors[contact.color]}`;
 }
 
-
 /**
  * Fills the edit contact form fields with the current contact's data and displays their initials.
  */
@@ -297,7 +281,6 @@ async function fillContactValues() {
     let contact = contacts.find(x => x.name && x.name === name);
     showInitials(contact, `addcontactbg`)
 }
-
 
 /**
  * Edits an existing contact by retrieving the updated values from the edit form,
@@ -322,14 +305,12 @@ async function editContact() {
     location.reload();
 }
 
-
 /**
  * Redirects the user to the mobile version of the contacts page.
  */
 function showContactsMobile() {
     window.location.href = "./../html_templates/contacts.html"
 }
-
 
 /**
  * Displays the mobile menu by toggling its image and adding the 'show' class to the mobile menu element and the 'headerOverlay' class to the mobile menu overlay element.
@@ -340,7 +321,6 @@ function showMobileMenu() {
     document.getElementById('mobileMenuOverlay').classList.add('headerOverlay')
 }
 
-
 /**
  * Closes the mobile menu by toggling its image and removing the 'show' class from the mobile menu element and the 'headerOverlay' class from the mobile menu overlay element.
  */
@@ -349,7 +329,6 @@ function closeMobileMenu() {
     document.getElementById('mobileMenu').classList.remove('show')
     document.getElementById('mobileMenuOverlay').classList.remove('headerOverlay')
 }
-
 
 /**
  * Displays a contact added animation and redirects to the contacts page after a short delay.
