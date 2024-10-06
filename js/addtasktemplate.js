@@ -97,13 +97,16 @@ function clearForm() {
   document.getElementById("dateId").value = "";
   selectedContacts = [];
   document.getElementById("selectedContactsDisplay").innerHTML = "";
+  document.getElementById("searchInput").value = ""; 
+  document.getElementById("searchInput").placeholder = "Select contacts to assign";
   task.subTasks = [];
   document.getElementById("categoryId").value = "";
   document.getElementById("subtasks").innerHTML = "";
   selectedPrio = "";
-  resetPrioStyles();
+  setPrio('medium');
   clearContactList();
 }
+
 
 function getNewId() {
   let high = 0;
@@ -147,7 +150,7 @@ function renderSubTasks() {
             <span class="separator hide" id="separator-edit-delete-${index}">|</span>
             <img src="./../../assets/img/03_AddTask/subtasks_icons/delete.svg" alt="Delete" class="icon hide" id="deleteIcon-${index}" onclick="removeSubTask(${index})">
             <span class="separator hide" id="separator-save-${index}">|</span>
-            <img src="./../../assets/img/00_General_elements/edit.svg" alt="Save" class="icon hide" id="save-${index}" onclick="saveEdit(${index})">
+            <img src="./../../assets/img/00_General_elements/Subtasks icons11.svg" alt="Save" class="icon hide" id="save-${index}" onclick="saveEdit(${index})">
             <span class="separator hide" id="separator-cancel-${index}">|</span>
             <img src="./../../assets/img/03_AddTask/subtasks_icons/delete.svg" alt="Cancel" class="icon hide" id="cancel-${index}" onclick="cancelEdit(${index})">
           </div>
