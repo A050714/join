@@ -8,7 +8,6 @@ let taskEdit;
  * @return {Promise<void>} A promise that resolves when the board is fully loaded.
  */
 async function onloadBoard() {
-  await checkLog();
   await onloadMain();
   generateBoard();
   await showFirstLetter();

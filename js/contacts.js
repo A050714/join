@@ -9,7 +9,6 @@ let colors = ['#FF7A00', '#FF5EB3', '#6E52FF',
  * Renders all contacts in the contact list, including the contact button and sorted by first letter.
  */
 async function renderAllContacts() {
-    await checkLog();
     await onloadMain();
     await showFirstLetter(); 
     sortContacts();

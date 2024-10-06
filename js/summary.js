@@ -11,8 +11,6 @@ let firstLetter = "";
  */
 
 async function onloadSummary() {
-    // await loadTasks();
-    await checkLog();
     await onloadMain();
     loadCurrentStates();
     loadNearestDeadline();
