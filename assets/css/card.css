@@ -146,6 +146,7 @@ p {
     font-size: 15px !important;
     align-items: center;
     justify-content: center;
+    margin-bottom: 0 !important;
 }
 
 @media (max-width:800px) {
