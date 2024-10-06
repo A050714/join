@@ -9,16 +9,16 @@
     <link rel="stylesheet" href="./../css/sidebar.css">
     <link rel="stylesheet" href="./../css/header.css">
     <link rel="stylesheet" href="./../../style.css">
+    <script src="./../.././script.js" defer></script>
     <script src="./../../js/header.js"></script>
     <script src="./../../js/summary.js"></script>
-    <script src="./../.././script.js" defer></script>
     <script>
         function goBack(){
-            window.history.back(); 
+            window.location.href = './../../assets/html_templates/login.html' 
         }
     </script>
 </head>
-<body onload="includeHTML(), showFirstLetter()" >
+<body onload="includeHTML(), showFirstLetter(),checkLog()" >
     <header w3-include-html="./../../assets/html_templates/header.html"></header>
     <aside w3-include-html="./../../assets/html_templates/sidebar.html"></aside>
     <main class="mainscreen_phl">

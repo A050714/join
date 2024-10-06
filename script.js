@@ -30,7 +30,6 @@ async function onloadMain() {
  * @function includeHTML
  */
 function includeHTML() {
-  checkLog()
   var z, i, elmnt, file, xhttp;
   /* Loop through a collection of all HTML elements: */
   z = document.getElementsByTagName("*");
