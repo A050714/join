@@ -104,7 +104,6 @@ function clearForm() {
   document.getElementById("subtasks").innerHTML = "";
   selectedPrio = "";
   setPrio('medium');
-  clearContactList();
 }
 
 

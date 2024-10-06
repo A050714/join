@@ -17,17 +17,19 @@
                 </div>
                 <div>
                     <p>Assigned to</p>
-                            <div class="dropdown" tabindex="0" onclick="toggleDropdown()">
-                                <input required type="text" id="searchInput" placeholder="Select contacts to assign" onkeyup="filterContacts()">
-                                <img id="dropdownarrow" class="dropdown-arrow" src="./../../assets/img/03_AddTask/contacts_checked/arrow_drop_down.svg">
-                            </div>
-                            <div id="contactList-a" class="contactList-a scrollbar dNone"></div>
-                        </div>
-                          <div id="selectedContactsDisplay"></div>
+                    <div class="dropdown" tabindex="0" onclick="toggleDropdown()">
+                        <input required type="text" id="searchInput" placeholder="Select contacts to assign"
+                            onkeyup="filterContacts()">
+                        <img id="dropdownarrow" class="dropdown-arrow"
+                            src="./../../assets/img/03_AddTask/contacts_checked/arrow_drop_down.svg">
+                    </div>
+                    <div id="contactList-a" class="contactList-a scrollbar dNone"></div>
                 </div>
-              
+                <div id="selectedContactsDisplay"></div>
             </div>
-            
+
+            </div>
+
             <div class="seperator"></div>
 
             <div class="rightinputfields">
@@ -53,10 +55,15 @@
                     <p>Subtasks</p>
                     <div class="inputAndButtons" tabindex="0">
                         <input type="text" id="subtaskInput" placeholder="Add new subtask" oninput="handleInput()" />
-                        <img id="addToSubTaskbtn" class="taskicon" src="./../../assets/img/03_AddTask/subtasks_icons/add.svg">
-                        <img id="crossIcon" class="subtaskicon hide" src="./../../assets/img/00_General_elements/close/default.svg" alt="cross" onclick="clearInput()">
+                        <img id="addToSubTaskbtn" class="taskicon"
+                            src="./../../assets/img/03_AddTask/subtasks_icons/add.svg">
+                        <img id="crossIcon" class="subtaskicon hide"
+                            src="./../../assets/img/00_General_elements/close/default.svg" alt="cross"
+                            onclick="clearInput()">
                         <span class="separator hide" id="separator">|</span>
-                        <img id="checkIcon" class="subtaskicon hide" src="./../../assets/img/00_General_elements/Subtasks icons11.svg" alt="check" onclick="addToSubTasks()">
+                        <img id="checkIcon" class="subtaskicon hide"
+                            src="./../../assets/img/00_General_elements/Subtasks icons11.svg" alt="check"
+                            onclick="addToSubTasks()">
                     </div>
 
                     <div id="subtasks"></div>
@@ -70,7 +77,7 @@
                 </div>
             </div>
             <div class="rightfooter">
-                <button type="button" onclick="hideAddTask()" class="clearbtn">Cancel <img
+                <button type="button" onclick="hideAddTask(), clearForm()" class="clearbtn">Cancel <img
                         src="./../../assets/img/00_General_elements/close/default.svg" alt=""></button>
 
                 <button type="submit" class="createtaskbtn">Create Task <img
@@ -83,7 +90,24 @@
     </div>
 </body>
 <style>
-    
+    .subtask-item {
+        display: flex;
+        
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #e0e0e0;
+        background-color: #f9f9f9;
+        transition: background-color 0.3s ease;
+    }
+
+    .icons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: auto;
+}
+
+
     .inputFields {
         display: flex;
         flex-direction: column;
@@ -156,7 +180,7 @@
     .rightfooter {
         position: fixed;
         right: 40px;
-        bottom: 130px;
+        bottom: 65px;
         display: flex;
         justify-content: center;
         gap: 16px;
@@ -208,17 +232,18 @@
     /* Aktiviert die Animation und positioniert das Element zentriert */
     .showAddTask.active {
         right: 50%;
-        transform: translate(50%,-50%);
+        transform: translate(50%, -50%);
         opacity: 1;
     }
-    .showAddTask.deactive{
+
+    .showAddTask.deactive {
         right: -100%;
-        transform: translate(50%,-50%);
+        transform: translate(50%, -50%);
         opacity: 1;
     }
 
     @media (max-width: 1050px) {
-        .showAddTask{
+        .showAddTask {
             max-width: 850px !important;
         }
     }
