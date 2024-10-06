@@ -19,7 +19,6 @@ let selectedContacts = [];
  * @function onloadAddTask
  */
 async function onloadAddTask() {
-  await checkLog();
   await onloadMain();
   await showFirstLetter();
   contactsDropdown("contactList-a", "selectedContactsDisplay");

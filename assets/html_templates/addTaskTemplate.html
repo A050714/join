@@ -1,6 +1,6 @@
 <body onload="onloadAddTask()">
     <div class="btnSpan">
-        <button class="" onclick="hideAddTask()"><img src="./../../assets/img/00_General_elements/close.svg"
+        <button class="" onclick="clearFormBoard(),hideAddTask()"><img src="./../../assets/img/00_General_elements/close.svg"
                 alt=""></button>
     </div>
     <h4>Add Task</h4>
@@ -77,7 +77,7 @@
                 </div>
             </div>
             <div class="rightfooter">
-                <button type="button" onclick="hideAddTask(), clearForm()" class="clearbtn">Cancel <img
+                <button type="button" onclick="clearFormBoard(),hideAddTask()" class="clearbtn">Cancel <img
                         src="./../../assets/img/00_General_elements/close/default.svg" alt=""></button>
 
                 <button type="submit" class="createtaskbtn">Create Task <img

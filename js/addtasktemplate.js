@@ -91,7 +91,7 @@ function showAnimation() {
  * fields to their initial values, removes any selected contacts, and clears the subtasks
  * list.
  */
-function clearForm() {
+function clearFormBoard() {
   document.getElementById("titleId").value = "";
   document.getElementById("descId").value = "";
   document.getElementById("dateId").value = "";
@@ -105,9 +105,25 @@ function clearForm() {
   document.getElementById("subtasks").innerHTML = "";
   selectedPrio = "";
   setPrio('medium');
+<<<<<<< Updated upstream
   clearContactList();
+=======
+  clearContactListBoard();
 }
-
+function clearContactListBoard() {
+  document.getElementById("selectedContactsDisplay").innerHTML = "";
+  contacts.forEach((contact) => {
+    let contactDiv = document.getElementById(`contact-${contact.id}`);
+    let checkbox = document.getElementById(`checkboxtask-${contact.id}`);
+    let contactname = document.getElementById(`contactname-${contact.id}`);
+    contactDiv.style.backgroundColor = "";
+    checkbox.src =
+      "./../../assets/img/03_AddTask/contacts_checked/Check button.svg";
+    contactname.style.color = "";
+    contactDiv.classList.remove("selected");
+  });
+>>>>>>> Stashed changes
+}
 
 function getNewId() {
   let high = 0;
