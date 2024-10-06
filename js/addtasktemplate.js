@@ -105,9 +105,6 @@ function clearFormBoard() {
   document.getElementById("subtasks").innerHTML = "";
   selectedPrio = "";
   setPrio('medium');
-<<<<<<< Updated upstream
-  clearContactList();
-=======
   clearContactListBoard();
 }
 function clearContactListBoard() {
@@ -122,7 +119,6 @@ function clearContactListBoard() {
     contactname.style.color = "";
     contactDiv.classList.remove("selected");
   });
->>>>>>> Stashed changes
 }
 
 function getNewId() {
