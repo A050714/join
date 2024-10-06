@@ -100,10 +100,12 @@ function clearForm() {
   document.getElementById("searchInput").value = ""; 
   document.getElementById("searchInput").placeholder = "Select contacts to assign";
   task.subTasks = [];
+  task.assignedTo= [];
   document.getElementById("categoryId").value = "";
   document.getElementById("subtasks").innerHTML = "";
   selectedPrio = "";
   setPrio('medium');
+  clearContactList();
 }
 
 
