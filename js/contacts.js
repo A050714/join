@@ -86,23 +86,16 @@ function sortContacts() {
  * Toggles the visibility of the popup overlay and add contact popup.
  */
 function togglePopup() {
-    toggleMobileImg()
-    let overlay = document.getElementById('overlay');
-    let popup = document.getElementById('addcontactpopup');
-    if (overlay.classList.contains('hidden')) {
-        overlay.classList.remove('hidden');  
-        setTimeout(() => {
-            overlay.classList.add('show');   
-            popup.classList.add('show');     
-        }, 10); 
-    } else {
-        overlay.classList.remove('show');
-        popup.classList.remove('show');
-        setTimeout(() => {
-            overlay.classList.add('hidden'); 
-        }, 500);  
-    }
+    toggleMobileImg();
+    let overlay = document.getElementById('overlay'), popup = document.getElementById('addcontactpopup');
+    let isHidden = overlay.classList.contains('hidden');
+    overlay.classList.toggle('hidden', !isHidden);
+    setTimeout(() => {
+        overlay.classList.toggle('show', isHidden);
+        popup.classList.toggle('show', isHidden);
+    }, isHidden ? 10 : 500);
 }
+
 
 /**
  * Toggles the image source of the mobile add contact button between active and inactive states.
@@ -136,22 +129,15 @@ function toggleMobileMenu(){
  * Toggles the visibility of the edit contact popup overlay.
  */
 function toggleEditPopup() {
-    let overlay = document.getElementById('editOverlay');
-    let popup = document.getElementById('editcontactpopup');
-    if (overlay.classList.contains('hidden')) {
-        overlay.classList.remove('hidden');  
-        setTimeout(() => {
-            overlay.classList.add('show');   
-            popup.classList.add('show');     
-        }, 10); 
-    } else {
-        overlay.classList.remove('show');
-        popup.classList.remove('show');
-        setTimeout(() => {
-            overlay.classList.add('hidden'); 
-        }, 500);  
-    }
+    let overlay = document.getElementById('editOverlay'), popup = document.getElementById('editcontactpopup');
+    let isHidden = overlay.classList.contains('hidden');
+    overlay.classList.toggle('hidden', !isHidden);
+    setTimeout(() => {
+        overlay.classList.toggle('show', isHidden);
+        popup.classList.toggle('show', isHidden);
+    }, isHidden ? 10 : 500);
 }
+
 
 /**
  * Creates a new contact by retrieving input values, posting the data, and resetting the input fields.
@@ -198,21 +184,19 @@ async function deleteContact() {
  * @param {number} index - The index of the contact to display.
  */
 function showContact(index) {
-    let contactContainer = document.getElementById('showContact')
-    contactContainer.classList.remove('show');
-    checkScreenWidth()
-    if (theLastIndex != null) {
-        document.getElementById(theLastIndex).classList.remove('chosenContact');
-        document.getElementById(theLastIndex).classList.add('singleContacts');
+    let contactContainer = document.getElementById('showContact');
+    contactContainer.classList.remove('show', 'dNone');
+    checkScreenWidth();
+    if (theLastIndex) {
+        document.getElementById(theLastIndex).classList.toggle('chosenContact', false);
+        document.getElementById(theLastIndex).classList.toggle('singleContacts', true);
     }
-    contactContainer.classList.remove('dNone')
-    let contact = contacts[index];
-    fillContactData(contact)
-    document.getElementById(`Id_${index}`).classList.add('chosenContact');
-    document.getElementById(`Id_${index}`).classList.remove('singleContacts');
-    document.getElementById('openContact').style.display = "flex";
-    document.getElementById('betterWAT').style.display = "flex";
-    theLastIndex = `Id_${index}`;
+    fillContactData(contacts[index]);
+    let currentId = `Id_${index}`;
+    document.getElementById(currentId).classList.toggle('chosenContact', true);
+    document.getElementById(currentId).classList.toggle('singleContacts', false);
+    document.getElementById('openContact').style.display = document.getElementById('betterWAT').style.display = "flex";
+    theLastIndex = currentId;
     contactContainer.classList.add('show');
 }
 
@@ -287,21 +271,13 @@ async function fillContactValues() {
  */
 async function editContact() {
     let contactName = document.getElementById('contactName').innerHTML;
-    let name = document.getElementById('editName').value;
-    let mail = document.getElementById('editMail').value;
-    let phone = document.getElementById('editPhone').value;
-    let contact = contacts.find(x => x.name && x.name === contactName);
-    let firebaseID = contact.id;
-    let updatedContact = {
-        name: name,
-        mail: mail,
-        phone: phone,
-        id: contact.id,
-        color: contact.color
-    };
-    await postData(`Contacts/${firebaseID}`, updatedContact);
+    let name = document.getElementById('editName').value, mail = document.getElementById('editMail').value, phone = document.getElementById('editPhone').value;
+    let contact = contacts.find(x => x.name === contactName);
+    let updatedContact = { name, mail, phone, id: contact.id, color: contact.color };
+    await postData(`Contacts/${contact.id}`, updatedContact);
     location.reload();
 }
+
 
 /**
  * Redirects the user to the mobile version of the contacts page.

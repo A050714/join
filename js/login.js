@@ -45,19 +45,13 @@ async function login(event) {
   async function authenticateUser(email, password) {
     let response = await fetch(`${BASE_URL}Users.json`);
     let usersData = await response.json();
-    let userFound = false;
-    let loggedInUser = {};
-    for (let userId in usersData) {
-      let user = usersData[userId];
-      if (user.email === email && user.password === password) {
-        userFound = true;
-        loggedInUser.id = userId;
-        loggedInUser.name = user.name;
-        break;
-      }
-    }
-    return { userFound, loggedInUser, usersData };
-  }
+    let userId = Object.keys(usersData).find(id => {
+        let user = usersData[id];
+        return user.email === email && user.password === password;
+    });
+    return { userFound: !!userId, loggedInUser: userId ? { id: userId, name: usersData[userId].name } : {}, usersData };
+}
+
   
   /**
    * Marks a user as logged in by sending a PATCH request to the user's id in Firebase.
