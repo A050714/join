@@ -223,7 +223,6 @@ function setPrioEdit(id) {
   }
 }
 
-
 /**
  * Resets the styles of the priority edit buttons to their default state.
  * @return {void}
@@ -236,7 +235,6 @@ function resetPrioStylesEdit() {
   resetPriorityStyle(medium, "svgMedium-edit", "./../../assets/img/03_AddTask/priority/Prio media.svg");
   resetPriorityStyle(low, "svgLow-edit", "./../../assets/img/03_AddTask/priority/Prio baja(1).svg");
 }
-
 
 /**
  * Retrieves the contacts assigned to a given task.

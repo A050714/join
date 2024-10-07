@@ -20,7 +20,6 @@ async function showFirstLetter() {
     }
 }
 
-
 /**
  * Toggles the visibility of the mobile header navigation and adds an event listener 
  * to close the menu when clicking outside of it.
@@ -60,7 +59,6 @@ async function logout() {
         loggedUserContact = {};
     }
 }
-
 
 /**
  * Displays a popup message for the user and hides it after 3 seconds.

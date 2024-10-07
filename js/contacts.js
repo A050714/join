@@ -95,7 +95,6 @@ function togglePopup() {
     }, isHidden ? 10 : 500);
 }
 
-
 /**
  * Toggles the image source of the mobile add contact button between active and inactive states.
  */
@@ -136,7 +135,6 @@ function toggleEditPopup() {
         popup.classList.toggle('show', isHidden);
     }, isHidden ? 10 : 500);
 }
-
 
 /**
  * Creates a new contact by retrieving input values, posting the data, and resetting the input fields.
@@ -276,7 +274,6 @@ async function editContact() {
     await postData(`Contacts/${contact.id}`, updatedContact);
     location.reload();
 }
-
 
 /**
  * Redirects the user to the mobile version of the contacts page.

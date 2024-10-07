@@ -216,6 +216,7 @@ function generateSubTasks(subTask, index) {
 function highlight(id){
   document.getElementById(id).classList.add('drag-area-highlight');
 }
+
 function removeHighlight(id){
   setTimeout(() => {
     document.getElementById(id).classList.remove('drag-area-highlight');

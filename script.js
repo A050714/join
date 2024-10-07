@@ -23,6 +23,7 @@ async function onloadMain() {
   await loadContacts();
   await loadUsers();
 }
+
 /**
  * Includes external HTML content into elements with the `w3-include-html` attribute.
  * Uses AJAX requests to fetch the HTML and inserts it into the specified elements.
@@ -50,9 +51,7 @@ function includeHTML() {
           }
           /* Remove the attribute, and call this function once more: */
           elmnt.removeAttribute("w3-include-html");
-          
           includeHTML();
-          
         }
       };
       xhttp.open("GET", file, true);
@@ -169,7 +168,6 @@ async function getData(pfad) {
   return (responseToJson = await response.json());
 }
 
-
 /**
  * Posts data to a specific path in the Firebase database.
  *
@@ -190,7 +188,6 @@ async function postData(path = "", data) {
   return (responseToJson = await response.json());
 }
 
-
 /**
  * Saves user data to the Firebase database and reloads the user list.
  *
@@ -202,8 +199,7 @@ async function postData(path = "", data) {
  */
 async function saveUser(data,path) {
   try {
-
-    let response = await fetch(BASE_URL +"Users/"+ path + ".json", {
+       let response = await fetch(BASE_URL +"Users/"+ path + ".json", {
       method: "PUT",
       header: {
         "Content-Type": "application/json",
@@ -211,45 +207,39 @@ async function saveUser(data,path) {
       body: JSON.stringify(data),
     });
   } catch (error) {
-    console.error("Error fetching users:", error.message);
-
+    console.error("Error fetching users:", error.message)
 }
-
   users=[];
   await loadUsers();
-
 }
 
-
 async function checkLog() {
-
   try {
-
       let response = await fetch(`${BASE_URL}Users.json`);
-
-      if (response.status === 200) {
-          let usersData = await response.json();
-          let userLoggedIn = false;
-
-
-          for (let userId in usersData) {
-              if (usersData[userId].logged === true) {
-                  userLoggedIn = true;
-                  break;
-              }
-          }
-
-          if (userLoggedIn) {
-            grantAccess();
-              return; 
-          } 
-      } else {
-          showMessagePopup('Error fetching user data. Please try again.');
-      }
+      await checkIfUserIsLoggedIn(response)
   } catch (error) {
       console.error('Error fetching users from Firebase:', error);
       showMessagePopup('<p>An error occurred while checking login status.</p>');
   }
+}
+
+async function checkIfUserIsLoggedIn(response) {
+  if (response.status === 200) {
+    let usersData = await response.json();
+    let userLoggedIn = false;
+    for (let userId in usersData) {
+        if (usersData[userId].logged === true) {
+            userLoggedIn = true;
+            break;
+        }
+    }
+    if (userLoggedIn) {
+      grantAccess();
+        return; 
+    } 
+} else {
+    showMessagePopup('Error fetching user data. Please try again.');
+}
 }
 
 function grantAccess() {

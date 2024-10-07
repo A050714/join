@@ -52,7 +52,6 @@ async function login(event) {
     return { userFound: !!userId, loggedInUser: userId ? { id: userId, name: usersData[userId].name } : {}, usersData };
 }
 
-  
   /**
    * Marks a user as logged in by sending a PATCH request to the user's id in Firebase.
    * @async
@@ -70,7 +69,6 @@ async function login(event) {
       }),
     });
   }
-  
   
 /**
  * Logs out all other users by sending a PATCH request to each of them.
@@ -123,7 +121,6 @@ async function logOutOtherUsers(loggedInUserId, usersData) {
     }
   }
 
-  
 /**
  * Logs in a guest user by finding or creating a guest user in Firebase
  * and marking them as logged in. It also logs out all other users.

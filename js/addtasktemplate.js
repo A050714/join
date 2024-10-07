@@ -107,6 +107,12 @@ function clearFormBoard() {
   setPrio('medium');
   clearContactListBoard();
 }
+
+/**
+ * Resets the contact list to its initial state by removing any selected
+ * contacts, removing any assigned contacts, and setting the background color
+ * of the contact list items to empty.
+ */
 function clearContactListBoard() {
   document.getElementById("selectedContactsDisplay").innerHTML = "";
   contacts.forEach((contact) => {
@@ -121,6 +127,12 @@ function clearContactListBoard() {
   });
 }
 
+/**
+ * Generates a new unique ID by finding the highest ID in the tasks array and
+ * adding one to it.
+ *
+ * @return {number} The new unique ID.
+ */
 function getNewId() {
   let high = 0;
   tasks.forEach((e) => {
@@ -131,6 +143,12 @@ function getNewId() {
   return high + 1;
 }
 
+/**
+ * Removes a subtask from the task.
+ *
+ * @param {number} index - The index of the subtask to be removed
+ * @return {void}
+ */
 function removeSubTask(index) {
   task.subTasks.splice(index, 1);
   renderSubTasks();
@@ -172,6 +190,15 @@ function renderSubTasks() {
   });
 }
 
+/**
+ * Toggles the selection of a contact in the contact list.
+ *
+ * @param {HTMLElement} contactDiv - The HTML element representing the contact in the list.
+ * @param {HTMLElement} checkbox - The checkbox element associated with the contact.
+ * @param {HTMLElement} contactname - The HTML element containing the contact's name.
+ * @param {Object} contact - The contact object.
+ * @return {void}
+ */
 function toggleContactSelection(contactDiv, checkbox, contactname, contact) {
   contactDiv.classList.toggle("selected");
   if (contactDiv.classList.contains("selected")) {
@@ -189,6 +216,12 @@ function toggleContactSelection(contactDiv, checkbox, contactname, contact) {
   }
 }
 
+/**
+ * Updates the search input element to reflect the number of selected contacts.
+ *
+ * @param {HTMLElement} searchInput - The search input element to update.
+ * @return {void}
+ */
 function updateSearchInput(searchInput) {
   if (selectedContacts.length > 0) {
     searchInput.required = false;
@@ -202,14 +235,25 @@ function updateSearchInput(searchInput) {
   }
 }
 
-// Allgemeine Funktion zur Änderung der Prioritätsstile
+/**
+ * Sets the style of a priority button based on the given color and SVG path.
+ * @param {HTMLElement} button - The priority button element to be styled.
+ * @param {string} svgId - The ID of the SVG element to be updated.
+ * @param {string} color - The background color to be set for the button.
+ * @param {string} svgPath - The path to the SVG file to be used for the button.
+ * @return {void}
+ */
 function setPriorityStyles(button, svgId, color, svgPath) {
   button.style.backgroundColor = color;
   button.style.color = "white";
   document.getElementById(svgId).src = svgPath;
 }
 
-// Funktionen für spezifische Prioritäten
+/**
+ * Sets the style of the given button to represent an urgent priority.
+ * @param {HTMLElement} button - The button element to be styled.
+ * @return {void}
+ */
 function setUrgentPriority(button) {
   setPriorityStyles(
     button,
@@ -220,6 +264,11 @@ function setUrgentPriority(button) {
   selectedPrio = "urgent";
 }
 
+/**
+ * Sets the style of the given button to represent a medium priority.
+ * @param {HTMLElement} button - The button element to be styled.
+ * @return {void}
+ */
 function setMediumPriority(button) {
   setPriorityStyles(
     button,
@@ -229,6 +278,12 @@ function setMediumPriority(button) {
   );
   selectedPrio = "medium";
 }
+
+/**
+ * Sets the style of the given button to represent a low priority.
+ * @param {HTMLElement} button - The button element to be styled.
+ * @return {void}
+ */
 
 function setLowPriority(button) {
   setPriorityStyles(
@@ -240,7 +295,12 @@ function setLowPriority(button) {
   selectedPrio = "low";
 }
 
-// Funktion zum Erstellen des task-Objekts aus Formulareingaben
+/**
+ * Retrieves a task object from the form fields of the add task template.
+ *
+ * @return {object} A task object with properties title, description, dueDate,
+ * category, assignedTo, prio, id, subTasks, and status.
+ */
 function getTaskFromForm() {
   return {
     title: document.getElementById("titleId").value,
@@ -255,7 +315,11 @@ function getTaskFromForm() {
   };
 }
 
-// Funktion zum Zurücksetzen des task-Objekts
+/**
+ * Resets the task object and tasks array to their initial states.
+ *
+ * @return {void}
+ */
 function resetTask() {
   tasks = [];
   task = {
