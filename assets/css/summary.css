@@ -167,8 +167,8 @@ a {
 
 
 .metric-box img {
-    width: 9vh;
-    height: 9vh;
+    width: 7vh;
+    height: 7vh;
     margin-bottom: 1vh;
 }
 
@@ -336,9 +336,9 @@ p {
     }
 
     .metric-box img {
-        width: 40px;
-        height: 40px;
-
+        width: 6vh;
+        height: 6vh;
+        margin-bottom: 1vh;
     }
 
 
@@ -645,8 +645,8 @@ p {
     }
 
     .metric-box img {
-        width: 7vh;
-        height: 7vh;
+        width:6vh; 
+        height: 6vh;
         margin-bottom: 1vh;
     }
 
@@ -670,6 +670,18 @@ p {
 
 }
 
+@media (min-width: 320px) and (max-width: 460px) and (min-height:850px){
+    .metric-box img {
+        width: 12vw;
+        height: 12vw;
+        margin-bottom: 1vh;
+    }
+    .task_number {
+        font-weight: 700;
+        font-size: 3vh;
+    }
+
+}
 
 /*Big Screen_responsive design for big screen width > 901px */
 @media (min-width: 991px) {
