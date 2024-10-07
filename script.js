@@ -213,6 +213,13 @@ async function saveUser(data,path) {
   await loadUsers();
 }
 
+/**
+ * Checks if a user is logged in and grants access if so.
+ *
+ * @async
+ * @function checkLog
+ * @returns {Promise<void>}
+ */
 async function checkLog() {
   try {
       let response = await fetch(`${BASE_URL}Users.json`);
@@ -223,6 +230,13 @@ async function checkLog() {
   }
 }
 
+/**
+ * Checks if a user is logged in and grants access if so.
+ * @async
+ * @function checkIfUserIsLoggedIn
+ * @param {Object} response - The response object from the server.
+ * @returns {Promise<void>}
+ */
 async function checkIfUserIsLoggedIn(response) {
   if (response.status === 200) {
     let usersData = await response.json();
@@ -242,6 +256,11 @@ async function checkIfUserIsLoggedIn(response) {
 }
 }
 
+/**
+ * Grants access to the widgets by setting their display style to 'flex'.
+ * This makes the widgets visible to the user.
+ * @function grantAccess
+ */
 function grantAccess() {
   const link1 = document.getElementById('widget_1');
   const link2 = document.getElementById('widget_2');
