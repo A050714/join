@@ -19,7 +19,6 @@ includeHTML();
  * @returns {Promise<void>}
  */
 async function onloadMain() {
-  await checkLog();
   await loadTasks();
   await loadContacts();
   await loadUsers();
