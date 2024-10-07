@@ -81,9 +81,9 @@ body {
 
 .sidebarfooter {
     display: flex;
-    justify-content: center;
+    justify-content: end;
     flex-direction: column;
-    padding-top: 243px;
+    height: 100%;
     padding-bottom: 52px;
 }
 
