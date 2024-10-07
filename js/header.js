@@ -46,20 +46,34 @@ function showHeaderNav() {
  * @throws Will alert the user if there is a problem with the logout process.
  */
 async function logout() {
-    let response = await fetch(`${BASE_URL}Users.json`);
-    if (response.status === 200) {
+    try {
+      let response = await fetch(`${BASE_URL}Users.json`);
+      if (response.status === 200) {
         let usersData = await response.json();
         let userId = Object.keys(usersData).find(id => usersData[id].logged);
-        if (userId) await fetch(`${BASE_URL}Users/${userId}.json`, {
+  
+        if (userId) {
+          await fetch(`${BASE_URL}Users/${userId}.json`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ logged: false })
-        });
-        showMessagePopup('You have logged out!');
-        setTimeout(() => window.location.href = './../../assets/html_templates/login.html', 3000);
+          });
+        }
+        userLoggedIn = false;
         loggedUserContact = {};
+        showMessagePopup('You have logged out!');
+        setTimeout(() => {
+          window.location.href = './../../assets/html_templates/login.html';
+        }, 3000);
+      } else {
+        showMessagePopup('Failed to fetch user data. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error during logout:', error);
+      showMessagePopup('An error occurred during logout. Please try again.');
     }
-}
+  }
+  
 
 
 /**

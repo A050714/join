@@ -91,6 +91,23 @@ function showAnimation() {
  * fields to their initial values, removes any selected contacts, and clears the subtasks
  * list.
  */
+function clearForm() {
+  document.getElementById("titleId").value = "";
+  document.getElementById("descId").value = "";
+  document.getElementById("dateId").value = "";
+  selectedContacts = [];
+  document.getElementById("selectedContactsDisplay").innerHTML = "";
+  document.getElementById("searchInput").value = ""; 
+  document.getElementById("searchInput").placeholder = "Select contacts to assign";
+  task.subTasks = [];
+  task.assignedTo= [];
+  document.getElementById("categoryId").value = "";
+  document.getElementById("subtasks").innerHTML = "";
+  selectedPrio = "";
+  setPrio('medium');
+  clearContactListBoard();
+}
+
 function clearFormBoard() {
   document.getElementById("titleId").value = "";
   document.getElementById("descId").value = "";
@@ -107,7 +124,22 @@ function clearFormBoard() {
   setPrio('medium');
   clearContactListBoard();
 }
+
 function clearContactListBoard() {
+  document.getElementById("selectedContactsDisplay").innerHTML = "";
+  contacts.forEach((contact) => {
+    let contactDiv = document.getElementById(`contact-${contact.id}`);
+    let checkbox = document.getElementById(`checkboxtask-${contact.id}`);
+    let contactname = document.getElementById(`contactname-${contact.id}`);
+    contactDiv.style.backgroundColor = "";
+    checkbox.src =
+      "./../../assets/img/03_AddTask/contacts_checked/Check button.svg";
+    contactname.style.color = "";
+    contactDiv.classList.remove("selected");
+  });
+}
+
+function clearContactList() {
   document.getElementById("selectedContactsDisplay").innerHTML = "";
   contacts.forEach((contact) => {
     let contactDiv = document.getElementById(`contact-${contact.id}`);

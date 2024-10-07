@@ -13,8 +13,12 @@
     <script src="./../../js/header.js"></script>
     <script src="./../../js/summary.js"></script>
     <script>
-        function goBack(){
-            window.location.href = './../../assets/html_templates/login.html' 
+        function goBack() {
+            if (userLoggedIn = true) {
+                window.history.back();
+            } else {
+                window.location.href = './../../assets/html_templates/login.html'
+            }
         }
     </script>
 </head>

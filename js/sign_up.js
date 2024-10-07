@@ -29,7 +29,7 @@ async function signup() {
   if (!validateSignupInputs(userData)) return;
   try {
     if (await checkIfEmailOrUsernameExists(userData.email, userData.name)) {
-      await logOutOtherUsers();
+      // await logOutOtherUsers();
       const userId = await signUpNewUser(
         userData.name,
         userData.email,
@@ -118,29 +118,6 @@ function checkUserExistence(usersData, email, name) {
     }
   }
   return { emailExists, usernameExists };
-}
-
-/**
- * Logs out all users who are currently logged in, except the one with the given id.
- * Goes through all users in the users data and if the user is logged in (i.e. has a "logged" property set to true),
- * it sets the "logged" property to false and sends a PATCH request to the user's url.
- * @async
- * @function logOutOtherUsers
- */
-async function logOutOtherUsers() {
-  let usersResponse = await fetch(`${BASE_URL}Users.json`);
-  let usersData = await usersResponse.json();
-  for (let userId in usersData) {
-    if (usersData[userId].logged === true) {
-      await fetch(`${BASE_URL}Users/${userId}.json`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          logged: false,
-        }),
-      });
-    }
-  }
 }
 
 /**

@@ -16,7 +16,11 @@
 
     <script>
         function goBack() {
-            window.location.href = './../../assets/html_templates/login.html'
+            if (userLoggedIn = true) {
+                window.history.back();
+            } else {
+                window.location.href = './../../assets/html_templates/login.html'
+            }
         }
     </script>
 </head>

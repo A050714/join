@@ -1,3 +1,5 @@
+let userLoggedIn = false;
+
 /**
  * Logs in a user by checking their email and password against stored users in Firebase.
  * If the login is successful, the user is marked as logged in and redirected to the summary page.
@@ -107,19 +109,26 @@ async function logOutOtherUsers(loggedInUserId, usersData) {
    * @param {boolean} rememberMe - Whether to remember the user using local storage.
    */
   async function handleLoginProcess(userFound, loggedInUser, rememberMe) {
-    if (userFound) {
-      await logInUser(loggedInUser.id);
-      if (rememberMe) {
-        localStorage.setItem("user", JSON.stringify(loggedInUser));
+    try {
+      if (userFound) {
+        await logInUser(loggedInUser.id);
+        // Speichere die Benutzerdaten basierend auf 'rememberMe'
+        const storage = rememberMe ? localStorage : sessionStorage;
+        storage.setItem("user", JSON.stringify(loggedInUser));
+        
+        userLoggedIn = true;
+        showMessagePopup("Login successful!");
+        
+        // Leite den Benutzer nach 2 Sekunden zur Summary-Seite weiter
+        setTimeout(() => {
+          window.location.href = "./../../assets/html_templates/summary.html";
+        }, 2000);
       } else {
-        sessionStorage.setItem("user", JSON.stringify(loggedInUser));
+        showMessagePopup("Invalid email or password.");
       }
-      showMessagePopup("Login successful!");
-      setTimeout(() => {
-        window.location.href = "./../../assets/html_templates/summary.html";
-      }, 2000);
-    } else {
-      showMessagePopup("Invalid email or password.");
+    } catch (error) {
+      console.error("Error during login process:", error);
+      showMessagePopup("An error occurred during login. Please try again.");
     }
   }
 
@@ -137,7 +146,6 @@ async function guestLogin() {
       let guestUserId = findGuestUser(usersData);
       if (!guestUserId) {guestUserId = await createGuestUser();} 
       else {await updateGuestUserStatus(guestUserId);}
-      await logOutOtherUsers(usersData, guestUserId);
       showMessagePopup("You are logged in as a guest!");
       setTimeout(() => {window.location.href = "./../../assets/html_templates/summary.html";}, 2000);
     } catch (error) {
@@ -211,31 +219,7 @@ async function guestLogin() {
       }),
     });
   }
-  
-  /**
-   * Logs out all users except the one with the given id by sending a PATCH request
-   * to their respective user id in Firebase.
-   * @async
-   * @function logOutOtherUsers
-   * @param {Object} usersData - The users data as a JSON object.
-   * @param {string} guestUserId - The id of the guest user that should not be logged out.
-   */
-  async function logOutOtherUsers(usersData, guestUserId) {
-    for (let userId in usersData) {
-      if (userId !== guestUserId && usersData[userId].logged === true) {
-        await fetch(`${BASE_URL}Users/${userId}.json`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            logged: false,
-          }),
-        });
-      }
-    }
-  }
-  
+    
   /**
  * Displays a popup message for the user and hides it after 3 seconds.
  * @function showMessagePopup

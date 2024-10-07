@@ -2,6 +2,7 @@ let nearestDeadline;
 let loggedUser;
 let firstLetter = "";
 
+
 /**
  * Initializes the summary page by loading tasks, user data, and deadlines.
  * Calls various functions to display the current state, nearest deadline, and user greeting.

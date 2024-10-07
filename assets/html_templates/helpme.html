@@ -89,7 +89,11 @@
 
     <script>
         function goBack() {
-            window.history.back();
+            if (userLoggedIn = true) {
+                window.history.back();
+            } else {
+                window.location.href = './../../assets/html_templates/login.html'
+            }
         }
     </script>
 </body>
