@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: js/contacts.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: js/contacts.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>let theLastIndex;
+let colors = ['#FF7A00', '#FF5EB3', '#6E52FF',
+    '#9327FF', '#00BEE8', '#1FD7C1',
+    '#FF745E', '#FFA35E', '#FC71FF',
+    '#FFC701', '#0038FF', '#C3FF2B',
+    '#FFE62B', '#FF4646', '#FFBB2B'];
+
+/**
+ * Renders all contacts in the contact list, including the contact button and sorted by first letter.
+ */
+async function renderAllContacts() {
+    await onloadMain();
+    await showFirstLetter(); 
+    sortContacts();
+    let content = document.getElementById('contactList');
+    content.innerHTML = '';
+    content.innerHTML += addContactButtonHTML();
+    divideByFirstLetter(content)
+    }
+
+/**
+ * Divides the list of contacts into sections based on the first letter of each contact's name.
+ * @param {HTMLElement} content - The HTML element where the contact list will be rendered.
+ */
+function divideByFirstLetter(content) {
+    let firstLetter = '';
+    for (let index = 0; index &lt; contacts.length; index++) {
+        let contact = contacts[index];
+        if (firstLetter != contacts[index].name[0]) {
+            firstLetter = contact.name[0];
+            content.innerHTML += `&lt;div class="letterDiv">&lt;h2>${firstLetter}&lt;/h2>&lt;/div>`
+            content.innerHTML += `&lt;div class="horizontalLine">&lt;/div>`  
+        }
+       content.innerHTML += singleContactHTML(index, contact);
+        showInitials(contact, `contactColor${contact.id}`)
+}
+}
+
+function addContactButtonHTML() {
+    return `
+    &lt;button class="contactbtn" id="addNewContact" onclick="togglePopup()">Add new Contact &lt;img class="newcontactimg"
+                        src="./../img/00_General_elements/person_add.svg" alt="">&lt;/button>
+                        &lt;div class = "contactBtnBackground">&lt;/div>
+    `
+}
+
+/**
+ * Generates the HTML for a single contact item.
+ *
+ * @param {number} index - The index of the contact in the list.
+ * @param {object} contact - The contact object containing name, mail, and id.
+ * @return {string} The HTML string representing the single contact item.
+ */
+function singleContactHTML(index, contact) {
+    return `
+            &lt;div class="singleContacts" id="Id_${index}" onclick="showContact(${index})">            
+                &lt;div class="contacthead2">
+                            &lt;div class="contactcolor2" id="contactColor${contact.id}">&lt;/div>
+                            &lt;div class="nameEmailDiv">
+                                &lt;p id="contactName2">${contact == loggedUserContact? contact.name + " (You)": contact.name}&lt;/p>
+                                &lt;p class="singlecontactmail">${contact.mail}&lt;/p>
+                            &lt;/div>
+                        &lt;/div>
+        `;
+}
+
+/**
+ * Sorts the list of contacts in ascending order based on their names.
+ */
+function sortContacts() {
+    contacts.sort(function (a, b) {
+        if (!a) return 1;
+        if (!b) return -1;
+        if (a.name &lt; b.name) {
+            return -1;
+        }
+        if (a.name > b.name) {
+            return 1;
+        }
+        return 0;
+    });
+}
+
+/**
+ * Toggles the visibility of the popup overlay and add contact popup.
+ */
+function togglePopup() {
+    toggleMobileImg();
+    let overlay = document.getElementById('overlay'), popup = document.getElementById('addcontactpopup');
+    let isHidden = overlay.classList.contains('hidden');
+    overlay.classList.toggle('hidden', !isHidden);
+    setTimeout(() => {
+        overlay.classList.toggle('show', isHidden);
+        popup.classList.toggle('show', isHidden);
+    }, isHidden ? 10 : 500);
+}
+
+/**
+ * Toggles the image source of the mobile add contact button between active and inactive states.
+ */
+function toggleMobileImg(){
+    let edit = 'person_add_bg_dark.svg';
+    let activeEdit = 'person_add_bg_light.svg';
+    let addImage = document.getElementById('addNewContactMobile');
+    if (addImage.src.includes(edit)) {
+        addImage.src = './../img/05_Contacts/person_add_mobile/' + activeEdit;
+    } else if (addImage.src.includes(activeEdit)) {
+        addImage.src = './../img/05_Contacts/person_add_mobile/' + edit;
+    }
+}
+
+/**
+ * Toggles the mobile menu image between its active and inactive states.
+ */
+function toggleMobileMenu(){
+    let edit = 'menu_dark.svg';
+    let activeEdit = 'menu_light.svg';
+    let addImage = document.getElementById('showMenuMobile');
+    if (addImage.src.includes(edit)) {
+        addImage.src = './../img/05_Contacts/contacts_menu_mobile/' + activeEdit;
+    } else if (addImage.src.includes(activeEdit)) {
+        addImage.src = './../img/05_Contacts/contacts_menu_mobile/' + edit;
+    }
+}
+
+/**
+ * Toggles the visibility of the edit contact popup overlay.
+ */
+function toggleEditPopup() {
+    let overlay = document.getElementById('editOverlay'), popup = document.getElementById('editcontactpopup');
+    let isHidden = overlay.classList.contains('hidden');
+    overlay.classList.toggle('hidden', !isHidden);
+    setTimeout(() => {
+        overlay.classList.toggle('show', isHidden);
+        popup.classList.toggle('show', isHidden);
+    }, isHidden ? 10 : 500);
+}
+
+/**
+ * Creates a new contact by retrieving input values, posting the data, and resetting the input fields.
+ */
+async function createContact() {
+    let name = document.getElementById('newName').value;
+    let mail = document.getElementById('newMail').value;
+    let phone = document.getElementById('newPhone').value
+   await postContactData(name,mail,phone)
+    name.value = "";
+    mail.value = "";
+    phone.value = "";
+    togglePopup();
+    ctAddedAnimation();
+}
+
+/**
+ * Finds the index of a contact in the contacts array by its ID.
+ *
+ * @param {Array} contacts - The array of contacts to search in.
+ * @param {string|number} idToFind - The ID of the contact to find.
+ * @return {number} The index of the contact in the array, or -1 if not found.
+ */
+function findIndexById(contacts, idToFind) {
+    return contacts.findIndex(contact => contact.id === idToFind);
+}
+
+/**
+ * Deletes a contact by retrieving its name, finding its Firebase ID, 
+ * deleting the data, and updating the local contacts array.
+ */
+async function deleteContact() {
+    let contactName = document.getElementById('contactName').innerHTML;
+    let firebaseID = contacts.find(x => x &amp;&amp; x.name === contactName).id;
+    await deleteData("Contacts/" + firebaseID)
+    let index = findIndexById(contacts, firebaseID);
+    contacts.splice(index, 1)
+    location.reload();
+}
+
+/**
+ * Displays a contact based on the provided index, updating the UI accordingly.
+ *
+ * @param {number} index - The index of the contact to display.
+ */
+function showContact(index) {
+    let contactContainer = document.getElementById('showContact');
+    contactContainer.classList.remove('show', 'dNone');
+    checkScreenWidth();
+    if (theLastIndex) {
+        document.getElementById(theLastIndex).classList.toggle('chosenContact', false);
+        document.getElementById(theLastIndex).classList.toggle('singleContacts', true);
+    }
+    fillContactData(contacts[index]);
+    let currentId = `Id_${index}`;
+    document.getElementById(currentId).classList.toggle('chosenContact', true);
+    document.getElementById(currentId).classList.toggle('singleContacts', false);
+    document.getElementById('openContact').style.display = document.getElementById('betterWAT').style.display = "flex";
+    theLastIndex = currentId;
+    contactContainer.classList.add('show');
+}
+
+/**
+ * Fills the contact card with the provided contact's data.
+ *
+ * @param {Object} contact - The contact object containing name, mail, and phone properties.
+ */
+function fillContactData(contact) {
+    let contactCardName = document.getElementById('contactName');
+    let contactCardMail = document.getElementById('contactMail');
+    let contactCardPhone = document.getElementById('contactPhone');
+    contactCardName.innerHTML = `${contact.name}`;
+    contactCardMail.innerHTML = `${contact.mail}`;
+    contactCardPhone.innerHTML = `${contact.phone}`;
+    showInitials(contact);
+}
+
+/**
+ * Checks the current screen width and adjusts the visibility of contact details and contact list accordingly.
+ */
+function checkScreenWidth() {
+    const screenWidth = window.innerWidth;
+    const contactDetailsDiv = document.getElementById('rightSide');
+    const contactList = document.getElementById('addNewContact');
+    if (screenWidth &lt;= 990) {
+        contactDetailsDiv.classList.add('showMobileContact');
+        contactList.classList.add('dNone')
+    } else {
+        contactDetailsDiv.classList.remove('showMobileContact');
+        contactList.classList.remove('dNone')
+    }
+}
+
+/**
+ * Displays the initials of a contact in a circular element.
+ *
+ * @param {Object} contact - The contact object containing name and color properties.
+ * @param {string} [id="contactColor"] - The ID of the HTML element to display the initials in.
+ */
+function showInitials(contact, id = "contactColor") {
+    const nameParts = contact.name.split(' ');
+    let initials;
+    if (nameParts.length == 1) {
+        initials = nameParts[0][0];
+    } else {
+        initials = nameParts[0][0] + nameParts[1][0];
+    }
+    let circleInitials = document.getElementById(id);
+    circleInitials.innerHTML = `&lt;p class="pInitals">${initials}&lt;/p>`;
+    circleInitials.style = `background-color: ${colors[contact.color]}`;
+}
+
+/**
+ * Fills the edit contact form fields with the current contact's data and displays their initials.
+ */
+async function fillContactValues() {
+    let name = document.getElementById('contactName').innerHTML;
+    let mail = document.getElementById('contactMail').innerHTML;
+    let phone = document.getElementById('contactPhone').innerHTML;
+    document.getElementById('editName').value = name;
+    document.getElementById('editMail').value = mail;
+    document.getElementById('editPhone').value = phone;
+    let contact = contacts.find(x => x.name &amp;&amp; x.name === name);
+    showInitials(contact, `addcontactbg`)
+}
+
+/**
+ * Edits an existing contact by retrieving the updated values from the edit form,
+ * finding the corresponding contact in the contacts list, and sending a PATCH request
+ * to the Firebase database to update the contact information.
+ */
+async function editContact() {
+    let contactName = document.getElementById('contactName').innerHTML;
+    let name = document.getElementById('editName').value, mail = document.getElementById('editMail').value, phone = document.getElementById('editPhone').value;
+    let contact = contacts.find(x => x.name === contactName);
+    let updatedContact = { name, mail, phone, id: contact.id, color: contact.color };
+    await postData(`Contacts/${contact.id}`, updatedContact);
+    location.reload();
+}
+
+/**
+ * Redirects the user to the mobile version of the contacts page.
+ */
+function showContactsMobile() {
+    window.location.href = "./../html_templates/contacts.html"
+}
+
+/**
+ * Displays the mobile menu by toggling its image and adding the 'show' class to the mobile menu element and the 'headerOverlay' class to the mobile menu overlay element.
+ */
+function showMobileMenu() {
+    toggleMobileMenu()
+    document.getElementById('mobileMenu').classList.add("show");
+    document.getElementById('mobileMenuOverlay').classList.add('headerOverlay')
+}
+
+/**
+ * Closes the mobile menu by toggling its image and removing the 'show' class from the mobile menu element and the 'headerOverlay' class from the mobile menu overlay element.
+ */
+function closeMobileMenu() {
+    toggleMobileMenu()
+    document.getElementById('mobileMenu').classList.remove('show')
+    document.getElementById('mobileMenuOverlay').classList.remove('headerOverlay')
+}
+
+/**
+ * Displays a contact added animation and redirects to the contacts page after a short delay.
+ */
+function ctAddedAnimation() {
+    const animation = document.getElementById("ctAddedAnimation");
+    animation.classList.add("show"); 
+    setTimeout(() => {
+      animation.classList.remove("show");
+      window.location.href = "./../html_templates/contacts.html";
+    }, 2000);
+  }</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#BASE_URL">BASE_URL</a></li><li><a href="global.html#addTask">addTask</a></li><li><a href="global.html#addTo">addTo</a></li><li><a href="global.html#addToSubTasks">addToSubTasks</a></li><li><a href="global.html#addToSubTasksEdit">addToSubTasksEdit</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#cancelEdit">cancelEdit</a></li><li><a href="global.html#checkIfEmailOrUsernameExists">checkIfEmailOrUsernameExists</a></li><li><a href="global.html#checkIfUserIsLoggedIn">checkIfUserIsLoggedIn</a></li><li><a href="global.html#checkLog">checkLog</a></li><li><a href="global.html#checkScreenWidth">checkScreenWidth</a></li><li><a href="global.html#checkUserExistence">checkUserExistence</a></li><li><a href="global.html#clearContactList">clearContactList</a></li><li><a href="global.html#clearContactListBoard">clearContactListBoard</a></li><li><a href="global.html#clearFormBoard">clearFormBoard</a></li><li><a href="global.html#clearInput">clearInput</a></li><li><a href="global.html#closeDropdownOnClickOutside">closeDropdownOnClickOutside</a></li><li><a href="global.html#closeEdit">closeEdit</a></li><li><a href="global.html#closeMobileMenu">closeMobileMenu</a></li><li><a href="global.html#collectSignupData">collectSignupData</a></li><li><a href="global.html#contactsDropdown">contactsDropdown</a></li><li><a href="global.html#createContact">createContact</a></li><li><a href="global.html#ctAddedAnimation">ctAddedAnimation</a></li><li><a href="global.html#deleteContact">deleteContact</a></li><li><a href="global.html#deleteData">deleteData</a></li><li><a href="global.html#deleteTask">deleteTask</a></li><li><a href="global.html#determineGreeting">determineGreeting</a></li><li><a href="global.html#displaySelectedContacts">displaySelectedContacts</a></li><li><a href="global.html#divideByFirstLetter">divideByFirstLetter</a></li><li><a href="global.html#editContact">editContact</a></li><li><a href="global.html#editSubtaskEdit">editSubtaskEdit</a></li><li><a href="global.html#editTask">editTask</a></li><li><a href="global.html#fetchLoggedInUser">fetchLoggedInUser</a></li><li><a href="global.html#fillContactData">fillContactData</a></li><li><a href="global.html#fillContactValues">fillContactValues</a></li><li><a href="global.html#filterContacts">filterContacts</a></li><li><a href="global.html#findIndexById">findIndexById</a></li><li><a href="global.html#generateBoard">generateBoard</a></li><li><a href="global.html#getAssignedContacts">getAssignedContacts</a></li><li><a href="global.html#getData">getData</a></li><li><a href="global.html#getInitials">getInitials</a></li><li><a href="global.html#getNewId">getNewId</a></li><li><a href="global.html#getSelectedContacts">getSelectedContacts</a></li><li><a href="global.html#getTaskFromForm">getTaskFromForm</a></li><li><a href="global.html#getselect">getselect</a></li><li><a href="global.html#grantAccess">grantAccess</a></li><li><a href="global.html#greetUser">greetUser</a></li><li><a href="global.html#handleInput">handleInput</a></li><li><a href="global.html#handleUserResponse">handleUserResponse</a></li><li><a href="global.html#hideAddTask">hideAddTask</a></li><li><a href="global.html#hideIcons">hideIcons</a></li><li><a href="global.html#includeHTML">includeHTML</a></li><li><a href="global.html#loadContacts">loadContacts</a></li><li><a href="global.html#loadCurrentStates">loadCurrentStates</a></li><li><a href="global.html#loadEdit">loadEdit</a></li><li><a href="global.html#loadNearestDeadline">loadNearestDeadline</a></li><li><a href="global.html#loadTasks">loadTasks</a></li><li><a href="global.html#loadUsers">loadUsers</a></li><li><a href="global.html#logOutOtherUsers">logOutOtherUsers</a></li><li><a href="global.html#logout">logout</a></li><li><a href="global.html#moveto">moveto</a></li><li><a href="global.html#onloadAddTask">onloadAddTask</a></li><li><a href="global.html#onloadBoard">onloadBoard</a></li><li><a href="global.html#onloadMain">onloadMain</a></li><li><a href="global.html#onloadSummary">onloadSummary</a></li><li><a href="global.html#postContactData">postContactData</a></li><li><a href="global.html#postData">postData</a></li><li><a href="global.html#putTaskToBoard">putTaskToBoard</a></li><li><a href="global.html#removeSubTask">removeSubTask</a></li><li><a href="global.html#removeSubTaskEdit">removeSubTaskEdit</a></li><li><a href="global.html#renderAllContacts">renderAllContacts</a></li><li><a href="global.html#renderSubTasksEdit">renderSubTasksEdit</a></li><li><a href="global.html#renderTasksForSection">renderTasksForSection</a></li><li><a href="global.html#resetPrioStyles">resetPrioStyles</a></li><li><a href="global.html#resetPrioStylesEdit">resetPrioStylesEdit</a></li><li><a href="global.html#resetPriorityStyle">resetPriorityStyle</a></li><li><a href="global.html#resetTask">resetTask</a></li><li><a href="global.html#saveEdit">saveEdit</a></li><li><a href="global.html#saveEditTask">saveEditTask</a></li><li><a href="global.html#saveSubTaskEdit">saveSubTaskEdit</a></li><li><a href="global.html#saveUser">saveUser</a></li><li><a href="global.html#searchInTheTasks">searchInTheTasks</a></li><li><a href="global.html#setLowPriority">setLowPriority</a></li><li><a href="global.html#setMediumPriority">setMediumPriority</a></li><li><a href="global.html#setMinDate">setMinDate</a></li><li><a href="global.html#setPrio">setPrio</a></li><li><a href="global.html#setPrioEdit">setPrioEdit</a></li><li><a href="global.html#setPriorityStyle">setPriorityStyle</a></li><li><a href="global.html#setPriorityStyles">setPriorityStyles</a></li><li><a href="global.html#setUrgentPriority">setUrgentPriority</a></li><li><a href="global.html#showAddTask">showAddTask</a></li><li><a href="global.html#showAnimation">showAnimation</a></li><li><a href="global.html#showContact">showContact</a></li><li><a href="global.html#showContactsMobile">showContactsMobile</a></li><li><a href="global.html#showFirstLetter">showFirstLetter</a></li><li><a href="global.html#showHeaderNav">showHeaderNav</a></li><li><a href="global.html#showIcons">showIcons</a></li><li><a href="global.html#showInitials">showInitials</a></li><li><a href="global.html#showMessagePopup">showMessagePopup</a></li><li><a href="global.html#showMobileMenu">showMobileMenu</a></li><li><a href="global.html#showTask">showTask</a></li><li><a href="global.html#signUpNewUser">signUpNewUser</a></li><li><a href="global.html#signup">signup</a></li><li><a href="global.html#singleContactHTML">singleContactHTML</a></li><li><a href="global.html#sortContacts">sortContacts</a></li><li><a href="global.html#startDragging">startDragging</a></li><li><a href="global.html#startEdit">startEdit</a></li><li><a href="global.html#toggleContactSelection">toggleContactSelection</a></li><li><a href="global.html#toggleDropdown">toggleDropdown</a></li><li><a href="global.html#toggleEditPopup">toggleEditPopup</a></li><li><a href="global.html#toggleMobileImg">toggleMobileImg</a></li><li><a href="global.html#toggleMobileMenu">toggleMobileMenu</a></li><li><a href="global.html#togglePassword">togglePassword</a></li><li><a href="global.html#togglePopup">togglePopup</a></li><li><a href="global.html#toggleSubtask">toggleSubtask</a></li><li><a href="global.html#updateSearchInput">updateSearchInput</a></li><li><a href="global.html#updateUIForUser">updateUIForUser</a></li><li><a href="global.html#validateSignupInputs">validateSignupInputs</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Mon Oct 07 2024 19:22:21 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

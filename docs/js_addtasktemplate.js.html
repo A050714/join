@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: js/addtasktemplate.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: js/addtasktemplate.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Sets the minimum date for the date input to the current date.
+ * @return {void}
+ */
+function setMinDate() {
+  const today = new Date();
+  const day = String(today.getDate()).padStart(2, "0");
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const year = today.getFullYear();
+  const minDate = `${year}-${month}-${day}`;
+  document.getElementById("dateId").setAttribute("min", minDate);
+}
+
+/**
+ * Hides the edit and delete icons for the subtask with the given index.
+ * Retrieves the edit icon, delete icon, and separator element for the subtask with the given index, and adds the "hide" class to each element.
+ * @param {number} index - The index of the subtask to hide the icons for.
+ */
+function hideIcons(index) {
+  const deleteIcon = document.getElementById(`deleteIcon-${index}`);
+  const separatorEditDelete = document.getElementById(
+    `separator-edit-delete-${index}`
+  );
+  if (deleteIcon) deleteIcon.classList.add("hide");
+  if (separatorEditDelete) separatorEditDelete.classList.add("hide");
+}
+
+/**
+ * Shows the edit and delete icons for the subtask with the given index.
+ * Retrieves the edit icon, delete icon, and separator element for the subtask with the given index, and removes the "hide" class from each element.
+ * @param {number} index - The index of the subtask to show the icons for.
+ */
+function showIcons(index) {
+  const editIcon = document.getElementById(`editIcon-${index}`);
+  const deleteIcon = document.getElementById(`deleteIcon-${index}`);
+  const separatorEditDelete = document.getElementById(
+    `separator-edit-delete-${index}`
+  );
+  if (editIcon) editIcon.classList.remove("hide");
+  if (deleteIcon) deleteIcon.classList.remove("hide");
+  if (separatorEditDelete) separatorEditDelete.classList.remove("hide");
+}
+
+/**
+ * Clears the add subtask input field and updates the display of the add button, cross icon, separator, and check icon accordingly.
+ */
+function clearInput() {
+  document.getElementById("subtaskInput").value = "";
+  handleInput();
+}
+
+/**
+ * Handles input in the add subtask input field.
+ * Shows and hides the add button, cross icon, separator, and check icon based on whether or not there is text in the input field.
+ */
+function handleInput() {
+  const input = document.getElementById("subtaskInput").value.trim();
+  const addToSubTaskbtn = document.getElementById("addToSubTaskbtn");
+  const crossIcon = document.getElementById("crossIcon");
+  const separator = document.getElementById("separator");
+  const checkIcon = document.getElementById("checkIcon");
+  if (input !== "") {
+    addToSubTaskbtn.classList.add("hide");
+    crossIcon.classList.remove("hide");
+    separator.classList.remove("hide");
+    checkIcon.classList.remove("hide");
+  } else {
+    addToSubTaskbtn.classList.remove("hide");
+    crossIcon.classList.add("hide");
+    separator.classList.add("hide");
+    checkIcon.classList.add("hide");
+  }
+}
+
+/**
+ * Displays a task added animation and redirects to the board page after a short delay.
+ */
+
+function showAnimation() {
+  const animation = document.getElementById("taskanimation");
+  animation.classList.add("show");
+  setTimeout(() => {
+    animation.classList.remove("show");
+    window.location.href = "board.html";
+  }, 3000);
+}
+
+/**
+ * Clears the form after a task is added to the board.
+ * Resets the title, description, due date, assigned contacts, category, and subtasks
+ * fields to their initial values, removes any selected contacts, and clears the subtasks
+ * list.
+ */
+function clearFormBoard() {
+  document.getElementById("titleId").value = "";
+  document.getElementById("descId").value = "";
+  document.getElementById("dateId").value = "";
+  selectedContacts = [];
+  document.getElementById("selectedContactsDisplay").innerHTML = "";
+  document.getElementById("searchInput").value = ""; 
+  document.getElementById("searchInput").placeholder = "Select contacts to assign";
+  task.subTasks = [];
+  task.assignedTo= [];
+  document.getElementById("categoryId").value = "";
+  document.getElementById("subtasks").innerHTML = "";
+  selectedPrio = "";
+  setPrio('medium');
+  clearContactListBoard();
+}
+
+/**
+ * Resets the contact list to its initial state by removing any selected
+ * contacts, removing any assigned contacts, and setting the background color
+ * of the contact list items to empty.
+ */
+function clearContactListBoard() {
+  document.getElementById("selectedContactsDisplay").innerHTML = "";
+  contacts.forEach((contact) => {
+    let contactDiv = document.getElementById(`contact-${contact.id}`);
+    let checkbox = document.getElementById(`checkboxtask-${contact.id}`);
+    let contactname = document.getElementById(`contactname-${contact.id}`);
+    contactDiv.style.backgroundColor = "";
+    checkbox.src =
+      "./../../assets/img/03_AddTask/contacts_checked/Check button.svg";
+    contactname.style.color = "";
+    contactDiv.classList.remove("selected");
+  });
+}
+
+/**
+ * Generates a new unique ID by finding the highest ID in the tasks array and
+ * adding one to it.
+ *
+ * @return {number} The new unique ID.
+ */
+function getNewId() {
+  let high = 0;
+  tasks.forEach((e) => {
+    if (e.id > high) {
+      high = e.id;
+    }
+  });
+  return high + 1;
+}
+
+/**
+ * Removes a subtask from the task.
+ *
+ * @param {number} index - The index of the subtask to be removed
+ * @return {void}
+ */
+function removeSubTask(index) {
+  task.subTasks.splice(index, 1);
+  renderSubTasks();
+}
+
+function generateContacts(contact, id2) {
+  return /*html*/ `
+      &lt;li id="contact-${contact.id}">
+        &lt;div onclick='addTo(${contact.id},${id2})' class="contactlistaddtask">
+          &lt;div class="frame1">
+            &lt;div class="contactcolor3" id="contactColor-${contact.id}">&lt;/div>
+            &lt;p class="pContactname" id="contactname-${contact.id}">${contact.name}&lt;/p>
+          &lt;/div>
+          &lt;img id="checkboxtask-${contact.id}" src="./../../assets/img/03_AddTask/contacts_checked/Check button.svg" alt="Checkbox">
+        &lt;/div>
+      &lt;/li>
+    `;
+}
+
+function renderSubTasks() {
+  let content = document.getElementById("subtasks");
+  content.innerHTML = "";
+  task.subTasks.forEach((subTask, index) => {
+    content.innerHTML += /*html*/ `
+        &lt;li class="subtask-item" id="subtask-${index}" onmouseover="showIcons(${index})" onmouseout="hideIcons(${index})">
+          &lt;span class="subtask-title" id="title-${index}">${subTask.title}&lt;/span>
+          &lt;input type="text" class="subtask-edit hide" id="edit-${index}" value="${subTask.title}" />
+          &lt;div class="icons" id="icons-${index}">
+            &lt;img src="./../../assets/img/03_AddTask/subtasks_icons/edit.svg" alt="Edit" class="icon hide" id="editIcon-${index}" onclick="startEdit(${index})">
+            &lt;span class="separator hide" id="separator-edit-delete-${index}">|&lt;/span>
+            &lt;img src="./../../assets/img/03_AddTask/subtasks_icons/delete.svg" alt="Delete" class="icon hide" id="deleteIcon-${index}" onclick="removeSubTask(${index})">
+            &lt;span class="separator hide" id="separator-save-${index}">|&lt;/span>
+            &lt;img src="./../../assets/img/00_General_elements/Subtasks icons11.svg" alt="Save" class="icon hide" id="save-${index}" onclick="saveEdit(${index})">
+            &lt;span class="separator hide" id="separator-cancel-${index}">|&lt;/span>
+            &lt;img src="./../../assets/img/03_AddTask/subtasks_icons/delete.svg" alt="Cancel" class="icon hide" id="cancel-${index}" onclick="cancelEdit(${index})">
+          &lt;/div>
+        &lt;/li>
+      `;
+  });
+}
+
+/**
+ * Toggles the selection of a contact in the contact list.
+ *
+ * @param {HTMLElement} contactDiv - The HTML element representing the contact in the list.
+ * @param {HTMLElement} checkbox - The checkbox element associated with the contact.
+ * @param {HTMLElement} contactname - The HTML element containing the contact's name.
+ * @param {Object} contact - The contact object.
+ * @return {void}
+ */
+function toggleContactSelection(contactDiv, checkbox, contactname, contact) {
+  contactDiv.classList.toggle("selected");
+  if (contactDiv.classList.contains("selected")) {
+    contactDiv.style.backgroundColor = "#2A3647";
+    checkbox.src =
+      "./../../assets/img/03_AddTask/contacts_checked/checkwhite.svg";
+    contactname.style.color = "white";
+    selectedContacts.push(contact);
+  } else {
+    contactDiv.style.backgroundColor = "";
+    checkbox.src =
+      "./../../assets/img/03_AddTask/contacts_checked/Check button.svg";
+    contactname.style.color = "";
+    selectedContacts = selectedContacts.filter((c) => c.id !== contact.id);
+  }
+}
+
+/**
+ * Updates the search input element to reflect the number of selected contacts.
+ *
+ * @param {HTMLElement} searchInput - The search input element to update.
+ * @return {void}
+ */
+function updateSearchInput(searchInput) {
+  if (selectedContacts.length > 0) {
+    searchInput.required = false;
+    searchInput.value = `${selectedContacts.length} contact${
+      selectedContacts.length > 1 ? "s" : ""
+    } assigned`;
+  } else {
+    searchInput.required = true;
+    searchInput.value = "";
+    searchInput.placeholder = "Select contacts to assign";
+  }
+}
+
+/**
+ * Sets the style of a priority button based on the given color and SVG path.
+ * @param {HTMLElement} button - The priority button element to be styled.
+ * @param {string} svgId - The ID of the SVG element to be updated.
+ * @param {string} color - The background color to be set for the button.
+ * @param {string} svgPath - The path to the SVG file to be used for the button.
+ * @return {void}
+ */
+function setPriorityStyles(button, svgId, color, svgPath) {
+  button.style.backgroundColor = color;
+  button.style.color = "white";
+  document.getElementById(svgId).src = svgPath;
+}
+
+/**
+ * Sets the style of the given button to represent an urgent priority.
+ * @param {HTMLElement} button - The button element to be styled.
+ * @return {void}
+ */
+function setUrgentPriority(button) {
+  setPriorityStyles(
+    button,
+    "svgUrgent",
+    "rgba(255, 61, 0, 1)",
+    "./../../assets/img/03_AddTask/priority/Capa 1.svg"
+  );
+  selectedPrio = "urgent";
+}
+
+/**
+ * Sets the style of the given button to represent a medium priority.
+ * @param {HTMLElement} button - The button element to be styled.
+ * @return {void}
+ */
+function setMediumPriority(button) {
+  setPriorityStyles(
+    button,
+    "svgMedium",
+    "rgba(255, 168, 0, 1)",
+    "./../../assets/img/03_AddTask/priority/Capa 2.svg"
+  );
+  selectedPrio = "medium";
+}
+
+/**
+ * Sets the style of the given button to represent a low priority.
+ * @param {HTMLElement} button - The button element to be styled.
+ * @return {void}
+ */
+
+function setLowPriority(button) {
+  setPriorityStyles(
+    button,
+    "svgLow",
+    "rgba(122, 226, 41, 1)",
+    "./../../assets/img/03_AddTask/priority/Prio baja.svg"
+  );
+  selectedPrio = "low";
+}
+
+/**
+ * Retrieves a task object from the form fields of the add task template.
+ *
+ * @return {object} A task object with properties title, description, dueDate,
+ * category, assignedTo, prio, id, subTasks, and status.
+ */
+function getTaskFromForm() {
+  return {
+    title: document.getElementById("titleId").value,
+    description: document.getElementById("descId").value,
+    dueDate: document.getElementById("dateId").value,
+    category: document.getElementById("categoryId").value,
+    assignedTo: selectedContacts.map((c) => c.id),
+    prio: selectedPrio,
+    id: getNewId(),
+    subTasks: task.subTasks.length === 0 ? ["empty"] : task.subTasks,
+    status: "todo",
+  };
+}
+
+/**
+ * Resets the task object and tasks array to their initial states.
+ *
+ * @return {void}
+ */
+function resetTask() {
+  tasks = [];
+  task = {
+    title: "",
+    description: "",
+    assignedTo: [],
+    dueDate: "",
+    prio: "",
+    category: "",
+    subTasks: [],
+    status: "todo",
+  };
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#BASE_URL">BASE_URL</a></li><li><a href="global.html#addTask">addTask</a></li><li><a href="global.html#addTo">addTo</a></li><li><a href="global.html#addToSubTasks">addToSubTasks</a></li><li><a href="global.html#addToSubTasksEdit">addToSubTasksEdit</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#cancelEdit">cancelEdit</a></li><li><a href="global.html#checkIfEmailOrUsernameExists">checkIfEmailOrUsernameExists</a></li><li><a href="global.html#checkIfUserIsLoggedIn">checkIfUserIsLoggedIn</a></li><li><a href="global.html#checkLog">checkLog</a></li><li><a href="global.html#checkScreenWidth">checkScreenWidth</a></li><li><a href="global.html#checkUserExistence">checkUserExistence</a></li><li><a href="global.html#clearContactList">clearContactList</a></li><li><a href="global.html#clearContactListBoard">clearContactListBoard</a></li><li><a href="global.html#clearFormBoard">clearFormBoard</a></li><li><a href="global.html#clearInput">clearInput</a></li><li><a href="global.html#closeDropdownOnClickOutside">closeDropdownOnClickOutside</a></li><li><a href="global.html#closeEdit">closeEdit</a></li><li><a href="global.html#closeMobileMenu">closeMobileMenu</a></li><li><a href="global.html#collectSignupData">collectSignupData</a></li><li><a href="global.html#contactsDropdown">contactsDropdown</a></li><li><a href="global.html#createContact">createContact</a></li><li><a href="global.html#ctAddedAnimation">ctAddedAnimation</a></li><li><a href="global.html#deleteContact">deleteContact</a></li><li><a href="global.html#deleteData">deleteData</a></li><li><a href="global.html#deleteTask">deleteTask</a></li><li><a href="global.html#determineGreeting">determineGreeting</a></li><li><a href="global.html#displaySelectedContacts">displaySelectedContacts</a></li><li><a href="global.html#divideByFirstLetter">divideByFirstLetter</a></li><li><a href="global.html#editContact">editContact</a></li><li><a href="global.html#editSubtaskEdit">editSubtaskEdit</a></li><li><a href="global.html#editTask">editTask</a></li><li><a href="global.html#fetchLoggedInUser">fetchLoggedInUser</a></li><li><a href="global.html#fillContactData">fillContactData</a></li><li><a href="global.html#fillContactValues">fillContactValues</a></li><li><a href="global.html#filterContacts">filterContacts</a></li><li><a href="global.html#findIndexById">findIndexById</a></li><li><a href="global.html#generateBoard">generateBoard</a></li><li><a href="global.html#getAssignedContacts">getAssignedContacts</a></li><li><a href="global.html#getData">getData</a></li><li><a href="global.html#getInitials">getInitials</a></li><li><a href="global.html#getNewId">getNewId</a></li><li><a href="global.html#getSelectedContacts">getSelectedContacts</a></li><li><a href="global.html#getTaskFromForm">getTaskFromForm</a></li><li><a href="global.html#getselect">getselect</a></li><li><a href="global.html#grantAccess">grantAccess</a></li><li><a href="global.html#greetUser">greetUser</a></li><li><a href="global.html#handleInput">handleInput</a></li><li><a href="global.html#handleUserResponse">handleUserResponse</a></li><li><a href="global.html#hideAddTask">hideAddTask</a></li><li><a href="global.html#hideIcons">hideIcons</a></li><li><a href="global.html#includeHTML">includeHTML</a></li><li><a href="global.html#loadContacts">loadContacts</a></li><li><a href="global.html#loadCurrentStates">loadCurrentStates</a></li><li><a href="global.html#loadEdit">loadEdit</a></li><li><a href="global.html#loadNearestDeadline">loadNearestDeadline</a></li><li><a href="global.html#loadTasks">loadTasks</a></li><li><a href="global.html#loadUsers">loadUsers</a></li><li><a href="global.html#logOutOtherUsers">logOutOtherUsers</a></li><li><a href="global.html#logout">logout</a></li><li><a href="global.html#moveto">moveto</a></li><li><a href="global.html#onloadAddTask">onloadAddTask</a></li><li><a href="global.html#onloadBoard">onloadBoard</a></li><li><a href="global.html#onloadMain">onloadMain</a></li><li><a href="global.html#onloadSummary">onloadSummary</a></li><li><a href="global.html#postContactData">postContactData</a></li><li><a href="global.html#postData">postData</a></li><li><a href="global.html#putTaskToBoard">putTaskToBoard</a></li><li><a href="global.html#removeSubTask">removeSubTask</a></li><li><a href="global.html#removeSubTaskEdit">removeSubTaskEdit</a></li><li><a href="global.html#renderAllContacts">renderAllContacts</a></li><li><a href="global.html#renderSubTasksEdit">renderSubTasksEdit</a></li><li><a href="global.html#renderTasksForSection">renderTasksForSection</a></li><li><a href="global.html#resetPrioStyles">resetPrioStyles</a></li><li><a href="global.html#resetPrioStylesEdit">resetPrioStylesEdit</a></li><li><a href="global.html#resetPriorityStyle">resetPriorityStyle</a></li><li><a href="global.html#resetTask">resetTask</a></li><li><a href="global.html#saveEdit">saveEdit</a></li><li><a href="global.html#saveEditTask">saveEditTask</a></li><li><a href="global.html#saveSubTaskEdit">saveSubTaskEdit</a></li><li><a href="global.html#saveUser">saveUser</a></li><li><a href="global.html#searchInTheTasks">searchInTheTasks</a></li><li><a href="global.html#setLowPriority">setLowPriority</a></li><li><a href="global.html#setMediumPriority">setMediumPriority</a></li><li><a href="global.html#setMinDate">setMinDate</a></li><li><a href="global.html#setPrio">setPrio</a></li><li><a href="global.html#setPrioEdit">setPrioEdit</a></li><li><a href="global.html#setPriorityStyle">setPriorityStyle</a></li><li><a href="global.html#setPriorityStyles">setPriorityStyles</a></li><li><a href="global.html#setUrgentPriority">setUrgentPriority</a></li><li><a href="global.html#showAddTask">showAddTask</a></li><li><a href="global.html#showAnimation">showAnimation</a></li><li><a href="global.html#showContact">showContact</a></li><li><a href="global.html#showContactsMobile">showContactsMobile</a></li><li><a href="global.html#showFirstLetter">showFirstLetter</a></li><li><a href="global.html#showHeaderNav">showHeaderNav</a></li><li><a href="global.html#showIcons">showIcons</a></li><li><a href="global.html#showInitials">showInitials</a></li><li><a href="global.html#showMessagePopup">showMessagePopup</a></li><li><a href="global.html#showMobileMenu">showMobileMenu</a></li><li><a href="global.html#showTask">showTask</a></li><li><a href="global.html#signUpNewUser">signUpNewUser</a></li><li><a href="global.html#signup">signup</a></li><li><a href="global.html#singleContactHTML">singleContactHTML</a></li><li><a href="global.html#sortContacts">sortContacts</a></li><li><a href="global.html#startDragging">startDragging</a></li><li><a href="global.html#startEdit">startEdit</a></li><li><a href="global.html#toggleContactSelection">toggleContactSelection</a></li><li><a href="global.html#toggleDropdown">toggleDropdown</a></li><li><a href="global.html#toggleEditPopup">toggleEditPopup</a></li><li><a href="global.html#toggleMobileImg">toggleMobileImg</a></li><li><a href="global.html#toggleMobileMenu">toggleMobileMenu</a></li><li><a href="global.html#togglePassword">togglePassword</a></li><li><a href="global.html#togglePopup">togglePopup</a></li><li><a href="global.html#toggleSubtask">toggleSubtask</a></li><li><a href="global.html#updateSearchInput">updateSearchInput</a></li><li><a href="global.html#updateUIForUser">updateUIForUser</a></li><li><a href="global.html#validateSignupInputs">validateSignupInputs</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Mon Oct 07 2024 19:22:21 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
