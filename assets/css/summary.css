@@ -167,8 +167,8 @@ a {
 
 
 .metric-box img {
-    width: 7vh;
-    height: 7vh;
+    width: vh;
+    height: 8vh;
     margin-bottom: 1vh;
 }
 
