@@ -37,7 +37,7 @@ body {
 #widget_3,
 #widget_4 {
     font-size: 16px;
-    display: none;
+    display: flex;
     align-items: center;
     gap: 8px;
     padding-top: 8px;

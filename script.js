@@ -1,3 +1,8 @@
+window.onpageshow = function(event) {
+  if (event.persisted) {
+      window.location.reload();
+  }
+};
 /**
  * Base URL for the Firebase Realtime Database.
  * @constant {string}
@@ -10,6 +15,8 @@ let contacts = [];
 let users = [];
 let loggedUserContact;
 includeHTML();
+
+
 
 /**
  * Loads tasks, contacts, and users from the Firebase database when the page is loaded.
@@ -61,6 +68,8 @@ function includeHTML() {
     }
   }
 }
+
+
 
 /**
  * Loads users from the Firebase database and stores them in the `users` array.
@@ -247,8 +256,8 @@ async function checkIfUserIsLoggedIn(response) {
             break;
         }
     }
-    if (userLoggedIn) {
-      grantAccess();
+    if (!userLoggedIn) {
+      restrictAccess(); 
         return; 
     } 
 } else {
@@ -256,18 +265,28 @@ async function checkIfUserIsLoggedIn(response) {
 }
 }
 
+
+
+
 /**
  * Grants access to the widgets by setting their display style to 'flex'.
  * This makes the widgets visible to the user.
  * @function grantAccess
  */
-function grantAccess() {
+function restrictAccess() {
   const link1 = document.getElementById('widget_1');
   const link2 = document.getElementById('widget_2');
   const link3 = document.getElementById('widget_3');
   const link4 = document.getElementById('widget_4');
-  link1.style.display = 'flex';
-  link2.style.display = 'flex';
-  link3.style.display = 'flex';
-  link4.style.display = 'flex';
+  if (link1 && link2 && link3 && link4) {
+    link1.style.display = 'none';
+    link2.style.display = 'none';
+    link3.style.display = 'none';
+    link4.style.display = 'none';
+  } else {
+    console.error('Widgets not found');
+  }
 }
+
+  
+
