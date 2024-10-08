@@ -105,3 +105,14 @@ body {
     align-items: center;
 
 }
+
+.sidebarOverlay{
+    display: block;
+    background-color: #2A3647;
+    width: 200px;
+    height: 300px;
+    position: absolute;
+    top: 200px;
+    left: 10px;
+    z-index: 100;
+}

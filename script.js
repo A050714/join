@@ -256,8 +256,8 @@ async function checkIfUserIsLoggedIn(response) {
             break;
         }
     }
-    if (!userLoggedIn) {
-      restrictAccess(); 
+    if (userLoggedIn) {
+      checkPageAndGrantAccess(); 
         return; 
     } 
 } else {
@@ -265,27 +265,43 @@ async function checkIfUserIsLoggedIn(response) {
 }
 }
 
+function checkPageAndGrantAccess() {
+  const currentPath = window.location.pathname;
 
-
+  if (currentPath.includes('helpme') || currentPath.includes('legal')|| currentPath.includes('privacy')) {
+    grantAccess();
+  }
+}
 
 /**
  * Grants access to the widgets by setting their display style to 'flex'.
  * This makes the widgets visible to the user.
  * @function grantAccess
  */
-function restrictAccess() {
-  const link1 = document.getElementById('widget_1');
-  const link2 = document.getElementById('widget_2');
-  const link3 = document.getElementById('widget_3');
-  const link4 = document.getElementById('widget_4');
-  if (link1 && link2 && link3 && link4) {
-    link1.style.display = 'none';
-    link2.style.display = 'none';
-    link3.style.display = 'none';
-    link4.style.display = 'none';
-  } else {
-    console.error('Widgets not found');
-  }
+function grantAccess() {
+    const sidebarOverlayP = document.getElementById('sidebarOverlayPrivacy');
+    const sidebarOverlayL = document.getElementById('sidebarOverlayLegal');
+    const sidebarOverlayH = document.getElementById('sidebarOverlayHelp');
+  
+    // Hide sidebarOverlayPolicy if it exists
+    if (sidebarOverlayP) {
+      sidebarOverlayP.style.display = 'none';
+    } 
+  
+    // Hide sidebarOverlayLegacy if it exists
+    if (sidebarOverlayL) {
+      sidebarOverlayL.style.display = 'none';
+    }
+
+    if (sidebarOverlayH) {
+      sidebarOverlayH.style.display = 'none';
+    }
+  
+    // If neither of the elements were found, log an error
+    if (!sidebarOverlayP && !sidebarOverlayL && !sidebarOverlayH) {
+      console.error('Sidebar overlay not found');
+    }
+  
 }
 
   

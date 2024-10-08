@@ -148,6 +148,18 @@ Not supports in Firefox and IE */
         padding: 0px 8px;
     }
 
+    .sidebarOverlay{
+        display: block;
+        background-color: #2A3647;
+        width: 100%;
+        left: 0;
+        height: 70px;
+        padding: 0; 
+        bottom: 0;
+        top: unset;
+        z-index: 100;
+    }
+
     .sidelinks a {
         display: flex;
         flex-direction: column;
