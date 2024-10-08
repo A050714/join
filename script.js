@@ -282,26 +282,18 @@ function grantAccess() {
     const sidebarOverlayP = document.getElementById('sidebarOverlayPrivacy');
     const sidebarOverlayL = document.getElementById('sidebarOverlayLegal');
     const sidebarOverlayH = document.getElementById('sidebarOverlayHelp');
-  
-    // Hide sidebarOverlayPolicy if it exists
     if (sidebarOverlayP) {
       sidebarOverlayP.style.display = 'none';
     } 
-  
-    // Hide sidebarOverlayLegacy if it exists
     if (sidebarOverlayL) {
       sidebarOverlayL.style.display = 'none';
     }
-
     if (sidebarOverlayH) {
       sidebarOverlayH.style.display = 'none';
     }
-  
-    // If neither of the elements were found, log an error
     if (!sidebarOverlayP && !sidebarOverlayL && !sidebarOverlayH) {
       console.error('Sidebar overlay not found');
     }
-  
 }
 
   
